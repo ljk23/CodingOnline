@@ -2,16 +2,16 @@
 <head>
     <meta charset="UTF-8">
     <script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
-    <link type="text/css" rel="stylesheet" href="../../css/body.css" />
-    <link type="text/css" rel="stylesheet" href="../../css/header.css" />
-    <link type="text/css" rel="stylesheet" href="../../css/booter.css" />
+    <link type="text/css" rel="stylesheet" href="../../css/body.css"/>
+    <link type="text/css" rel="stylesheet" href="../../css/header.css"/>
+    <link type="text/css" rel="stylesheet" href="../../css/booter.css"/>
     <script src="../../js/header.js"></script>
     <title>www.byyl.com</title>
     <script>
         /** isLogin  */
         $(window).load(function () {
-            if(sessionStorage.loginName!=undefined){
-                var obj=sessionStorage.loginName;
+            if (sessionStorage.loginName != undefined) {
+                var obj = sessionStorage.loginName;
                 Implement(obj);
                 /**  测试了一下，好的*/
             }
@@ -22,11 +22,13 @@
 <!--头部-->
 <div class="ui">
     <div class="ui-left">
-        <a class="item" href="../IndexMoudle/index.html" onmousemove=""><img src="../../images/logo_flat.png" width="104" height="24"></a>
+        <a class="item" href="../IndexMoudle/index.html" onmousemove=""><img src="../../images/logo_flat.png"
+                                                                             width="104" height="24"></a>
         <a class="item" href="../TitleMoudle/exercise.html"><i class="list items icon"></i>题目中心</a>
         <a class="item" href="function/education.html"><i class="list items icon"></i>在线教学</a>
         <a class="item" href="../ContestWork/contest.html"><i class="list items icon"></i>在线比赛</a>
-        <a class="item" href="../HelpMoudle/help.html" style="border-right: 1px solid gray;"><i class="list items icon"></i>帮助中心</a>
+        <a class="item" href="../HelpMoudle/help.html" style="border-right: 1px solid gray;"><i
+                class="list items icon"></i>帮助中心</a>
     </div>
     <div class="ui-right" id="ui-right">
         <a class="item" onclick="register()">
@@ -41,7 +43,7 @@
 <div class="loginclass" id="loginclass" style="display: none">
     <form id="" method="post">
         <div class="loginside"><h3>登录WeJudge</h3></div>
-        <hr style="color: gray" />
+        <hr style="color: gray"/>
         <div class="loginbody">
             <div>WeJudge账户</div>
             <hr width="80%"/>
@@ -51,38 +53,47 @@
             <div id="login_user_frame">
                 <br>
                 <small>登录名称</small>
-                <div style="padding: 10px 10px 10px 0px;"><input type="text" placeholder="请输入用户名" id="username" name="" style="width:200px; height:30px"/></div>
+                <div style="padding: 10px 10px 10px 0px;"><input type="text" placeholder="请输入用户名" id="username" name=""
+                                                                 style="width:200px; height:30px"/></div>
                 <small>登录密码</small>
                 <br>
-                <div style="padding: 10px 10px 10px 0px;"><input type="password" placeholder="请输入密码" id="password" name="" style="width:200px; height:30px"/></div>
-                <div style="font-size: 10px"><input type="radio"  name="login_identity" value="学生" checked="checked">学生&nbsp;
-                    <input type="radio"  name="login_identity" value="老师">老师&nbsp;&nbsp;
-                    <input type="radio"  name="login_identity" value="管理员">管理员
-                </div>
-                <br>
-                <div class="loginside" style="display: -webkit-box; -webkit-box-orient: row; background-color: #EBEBEB; text-align: center;">
-                    <div style=" margin-bottom: 5px; width: 50px;margin-left: 40%; background-color: #C2C2C2; border-radius:6px 6px 6px 6px; cursor: pointer; color: #838B83;" id="closelogin"><small>关闭</small></div>&nbsp;&nbsp;&nbsp;&nbsp;
-                    <div style=" margin-bottom: 5px; width: 50px; background-color: #1C86EE; border-radius:6px 6px 6px 6px; cursor: pointer;color: white;" id="login_user"><small>登录</small></div>
-                </div>
-            </div>
-            <!--email login-->
-           <!-- <div id="login_email_frame"  style="display: none">
-                <br>
-                <small>登录名称</small>
-                <div style="padding: 10px 10px 10px 0px;"><input type="text" placeholder="请输入邮箱" id="useremail" name="" style="width:200px; height:30px"/></div>
-                <small>登录密码</small>
-                <br>
-                <div style="padding: 10px 10px 10px 0px;"><input type="password" placeholder="请输入密码" id="password" name="" style="width:200px; height:30px"/></div>
-                <div style="font-size: 10px"><input type="radio" name="login_identity" value="学生">学生&nbsp;&nbsp;
+                <div style="padding: 10px 10px 10px 0px;"><input type="password" placeholder="请输入密码" id="password"
+                                                                 name="" style="width:200px; height:30px"/></div>
+                <div style="font-size: 10px"><input type="radio" name="login_identity" value="学生" checked="checked">学生&nbsp;
                     <input type="radio" name="login_identity" value="老师">老师&nbsp;&nbsp;
                     <input type="radio" name="login_identity" value="管理员">管理员
                 </div>
                 <br>
-                <div class="loginside" style="display: -webkit-box; -webkit-box-orient: row; background-color: #EBEBEB; text-align: center;">
-                    <div style=" margin-bottom: 5px; width: 50px;margin-left: 40%; background-color: #C2C2C2; border-radius:6px 6px 6px 6px; cursor: pointer; color: #838B83;" id="#closelogin"><small>关闭</small></div>&nbsp;&nbsp;&nbsp;&nbsp;
-                    <div style=" margin-bottom: 5px; width: 50px; background-color: #1C86EE; border-radius:6px 6px 6px 6px; cursor: pointer;color: white;" id="login_email"><small>登录</small></div>
+                <div class="loginside"
+                     style="display: -webkit-box; -webkit-box-orient: row; background-color: #EBEBEB; text-align: center;">
+                    <div style=" margin-bottom: 5px; width: 50px;margin-left: 40%; background-color: #C2C2C2; border-radius:6px 6px 6px 6px; cursor: pointer; color: #838B83;"
+                         id="closelogin">
+                        <small>关闭</small>
+                    </div>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <div style=" margin-bottom: 5px; width: 50px; background-color: #1C86EE; border-radius:6px 6px 6px 6px; cursor: pointer;color: white;"
+                         id="login_user">
+                        <small>登录</small>
+                    </div>
                 </div>
-            </div>-->
+            </div>
+            <!--email login-->
+            <!-- <div id="login_email_frame"  style="display: none">
+                 <br>
+                 <small>登录名称</small>
+                 <div style="padding: 10px 10px 10px 0px;"><input type="text" placeholder="请输入邮箱" id="useremail" name="" style="width:200px; height:30px"/></div>
+                 <small>登录密码</small>
+                 <br>
+                 <div style="padding: 10px 10px 10px 0px;"><input type="password" placeholder="请输入密码" id="password" name="" style="width:200px; height:30px"/></div>
+                 <div style="font-size: 10px"><input type="radio" name="login_identity" value="学生">学生&nbsp;&nbsp;
+                     <input type="radio" name="login_identity" value="老师">老师&nbsp;&nbsp;
+                     <input type="radio" name="login_identity" value="管理员">管理员
+                 </div>
+                 <br>
+                 <div class="loginside" style="display: -webkit-box; -webkit-box-orient: row; background-color: #EBEBEB; text-align: center;">
+                     <div style=" margin-bottom: 5px; width: 50px;margin-left: 40%; background-color: #C2C2C2; border-radius:6px 6px 6px 6px; cursor: pointer; color: #838B83;" id="#closelogin"><small>关闭</small></div>&nbsp;&nbsp;&nbsp;&nbsp;
+                     <div style=" margin-bottom: 5px; width: 50px; background-color: #1C86EE; border-radius:6px 6px 6px 6px; cursor: pointer;color: white;" id="login_email"><small>登录</small></div>
+                 </div>
+             </div>-->
             <!--<div>记住登录</div>-->
         </div>
     </form>
@@ -91,24 +102,36 @@
 <div class="registerclass" id="registerclass" style="display: none">
     <form id="#" method="post">
         <div class="registerside"><h3>登录WeJudge</h3></div>
-        <hr style="color: gray" />
+        <hr style="color: gray"/>
         <div class="registerbody">
             <div>WeJudge账户</div>
             <hr width="80%"/>
             <br>
             <small>登录名称</small>
-            <div style="padding: 10px 10px 10px 0px;"><input type="text" placeholder="请输入用户名（8-15个字符）"  id="reg_username" name="" style="width:200px; height:30px"/><span id="info"></span></div>
+            <div style="padding: 10px 10px 10px 0px;"><input type="text" placeholder="请输入用户名（8-15个字符）" id="reg_username"
+                                                             name="" style="width:200px; height:30px"/><span
+                    id="info"></span></div>
             <small>登录密码</small>
-            <div style="padding: 10px 10px 10px 0px;"><input type="password" placeholder="请输入密码" id="reg_password"   name="" style="width:200px; height:30px"/></div>
+            <div style="padding: 10px 10px 10px 0px;"><input type="password" placeholder="请输入密码" id="reg_password"
+                                                             name="" style="width:200px; height:30px"/></div>
             <small>确认密码</small>
-            <div style="padding: 10px 10px 10px 0px;"><input type="password" placeholder="请输入密码" id="reg_repassword" name="" style="width:200px; height:30px"/></div>
+            <div style="padding: 10px 10px 10px 0px;"><input type="password" placeholder="请输入密码" id="reg_repassword"
+                                                             name="" style="width:200px; height:30px"/></div>
             <small>邮箱</small>
-            <div style="padding: 10px 10px 10px 0px;"><input type="text" placeholder="请输入密码" id="reg_email" name="" style="width:200px; height:30px"/></div>
-        <!--<div>记住登录</div>-->
+            <div style="padding: 10px 10px 10px 0px;"><input type="text" placeholder="请输入密码" id="reg_email" name=""
+                                                             style="width:200px; height:30px"/></div>
+            <!--<div>记住登录</div>-->
         </div>
-        <div class="registerside" style="display: -webkit-box; -webkit-box-orient: row; background-color: #EBEBEB; text-align: center;">
-            <div style=" margin-bottom: 5px; width: 50px;margin-left: 40%; background-color: #C2C2C2; border-radius:6px 6px 6px 6px; cursor: pointer; color: #838B83;" id="closeregister"><small>关闭</small></div>&nbsp;&nbsp;&nbsp;&nbsp;
-            <div style=" margin-bottom: 5px; width: 50px; background-color: #1C86EE; border-radius:6px 6px 6px 6px; cursor: pointer;color: white;" id="register"><small>注册</small></div>
+        <div class="registerside"
+             style="display: -webkit-box; -webkit-box-orient: row; background-color: #EBEBEB; text-align: center;">
+            <div style=" margin-bottom: 5px; width: 50px;margin-left: 40%; background-color: #C2C2C2; border-radius:6px 6px 6px 6px; cursor: pointer; color: #838B83;"
+                 id="closeregister">
+                <small>关闭</small>
+            </div>&nbsp;&nbsp;&nbsp;&nbsp;
+            <div style=" margin-bottom: 5px; width: 50px; background-color: #1C86EE; border-radius:6px 6px 6px 6px; cursor: pointer;color: white;"
+                 id="register">
+                <small>注册</small>
+            </div>
         </div>
     </form>
 </div>
@@ -118,11 +141,11 @@
 <div class="wj_page_container">
     <div id="main_background">
         <div class="logo_panel">
-           <br>
+            <br>
             <img src="" style="max-height: 80px; height: 80px;">
-           <br>
+            <br>
             <span style="font-size: 1.2em; font-weight: 500; letter-spacing: 0.5em; line-height: 3.2em; color: #fff;">在线代码评测教学辅助系统</span>
-           <br>
+            <br>
         </div>
     </div>
 </div>
@@ -133,13 +156,13 @@
         </h2>
     </div>
     <div class="grid">
-       <div class="column" onclick="window.location.href='#'">
-           <div class="icon"><img src="../../images/ico_2.png" height="60" width="60"></div>
-           <br>
-           <h4>题库</h4>
-           <br>
-           <h5>更加适合教学使用的题目，更加合理的题目管理方案</h5>
-       </div>
+        <div class="column" onclick="window.location.href='#'">
+            <div class="icon"><img src="../../images/ico_2.png" height="60" width="60"></div>
+            <br>
+            <h4>题库</h4>
+            <br>
+            <h5>更加适合教学使用的题目，更加合理的题目管理方案</h5>
+        </div>
         <div class="column" onclick="window.location.href='#'">
             <div class="icon"><img src="../../images/ico_3.png" height="60" width="60"></div>
             <br>
@@ -172,17 +195,16 @@
     $(function () {
         $("a[class=item]").each(function (index) {
             $(this).mouseover(function () {
-                $("a[class=item]").css("backgroundColor","#1B1C1D");
-                $(this).css("backgroundColor","#515151");
+                $("a[class=item]").css("backgroundColor", "#1B1C1D");
+                $(this).css("backgroundColor", "#515151");
             }).mouseout(function () {
-                $("a[class=item]").css("backgroundColor","#1B1C1D");
+                $("a[class=item]").css("backgroundColor", "#1B1C1D");
             })
         });
         /** 禁止滑动 */
         $("#banScroll").click(function () {
-            $ (window).scroll (function ()
-            {
-                $ (this).scrollTop (0)
+            $(window).scroll(function () {
+                $(this).scrollTop(0)
             });
         });
     });
@@ -194,30 +216,30 @@
     })
     /**  关闭登录框 */
     $('#closelogin').click(function () {
-        $('#loginclass').css('display','none');
-        $('.operatebackgroud').css('display','none');
-        $ (window).unbind ('scroll');
+        $('#loginclass').css('display', 'none');
+        $('.operatebackgroud').css('display', 'none');
+        $(window).unbind('scroll');
     })
     /**  关闭注册框 */
     $('#closeregister').click(function () {
-        $('#registerclass').css('display','none');
-        $('.operatebackgroud').css('display','none');
-        $ (window).unbind ('scroll');
+        $('#registerclass').css('display', 'none');
+        $('.operatebackgroud').css('display', 'none');
+        $(window).unbind('scroll');
     })
     /**  切换登陆方式 */
     $("#login_username").click(function () {
-        $("#login_elecemail").css('border','none');
-        $("#login_username").css('border','1px solid gray');
-        $("#login_username").css('border-bottom','none');
-        $("#login_email_frame").css('display','none');
-        $("#login_user_frame").css('display','block');
+        $("#login_elecemail").css('border', 'none');
+        $("#login_username").css('border', '1px solid gray');
+        $("#login_username").css('border-bottom', 'none');
+        $("#login_email_frame").css('display', 'none');
+        $("#login_user_frame").css('display', 'block');
     })
     $("#login_elecemail").click(function () {
-        $("#login_username").css('border','none');
-        $("#login_elecemail").css('border','1px solid gray');
-        $("#login_elecemail").css('border-bottom','none');
-        $("#login_email_frame").css('display','block');
-        $("#login_user_frame").css('display','none');
+        $("#login_username").css('border', 'none');
+        $("#login_elecemail").css('border', '1px solid gray');
+        $("#login_elecemail").css('border-bottom', 'none');
+        $("#login_email_frame").css('display', 'block');
+        $("#login_user_frame").css('display', 'none');
     })
 </script>
 <!--select login style-->
@@ -225,128 +247,133 @@
     /** username login  */
     $("#login_user").click(function () {
         alert($("input[name='login_identity']:checked").val());
-        var login_identity=$("input[name='login_identity']:checked").val();
-        var username =$("#username").val();
-        var password=$("#password").val();
-        if(login_identity=="学生"){
+        var login_identity = $("input[name='login_identity']:checked").val();
+        var username = $("#username").val();
+        var password = $("#password").val();
+        if (login_identity == "学生") {
             $.ajax({
                 url: "http://localhost:8081/userInfo/login",
                 type: 'POST',
                 contentType: 'application/json;charset=utf-8',
-                data: '{"username":"'+username+'","password":"'+password+'"}',
+                data: '{"username":"' + username + '","password":"' + password + '"}',
                 success: function (data) {
-                    if($.isEmptyObject(data))  alert("用户名不存在或者密码错误");
+                    if ($.isEmptyObject(data)) alert("用户名不存在或者密码错误");
                     else {
                         /** 退出登录框  */
-                        $('#loginclass').css('display','none');
-                        $('.operatebackgroud').css('display','none');
-                        $ (window).unbind ('scroll');
+                        $('#loginclass').css('display', 'none');
+                        $('.operatebackgroud').css('display', 'none');
+                        $(window).unbind('scroll');
                         /** 更改用户名  */
                         alert("登陆成功");
-                        var obj=eval(data);
+                        var obj = eval(data);
                         /** session保存信息 */
-                        var loginName=obj.username;
-                        sessionStorage.loginName=loginName;  /**  将变量存储到sessionStorage中，并且value为loginName */
+                        var loginName = obj.username;
+                        sessionStorage.loginName = loginName;
+                        /**  将变量存储到sessionStorage中，并且value为loginName */
                         Implement(loginName);
                     }
                 }
             });
-        }else if(login_identity=="老师"){
+        } else if (login_identity == "老师") {
             $.ajax({
                 url: "http://localhost:8081/teacherInfo/login",
                 type: 'POST',
                 contentType: 'application/json;charset=utf-8',
-                data: '{"username":"'+username+'","password":"'+password+'"}',
+                data: '{"username":"' + username + '","password":"' + password + '"}',
                 success: function (data) {
-                    if($.isEmptyObject(data))  alert("用户名不存在或者密码错误");
+                    if ($.isEmptyObject(data)) alert("用户名不存在或者密码错误");
                     else {
                         /** 退出登录框  */
-                        $('#loginclass').css('display','none');
-                        $('.operatebackgroud').css('display','none');
-                        $ (window).unbind ('scroll');
+                        $('#loginclass').css('display', 'none');
+                        $('.operatebackgroud').css('display', 'none');
+                        $(window).unbind('scroll');
                         /** 更改用户名  */
                         alert("登陆成功");
-                        var obj=eval(data);
+                        var obj = eval(data);
                         /** session保存信息 */
-                        var loginName=obj.adminname;
-                        sessionStorage.loginName=loginName;  /**  将变量存储到sessionStorage中，并且value为loginName */
+                        var loginName = obj.adminname;
+                        sessionStorage.loginName = loginName;
+                        /**  将变量存储到sessionStorage中，并且value为loginName */
                         Implement(loginName);
                     }
                 }
             });
-        }else {  /** admin login  */
-        $.ajax({
-            url: "http://localhost:8081/adminInfo/login",
-            type: 'POST',
-            contentType: 'application/json;charset=utf-8',
-            data: '{"adminname":"'+username+'","password":"'+password+'"}',
-            success: function (data) {
-                if($.isEmptyObject(data))  alert("用户名不存在或者密码错误");
-                else {
-                    /** 退出登录框  */
-                    $('#loginclass').css('display','none');
-                    $('.operatebackgroud').css('display','none');
-                    $ (window).unbind ('scroll');
-                    /** 更改用户名  */
-                    alert("登陆成功");
-                    var obj=eval(data);
-                    /** session保存信息 */
-                    var loginadminName=obj.adminname;
-                    sessionStorage.loginadminName=loginadminName;  /**  将变量存储到sessionStorage中，并且value为loginName */
-                    window.location.href = '../EndAdmin/Endindex.html';
+        } else {
+            /** admin login  */
+            $.ajax({
+                url: "http://localhost:8081/adminInfo/login",
+                type: 'POST',
+                contentType: 'application/json;charset=utf-8',
+                data: '{"adminname":"' + username + '","password":"' + password + '"}',
+                success: function (data) {
+                    if ($.isEmptyObject(data)) alert("用户名不存在或者密码错误");
+                    else {
+                        /** 退出登录框  */
+                        $('#loginclass').css('display', 'none');
+                        $('.operatebackgroud').css('display', 'none');
+                        $(window).unbind('scroll');
+                        /** 更改用户名  */
+                        alert("登陆成功");
+                        var obj = eval(data);
+                        /** session保存信息 */
+                        var loginadminName = obj.adminname;
+                        sessionStorage.loginadminName = loginadminName;
+                        /**  将变量存储到sessionStorage中，并且value为loginName */
+                        window.location.href = '../EndAdmin/Endindex.html';
+                    }
                 }
-            }
-        });
+            });
         }
     });
-     /*$("#login_user").click(function () {
-       var username =$("#username").val();
-       var password=$("#password").val();
-       $.ajax({
-           url: "http://localhost:8081/userInfo/login",
-           type: 'POST',
-           contentType: 'application/json;charset=utf-8',
-           data: '{"username":"'+username+'","password":"'+password+'"}',
-           success: function (data) {
-               if($.isEmptyObject(data))  alert("用户名不存在或者密码错误");
-               else {
-                   /!** 退出登录框  *!/
-                   $('#loginclass').css('display','none');
-                   $('.operatebackgroud').css('display','none');
-                   $ (window).unbind ('scroll');
-                   /!** 更改用户名  *!/
-                   alert("登陆成功");
-                   var obj=eval(data);
-                   /!** session保存信息 *!/
-                   var loginName=obj.username;
-                   sessionStorage.loginName=loginName;  /!**  将变量存储到sessionStorage中，并且value为loginName *!/
-                   Implement(loginName);
-               }
-           }
-       })
-   });*/
+    /*$("#login_user").click(function () {
+      var username =$("#username").val();
+      var password=$("#password").val();
+      $.ajax({
+          url: "http://localhost:8081/userInfo/login",
+          type: 'POST',
+          contentType: 'application/json;charset=utf-8',
+          data: '{"username":"'+username+'","password":"'+password+'"}',
+          success: function (data) {
+              if($.isEmptyObject(data))  alert("用户名不存在或者密码错误");
+              else {
+                  /!** 退出登录框  *!/
+                  $('#loginclass').css('display','none');
+                  $('.operatebackgroud').css('display','none');
+                  $ (window).unbind ('scroll');
+                  /!** 更改用户名  *!/
+                  alert("登陆成功");
+                  var obj=eval(data);
+                  /!** session保存信息 *!/
+                  var loginName=obj.username;
+                  sessionStorage.loginName=loginName;  /!**  将变量存储到sessionStorage中，并且value为loginName *!/
+                  Implement(loginName);
+              }
+          }
+      })
+  });*/
     /**  email login */
     $("#login_email").click(function () {
-        var useremail =$("#useremail").val();
-        var password=$("#password").val();
+        var useremail = $("#useremail").val();
+        var password = $("#password").val();
         $.ajax({
             url: "http://localhost:8081/userInfo/login",
             type: 'POST',
             contentType: 'application/json;charset=utf-8',
-            data: '{"useremail":"'+useremail+'","password":"'+password+'"}',
+            data: '{"useremail":"' + useremail + '","password":"' + password + '"}',
             success: function (data) {
-                if($.isEmptyObject(data))  alert("用户名不存在或者密码错误");
+                if ($.isEmptyObject(data)) alert("用户名不存在或者密码错误");
                 else {
                     /** 退出登录框  */
-                    $('#loginclass').css('display','none');
-                    $('.operatebackgroud').css('display','none');
-                    $ (window).unbind ('scroll');
+                    $('#loginclass').css('display', 'none');
+                    $('.operatebackgroud').css('display', 'none');
+                    $(window).unbind('scroll');
                     /** 更改用户名  */
                     alert("登陆成功");
-                    var obj=eval(data);
+                    var obj = eval(data);
                     /** session保存信息 */
-                    var loginName=obj.username;
-                    sessionStorage.loginName=loginName;  /**  将变量存储到sessionStorage中，并且value为loginName */
+                    var loginName = obj.username;
+                    sessionStorage.loginName = loginName;
+                    /**  将变量存储到sessionStorage中，并且value为loginName */
                     Implement(loginName);
                 }
             }
@@ -357,49 +384,50 @@
 <script>
     /** 用户名判断 */
     $("#reg_username").mouseleave(function () {
-        var username=$("#reg_username").val();
-       $.ajax({
+        var username = $("#reg_username").val();
+        $.ajax({
             url: 'http://localhost:8081/userInfo/judgeIsUserExist',
             type: 'GET',
-            data:'username='+username,
-            success:function (data) {
-                if(data) {
-                    $("#reg_username").css({"border":"1px solid red"});
+            data: 'username=' + username,
+            success: function (data) {
+                if (data) {
+                    $("#reg_username").css({"border": "1px solid red"});
                     $("#info").html("用户名已存在");
-                    $("#info").css({"color":"red"});
-                }
-                else{
-                    $("#reg_username").css({"border":"1px solid black"});
+                    $("#info").css({"color": "red"});
+                } else {
+                    $("#reg_username").css({"border": "1px solid black"});
                     $("#info").html("");
                 }
             }
         })
     })
     $("#register").click(function () {
-        var username=$("#reg_username").val();
-        var password=$("#reg_password").val();
-        var repassword=$("#reg_repassword").val();
-        var useremail=$("#reg_email").val();
-        var userLevel=1;
-        var userGrader=100;
-        var  myDate=new Date();
-        var registerTime=myDate.toLocaleString();
-        var flag=true;
-        flag=checkUserName(username);  /** check username  */
-        flag=checkUserPassword(password,repassword,flag);  /** check  password */
-        flag=checkUserEmail(useremail,flag);  /**  check email */
-        if(flag==true){
+        var username = $("#reg_username").val();
+        var password = $("#reg_password").val();
+        var repassword = $("#reg_repassword").val();
+        var useremail = $("#reg_email").val();
+        var userLevel = 1;
+        var userGrader = 100;
+        var myDate = new Date();
+        var registerTime = myDate.toLocaleString();
+        var flag = true;
+        flag = checkUserName(username);
+        /** check username  */
+        flag = checkUserPassword(password, repassword, flag);
+        /** check  password */
+        flag = checkUserEmail(useremail, flag);  /**  check email */
+        if (flag == true) {
             $.ajax({
                 url: 'http://localhost:8081/userInfo/register',
                 type: 'post',
                 contentType: 'application/json; charset=utf-8',
-                data:'{"username":"'+username+'","password":"'+password+'","useremail":"'+useremail+'"}',
+                data: '{"username":"' + username + '","password":"' + password + '","useremail":"' + useremail + '"}',
                 success: function (data) {
                     alert("注册成功");
                     /**  关闭注册框 */
-                        $('#registerclass').css('display','none');
-                        $('.operatebackgroud').css('display','none');
-                        $ (window).unbind ('scroll');
+                    $('#registerclass').css('display', 'none');
+                    $('.operatebackgroud').css('display', 'none');
+                    $(window).unbind('scroll');
                     login();
                 }
             })

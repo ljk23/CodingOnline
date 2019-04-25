@@ -1,22 +1,25 @@
-*{
+* {
     padding: 0;
     margin: 0;
 }
-.ui
-{
+
+.ui {
     height: 45px;
     background: #333;
     flex-direction: column;
     display: -webkit-box; /*这个必须要有*/
 }
-.ui-left{
-    -webkit-box-flex:20;
+
+.ui-left {
+    -webkit-box-flex: 20;
 }
-.ui-right{
+
+.ui-right {
     margin-top: 8px;
     color: white;
 }
-a.item{
+
+a.item {
     margin-top: 2px;
     font-size: 15px;
     padding: .92857143em 1.14285714em;
@@ -27,28 +30,33 @@ a.item{
     cursor: pointer;
     border-left: 1px solid gray;
 }
-a.loginitem{
+
+a.loginitem {
     font-size: 15px;
     text-align: center;
     cursor: pointer;
     padding-left: .52857143em;
     padding-right: .92857143em;
 }
-.sub_login{
+
+.sub_login {
     display: none;
     list-style: none;
     background-color: black;
     z-index: 1001;
 }
-.sub_login li{
+
+.sub_login li {
 
 }
-.sub_login li a{
+
+.sub_login li a {
     cursor: pointer;
     background-color: black;
     margin: 8px;
     text-decoration: none;
 }
-.sub_login li a:hover{
+
+.sub_login li a:hover {
     background: deepskyblue;
 }

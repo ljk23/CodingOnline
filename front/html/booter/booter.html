@@ -1,11 +1,11 @@
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link type="text/css" rel="stylesheet" href="../css/booter.css" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link type="text/css" rel="stylesheet" href="../css/booter.css"/>
     <script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
     <script>
-        window.onload = function() {
+        window.onload = function () {
             var show = document.getElementById("wejudge_server_timer");
-            setInterval(function() {
+            setInterval(function () {
                 var time = new Date();   // 程序计时的月从0开始取值后+1
                 var m = time.getMonth() + 1;
                 var t = time.getFullYear() + "-" + m + "-"
@@ -18,32 +18,33 @@
 </head>
 <body>
 <div id="footer">
-<div class="foot_container">
-<div class="foot_grid">
-   <div class="foot_column">
-        <div class="des_column"><h3>项目介绍</h3>
-            Tp5Admin是一个在线带代码判题系统，并用于辅助程序设计课程教学。
+    <div class="foot_container">
+        <div class="foot_grid">
+            <div class="foot_column">
+                <div class="des_column"><h3>项目介绍</h3>
+                    Tp5Admin是一个在线带代码判题系统，并用于辅助程序设计课程教学。
+                </div>
+                <div class="des_column"><h3>联系我们</h3>
+                    如有问题请发邮件到<a href="mailto:webmaster@wejudge.net" style="text-decoration: none; color: white">tp5admin@126.com</a>
+                </div>
+            </div>   <!--左边部分-->
+            <div class="foot_right_column">   <!--右边部分-->
+
+                © 2018-2019 WeJudge Team (鄂ICP备15000001号-2)
+                &nbsp;
+                <a href="https://github.com/LanceLRQ/wejudge" target="_blank"
+                   style="color: white; text-decoration: none">&lt;1.0开源&gt;</a>
+                <br>
+
+                网站版本：
+                <a href="#" style="color: white;">Ver.1.0.0 Beta #20191001</a>
+                &nbsp;&nbsp;
+                服务器时间：
+                <span id="wejudge_server_timer"></span>
+                <br>
+                <span id="cnzz_stat_icon_1261763113"></span>
+            </div>
         </div>
-       <div class="des_column"><h3>联系我们</h3>
-           如有问题请发邮件到<a href="mailto:webmaster@wejudge.net" style="text-decoration: none; color: white">tp5admin@126.com</a>
-       </div>
-   </div>   <!--左边部分-->
-   <div class="foot_right_column">   <!--右边部分-->
-
-       © 2018-2019 WeJudge Team (鄂ICP备15000001号-2)
-       &nbsp;
-       <a href="https://github.com/LanceLRQ/wejudge" target="_blank" style="color: white; text-decoration: none">&lt;1.0开源&gt;</a>
-       <br>
-
-       网站版本：
-       <a href="#" style="color: white;">Ver.1.0.0 Beta #20191001</a>
-       &nbsp;&nbsp;
-       服务器时间：
-       <span id="wejudge_server_timer"></span>
-       <br>
-       <span id="cnzz_stat_icon_1261763113"></span>
-   </div>
-</div>
-</div>
+    </div>
 </div>
 </body>

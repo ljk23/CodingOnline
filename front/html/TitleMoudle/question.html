@@ -3,20 +3,23 @@
     <meta charset="UTF-8">
     <script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
     <script src="../../js/header.js"></script>
-    <link type="text/css" rel="stylesheet" href="../../css/body.css" />
-    <link type="text/css" rel="stylesheet" href="../../css/exercise.css" />
-    <link type="text/css" rel="stylesheet" href="../../css/header.css" />
+    <script src="../../js/common.js"></script>
+    <link type="text/css" rel="stylesheet" href="../../css/body.css"/>
+    <link type="text/css" rel="stylesheet" href="../../css/exercise.css"/>
+    <link type="text/css" rel="stylesheet" href="../../css/header.css"/>
     <title>编译程序在线编译系统</title>
 </head>
 <body id="body">
 <!--头部-->
 <div class="ui">
     <div class="ui-left">
-        <a class="item" href="../IndexMoudle/index.html" onmousemove=""><img src="../../images/logo_flat.png" width="104" height="24"></a>
+        <a class="item" href="../IndexMoudle/index.html" onmousemove=""><img src="../../images/logo_flat.png"
+                                                                             width="104" height="24"></a>
         <a class="item" href="exercise.html"><i class="list items icon"></i>题目中心</a>
         <a class="item" href="../function/education.html"><i class="list items icon"></i>在线教学</a>
         <a class="item" href="../ContestWork/contest.html"><i class="list items icon"></i>在线比赛</a>
-        <a class="item" href="../function/help.html" style="border-right: 1px solid gray;"><i class="list items icon"></i>帮助中心</a>
+        <a class="item" href="../function/help.html" style="border-right: 1px solid gray;"><i
+                class="list items icon"></i>帮助中心</a>
     </div>
     <div class="ui-right" id="ui-right">
         <a class="item" onclick="register()">
@@ -31,22 +34,31 @@
 <div class="loginclass" id="loginclass" style="display: none">
     <form id="#" method="post">
         <div class="loginside"><h3>登录WeJudge</h3></div>
-        <hr style="color: gray" />
+        <hr style="color: gray"/>
         <div class="loginbody">
             <div>WeJudge账户</div>
             <hr width="80%"/>
             <br>
             <small>登录名称</small>
             <br>
-            <div style="padding: 10px 10px 10px 0px;"><input type="text" placeholder="请输入账户名和邮箱名" id="username" name="" style="width:200px; height:30px"/></div>
+            <div style="padding: 10px 10px 10px 0px;"><input type="text" placeholder="请输入账户名和邮箱名" id="username" name=""
+                                                             style="width:200px; height:30px"/></div>
             <small>登录密码</small>
             <br>
-            <div style="padding: 10px 10px 10px 0px;"><input type="text" placeholder="请输入密码" id="password" name="" style="width:200px; height:30px"/></div>
+            <div style="padding: 10px 10px 10px 0px;"><input type="text" placeholder="请输入密码" id="password" name=""
+                                                             style="width:200px; height:30px"/></div>
             <!--<div>记住登录</div>-->
         </div>
-        <div class="loginside" style="display: -webkit-box; -webkit-box-orient: row; background-color: #EBEBEB; text-align: center;">
-            <div style=" margin-bottom: 5px; width: 50px;margin-left: 40%; background-color: #C2C2C2; border-radius:6px 6px 6px 6px; cursor: pointer; color: #838B83;" id="closelogin"><small>关闭</small></div>&nbsp;&nbsp;&nbsp;&nbsp;
-            <div style=" margin-bottom: 5px; width: 50px; background-color: #1C86EE; border-radius:6px 6px 6px 6px; cursor: pointer;color: white;" id="login"><small>登录</small></div>
+        <div class="loginside"
+             style="display: -webkit-box; -webkit-box-orient: row; background-color: #EBEBEB; text-align: center;">
+            <div style=" margin-bottom: 5px; width: 50px;margin-left: 40%; background-color: #C2C2C2; border-radius:6px 6px 6px 6px; cursor: pointer; color: #838B83;"
+                 id="closelogin">
+                <small>关闭</small>
+            </div>&nbsp;&nbsp;&nbsp;&nbsp;
+            <div style=" margin-bottom: 5px; width: 50px; background-color: #1C86EE; border-radius:6px 6px 6px 6px; cursor: pointer;color: white;"
+                 id="login">
+                <small>登录</small>
+            </div>
         </div>
     </form>
 </div>
@@ -56,125 +68,97 @@
 <div class="ex_page_container">
     <div class="ex_nav">
         <img src="../../images/nav_boot.png" width="14" height="13">&nbsp;
-        <small style="color: #5CACEE; cursor: pointer" onclick="window.location.href='index.html'">WeJudge首页</small></small>&nbsp;<small>></small>&nbsp;
-        <small style="color: #5CACEE; cursor: pointer" onclick="window.location.href='exercise.html'">题目中心</small></small>&nbsp;<small>></small>&nbsp;
+        <small style="color: #5CACEE; cursor: pointer" onclick="window.location.href='index.html'">WeJudge首页</small>
+        </small>&nbsp;<small>></small>&nbsp;
+        <small style="color: #5CACEE; cursor: pointer" onclick="window.location.href='exercise.html'">题目中心</small>
+        </small>&nbsp;<small>></small>&nbsp;
         <small>词法分析</small>
     </div>
     <div class="ex_nav ex_catalog">
-        <a style="border-bottom: 2px solid black; padding-bottom: 5px"><img src="../../images/catalog.png" width="12px" height="12px">&nbsp;<small>题目集</small></a>
+        <a style="border-bottom: 2px solid black; padding-bottom: 5px"><img src="../../images/catalog.png" width="12px"
+                                                                            height="12px">&nbsp;<small>题目集</small>
+        </a>
     </div>
     <br>
     <div class="ex_select">
-            <div class="ex_select_cat">
-                <li class="ex_item"><img src="../../images/refresh.png" height="12px" width="12px"><small style="margin-left: 5px">刷新列表</small></li>
-                <li class="ex_item" id="ex_key_query"><img src="../../images/select.png" height="12px" width="12px"><small style="margin-left: 5px">筛选</small></li>
-            </div>
-            <div id="ex_select_query" style="display: none">
-                <div class="ex_select_des">
-                    <div><small>分类导航:</small><small>根目录</small></div>
-                </div>
-                <div class="ex_select_five">
-                    <div class="feild">
-                        <small>题目编号或名称</small>
-                        <div class="ex_select_input"><input type="text" id="keyword" placeholder="题目名称支持模糊查找"></div>
-                    </div>
-                    <div class="feild">
-                        <small>出题者</small>
-                        <div class="ex_select_input"><input type="text" id="keyword" placeholder="支持模糊查找"></div>
-                    </div>
-                    <div class="feild">
-                        <small>题目难度</small>
-                        <div class="ex_select_input">
-                            <select id="keyword">
-                                <option selected="selected">简单</option>
-                                <option>一般</option>
-                                <option>困难</option>
-                            </select>
-                           <!-- <img src="../images/ex_xiala.png" width="15px" height="8px">-->
-                        </div>
-                    </div>
-                    <div class="feild">
-                        <small>每页数量</small>
-                        <div class="ex_select_input"><select id="keyword">
-                            <option selected="selected">10</option>
-                            <option>20</option>
-                            <option>30</option>
-                        </select>
-                        </div>                </div>
-                    <div class="feild">
-                        <small>排列方式</small>
-                        <div class="ex_select_input"><select id="keyword">
-                            <option selected="selected">正序排列</option>
-                            <option>倒序排列</option>
-                        </select>
-                        </div>
-                    </div>
-                </div>
-                <button class="ex_select_button">
-                    <span><img src="../../images/ex_select.png" width="12px" height="12px">&nbsp;<small>筛选</small></span>
-                </button>
-            </div>
+        <div class="ex_select_cat">
+            <li class="ex_item"><img src="../../images/refresh.png" height="12px" width="12px">
+                <small style="margin-left: 5px">刷新列表</small>
+            </li>
+            <li class="ex_item" id="ex_key_query"><img src="../../images/select.png" height="12px" width="12px">
+                <small style="margin-left: 5px">筛选</small>
+            </li>
         </div>
+        <div id="ex_select_query" style="display: none">
+            <div class="ex_select_des">
+                <div>
+                    <small>分类导航:</small>
+                    <small>根目录</small>
+                </div>
+            </div>
+            <div class="ex_select_five">
+                <div class="feild">
+                    <small>题目编号或名称</small>
+                    <div class="ex_select_input"><input type="text" id="keyword" placeholder="题目名称支持模糊查找"></div>
+                </div>
+                <div class="feild">
+                    <small>出题者</small>
+                    <div class="ex_select_input"><input type="text" id="keyword" placeholder="支持模糊查找"></div>
+                </div>
+                <div class="feild">
+                    <small>题目难度</small>
+                    <div class="ex_select_input">
+                        <select id="keyword">
+                            <option selected="selected">简单</option>
+                            <option>一般</option>
+                            <option>困难</option>
+                        </select>
+                        <!-- <img src="../images/ex_xiala.png" width="15px" height="8px">-->
+                    </div>
+                </div>
+                <div class="feild">
+                    <small>每页数量</small>
+                    <div class="ex_select_input"><select id="keyword">
+                        <option selected="selected">10</option>
+                        <option>20</option>
+                        <option>30</option>
+                    </select>
+                    </div>
+                </div>
+                <div class="feild">
+                    <small>排列方式</small>
+                    <div class="ex_select_input"><select id="keyword">
+                        <option selected="selected">正序排列</option>
+                        <option>倒序排列</option>
+                    </select>
+                    </div>
+                </div>
+            </div>
+            <button class="ex_select_button">
+                <span><img src="../../images/ex_select.png" width="12px" height="12px">&nbsp;<small>筛选</small></span>
+            </button>
+        </div>
+    </div>
     <table class="qu_table">
         <thead>
-            <tr>
-                <th>ID</th>
-                <th>题目名称</th>
-                <th>发布者</th>
-                <th>难度</th>
-                <th>全站正确率</th>
-                <th>我的正确率</th>
-            </tr>
+        <tr>
+            <th>ID</th>
+            <th>题目名称</th>
+            <th>发布者</th>
+            <th>难度</th>
+            <th>全站正确率</th>
+            <th>我的正确率</th>
+        </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>1000</td>
-                <td><a href="oneQuestion.html" target="_self">Hello World, WeJudge!</a></td>
-                <td><a>饶文碧老师</a></td>
-                <td>四星</td>
-                <td>21.14%(93/440)</td>
-                <td>--</td>
-            </tr>
-            <tr>
-                <td>1001</td>
-                <td><a href="/problemset/3/problem/522" >Hello World, WeJudge!</a></td>
-                <td><a>饶文碧老师</a></td>
-                <td>四星</td>
-                <td>21.14%(93/440)</td>
-                <td>--</td>
-            </tr>
-            <tr>
-                <td>1002</td>
-                <td><a href="/problemset/3/problem/522" target="_self">Hello World, WeJudge!</a></td>
-                <td><a>饶文碧老师</a></td>
-                <td>四星</td>
-                <td>21.14%(93/440)</td>
-                <td>--</td>
-            </tr>
-            <tr>
-                <td>1000</td>
-                <td><a href="/problemset/3/problem/522" target="_self">Hello World, WeJudge!</a></td>
-                <td><a>饶文碧老师</a></td>
-                <td>四星</td>
-                <td>21.14%(93/440)</td>
-                <td>--</td>
-            </tr>
-            <tr>
-                <td>1001</td>
-                <td><a href="/problemset/3/problem/522" >Hello World, WeJudge!</a></td>
-                <td><a>饶文碧老师</a></td>
-                <td>四星</td>
-                <td>21.14%(93/440)</td>
-                <td>--</td>
-            </tr>
-            <tr>
-                <td>1002</td>
-                <td><a href="/problemset/3/problem/522" target="_self">Hello World, WeJudge!</a></td>
-                <td><a>饶文碧老师</a></td>
-                <td>四星</td>
-                <td>21.14%(93/440)</td>
-                <td>--</td>
-            </tr>
+        <tr>
+            <td>1000</td>
+            <td><a href="oneQuestion.html" target="_self">Hello World, WeJudge!</a></td>
+            <td><a>饶文碧老师</a></td>
+            <td>四星</td>
+            <td>21.14%(93/440)</td>
+            <td>--</td>
+        </tr>
         </tbody>
         <tfoot></tfoot>
     </table>
@@ -186,17 +170,16 @@
     $(function () {
         $("a[class=item]").each(function (index) {
             $(this).mouseover(function () {
-                $("a[class=item]").css("backgroundColor","#1B1C1D");
-                $(this).css("backgroundColor","#515151");
+                $("a[class=item]").css("backgroundColor", "#1B1C1D");
+                $(this).css("backgroundColor", "#515151");
             }).mouseout(function () {
-                $("a[class=item]").css("backgroundColor","#1B1C1D");
+                $("a[class=item]").css("backgroundColor", "#1B1C1D");
             })
         });
         /** 禁止滑动 */
         $("#banScroll").click(function () {
-            $ (window).scroll (function ()
-            {
-                $ (this).scrollTop (0)
+            $(window).scroll(function () {
+                $(this).scrollTop(0)
             });
         });
     });
@@ -204,67 +187,71 @@
 <script>
     /** isLogin  */
     $(window).load(function () {
-        if(sessionStorage.loginName!=undefined){
-            var obj=sessionStorage.loginName;
+        if (sessionStorage.loginName != undefined) {
+            var obj = sessionStorage.loginName;
             Implement(obj);
         }
     })
     $(function () {
         $('#booter').load('booter/booter.html');
     })
+
     /** login  */
     function login() {
         $('.operatebackgroud').toggle();
         $('#loginclass').toggle();
     }
+
     /**  register */
-    function register(){
+    function register() {
         $('.operatebackgroud').toggle();
         $('#registerclass').toggle();
     }
+
     /**  close login */
     $('#closelogin').click(function () {
-        $('#loginclass').css('display','none');
-        $('.operatebackgroud').css('display','none');
-        $ (window).unbind ('scroll');
+        $('#loginclass').css('display', 'none');
+        $('.operatebackgroud').css('display', 'none');
+        $(window).unbind('scroll');
     })
     /**  close register */
     $('#closeregister').click(function () {
-        $('#registerclass').css('display','none');
-        $('.operatebackgroud').css('display','none');
-        $ (window).unbind ('scroll');
+        $('#registerclass').css('display', 'none');
+        $('.operatebackgroud').css('display', 'none');
+        $(window).unbind('scroll');
     })
     /** query   */
-    var t=true;
+    var t = true;
     $("#ex_key_query").click(function () {
-        if(t==true)
+        if (t == true)
             $("#ex_select_query").show("slow");
         else
             $("#ex_select_query").hide("slow");
-        t=!t;
+        t = !t;
     })
     /**  login */
     $("#login").click(function () {
-        var username =$("#username").val();
-        var password=$("#password").val();
+        var username = $("#username").val();
+        var password = $("#password").val();
         $.ajax({
             url: "http://localhost:8081/userInfo/login",
             type: 'POST',
             contentType: 'application/json;charset=utf-8',
-            data: '{"username":"'+username+'","password":"'+password+'"}',
+            data: '{"username":"' + username + '","password":"' + password + '"}',
             success: function (data) {
-                if($.isEmptyObject(data))  alert("用户名不存在或者密码错误");
+                if ($.isEmptyObject(data)) alert("用户名不存在或者密码错误");
                 else {
                     /** 退出登录框  */
-                    $('#loginclass').css('display','none');
-                    $('.operatebackgroud').css('display','none');
-                    $ (window).unbind ('scroll');
+                    $('#loginclass').css('display', 'none');
+                    $('.operatebackgroud').css('display', 'none');
+                    $(window).unbind('scroll');
                     /** 更改用户名  */
                     alert("登陆成功");
-                    var obj=eval(data);
+                    var obj = eval(data);
                     /** session保存信息 */
-                    var loginName=obj.username;
-                    sessionStorage.loginName=loginName;  /**  将变量存储到sessionStorage中，并且value为loginName */
+                    var loginName = obj.username;
+                    sessionStorage.loginName = loginName;
+                    /**  将变量存储到sessionStorage中，并且value为loginName */
                     Implement(loginName);
                 }
             }
@@ -272,9 +259,24 @@
     });
 </script>
 <script>
-    $("table tbody tr a").css("text-decoration","none");
-    $("table tbody tr a").css("color"," #4183c4");
-    $("table tbody tr a").css("cursor","pointer");
+    $("table tbody tr a").css("text-decoration", "none");
+    $("table tbody tr a").css("color", " #4183c4");
+    $("table tbody tr a").css("cursor", "pointer");
+</script>
+<script>
+    $(window).load(function () {
+        /** 得到get的传值  */
+        var problemclassfy = getUserTransferValue();
+        $.ajax({
+            url: "http://localhost:8081/problemAdmin/queryByClassfy",
+            type: 'GET',
+            data: "problemclassfy=" + problemclassfy,
+            async: false,
+            success: function (data) {
+                alert(data);
+            }
+        })
+    })
 </script>
 </body>
 </html>

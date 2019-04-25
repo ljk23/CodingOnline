@@ -1,21 +1,21 @@
 /** 判断添加信息是否为空  **/
-function IsInputProblemInfo(problemname,problemauthor,problemcontent){
-  if(problemname.length==0){
-      alert("题目名称不能为空");
-      return false;
-  }else if(problemauthor.length==0){
-      alert("题目作者不能为空");
-      return false;
-  }else if(problemContent.length==0){
-      alert("题目内容不能为空");
-      return false;
-  }else {
-      return true;
-  }
+function IsInputProblemInfo(problemname, problemauthor, problemcontent) {
+    if (problemname.length == 0) {
+        alert("题目名称不能为空");
+        return false;
+    } else if (problemauthor.length == 0) {
+        alert("题目作者不能为空");
+        return false;
+    } else if (problemContent.length == 0) {
+        alert("题目内容不能为空");
+        return false;
+    } else {
+        return true;
+    }
 }
+
 /** 获取当前时间 */
-function CurentTime()
-{
+function CurentTime() {
     var now = new Date();
 
     var year = now.getFullYear();       //年
@@ -28,17 +28,17 @@ function CurentTime()
 
     var clock = year + "-";
 
-    if(month < 10)
+    if (month < 10)
         clock += "0";
 
     clock += month + "-";
 
-    if(day < 10)
+    if (day < 10)
         clock += "0";
 
     clock += day + " ";
 
-    if(hh < 10)
+    if (hh < 10)
         clock += "0";
 
     clock += hh + ":";
@@ -47,5 +47,5 @@ function CurentTime()
 
     if (ss < 10) clock += '0';
     clock += ss;
-    return(clock);
+    return (clock);
 }

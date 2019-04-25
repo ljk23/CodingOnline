@@ -1,34 +1,40 @@
-*{
+* {
     padding: 0;
     margin: 0;
 }
+
 #footer {
     padding: 20px;
     line-height: 2rem;
     color: #fff;
     background: #333;
 }
+
 .foot_container {
     width: 80%;
     height: 150px;
-    margin-left: auto!important;
-    margin-right: auto!important;
+    margin-left: auto !important;
+    margin-right: auto !important;
     display: block;
-    max-width: 100%!important;
+    max-width: 100% !important;
 }
-.foot_grid{
+
+.foot_grid {
     display: -webkit-box; /*这个必须要有*/
     -webkit-box-orient: inherit;
 }
-.foot_column{
+
+.foot_column {
     width: 50%;
     display: -webkit-box; /*这个必须要有*/
     -webkit-box-orient: inherit;
 }
-.foot_right_column{
+
+.foot_right_column {
     width: 50%;
 }
-.des_column{
+
+.des_column {
     margin-right: 15px;
     width: 50%;
 }

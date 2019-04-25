@@ -5,69 +5,47 @@
     <script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
     <script src="../../../js/header.js"></script>
     <script src="../../../js/endindex.js"></script>
+    <script src="../../../js/common.js"></script>
     <script src="../../../assets/layer/layer.js"></script>
     <link type="text/css" rel="stylesheet" href="../../../css/endindex.css">
 </head>
 <body>
-   <form method="post">
-        <div id="end_problem_addspan end_problem_edit" style="margin: 10%">
-                题目名称：<input type="text" id="problemName" placeholder="必填">
-                题目分类： <select id="problemClassfy">
-                <option selected="selected">词法分析</option>
-                <option>语法分析</option>
-                <option>语义分析</option>
-                <option>中间代码优化</option>
-                <option>目标代码生成</option>
-            </select><br>
-                题目作者：<input type="text" id="problemAuthor" placeholder="必填">
-                题目难度：<select id="problemLevel">
-                <option selected="selected">简单</option>
-                <option>一般</option>
-                <option>困难</option>
-            </select><br>
-                题目输入：<input type="text" id="problemInput" placeholder="可不填写">
-                题目输出：<input type="text" id="problemOutput" placeholder="可不填写"><br>
-                <br>
-                <textarea class="pro_textarea" id="problemContent" style="width: 500px; height: 200px; margin-top: 20px;font-size: 20px; border-radius: 5px;" placeholder="题目内容"></textarea>
-                <div class="end_problem_add_sub" id="end_problem_add_sub" style="margin-left: 50%">提交</div>
-        </div>
-   </form>
+<form method="post">
+    <div id="end_problem_addspan end_problem_edit" style="margin: 10%">
+        题目名称：<input type="text" id="problemName" placeholder="必填">
+        题目分类： <select id="problemClassfy">
+        <option selected="selected">词法分析</option>
+        <option>语法分析</option>
+        <option>语义分析</option>
+        <option>中间代码优化</option>
+        <option>目标代码生成</option>
+    </select><br>
+        题目作者：<input type="text" id="problemAuthor" placeholder="必填">
+        题目难度：<select id="problemLevel">
+        <option selected="selected">简单</option>
+        <option>一般</option>
+        <option>困难</option>
+    </select><br>
+        题目输入：<input type="text" id="problemInput" placeholder="可不填写">
+        题目输出：<input type="text" id="problemOutput" placeholder="可不填写"><br>
+        <br>
+        <textarea class="pro_textarea" id="problemContent"
+                  style="width: 500px; height: 200px; margin-top: 20px;font-size: 20px; border-radius: 5px;"
+                  placeholder="题目内容"></textarea>
+        <div class="end_problem_add_sub" id="end_problem_add_sub" style="margin-left: 50%">提交</div>
+    </div>
+</form>
 <script>
-    /**  加载get的用户id */
-    var getUrlParameter = function getUrlParameter(sParam) {
-        var sPageURL = decodeURIComponent(window.location.search.substring(1)),
-            sURLVariables = sPageURL.split('&'),
-            sParameterName,
-            i;
-
-        for (i = 0; i < sURLVariables.length; i++) {
-            sParameterName = sURLVariables[i].split('=');
-
-            if (sParameterName[0] === sParam) {
-                return sParameterName[1] === undefined ? true : sParameterName[1];
-            }
-        }
-    };
     var problemid;
     $(window).load(function () {
-        /** 接受get的传值 */
-        function getUserTransferValue() {
-            var url = location.search; //获取url中"?"符后的字串
-            var theRequest = new Object();
-            if (url.indexOf("?") != -1) {
-                var str = url.substr(1);
-                strs = str.split("&");
-                theRequest[strs[0].split("=")[0]]=decodeURI(strs[0].split("=")[1]);
-                return theRequest[strs[0].split("=")[0]];
-            }
-        }
+        /**  加载get的用户id */
         problemid = getUserTransferValue();
         $.ajax({
             url: "http://localhost:8081/problemAdmin/querybyId",
             type: 'GET',
-            data: "problemid="+problemid,
+            data: "problemid=" + problemid,
             async: false,
-            success: function(data){
+            success: function (data) {
                 $("#problemName").val(data.problemname);
                 $("#problemClassfy").val(data.problemclassfy);
                 $("#problemAuthor").val(data.problemauthor);
@@ -78,16 +56,25 @@
     })
     /**  编辑提交 */
     $("#end_problem_add_sub").click(function () {
-        var str ={problemid: problemid,problemname:$("#problemName").val(),problemclassfy:$("#problemClassfy").val(),problemauthor:$("#problemAuthor").val(),problemlevel:$("#problemLevel").val(),probleminput:$("#problemInput").val(),problemoutput:$("#problemOutput").val(),problemcontent:$("#problemContent").val()};
-            $.ajax({
+        var str = {
+            problemid: problemid,
+            problemname: $("#problemName").val(),
+            problemclassfy: $("#problemClassfy").val(),
+            problemauthor: $("#problemAuthor").val(),
+            problemlevel: $("#problemLevel").val(),
+            probleminput: $("#problemInput").val(),
+            problemoutput: $("#problemOutput").val(),
+            problemcontent: $("#problemContent").val()
+        };
+        $.ajax({
             url: "http://localhost:8081/problemAdmin/editor",
             type: 'POST',
             contentType: 'application/json;charset=utf-8',
             data: JSON.stringify(str),
             success: function (data) {
-                if(data!=true)  alert("编辑失败");
-                else{
-                    layer.alert('编辑成功',{
+                if (data != true) alert("编辑失败");
+                else {
+                    layer.alert('编辑成功', {
                         icon: 1,
                         time: 2000
                     })

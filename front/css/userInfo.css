@@ -1,4 +1,4 @@
-.message_marquee{
+.message_marquee {
     width: 100%;
     height: 34px;
     border-radius: 5px;
@@ -7,10 +7,12 @@
     margin: 10px 0 0 0;
     color: red;
 }
-.user_des p{
+
+.user_des p {
     margin-left: 30%;
 }
-.user_des p input[type="text"], button{
+
+.user_des p input[type="text"], button {
     -webkit-appearance: none;
     -moz-appearance: none;
     outline: none;
@@ -19,19 +21,23 @@
     height: 34px;
     border: 0.5 solid #D4D4D5;
 }
+
 .user_from-group {
     margin-left: 30%;
     padding: 7px 15px 10px 10px;
     margin-bottom: 10px;
 }
-.user_from-group label{
+
+.user_from-group label {
     font-size: 14px;
     font-weight: bold;
 }
-.user_from-group span{
-     margin-left: 4%;
+
+.user_from-group span {
+    margin-left: 4%;
 }
-.user_from-group span input[type="text"],input[type="password"]{
+
+.user_from-group span input[type="text"], input[type="password"] {
     position: absolute;
     left: 45%;
     -webkit-appearance: none;
@@ -42,7 +48,8 @@
     border-radius: 5px;
     border: 0.5px solid #D4D4D5;
 }
-.user_from-group input[type="submit"]{
+
+.user_from-group input[type="submit"] {
     -webkit-appearance: none;
     -moz-appearance: none;
     width: 125px;
@@ -50,17 +57,19 @@
     border-radius: 5px;
     background: #D4D4D5;
 }
-.user_from-submit{
+
+.user_from-submit {
     margin-left: 42%;
 }
-.person_tableInfo{
+
+.person_tableInfo {
     width: 40%;
     background: #FFF;
     margin: 1em 0;
-    border-top: 1px solid rgba(34,36,38,.15);
-    border-bottom: 1px solid rgba(34,36,38,.15);
+    border-top: 1px solid rgba(34, 36, 38, .15);
+    border-bottom: 1px solid rgba(34, 36, 38, .15);
     text-align: left;
-    color: rgba(0,0,0,.87);
+    color: rgba(0, 0, 0, .87);
     display: table;
     box-sizing: inherit;
     font-size: 14px;
@@ -69,14 +78,17 @@
     border-spacing: 0;
     margin-left: 2%;
 }
-.person_tableInfo thead tr{
+
+.person_tableInfo thead tr {
     height: 37px;
     width: 30px;
-    background: rgba(0,0,50,.02);
+    background: rgba(0, 0, 50, .02);
 }
-.person_tableInfo tbody tr{
+
+.person_tableInfo tbody tr {
     height: 37px;
 }
-.person_tableInfo tbody tr:nth-child(even){
-    background: rgba(0,0,50,.02);
+
+.person_tableInfo tbody tr:nth-child(even) {
+    background: rgba(0, 0, 50, .02);
 }

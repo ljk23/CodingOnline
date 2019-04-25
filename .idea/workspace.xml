@@ -1,7 +1,80 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1093834b-acce-42d1-aafb-2f3b763e1dea" name="Default Changelist" comment="" />
+    <list default="true" id="ff52ec63-bdb3-4069-a207-d4478b8e1870" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/end/src/main/java/com/example/login/problemset/conrtroller/problemController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/js/common.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/codedingonline/LoginApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/codedingonline/admin/controller/adminController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/codedingonline/admin/dao/entity/Admininfo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/codedingonline/admin/dao/mapper/AdmininfoMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/codedingonline/basic/dto/ResponceDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/codedingonline/configue/WebConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/codedingonline/problem/controller/codeOptimize.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/codedingonline/problem/controller/preCoding.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/codedingonline/problem/controller/problemController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/codedingonline/problem/controller/semanticsController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/codedingonline/problem/controller/syntaxContrller.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/codedingonline/problem/controller/wordController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/codedingonline/user/controller/UserController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/codedingonline/user/controller/UserInfoController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/codedingonline/user/dao/entity/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/codedingonline/user/dao/entity/Userinfo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/codedingonline/user/dao/mapper/UserMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/codedingonline/user/dao/mapper/UserinfoMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/generatorConfig.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/mapper/AdmininfoMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/mapper/UserMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/mapper/UserinfoMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/html/login.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/html/register.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/html/userList.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/end/src/main/java/com/example/login/LoginApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/end/src/main/java/com/example/login/LoginApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/end/src/main/java/com/example/login/admin/controller/adminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/end/src/main/java/com/example/login/admin/controller/adminController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/end/src/main/java/com/example/login/basic/dto/ResponceDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/end/src/main/java/com/example/login/basic/dto/ResponceDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/end/src/main/java/com/example/login/problem/controller/problemController.java" beforeDir="false" afterPath="$PROJECT_DIR$/end/src/main/java/com/example/login/problem/controller/problemController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/end/src/main/java/com/example/login/problem/dao/entity/Probleminfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/codedingonline/problem/dao/entity/Probleminfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/end/src/main/java/com/example/login/problem/dao/mapper/ProbleminfoMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/codedingonline/problem/dao/mapper/ProbleminfoMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/end/src/main/java/com/example/login/user/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/end/src/main/java/com/example/login/user/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/end/src/main/java/com/example/login/user/controller/UserInfoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/end/src/main/java/com/example/login/user/controller/UserInfoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/end/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/end/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/end/src/main/resources/generatorConfig.xml" beforeDir="false" afterPath="$PROJECT_DIR$/end/src/main/resources/generatorConfig.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/end/src/main/resources/mapper/AdmininfoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/end/src/main/resources/mapper/AdmininfoMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/end/src/main/resources/mapper/ProbleminfoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/ProbleminfoMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/end/src/main/resources/mapper/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/end/src/main/resources/mapper/UserMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/end/src/main/resources/mapper/UserinfoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/end/src/main/resources/mapper/UserinfoMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/end/src/main/resources/static/html/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/end/src/main/resources/static/html/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/end/src/main/resources/static/html/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/end/src/main/resources/static/html/register.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/end/src/main/resources/static/html/userList.html" beforeDir="false" afterPath="$PROJECT_DIR$/end/src/main/resources/static/html/userList.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/assets/layer/skin/layer.css" beforeDir="false" afterPath="$PROJECT_DIR$/front/assets/layer/skin/layer.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/css/body.css" beforeDir="false" afterPath="$PROJECT_DIR$/front/css/body.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/css/booter.css" beforeDir="false" afterPath="$PROJECT_DIR$/front/css/booter.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/css/contest.css" beforeDir="false" afterPath="$PROJECT_DIR$/front/css/contest.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/css/endindex.css" beforeDir="false" afterPath="$PROJECT_DIR$/front/css/endindex.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/css/exercise.css" beforeDir="false" afterPath="$PROJECT_DIR$/front/css/exercise.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/css/header.css" beforeDir="false" afterPath="$PROJECT_DIR$/front/css/header.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/css/userInfo.css" beforeDir="false" afterPath="$PROJECT_DIR$/front/css/userInfo.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/html/ContestWork/contest.html" beforeDir="false" afterPath="$PROJECT_DIR$/front/html/ContestWork/contest.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/html/EndAdmin/Endindex.html" beforeDir="false" afterPath="$PROJECT_DIR$/front/html/EndAdmin/Endindex.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/html/EndAdmin/ProblemAdmin/ProblemEditor.html" beforeDir="false" afterPath="$PROJECT_DIR$/front/html/EndAdmin/ProblemAdmin/ProblemEditor.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/html/HelpMoudle/help.html" beforeDir="false" afterPath="$PROJECT_DIR$/front/html/HelpMoudle/help.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/html/IndexMoudle/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/front/html/IndexMoudle/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/html/TitleMoudle/exercise.html" beforeDir="false" afterPath="$PROJECT_DIR$/front/html/TitleMoudle/exercise.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/html/TitleMoudle/oneQuestion.html" beforeDir="false" afterPath="$PROJECT_DIR$/front/html/TitleMoudle/oneQuestion.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/html/TitleMoudle/question.html" beforeDir="false" afterPath="$PROJECT_DIR$/front/html/TitleMoudle/question.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/html/UserMoudle/perProlemSetlInfo.html" beforeDir="false" afterPath="$PROJECT_DIR$/front/html/UserMoudle/perProlemSetlInfo.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/html/UserMoudle/userInfo.html" beforeDir="false" afterPath="$PROJECT_DIR$/front/html/UserMoudle/userInfo.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/html/booter/booter.html" beforeDir="false" afterPath="$PROJECT_DIR$/front/html/booter/booter.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/html/function/codeInput.html" beforeDir="false" afterPath="$PROJECT_DIR$/front/html/function/codeInput.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/html/function/model.html" beforeDir="false" afterPath="$PROJECT_DIR$/front/html/function/model.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/html/header/header.html" beforeDir="false" afterPath="$PROJECT_DIR$/front/html/header/header.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/js/endindex.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/js/endindex.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/js/header.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/js/header.js" afterDir="false" />
+    </list>
+    <ignored path="$PROJECT_DIR$/out/" />
+    <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,15 +88,97 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/front/html/IndexMoudle/index.html">
-          <provider selected="true" editor-type-id="text-editor" />
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/codedingonline/CodedingonlineApplication.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/generatorConfig.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="888">
+              <caret line="37" column="87" selection-start-line="37" selection-start-column="87" selection-end-line="37" selection-end-column="87" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/codedingonline/problem/dao/entity/Probleminfo.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="48">
+              <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/codedingonline/problem/dao/mapper/ProbleminfoMapper.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="336">
+              <caret line="14" selection-start-line="14" selection-end-line="14" />
+            </state>
+          </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/front/html/EndAdmin/Endindex.html">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/codedingonline/problem/controller/problemController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="264">
-              <caret line="11" column="19" selection-start-line="11" selection-start-column="19" selection-end-line="11" selection-end-column="19" />
+            <state relative-caret-position="24">
+              <caret line="19" selection-start-line="19" selection-end-line="19" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/codedingonline/admin/controller/adminController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="192">
+              <caret line="16" column="19" selection-start-line="16" selection-start-column="19" selection-end-line="16" selection-end-column="19" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/codedingonline/admin/dao/mapper/AdmininfoMapper.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="11" column="17" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/codedingonline/admin/dao/entity/Admininfo.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="216">
+              <caret line="9" column="29" selection-start-line="9" selection-start-column="29" selection-end-line="9" selection-end-column="29" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/codedingonline/user/controller/UserController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="240">
+              <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/codedingonline/user/controller/UserInfoController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="144">
+              <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -36,17 +191,53 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/front/front/html/EndAdmin/Endindex.html" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/example/codedingonline/admin/dao/entity/Admininfo.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/example/codedingonline/LoginApplication.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/generatorConfig.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/example/codedingonline/problem/controller/problemController.java" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="1820" />
-    <option name="y" value="208" />
-    <option name="width" value="1440" />
-    <option name="height" value="807" />
+  <component name="MavenProjectNavigator">
+    <treeState>
+      <expand>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="codedingonline" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+        </path>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="codedingonline" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+          <item name="Lifecycle" type="58874e2:MavenProjectsStructure$LifecycleNode" />
+        </path>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="codedingonline" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+          <item name="Plugins" type="7aea1407:MavenProjectsStructure$PluginsNode" />
+        </path>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="codedingonline" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+          <item name="Plugins" type="7aea1407:MavenProjectsStructure$PluginsNode" />
+          <item name="compiler" type="36feed69:MavenProjectsStructure$PluginNode" />
+        </path>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="codedingonline" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+          <item name="Plugins" type="7aea1407:MavenProjectsStructure$PluginsNode" />
+          <item name="mybatis-generator" type="36feed69:MavenProjectsStructure$PluginNode" />
+        </path>
+      </expand>
+      <select />
+    </treeState>
   </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="69" />
+    <option name="y" value="27" />
+    <option name="width" value="1371" />
+    <option name="height" value="811" />
+  </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
@@ -57,31 +248,132 @@
         <subPane>
           <expand>
             <path>
-              <item name="CodingOnline" type="b2602c69:ProjectViewProjectNode" />
+              <item name="end" type="b2602c69:ProjectViewProjectNode" />
               <item name="CodingOnline" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="CodingOnline" type="b2602c69:ProjectViewProjectNode" />
+              <item name="end" type="b2602c69:ProjectViewProjectNode" />
               <item name="CodingOnline" type="462c0819:PsiDirectoryNode" />
-              <item name=".idea" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="CodingOnline" type="b2602c69:ProjectViewProjectNode" />
+              <item name="end" type="b2602c69:ProjectViewProjectNode" />
               <item name="CodingOnline" type="462c0819:PsiDirectoryNode" />
-              <item name="front" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="CodingOnline" type="b2602c69:ProjectViewProjectNode" />
+              <item name="end" type="b2602c69:ProjectViewProjectNode" />
               <item name="CodingOnline" type="462c0819:PsiDirectoryNode" />
-              <item name="front" type="462c0819:PsiDirectoryNode" />
-              <item name="html" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="CodingOnline" type="b2602c69:ProjectViewProjectNode" />
+              <item name="end" type="b2602c69:ProjectViewProjectNode" />
               <item name="CodingOnline" type="462c0819:PsiDirectoryNode" />
-              <item name="front" type="462c0819:PsiDirectoryNode" />
-              <item name="html" type="462c0819:PsiDirectoryNode" />
-              <item name="EndAdmin" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="codedingonline" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="end" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CodingOnline" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="codedingonline" type="462c0819:PsiDirectoryNode" />
+              <item name="admin" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="end" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CodingOnline" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="codedingonline" type="462c0819:PsiDirectoryNode" />
+              <item name="admin" type="462c0819:PsiDirectoryNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="end" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CodingOnline" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="codedingonline" type="462c0819:PsiDirectoryNode" />
+              <item name="admin" type="462c0819:PsiDirectoryNode" />
+              <item name="dao" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="end" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CodingOnline" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="codedingonline" type="462c0819:PsiDirectoryNode" />
+              <item name="admin" type="462c0819:PsiDirectoryNode" />
+              <item name="dao" type="462c0819:PsiDirectoryNode" />
+              <item name="mapper" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="end" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CodingOnline" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="codedingonline" type="462c0819:PsiDirectoryNode" />
+              <item name="problem" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="end" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CodingOnline" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="codedingonline" type="462c0819:PsiDirectoryNode" />
+              <item name="problem" type="462c0819:PsiDirectoryNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="end" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CodingOnline" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="codedingonline" type="462c0819:PsiDirectoryNode" />
+              <item name="problem" type="462c0819:PsiDirectoryNode" />
+              <item name="dao" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="end" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CodingOnline" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="codedingonline" type="462c0819:PsiDirectoryNode" />
+              <item name="problem" type="462c0819:PsiDirectoryNode" />
+              <item name="dao" type="462c0819:PsiDirectoryNode" />
+              <item name="entity" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="end" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CodingOnline" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="codedingonline" type="462c0819:PsiDirectoryNode" />
+              <item name="problem" type="462c0819:PsiDirectoryNode" />
+              <item name="dao" type="462c0819:PsiDirectoryNode" />
+              <item name="mapper" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="end" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CodingOnline" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -91,17 +383,22 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java/com/example/codedingonline" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="settings.editor.selected.configurable" value="File.Encoding" />
+    <property name="settings.editor.selected.configurable" value="MavenSettings" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$" />
-      <recent name="$PROJECT_DIR$/front/front" />
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/java/com/example/codedingonline" />
+      <recent name="$PROJECT_DIR$/src/main/resources" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -116,68 +413,171 @@
       </list>
     </option>
   </component>
+  <component name="RunManager">
+    <configuration name="CodedingonlineApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="end" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.codedingonline.CodedingonlineApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="1093834b-acce-42d1-aafb-2f3b763e1dea" name="Default Changelist" comment="" />
-      <created>1556192293201</created>
+      <changelist id="ff52ec63-bdb3-4069-a207-d4478b8e1870" name="Default Changelist" comment="" />
+      <created>1556206801488</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1556192293201</updated>
-      <workItem from="1556192295142" duration="853000" />
-      <workItem from="1556195071405" duration="21000" />
+      <updated>1556206801488</updated>
+      <workItem from="1556206817737" duration="737000" />
+      <workItem from="1556207567223" duration="8000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="874000" />
+    <option name="totallyTimeSpent" value="745000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1820" y="208" width="1440" height="807" extended-state="0" />
+    <frame x="69" y="27" width="1371" height="811" extended-state="0" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2532189" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24905944" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="Image Layers" order="2" />
-      <window_info id="Designer" order="3" />
-      <window_info id="UI Designer" order="4" />
-      <window_info id="Capture Tool" order="5" />
+      <window_info id="Designer" order="2" />
+      <window_info id="Image Layers" order="3" />
+      <window_info id="Capture Tool" order="4" />
+      <window_info id="UI Designer" order="5" />
       <window_info id="Favorites" order="6" side_tool="true" />
+      <window_info id="Web" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.21835883" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" />
-      <window_info anchor="bottom" id="Database Changes" order="9" />
-      <window_info anchor="bottom" id="Terminal" order="10" />
-      <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
+      <window_info anchor="bottom" id="Spring" order="7" />
+      <window_info anchor="bottom" id="Terminal" order="8" />
+      <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
+      <window_info anchor="bottom" id="Messages" order="11" weight="0.32962447" />
+      <window_info anchor="bottom" id="Java Enterprise" order="12" />
+      <window_info anchor="bottom" id="Database Changes" order="13" />
+      <window_info anchor="bottom" id="Version Control" order="14" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Palette" order="3" />
-      <window_info anchor="right" id="Theme Preview" order="4" />
-      <window_info anchor="right" id="Maven" order="5" />
-      <window_info anchor="right" id="Capture Analysis" order="6" />
+      <window_info anchor="right" id="Maven" order="3" visible="true" weight="0.1256584" />
+      <window_info anchor="right" id="Palette" order="4" />
+      <window_info anchor="right" id="Capture Analysis" order="5" />
+      <window_info anchor="right" id="Database" order="6" />
       <window_info anchor="right" id="Palette&#9;" order="7" />
-      <window_info anchor="right" id="Database" order="8" />
+      <window_info anchor="right" id="Theme Preview" order="8" />
+      <window_info anchor="right" id="Bean Validation" order="9" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/front/html/IndexMoudle/index.html">
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1128">
+          <caret line="79" column="12" selection-start-line="79" selection-start-column="12" selection-end-line="79" selection-end-column="12" />
+          <folding>
+            <element signature="n#build#0;n#project#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/application.yml">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/front/html/EndAdmin/Endindex.html">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/UserinfoMapper.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/codedingonline/LoginApplication.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="11" column="19" selection-start-line="11" selection-start-column="19" selection-end-line="11" selection-end-column="19" />
+        <state relative-caret-position="120">
+          <caret line="9" column="12" selection-start-line="9" selection-start-column="12" selection-end-line="9" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/codedingonline/CodedingonlineApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/generatorConfig.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="888">
+          <caret line="37" column="87" selection-start-line="37" selection-start-column="87" selection-end-line="37" selection-end-column="87" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/codedingonline/problem/dao/entity/Probleminfo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="48">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/codedingonline/problem/dao/mapper/ProbleminfoMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="14" selection-start-line="14" selection-end-line="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/codedingonline/admin/controller/adminController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="16" column="19" selection-start-line="16" selection-start-column="19" selection-end-line="16" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/codedingonline/admin/dao/mapper/AdmininfoMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="11" column="17" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/codedingonline/admin/dao/entity/Admininfo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="9" column="29" selection-start-line="9" selection-start-column="29" selection-end-line="9" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/codedingonline/user/controller/UserController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/codedingonline/user/controller/UserInfoController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/codedingonline/problem/controller/problemController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="24">
+          <caret line="19" selection-start-line="19" selection-end-line="19" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

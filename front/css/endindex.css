@@ -1,24 +1,28 @@
-.end_body{
+.end_body {
     flex-direction: column;
     display: -webkit-box; /*这个必须要有*/
 }
-.end_left{
-    -webkit-box-flex:1;
-   border: 0.5px solid #D4D4D5;
+
+.end_left {
+    -webkit-box-flex: 1;
+    border: 0.5px solid #D4D4D5;
     background: #F3F3F3;
-   padding: 10px;
+    padding: 10px;
 }
-.end_right{
+
+.end_right {
     -webkit-box-flex: 25;
     background: white;
 }
-.end_item{
+
+.end_item {
     padding: 5px;
     cursor: pointer;
     border-bottom: 0.2px solid #D4D4D5;
     text-align: center;
 }
-#end_problemset,#end_course,#end_contest,#end_user .end_subitem{
+
+#end_problemset, #end_course, #end_contest, #end_user .end_subitem {
     font-size: 12px;
     padding: 2px;
     border-bottom: 0.2px solid #D4D4D5;
@@ -26,7 +30,8 @@
     text-align: center;
     cursor: pointer;
 }
-#end_problem_add, .end_problem_select{
+
+#end_problem_add, .end_problem_select {
     width: 90%;
     height: 40px;
     margin: 0 0 20px 5%;
@@ -34,7 +39,8 @@
     border: 1px solid #ddd;
     cursor: pointer;
 }
-.end_problem_add_btn{
+
+.end_problem_add_btn {
     width: 115px;
     height: 36px;
     background: #FFB752;
@@ -45,7 +51,8 @@
     padding-top: 6px;
 
 }
-.end_problem_addframe{
+
+.end_problem_addframe {
     background-color: white;
     position: absolute;
     width: 800px;
@@ -54,13 +61,15 @@
     border: 1px solid #F3F3F3;
     margin-left: 10%;
     text-align: center;
-    z-index:1001;
+    z-index: 1001;
 }
-.end_problem_addclose{
+
+.end_problem_addclose {
     width: 60px;
     height: 100%;
 }
-.end_problem_addframe #end_problem_addspan input[type="text"], .end_problem_addframe #end_problem_addspan select{
+
+.end_problem_addframe #end_problem_addspan input[type="text"], .end_problem_addframe #end_problem_addspan select {
     margin-top: 20px;
     padding: auto;
     -webkit-appearance: none;
@@ -71,7 +80,8 @@
     height: 28px;
     font-size: 12px;
 }
-.end_problem_add_sub{
+
+.end_problem_add_sub {
     background: #4898d5;
     width: 60px;
     height: 30px;
@@ -83,10 +93,12 @@
     margin-top: 20px;
     margin-left: 70%;
 }
-#end_operateframe{
+
+#end_operateframe {
     margin-left: 5px;
 }
-#end_operateframe input[type="text"], #end_operateframe select{
+
+#end_operateframe input[type="text"], #end_operateframe select {
     outline: none;
     border-radius: 5px;
     -webkit-appearance: none;
@@ -94,14 +106,15 @@
     width: 156px;
     height: 28px;
 }
-.end_pro_table{
+
+.end_pro_table {
     margin-left: 5%;
     margin-bottom: 5%;
     width: 90%;
-    border: 1px solid rgba(34,36,38,.15);
+    border: 1px solid rgba(34, 36, 38, .15);
     border-radius: .28571429rem;
     text-align: left;
-    color: rgba(0,0,0,.87);
+    color: rgba(0, 0, 0, .87);
     display: table;
     box-sizing: inherit;
     font-size: 16px;
@@ -109,33 +122,41 @@
     border-spacing: 0;
     border-collapse: collapse;
 }
-.end_pro_table thead,tbody tr{
+
+.end_pro_table thead, tbody tr {
     text-align: center;
 }
-.end_pro_table thead,tbody tr:nth-child(even){
+
+.end_pro_table thead, tbody tr:nth-child(even) {
     background: #F9F9F9;
 }
-.end_pro_table thead,tbody tr th,td{
+
+.end_pro_table thead, tbody tr th, td {
     line-height: 40px;
     padding: 8px;
 }
+
 .pro_btn {
     width: 38px;
     height: 24px;
     padding: 3px 10px;
 
 }
-.pro_btn img{
+
+.pro_btn img {
     width: 15px;
     height: 15px;
 }
-.pro_btn_editor{
+
+.pro_btn_editor {
     background: #6fb3e0;
 }
-.pro_btn_delete{
+
+.pro_btn_delete {
     background: #ffb752;
 }
-.end_problem_edit input[type="text"],.end_problem_edit input[type="type"]{
-     padding-top: 20px;
-     margin-top: 20px;
+
+.end_problem_edit input[type="text"], .end_problem_edit input[type="type"] {
+    padding-top: 20px;
+    margin-top: 20px;
 }
