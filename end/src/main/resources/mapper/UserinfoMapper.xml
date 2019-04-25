@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.login.user.dao.mapper.UserinfoMapper">
+  <resultMap id="BaseResultMap" type="com.example.login.user.dao.entity.Userinfo">
+    <id column="userId" jdbcType="INTEGER" property="userid" />
+    <result column="userName" jdbcType="VARCHAR" property="username" />
+    <result column="passWord" jdbcType="VARCHAR" property="password" />
+    <result column="userSchool" jdbcType="VARCHAR" property="userschool" />
+    <result column="userGender" jdbcType="TINYINT" property="usergender" />
+    <result column="userLevel" jdbcType="INTEGER" property="userlevel" />
+    <result column="userGrader" jdbcType="INTEGER" property="usergrader" />
+    <result column="registerTime" jdbcType="DATE" property="registertime" />
+    <result column="userEmail" jdbcType="VARCHAR" property="useremail" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    userId, userName, passWord, userSchool, userGender, userLevel, userGrader, registerTime, 
+    userEmail
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from userInfo
+    where userId = #{userid,jdbcType=INTEGER}
+  </select>
+  <select id="selectUserByUsername" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from userInfo where userName=#{username};
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from userInfo
+    where userId = #{userid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.login.user.dao.entity.Userinfo">
+    insert into userInfo (userId, userName, passWord, 
+      userSchool, userGender, userLevel, 
+      userGrader, registerTime, userEmail
+      )
+    values (#{userid,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{userschool,jdbcType=VARCHAR}, #{usergender,jdbcType=TINYINT}, #{userlevel,jdbcType=INTEGER}, 
+      #{usergrader,jdbcType=INTEGER}, #{registertime,jdbcType=DATE}, #{useremail,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.login.user.dao.entity.Userinfo">
+    insert into userInfo
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+
+      <if test="username != null">
+        userName,
+      </if>
+      <if test="password != null">
+        passWord,
+      </if>
+      <if test="useremail != null">
+        userEmail,
+      </if>
+      <if test="userschool != null">
+        userSchool,
+      </if>
+      <if test="usergender != null">
+        userGender,
+      </if>
+      <if test="userlevel != null">
+        userLevel,
+      </if>
+      <if test="usergrader != null">
+        userGrader,
+      </if>
+      <if test="registertime != null">
+        registerTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userid != null">
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="userschool != null">
+        #{userschool,jdbcType=VARCHAR},
+      </if>
+      <if test="usergender != null">
+        #{usergender,jdbcType=TINYINT},
+      </if>
+      <if test="userlevel != null">
+        #{userlevel,jdbcType=INTEGER},
+      </if>
+      <if test="usergrader != null">
+        #{usergrader,jdbcType=INTEGER},
+      </if>
+      <if test="registertime != null">
+        #{registertime,jdbcType=DATE},
+      </if>
+      <if test="useremail != null">
+        #{useremail,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.login.user.dao.entity.Userinfo">
+    update userInfo
+    <set>
+      <if test="username != null">
+        userName = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        passWord = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="userschool != null">
+        userSchool = #{userschool,jdbcType=VARCHAR},
+      </if>
+      <if test="usergender != null">
+        userGender = #{usergender,jdbcType=TINYINT},
+      </if>
+      <if test="userlevel != null">
+        userLevel = #{userlevel,jdbcType=INTEGER},
+      </if>
+      <if test="usergrader != null">
+        userGrader = #{usergrader,jdbcType=INTEGER},
+      </if>
+      <if test="registertime != null">
+        registerTime = #{registertime,jdbcType=DATE},
+      </if>
+      <if test="useremail != null">
+        userEmail = #{useremail,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where userId = #{userid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.login.user.dao.entity.Userinfo">
+    update userInfo
+    set userName = #{username,jdbcType=VARCHAR},
+      passWord = #{password,jdbcType=VARCHAR},
+      userSchool = #{userschool,jdbcType=VARCHAR},
+      userGender = #{usergender,jdbcType=TINYINT},
+      userLevel = #{userlevel,jdbcType=INTEGER},
+      userGrader = #{usergrader,jdbcType=INTEGER},
+      registerTime = #{registertime,jdbcType=DATE},
+      userEmail = #{useremail,jdbcType=VARCHAR}
+    where userId = #{userid,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="../../js/echarts.min.js"></script>
+    <script src="../../js/header.js"></script>
+    <link type="text/css" rel="stylesheet" href="../../css/body.css" />
+    <link type="text/css" rel="stylesheet" href="../../css/header.css" />
+    <link type="text/css" rel="stylesheet" href="../../css/booter.css" />
+    <link type="text/css" rel="stylesheet" href="../../css/exercise.css" />
+    <link type="text/css" rel="stylesheet" href="../../css/userInfo.css" />
+    <title>用户信息</title>
+</head>
+<body>
+<!--头部-->
+<div class="ui">
+    <div class="ui-left">
+        <a class="item" href="../IndexMoudle/index.html" onmousemove=""><img src="../../images/logo_flat.png" width="104" height="24"></a>
+        <a class="item" href="../TitleMoudle/exercise.html"><i class="list items icon"></i>题目中心</a>
+        <a class="item" href="../function/education.html"><i class="list items icon"></i>在线教学</a>
+        <a class="item" href="../ContestWork/contest.html"><i class="list items icon"></i>在线比赛</a>
+        <a class="item" href="../function/help.html" style="border-right: 1px solid gray;"><i class="list items icon"></i>帮助中心</a>
+    </div>
+    <div class="ui-right" id="ui-right">
+        <a class="item" onclick="register()">
+            <img src="../../images/login.png" width="14px" height="12px" style="margin-right: -20px;"></img>
+            <i class="sign in icon"></i>注册</a>
+        <a class="item" onclick="login()">
+            <img src="../../images/login.png" width="14px" height="12px" style="margin-right: -20px;"></img>
+            <i class="sign in icon" id="banScroll"></i>登录</a>
+    </div>
+</div>
+<!--主体-->
+<br>
+<div class="ex_page_container one_page user_des">
+    <div id="user_personalInfo">
+        <div class="message_marquee"><marquee scrollAmount="2" direction=right behavior="scroll">暂无比赛通知!!!</marquee></div>
+        <br>
+        <div id="user_personal">
+            <table class="person_tableInfo">
+                <thead>
+                <tr>
+                    <td>名次</td>
+                    <td>100</td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>解决</td>
+                    <td>5</td>
+                </tr>
+                <tr>
+                    <td>提交</td>
+                    <td>80</td>
+                </tr>
+                <tr>
+                    <td>正确</td>
+                    <td>30</td>
+                </tr>
+                <tr>
+                    <td>答案错误</td>
+                    <td>15</td>
+                </tr>
+                <tr>
+                    <td>编译错误</td>
+                    <td>35</td>
+                </tr>
+                <tr style="height: 100px">
+                    <td>Statistics</td>
+                    <td><div id="myChartArea" style="width: 300px; height:200px;"></div></td>
+                </tr>
+                <tr>
+                    <td>school</td>
+                    <td>WU HAN UNIVERSITY OF TECHNOLOGY</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<!--底部-->
+<div id="booter"></div>
+<script>
+    /**select tab  */
+    $(function () {
+        $("a[class=item]").each(function (index) {
+            $(this).mouseover(function () {
+                $("a[class=item]").css("backgroundColor","#1B1C1D");
+                $(this).css("backgroundColor","#515151");
+            }).mouseout(function () {
+                $("a[class=item]").css("backgroundColor","#1B1C1D");
+            })
+        });
+        /** 禁止滑动 */
+        $("#banScroll").click(function () {
+            $ (window).scroll (function ()
+            {
+                $ (this).scrollTop (0)
+            });
+        });
+    });
+</script>
+<script>
+    $(function () {
+        $('#booter').load('../booter/booter.html');
+    })
+    /** Islogin   */
+    $(window).load(function () {
+        var loginName=sessionStorage.loginName;
+        if(loginName!=undefined){
+            var obj=sessionStorage.loginName;
+            Implement(obj);
+        }
+    })
+    /**  关闭登录框 */
+    $('#closelogin').click(function () {
+        $('#loginclass').css('display','none');
+        $('.operatebackgroud').css('display','none');
+        $ (window).unbind ('scroll');
+    })
+    /**  关闭注册框 */
+    $('#closeregister').click(function () {
+        $('#registerclass').css('display','none');
+        $('.operatebackgroud').css('display','none');
+        $ (window).unbind ('scroll');
+    })
+    /**  login */
+    $("#login").click(function () {
+        var username =$("#username").val();
+        var password=$("#password").val();
+        $.ajax({
+            url: "http://localhost:8081/userInfo/login",
+            type: 'POST',
+            contentType: 'application/json;charset=utf-8',
+            data: '{"username":"'+username+'","password":"'+password+'"}',
+            success: function (data) {
+                if($.isEmptyObject(data))  alert("用户名不存在或者密码错误");
+                else {
+                    /** 退出登录框  */
+                    $('#loginclass').css('display','none');
+                    $('.operatebackgroud').css('display','none');
+                    $ (window).unbind ('scroll');
+                    /** 更改用户名  */
+                    alert("登陆成功");
+                    var obj=eval(data);
+                    /** session保存信息 */
+                    var loginName=obj.username;
+                    sessionStorage.loginName=loginName;  /**  将变量存储到sessionStorage中，并且value为loginName */
+                    Implement(loginName);
+                }
+            }
+        })
+    });
+</script>
+<script>
+    $("table tr td:nth-child(1)").css("margin-left","20px");
+    $("table tr td:nth-child(2)").css("text-align","center");
+</script>
+<script>
+    $(function () {
+        // 为echarts对象加载数据
+        myChart.setOption(option);
+    });
+    /**
+     * echarts.init(dom容器):基于dom容器,实例化echarts对象
+     * dom容器必须是html的节点，如果是使用jQuery获取的则必须指定集合中的一个元素节点，比如(“#main”)则表示jQuery对象。$(“#main”)[0]则表示一个id为main的节点
+     */
+// var myChart = echarts.init(document.getElementById("myChartArea"));
+    var myChart = echarts.init($("#myChartArea")[0]);
+
+    var option = {
+        title: {
+            /** text: 'statistics',
+             subtext: '纯属虚构',
+            x: 'left'*/
+        },
+        tooltip: {
+            trigger: 'item',
+            formatter: "{a} <br/>{b} : {c} ({d}%)"
+        },
+        /**legend: {
+            orient: 'vertical',
+            left: 'left',
+            data: ['答案错误', '编译错误','通过']
+        },*/
+        series: [
+            {
+                name: '访问来源',
+                type: 'pie',
+                radius: '55%',
+                center: ['50%', '60%'],
+                data: [
+                    {value: 335, name: '答案错误'},
+                    {value: 310, name: '编译错误'},
+                    {value: 1548, name: '通过'}
+                ],
+                itemStyle: {
+                    emphasis: {
+                        shadowBlur: 10,
+                        shadowOffsetX: 0,
+                        shadowColor: 'rgba(0, 0, 0, 0.5)'
+                    }
+                }
+            }
+        ]
+    };
+</script>
+</body>
+</html>

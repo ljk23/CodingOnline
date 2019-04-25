@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.login.problem.dao.mapper.ProbleminfoMapper">
+  <resultMap id="BaseResultMap" type="com.example.login.problem.dao.entity.Probleminfo">
+    <id column="problemID" jdbcType="INTEGER" property="problemid" />
+    <result column="problemName" jdbcType="VARCHAR" property="problemname" />
+    <result column="problemClassfy" jdbcType="VARCHAR" property="problemclassfy" />
+    <result column="problemAuthor" jdbcType="VARCHAR" property="problemauthor" />
+    <result column="problemContent" jdbcType="VARCHAR" property="problemcontent" />
+    <result column="problemstate" jdbcType="BIT" property="problemstate" />
+    <result column="problemInput" jdbcType="VARCHAR" property="probleminput" />
+    <result column="problemOutput" jdbcType="VARCHAR" property="problemoutput" />
+    <result column="problemLevel" jdbcType="VARCHAR" property="problemlevel" />
+    <result column="uploadTime" jdbcType="VARCHAR" property="uploadtime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    problemID, problemName, problemClassfy, problemAuthor, problemContent, problemstate, 
+    problemInput, problemOutput, problemLevel, uploadTime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from problemInfo
+    where problemID = #{problemid,jdbcType=INTEGER}
+  </select>
+  <select id="selectByQuery"  resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from problemInfo
+    <where>
+      <if test="problemclassfy!=''  ">
+        and problemClassfy = #{problemclassfy,jdbcType=VARCHAR}
+      </if>
+      <if test="problemlevel != '' ">
+        and problemLevel  = #{problemlevel,jdbcType=VARCHAR}
+      </if>
+      <if test="problemauthor != '' ">
+        and problemAuthor like "%"#{problemauthor,jdbcType=VARCHAR}"%"
+      </if>
+    </where>
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from problemInfo
+    where problemID = #{problemid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.login.problem.dao.entity.Probleminfo">
+    insert into problemInfo (problemID, problemName, problemClassfy, 
+      problemAuthor, problemContent, problemstate, 
+      problemInput, problemOutput, problemLevel, 
+      uploadTime)
+    values (#{problemid,jdbcType=INTEGER}, #{problemname,jdbcType=VARCHAR}, #{problemclassfy,jdbcType=VARCHAR}, 
+      #{problemauthor,jdbcType=VARCHAR}, #{problemcontent,jdbcType=VARCHAR}, #{problemstate,jdbcType=BIT}, 
+      #{probleminput,jdbcType=VARCHAR}, #{problemoutput,jdbcType=VARCHAR}, #{problemlevel,jdbcType=VARCHAR}, 
+      #{uploadtime,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.login.problem.dao.entity.Probleminfo">
+    insert into problemInfo
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="problemid != null">
+        problemID,
+      </if>
+      <if test="problemname != null">
+        problemName,
+      </if>
+      <if test="problemclassfy != null">
+        problemClassfy,
+      </if>
+      <if test="problemauthor != null">
+        problemAuthor,
+      </if>
+      <if test="problemcontent != null">
+        problemContent,
+      </if>
+      <if test="problemstate != null">
+        problemstate,
+      </if>
+      <if test="probleminput != null">
+        problemInput,
+      </if>
+      <if test="problemoutput != null">
+        problemOutput,
+      </if>
+      <if test="problemlevel != null">
+        problemLevel,
+      </if>
+      <if test="uploadtime != null">
+        uploadTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="problemid != null">
+        #{problemid,jdbcType=INTEGER},
+      </if>
+      <if test="problemname != null">
+        #{problemname,jdbcType=VARCHAR},
+      </if>
+      <if test="problemclassfy != null">
+        #{problemclassfy,jdbcType=VARCHAR},
+      </if>
+      <if test="problemauthor != null">
+        #{problemauthor,jdbcType=VARCHAR},
+      </if>
+      <if test="problemcontent != null">
+        #{problemcontent,jdbcType=VARCHAR},
+      </if>
+      <if test="problemstate != null">
+        #{problemstate,jdbcType=BIT},
+      </if>
+      <if test="probleminput != null">
+        #{probleminput,jdbcType=VARCHAR},
+      </if>
+      <if test="problemoutput != null">
+        #{problemoutput,jdbcType=VARCHAR},
+      </if>
+      <if test="problemlevel != null">
+        #{problemlevel,jdbcType=VARCHAR},
+      </if>
+      <if test="uploadtime != null">
+        #{uploadtime,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.login.problem.dao.entity.Probleminfo">
+    update problemInfo
+    <set>
+      <if test="problemname != null">
+        problemName = #{problemname,jdbcType=VARCHAR},
+      </if>
+      <if test="problemclassfy != null">
+        problemClassfy = #{problemclassfy,jdbcType=VARCHAR},
+      </if>
+      <if test="problemauthor != null">
+        problemAuthor = #{problemauthor,jdbcType=VARCHAR},
+      </if>
+      <if test="problemcontent != null">
+        problemContent = #{problemcontent,jdbcType=VARCHAR},
+      </if>
+      <if test="problemstate != null">
+        problemstate = #{problemstate,jdbcType=BIT},
+      </if>
+      <if test="probleminput != null">
+        problemInput = #{probleminput,jdbcType=VARCHAR},
+      </if>
+      <if test="problemoutput != null">
+        problemOutput = #{problemoutput,jdbcType=VARCHAR},
+      </if>
+      <if test="problemlevel != null">
+        problemLevel = #{problemlevel,jdbcType=VARCHAR},
+      </if>
+      <if test="uploadtime != null">
+        uploadTime = #{uploadtime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where problemID = #{problemid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.login.problem.dao.entity.Probleminfo">
+    update problemInfo
+    set problemName = #{problemname,jdbcType=VARCHAR},
+      problemClassfy = #{problemclassfy,jdbcType=VARCHAR},
+      problemAuthor = #{problemauthor,jdbcType=VARCHAR},
+      problemContent = #{problemcontent,jdbcType=VARCHAR},
+      problemstate = #{problemstate,jdbcType=BIT},
+      problemInput = #{probleminput,jdbcType=VARCHAR},
+      problemOutput = #{problemoutput,jdbcType=VARCHAR},
+      problemLevel = #{problemlevel,jdbcType=VARCHAR},
+      uploadTime = #{uploadtime,jdbcType=VARCHAR}
+    where problemID = #{problemid,jdbcType=INTEGER}
+  </update>
+</mapper>

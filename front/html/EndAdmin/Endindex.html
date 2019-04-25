@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="../../js/header.js"></script>
+    <script src="../../js/endindex.js"></script>
+    <script src="../../assets/layer/layer.js"></script>
+    <link type="text/css" rel="stylesheet" href="../../css/header.css" />
+    <link type="text/css" rel="stylesheet" href="../../css/booter.css" />
+    <link type="text/css" rel="stylesheet" href="../../css/endindex.css">
+    <link type="text/css" rel="stylesheet" href="../../css/body.css">
+    <title>www.byyl.com</title>
+</head>
+<body>
+<div class="operatebackgroud" style="display: none;"></div>
+<!--头部-->
+<div class="ui" style="background-color: #438EB9">
+    <div class="ui-left">
+        <a class="item" href="../IndexMoudle/index.html" onmousemove=""><img src="../../images/logo_flat.png" width="104" height="24"></a>
+        <a class="item" style="padding-left: 35%">BYYL后台管理中心</a>
+    </div>
+    <div class="ui-right" id="ui-right">
+       <a class="item">欢迎您！管理员</a>
+    </div>
+</div>
+<div id="wj_page_container" class="end_body">
+    <div class="end_left">
+        <div class="end_item" id="problemset_admin">题库管理
+        </div>
+        <!--problemset subitem-->
+        <div id="end_problemset" style="display: none">
+            <div class="end_subitem">词法分析</div>
+            <div class="end_subitem">语法分析</div>
+            <div class="end_subitem">语义分析</div>
+            <div class="end_subitem">中间代码</div>
+        </div>
+        <div class="end_item" id="course_admin">课程管理</div>
+        <!--course subitem-->
+        <div id="end_course" style="display: none">
+            <div class="end_subitem">课程录入</div>
+            <div class="end_subitem">作业录入</div>
+            <div class="end_subitem">实验发布</div>
+            <div class="end_subitem">资料查询</div>
+            <div class="end_subitem">讲义下载</div>
+        </div>
+        <div class="end_item" id="contest_admin">比赛管理</div>
+        <!--contest subitem-->
+        <div id="end_contest" style="display: none">
+            <div class="end_subitem">比赛管理</div>
+            <div class="end_subitem">比赛录入</div>
+            <div class="end_subitem">实验发布</div>
+        </div>
+        <div class="end_item" id="user_admin">用户管理</div>
+        <!--user admin-->
+        <div id="end_user" style="display: none">
+            <div class="end_subitem">用户管理</div>
+            <div class="end_subitem">用户分析</div>
+        </div>
+    </div>
+    <div class="end_right">
+        <!--题库管理-->
+        <div id="end_problem_admin"><br>
+            <!--select frame-->
+            <div class="end_problem_select">
+                  <div id="end_operateframe">题目类别:
+                    <select type="text" id="pro_typeclassfy">
+                        <option selected="selected">全部</option>
+                        <option>词法分析</option>
+                        <option>语法分析</option>
+                        <option>语义分析</option>
+                        <option>中间代码生成</option>
+                        <option>代码优化</option>
+                    </select>&nbsp;
+                    难度:
+                    <select type="text" id="pro_levelclassfy">
+                        <option selected="selected">全部</option>
+                        <option>简单</option>
+                        <option>一般</option>
+                        <option>困难</option>
+                    </select> &nbsp;
+                    出题者：
+                    <input type="text" id="pro_creator" placeholder="支持模糊查找" />
+                    &nbsp;
+                    <img class="pro_query" style="cursor: pointer" src="../../images/end_select.png" width="15" height="15" />
+                  </div>
+            </div>
+            <!--add problemset-->
+            <div id="end_problem_add">
+                <div class="end_problem_add_btn"><span style="padding-top: 5px">添加试题</span></div>
+                <div class="end_problem_addframe" style="display: none;">
+                    <form action="" method="post">
+                         <div id="end_problem_addclose" style="background-color: #F3F3F3;">
+                             <img style="margin-left: 95%" src="../../images/close.png" width="18" height="18" onclick="closeAddframe();">
+                         </div>
+                         <div id="end_problem_addspan">
+                             题目名称：<input type="text" id="problemName" placeholder="必填"><br>
+                             题目分类： <select id="problemClassfy">
+                                             <option selected="selected">词法分析</option>
+                                             <option>语法分析</option>
+                                             <option>语义分析</option>
+                                             <option>中间代码优化</option>
+                                             <option>目标代码生成</option>
+                                      </select><br>
+                             题目作者：<input type="text" id="problemAuthor" placeholder="必填"><br>
+                             题目难度：<select id="problemLevel">
+                                             <option selected="selected">简单</option>
+                                             <option>一般</option>
+                                             <option>困难</option>
+                                      </select><br>
+                             题目输入：<input type="text" id="problemInput" placeholder="可不填写"><br>
+                             题目输出：<input type="text" id="problemOutput" placeholder="可不填写"><br>
+                             <br>
+                             <textarea class="pro_textarea" id="problemContent" style="width: 500px; height: 200px; margin-top: 20px;font-size: 20px; border-radius: 5px;" placeholder="题目内容"></textarea>
+                             <div class="end_problem_add_sub" id="end_problem_add_sub">提交</div>
+                         </div>
+                    </form>
+                </div>
+            </div>
+            <!--manage problemset-->
+            <table  class="end_pro_table" id="end_pro_table">
+                <thead>
+                   <tr>
+                       <th>ID</th>
+                       <th>题目ID</th>
+                       <th>题目</th>
+                       <th>出题者</th>
+                       <th>题目状态</th>
+                       <th>创建日期</th>
+                       <th>操作</th>
+                   </tr>
+                </thead>
+                <tbody id="pro_tbody">
+                   <tr>
+                       <th>1</th>
+                       <th>1001</th>
+                       <th>词法分析</th>
+                       <th>饶文碧老师</th>
+                       <th>在线</th>
+                       <th>2019-4-1</th>
+                       <th><a style="cursor: pointer;" class="end_pro_ope">查看</a>
+                           <a style="cursor: pointer;" class="end_pro_ope">编辑</a>
+                           <a style="cursor: pointer;" class="end_pro_ope">删除</a>
+                       </th>
+                   </tr>
+                   <tr>
+                       <th>1</th>
+                       <th>1001</th>
+                       <th>词法分析</th>
+                       <th>饶文碧老师</th>
+                       <th>在线</th>
+                       <th>2019-4-1</th>
+                       <th><a style="cursor: pointer;" class="end_pro_ope">查看</a>
+                           <a style="cursor: pointer;" class="end_pro_ope">编辑</a>
+                           <a style="cursor: pointer;" class="end_pro_ope">删除</a>
+                       </th>
+                   </tr>
+                   <tr>
+                       <th>1</th>
+                       <th>1001</th>
+                       <th>词法分析</th>
+                       <th>饶文碧老师</th>
+                       <th>在线</th>
+                       <th>2019-4-1</th>
+                       <th><a style="cursor: pointer;" class="end_pro_ope">查看</a>
+                           <a style="cursor: pointer;" class="end_pro_ope">编辑</a>
+                           <a style="cursor: pointer;" class="end_pro_ope">删除</a>
+                       </th>
+                   </tr>
+                   <tr>
+                       <th>1</th>
+                       <th>1001</th>
+                       <th>词法分析</th>
+                       <th>饶文碧老师</th>
+                       <th>在线</th>
+                       <th>2019-4-1</th>
+                       <th><a style="cursor: pointer;" class="end_pro_ope">查看</a>
+                           <a style="cursor: pointer;" class="end_pro_ope">编辑</a>
+                           <a style="cursor: pointer;" class="end_pro_ope">删除</a>
+                       </th>
+                   </tr>
+                   <tr>
+                       <th>1</th>
+                       <th>1001</th>
+                       <th>词法分析</th>
+                       <th>饶文碧老师</th>
+                       <th>在线</th>
+                       <th>2019-4-1</th>
+                       <th><a style="cursor: pointer;" class="end_pro_ope">查看</a>
+                           <a style="cursor: pointer;" class="end_pro_ope">编辑</a>
+                           <a style="cursor: pointer;" class="end_pro_ope">删除</a>
+                       </th>
+                   </tr>
+                </tbody>
+            </table>
+            <!--editor problemset-->
+            <div pro></div>
+        </div>
+    </div>
+</div>
+<!--底部-->
+<div id="footer">
+    <div class="foot_container">
+        <div class="foot_grid">
+            <div class="foot_column">
+                <div class="des_column"><h3>项目介绍</h3>
+                    Tp5Admin是一个在线带代码判题系统，并用于辅助程序设计课程教学。
+                </div>
+                <div class="des_column"><h3>联系我们</h3>
+                    如有问题请发邮件到<a href="mailto:webmaster@wejudge.net" style="text-decoration: none; color: white">tp5admin@126.com</a>
+                </div>
+            </div>   <!--左边部分-->
+            <div class="foot_right_column">   <!--右边部分-->
+
+                © 2018-2019 WeJudge Team (鄂ICP备15000001号-2)
+                &nbsp;
+                <a href="https://github.com/LanceLRQ/wejudge" target="_blank" style="color: white; text-decoration: none">&lt;1.0开源&gt;</a>
+                <br>
+
+                网站版本：
+                <a href="#" style="color: white;">Ver.1.0.0 Beta #20191001</a>
+                &nbsp;&nbsp;
+                服务器时间：
+                <span id="wejudge_server_timer"></span>
+                <br>
+                <span id="cnzz_stat_icon_1261763113"></span>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+    $(window).load(function () {
+        $('#booter').load('../booter/booter.html');
+        $('#footer').css('background-color','lightgrey')
+    })
+</script>
+<script>
+    /**  select catlogue */
+    var flag=true;
+    $("#problemset_admin").click(function () {
+        if(flag==true){
+            $("#end_problemset").show("slow");
+            flag=false;
+        }
+        else{
+            $("#end_problemset").hide("slow");
+            flag=true;
+        }
+    });
+    $("#course_admin").click(function () {
+        if(flag==true){
+            $("#end_course").show("slow");
+            flag=false;
+        }
+        else{
+            $("#end_course").hide("slow");
+            flag=true;
+        }
+    });
+    $("#contest_admin").click(function () {
+        if(flag==true){
+            $("#end_contest").show("slow");
+            flag=false;
+        }
+        else{
+            $("#end_contest").hide("slow");
+            flag=true;
+        }
+    });
+    $("#user_admin").click(function () {
+        if(flag==true){
+            $("#end_user").show("slow");
+            flag=false;
+        }
+        else{
+            $("#end_user").hide("slow");
+            flag=true;
+        }
+    });
+</script>
+<script>
+    /**select tab  */
+    $(function () {
+        $("[class=end_subitem]").each(function (index) {
+            $(this).mouseover(function () {
+                $("[class=end_subitem]").css("backgroundColor", "white");
+                $(this).css("backgroundColor", "deepskyblue");
+            }).mouseout(function () {
+                $("[class=end_subitem]").css("backgroundColor", "white");
+            })
+        });
+    })
+    /**select operate */
+    $(function () {
+        $("[class=end_pro_ope]").each(function (index) {
+            $(this).mouseover(function () {
+                $("[class=end_pro_ope]").css("backgroundColor", "#c8cccf");
+                $(this).css("backgroundColor", "deepskyblue");
+            }).mouseout(function () {
+                $("[class=end_pro_ope]").css("backgroundColor", "#c8cccf");
+            })
+        });
+    })
+</script>
+<script>
+$(function () {
+    $.ajax({
+        success:function (data) {
+          //  document.getElementById("ui-right").css('backgroud',)
+            document.getElementById("ui-right").innerHTML="<ul onmousemove='admin_login_over()' onmouseout='admin_login_out()' style='margin-right: 5px;cursor: pointer;'>"+sessionStorage.loginadminName+"" +
+                "<ul id='sub_login' style='display: none; cursor: pointer;'><li style='list-style-type: none'><a onclick='exitLogin()'>注销</a>" +
+                "</li></ul></ul>";
+        }
+    })
+})
+
+function admin_login_over() {
+    $("#sub_login").css('display', 'block');
+}
+function admin_login_out(){
+    $("#sub_login").css('display', 'none');
+}
+</script>
+<!--题目管理模块-->
+<script>
+    /** 操作添加按钮 */
+    function closeAddframe() {
+        $(".end_problem_addframe").hide('slow');
+        $('.operatebackgroud').css('display','none');
+    }
+    $(".end_problem_add_btn").click(function () {
+        $(".end_problem_addframe").show('slow');
+        $('.operatebackgroud').css('display','block');
+    })
+    /** 题目添加 */
+    $("#end_problem_add_sub").click(function () {
+        var problemname=$("#problemName").val();
+        var problemclassfy=$("#problemClassfy").val();
+        var problemauthor=$("#problemAuthor").val();
+        var problemlevel=$("#problemLevel").val();
+        var probleminput=$("#problemInput").val();
+        var problemoutput=$("#problemOutput").val();
+        var problemcontent=$("#problemContent").val();
+        var problemstate=false;
+        var uploadtime=CurentTime();
+        /** 判断添加信息是否为空  **/
+        var flag=IsInputProblemInfo(problemname,problemauthor,problemcontent);
+        if(flag==true){
+            $.ajax({
+                url: "http://localhost:8081/problemAdmin/insert",
+                type: 'POST',
+                contentType: 'application/json;charset=utf-8',
+                data: '{"problemname":"'+problemname+'","problemclassfy":"'+problemclassfy+'","problemauthor":"'+problemauthor+'","problemlevel":"'+problemlevel+'","probleminput":"'+probleminput+'","problemoutput":"'+problemoutput+'","problemcontent":"'+problemcontent+'","problemstate":"'+problemstate+'","uploadtime":"'+uploadtime+'"}',
+                success: function (data) {
+                    if($.isEmptyObject(data))  alert("添加失败");
+                    else{
+                        layer.alert('添加成功',{
+                            icon: 1,
+                            time: 2000
+                        })
+                    }
+                }
+            })
+        }
+    })
+    /**  条件查询 */
+    $(".pro_query").click(function () {
+        if($("#pro_typeclassfy").val()=="全部")
+        var problemclassfy="";
+        else  problemclassfy=$("#pro_typeclassfy").val();
+        if($("#pro_levelclassfy").val()=="全部")
+        var problemlevel="";
+        else  problemlevel=$("#pro_levelclassfy").val();
+        if($("#pro_creator").val()==null)
+        var problemauthor="";
+        else  problemauthor=$("#pro_creator").val();
+        /**  给tbody添加id属性 */
+        $("#end_pro_table tbody").attr("id","pro_tbody");
+        $.ajax({
+            url: "http://localhost:8081/problemAdmin/query",
+            type: 'POST',
+            contentType: 'application/json;charset=utf-8',
+            data: '{"problemclassfy":"'+problemclassfy+'","problemauthor":"'+problemauthor+'","problemlevel":"'+problemlevel+'"}',
+            success: function (data) {
+                if(data.length==0)  alert('没有相关记录');
+                else{
+                    /** 删除原有表格的数据 */
+                        //删除原有的table数据
+                    var table = document.getElementById("end_pro_table");
+                    var infos = document.getElementById("pro_tbody");
+                    table.removeChild(infos);
+                    /**此处必须创建tbody，否则无法加入到table中  */
+                    infos = document.createElement("tbody");
+                    /**  生成新的table数据元素并添加到table中 */
+                    $.each(data,function (i,n) {
+                        var tr = document.createElement("tr");
+                        var td = document.createElement("td");
+                        var td1 = document.createElement("td");
+                        var td2 = document.createElement("td");
+                        var td3 = document.createElement("td");
+                        var td4 = document.createElement("td");
+                        var td5 = document.createElement("td");
+                        var td6 = document.createElement("td");
+
+                        td.innerHTML = i+1;
+                        td1.innerHTML = n.problemid;
+                        td2.innerHTML = n.problemname;
+                        td3.innerHTML = n.problemauthor;
+                        if(n.problemstate==false)  td4.innerHTML ="下线";
+                        else  td4.innerHTML = "在线";
+                        td5.innerHTML = n.uploadtime;
+
+                        td6.innerHTML = "<a class='pro_btn pro_btn_editor' onclick='editorPro("+n.problemid+")'><img src='../../images/edit.png'></a>&nbsp;&nbsp;&nbsp;" +
+                                        "<a class='pro_btn pro_btn_delete' onclick='deletePro("+n.problemid+","+(i+1)+")'><img src='../../images/delete-2.png'></a>";
+
+                        tr.appendChild(td);
+                        tr.appendChild(td1);
+                        tr.appendChild(td2);
+                        tr.appendChild(td3);
+                        tr.appendChild(td4);
+                        tr.appendChild(td5);
+                        tr.appendChild(td6);
+                        tr.setAttribute("id",i+1);
+                        //document.getElementById("end_pro_table tbody tr").setAttribute("id",i+1);
+                        infos.appendChild(tr);
+                    })
+                    table.appendChild(infos);
+                }
+            }
+        })
+    })
+    /** 编辑信息 */
+    function editorPro(problemid){
+        layer.open({
+            type: 2,
+            area: ['910px', '100%'],
+            content: ['ProblemAdmin/ProblemEditor.html?problemid='+problemid]  //这里content是一个URL，如果你不想让iframe出现滚动条，你还可以content: ['http://sentsin.com', 'no']
+        },function () {
+            alert("123");
+        });
+    }
+    function deletePro(problemid,numid) {
+        layer.confirm('确认要删除吗？',function(index) {
+            $.ajax({
+                url: "http://localhost:8081/problemAdmin/delete",
+                type: 'GET',
+                data: "problemid="+problemid,
+                async: false,
+                success: function (data) {
+                    if(data==true)  {
+                        layer.alert('删除成功',{
+                            icon: 1,
+                            time: 2000
+                        },function(){
+                            $("#"+numid).remove();
+                        });
+                    }
+                    else {
+                        alert("删除失败");
+                    }
+                }
+            })
+        });
+
+    }
+</script>
+</html>

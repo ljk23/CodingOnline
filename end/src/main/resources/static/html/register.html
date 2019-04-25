@@ -1,0 +1,66 @@
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Register</title>
+    <script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+</head>
+<body>
+
+<form id="login" method="POST" action="#">
+    用户名：<input id="username" type="text" /><span id="info"></span><br>
+    性别： <select id="gender">
+       <option selected="selected">男</option>
+       <option>女</option>
+        </select><br>
+    密码：<input id="password" type="password" /><br>
+    确认密码：<input id="repassword" type="password" /><br>
+    <input id="do" type="button" value="Login"/>
+</form>
+
+<script >
+    var flag=true;
+    $("#username").mouseleave(function () {
+        var username = $("#username").val();
+        $.ajax({
+            url: 'http://localhost:8081/user/judgeIsUserExist',
+            type: 'GET',
+            data:'username='+username,
+            success: function(data){
+                if(data){
+                 $("#username").css({"border":"1px solid red"});
+                 $("#info").html("用户名已存在");
+                 $("#info").css({"color":"red"})
+                    flag=false;
+                }
+                else{
+                    $("#username").css({"border":"1px solid black"});
+                    $("#info").html("");
+                    flag=true;
+                }
+            }});
+    })
+    $("#do").click(function(){
+        if(!flag)  return;
+        var username = $("#username").val();
+        var password = $("#password").val();
+        var repassword = $("#repassword").val();
+        var gender_val = $("#gender").val();
+        var gender;
+        if(gender_val=="男") gender=true;
+        else gender=false;
+        if(password!=repassword) {
+            alert("两次密码不一致");
+            return;
+        }
+        $.ajax({
+            url: 'http://localhost:8081/user/register',
+            type: 'POST',
+            contentType: 'application/json;charset=utf-8',
+            data:'{"username":"'+username+'","password":"'+password+'","gender":"'+gender+'"}',
+            success: function(data){
+                alert(JSON.stringify(data));
+            }});
+    })
+</script>
+</body>
+</html>

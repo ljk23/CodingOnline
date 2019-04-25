@@ -1,0 +1,222 @@
+*{
+   margin: 0;
+   padding: 0;
+}
+.ex_page_container{
+    width: 95%;
+    height: 100%;
+    margin: 0 auto 50px auto;
+}
+.ex_nav{
+    margin-top: 15px;
+}
+.ex_catalog{
+    padding-bottom: 5px;
+    border-bottom: 2px solid gainsboro;
+}
+.ex_select{
+    border: 1px solid #D4D4D5;
+    border-radius:6px 6px 0px 0px;
+}
+.ex_select_cat{
+    border-bottom: 1px solid #D4D4D5;
+    height: 42px;
+    display: -webkit-box; /*这个必须要有*/
+    -webkit-box-orient: row;
+}
+.ex_select_des{
+    margin: 20px;
+    margin-bottom: 40px;
+    height: 20px;
+    border-bottom: 1px solid gainsboro;
+}
+.ex_select_five{
+    display: -webkit-box; /*这个必须要有*/
+    -webkit-box-orient: row;
+}
+.feild{
+    -webkit-box-flex:20;
+    margin-left: 10px;
+}
+.ex_select_input{
+    width: 190px;
+    height: 30px;
+    margin-top: 5px;
+}
+.ex_select_input input[type="text"], .ex_select_input select{
+    box-sizing: border-box;
+    text-align: center;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width:80%;
+    height:2.7em;
+    text-decoration:none;
+    outline:none;
+    border:1px solid #c8cccf;
+    border-radius:4px;
+    background: white;
+}
+.ex_select_input select{
+    text-align: center;
+    text-align-last: center;
+}
+.ex_select_input select option{
+    color: deepskyblue;
+}
+.ex_select_button{
+    margin: 20px;
+    width: 95px;
+    height: 38px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background: #2185D0;
+    border-radius:5px 5px 5px 5px;
+    color: white;
+    font-size: 10px;
+    outline:none;
+}
+.ex_item{
+    -webkit-box-align: center;
+    display: flex;
+    align-items: center;
+    border-right: 1px solid #D4D4D5;
+    padding: .92857143em 1.14285714em;
+    line-height: 1;
+    cursor: pointer;
+}
+.ex_grid{
+    display: flex;
+    display: -webkit-box; /*这个必须要有*/
+    -webkit-box-orient: row;
+}
+.ex_column{
+    -webkit-box-flex: 1;
+    border: 1px solid #D4D4D5;
+    margin: 0 0 10px 10px;
+    border-radius:5px 5px 5px 5px;
+    display: -webkit-box; /*这个必须要有*/
+    -webkit-box-orient: vertical;
+}
+.ex_content{
+   height: inherit;
+    line-height: 200%;
+}
+.ex_extra_content{
+    height: inherit;
+    line-height: 100%;
+    border-top: 1px solid #D4D4D5;
+}
+.ex_header{
+    color: #4F94CD;
+    margin-top: 8px;
+    margin-left: 8px;
+}
+.ex_meta{
+    margin-left: 10px;
+    margin-top: -10px;
+    color: rgba(0,0,0,.4);
+    transition: color .1s ease;
+}
+.ex_description{
+    margin-left: 10px;
+    color: rgba(0,0,0,.68);
+    margin-top: -5px;
+    font-size: 10px;
+}
+.ex_test_number{
+    margin: 8px;
+    font-size: 10px;
+    display: -webkit-box;
+    color: rgba(0,0,0,.4);
+    transition: color .1s ease;
+    text-align: center;
+}
+.qu_table{
+    width: 100%;
+    background: #FFF;
+    margin: 1em 0;
+    border: 1px solid rgba(34,36,38,.15);
+    border-radius: .28571429rem;
+    text-align: left;
+    color: rgba(0,0,0,.87);
+    display: table;
+    box-sizing: inherit;
+    font-size: 10px;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+.qu_table thead tr {
+    display: table-row;
+    vertical-align: inherit;
+    border-color: inherit;
+    background: #F9FAFB;
+}
+.qu_table thead th{
+    cursor: auto;
+    text-align: inherit;
+    color: rgba(0,0,0,.87);
+    padding: .92857143em .78571429em;
+    vertical-align: inherit;
+    font-weight: 700;
+    border-bottom: 1px solid rgba(34,36,38,.1);
+}
+.qu_table tbody tr{
+    line-height: 30px;
+}
+.qu_table tbody tr:nth-child(even){
+   background: rgba(0,0,50,.02);
+}
+.one_page{
+    border: 1px solid #D4D4D5;
+    border-radius: 5px;
+    padding-top: 20px;
+}
+.one_green{
+    color: #333333;
+}
+.one_content {
+    padding-left: 20px;
+    font-size: 21px;
+    margin: 0 0 15px;
+    color: #333;
+    font-family: Apple LiSung Light;
+    font-weight: lighter;
+}
+.one_put{
+    background: #F5F5F5;
+    margin: 9.5px;
+    border-right: 1px solid #D4D4D5;
+    border-radius: 5px;
+    width: 90%;
+}
+center a{
+    color: #4F94CD;
+    cursor: pointer;
+}
+.one_code_green{
+    margin-left: -5%;
+    padding-top: 10px;
+}
+.one_green input[type="text"]{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 40px;
+    height: 23px;
+    outline: none;
+}
+.one_input{
+    padding-left: 20px;
+}
+center button{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 70px;
+    height: 34px;
+    background: deepskyblue;
+    cursor: pointer;
+    border-radius: 5px;
+    outline: none;
+}
+center button span{
+    color: white;
+}

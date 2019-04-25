@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="../../js/header.js"></script>
+    <link type="text/css" rel="stylesheet" href="../../css/body.css" />
+    <link type="text/css" rel="stylesheet" href="../../css/header.css" />
+    <link type="text/css" rel="stylesheet" href="../../css/booter.css" />
+    <link type="text/css" rel="stylesheet" href="../../css/exercise.css" />
+    <link type="text/css" rel="stylesheet" href="../../css/userInfo.css" />
+    <title>用户信息</title>
+</head>
+<body id="body">
+<!--头部-->
+<div class="ui">
+    <div class="ui-left">
+        <a class="item" href="../IndexMoudle/index.html" onmousemove=""><img src="../../images/logo_flat.png" width="104" height="24"></a>
+        <a class="item" href="../TitleMoudle/exercise.html"><i class="list items icon"></i>题目中心</a>
+        <a class="item" href="../function/education.html"><i class="list items icon"></i>在线教学</a>
+        <a class="item" href="../ContestWork/contest.html"><i class="list items icon"></i>在线比赛</a>
+        <a class="item" href="../function/help.html" style="border-right: 1px solid gray;"><i class="list items icon"></i>帮助中心</a>
+    </div>
+    <div class="ui-right" id="ui-right">
+        <a class="item" onclick="register()">
+            <img src="../../images/login.png" width="14px" height="12px" style="margin-right: -20px;"></img>
+            <i class="sign in icon"></i>注册</a>
+        <a class="item" onclick="login()">
+            <img src="../../images/login.png" width="14px" height="12px" style="margin-right: -20px;"></img>
+            <i class="sign in icon" id="banScroll"></i>登录</a>
+    </div>
+</div>
+<!--主体-->
+<br>
+<div class="ex_page_container one_page user_des">
+    <div class="message_marquee"><marquee scrollAmount="2" direction=right behavior="scroll">暂无比赛通知!!!</marquee></div>
+    <br>
+    <!--UserSubmit-->
+    <div id="user_submit" style="display: none">
+        <form method="post">
+            <p><span>题目编号:</span>&nbsp;<input type="text">
+               <span>用户:</span>&nbsp;<input type="text">
+               <span>语言:</span>&nbsp;<input type="text">
+               <span>结果:</span>&nbsp;<input type="text">
+               <button>提交</button>
+            </p>
+        </form>
+        <table class="qu_table">
+            <thead>
+            <tr>
+                <th>提交编号</th>
+                <th>用户</th>
+                <th>问题</th>
+                <th>结果</th>
+                <th>内存</th>
+                <th>耗时</th>
+                <th>语言</th>
+                <th>代码长度</th>
+                <th>提交时间</th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>122757</td>
+                    <td><a>Tp5admin</a></td>
+                    <td><a>1000</a></td>
+                    <td><div style="background: #5CB85C; width: 100px; height: 34;text-align: center;margin: 5px 0 5px 0">ACCEPT</div></td>
+                    <td>13080</td>
+                    <td>20</td>
+                  <td><a>C</a>/<a>Edit</a></td>
+                    <td>768B</td>
+                    <td>2019-04-01 22:52:44</td>
+                </tr>
+                <tr>
+                    <td>122757</td>
+                    <td><a>Tp5admin</a></td>
+                    <td><a>1000</a></td>
+                    <td><div style="background: #5CB85C; width: 100px; height: 34;text-align: center;margin: 5px 0 5px 0">ACCEPT</div></td>
+                    <td>13080</td>
+                    <td>20</td>
+                  <td><a>C</a>/<a>Edit</a></td>
+                    <td>768B</td>
+                    <td>2019-04-01 22:52:44</td>
+                </tr>
+                <tr>
+                    <td>122757</td>
+                    <td><a>Tp5admin</a></td>
+                    <td><a>1000</a></td>
+                    <td><div style="background: #5CB85C; width: 100px; height: 34;text-align: center;margin: 5px 0 5px 0">ACCEPT</div></td>
+                    <td>13080</td>
+                    <td>20</td>
+                  <td><a>C</a>/<a>Edit</a></td>
+                    <td>768B</td>
+                    <td>2019-04-01 22:52:44</td>
+                </tr>
+                <tr>
+                    <td>122757</td>
+                    <td><a>Tp5admin</a></td>
+                    <td><a>1000</a></td>
+                    <td><div style="background: #F0AD4E; width: 100px; height: 34;text-align: center;margin: 5px 0 5px 0" onclick="checkError();">Compire Error</div></td>
+                    <td>13080</td>
+                    <td>20</td>
+                  <td><a>C</a>/<a>Edit</a></td>
+                    <td>768B</td>
+                    <td>2019-04-01 22:52:44</td>
+                </tr>
+                <tr>
+                    <td>122757</td>
+                    <td><a>Tp5admin</a></td>
+                    <td><a>1000</a></td>
+                    <td><div style="background: #5CB85C; width: 100px; height: 34;text-align: center;margin: 5px 0 5px 0">ACCEPT</div></td>
+                    <td>13080</td>
+                    <td>20</td>
+                  <td><a>C</a>/<a>Edit</a></td>
+                    <td>768B</td>
+                    <td>2019-04-01 22:52:44</td>
+                </tr>
+                <tr>
+                    <td>122757</td>
+                    <td><a>Tp5admin</a></td>
+                    <td><a>1000</a></td>
+                    <td><div style="background: #D9534F; width: 100px; height: 34;text-align: center;margin: 5px 0 5px 0">Answer Error</div></td>
+                    <td>13080</td>
+                    <td>20</td>
+                  <td><a>C</a>/<a>Edit</a></td>
+                    <td>768B</td>
+                    <td>2019-04-01 22:52:44</td>
+                </tr>
+            </tbody>
+            <tfoot></tfoot>
+        </table>
+    </div>
+    <!--UserRegisterInfo-->
+    <div id="user_register" style="display: none">
+        <div class="user_from-group"><label>注册信息</label>
+        </div>
+        <div class="user_from-group"><label>用户名</label>
+            <span class="user_from-control"><input type="text" value="Tp5admin"></span>
+        </div>
+        <div class="user_from-group"><label>用户名(学号)</label>
+            <span class="user_from-control"><input type="password" value="密码"></span>
+        </div>
+        <div class="user_from-group"><label>密码</label>
+            <span class="user_from-control"><input type="password" value="密码"></span>
+        </div>
+        <div class="user_from-group"><label>New 密码</label>
+            <span class="user_from-control"><input type="password" value="密码"></span>
+        </div>
+        <div class="user_from-group"><label>学校</label>
+            <span class="user_from-control"><input type="text" value="WU HAN UNIVERSITY OF TECHNOLOGY"></span>
+        </div>
+        <div class="user_from-group"><label>电子邮件</label>
+            <span class="user_from-control"><input type="text" value="1570292899@qq.com"></span>
+        </div>
+        <div class="user_from-group user_from-submit">
+            <span class="user_from-control"><input type="submit" value="提交"></span>
+            <span class="user_from-control"><input type="submit" value="重置"></span>
+        </div>
+    </div>
+</div>
+<!--底部-->
+<div id="booter"></div>
+<script>
+    /**  getUserTransferValue */
+    function getUserTransferValue() {
+        var url = location.search; //获取url中"?"符后的字串
+        var theRequest = new Object();
+        if (url.indexOf("?") != -1) {
+            var str = url.substr(1);
+            strs = str.split("&");
+            theRequest[strs[0].split("=")[0]]=decodeURI(strs[0].split("=")[1]);
+            return theRequest[strs[0].split("=")[0]];
+        }
+    }
+    var userInfo = getUserTransferValue();
+
+    if(userInfo =="user_submit"){
+        $("#user_submit").css('display','block');
+    }
+    else if(userInfo=="user_register"){
+        $("#user_register").css('display','block');
+    }
+    else {
+        alert("undefined");
+    }
+</script>
+<script>
+    /**select tab  */
+    $(function () {
+        $("a[class=item]").each(function (index) {
+            $(this).mouseover(function () {
+                $("a[class=item]").css("backgroundColor","#1B1C1D");
+                $(this).css("backgroundColor","#515151");
+            }).mouseout(function () {
+                $("a[class=item]").css("backgroundColor","#1B1C1D");
+            })
+        });
+        /** 禁止滑动 */
+        $("#banScroll").click(function () {
+            $ (window).scroll (function ()
+            {
+                $ (this).scrollTop (0)
+            });
+        });
+    });
+</script>
+<script>
+    $(function () {
+        $('#booter').load('../booter/booter.html');
+    })
+    /** Islogin   */
+    $(window).load(function () {
+        var loginName=sessionStorage.loginName;
+        if(loginName!=undefined){
+            var obj=sessionStorage.loginName;
+            Implement(obj);
+        }
+    })
+    /**  关闭登录框 */
+    $('#closelogin').click(function () {
+        $('#loginclass').css('display','none');
+        $('.operatebackgroud').css('display','none');
+        $ (window).unbind ('scroll');
+    })
+    /**  关闭注册框 */
+    $('#closeregister').click(function () {
+        $('#registerclass').css('display','none');
+        $('.operatebackgroud').css('display','none');
+        $ (window).unbind ('scroll');
+    })
+    /**  login */
+    $("#login").click(function () {
+        var username =$("#username").val();
+        var password=$("#password").val();
+        $.ajax({
+            url: "http://localhost:8081/userInfo/login",
+            type: 'POST',
+            contentType: 'application/json;charset=utf-8',
+            data: '{"username":"'+username+'","password":"'+password+'"}',
+            success: function (data) {
+                if($.isEmptyObject(data))  alert("用户名不存在或者密码错误");
+                else {
+                    /** 退出登录框  */
+                    $('#loginclass').css('display','none');
+                    $('.operatebackgroud').css('display','none');
+                    $ (window).unbind ('scroll');
+                    /** 更改用户名  */
+                    alert("登陆成功");
+                    var obj=eval(data);
+                    /** session保存信息 */
+                    var loginName=obj.username;
+                    sessionStorage.loginName=loginName;  /**  将变量存储到sessionStorage中，并且value为loginName */
+                    Implement(loginName);
+                }
+            }
+        })
+    });
+</script>
+<script>
+    $("table tbody tr a").css("text-decoration","none");
+    $("table tbody tr a").css("color"," #4183c4");
+    $("table tbody tr td a").css("cursor","pointer");
+    $("table tbody tr td div").css("border-radius","5px");
+</script>
+<!--check error-->
+<script>
+    function checkError() {
+
+    }
+</script>
+</body>
+</html>

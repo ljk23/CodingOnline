@@ -1,0 +1,40 @@
+.con_create{
+    background: #1890FF;
+    cursor: pointer;
+    border-radius: 5px;
+    color: white;
+    font-size: 15px;
+    padding: 5px;
+    margin: 0 0 20px 20px;
+}
+#con_create_frame{
+    position: absolute;
+    top: 0px;
+    height:100%;
+    overflow: auto;
+    background-color: white;
+    width: 30%;
+    left: 70%;
+    z-index: 1001;
+}
+.con_create_title{
+    margin: 10px 0px 20px 20px;
+    font-size: 18px;
+}
+.ant-row{
+    margin: 30px 30px 10px 30px;
+}
+.ant-row input[type="text"]{
+  border-width: 1px;
+    outline: none;
+    border-radius: 5px;
+    width: 188px;
+    height: 32px;
+}
+.con_create_sub{
+    width: 63px;
+    height: 32px;
+    background: #1890FF;
+    color: white;
+    margin-left: 70%;
+}

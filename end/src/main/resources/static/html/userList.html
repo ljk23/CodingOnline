@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+    <title>列表</title>
+    <style>
+        .delete,.edit{
+           text-decoration: underline;
+            color: darkblue;
+            z-index: 99;
+        }
+    </style>
+    <script>
+       $(function list(){
+           $.ajax({
+               url: 'http://localhost:8081/user/list',
+               type: 'GET',
+               contentType: 'application/json;charset=utf-8',
+               success: function(data){
+                  $.each(data,function (i,n) {
+                      var gender;
+                      if(n.gender)  gender="男"; else gender="女";
+                      $("#list").append('<tr> ' +
+                          '<td>' + n.id + '</td>' +
+                          '<td>' + n.username + '</td>' +
+                          '<td>' + gender + '</td>' +
+                          '<td>' +'<span class="delete" onclick="deleteuser('+n.id+')">'+'删除'+'</span>'+'<span class="edit">'+'编辑'+'</span></td>' +
+                          '</tr>')
+                  })
+               }});
+       })
+    </script>
+
+</head>
+<body>
+<div>
+    <table border="1px" id="list">
+        <tr>
+            <th>ID</th>
+            <th>姓名</th>
+            <th>性别</th>
+            <th>操作</th>
+        </tr>
+    </table>
+</div>
+<span class="tp">点击</span>
+<script>
+    function deleteuser(id){
+        var tab = this;
+        $.ajax({
+            url: 'http://localhost:8080/user/delete',
+            type: 'GET',
+            data: 'id='+id,
+            success: function(data) {
+              if(data) {
+                  // alert(tab.parent());
+                  // $(tab.parent().parent()).remove();
+                  list();
+                  alert("删除成功");
+              }
+              else alert("删除失败");
+            }
+        })
+    }
+</script>
+</body>
+</html>

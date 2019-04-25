@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.login.admin.dao.mapper.AdmininfoMapper">
+  <resultMap id="BaseResultMap" type="com.example.login.admin.dao.entity.Admininfo">
+    <id column="adminID" jdbcType="INTEGER" property="adminid" />
+    <result column="adminName" jdbcType="VARCHAR" property="adminname" />
+    <result column="passWord" jdbcType="VARCHAR" property="password" />
+    <result column="adminemail" jdbcType="VARCHAR" property="adminemail" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    adminID, adminName, passWord, adminemail
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from adminInfo
+    where adminID = #{adminid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from adminInfo
+    where adminID = #{adminid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.login.admin.dao.entity.Admininfo">
+    insert into adminInfo (adminID, adminName, passWord, 
+      adminemail)
+    values (#{adminid,jdbcType=INTEGER}, #{adminname,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{adminemail,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.login.admin.dao.entity.Admininfo">
+    insert into adminInfo
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="adminid != null">
+        adminID,
+      </if>
+      <if test="adminname != null">
+        adminName,
+      </if>
+      <if test="password != null">
+        passWord,
+      </if>
+      <if test="adminemail != null">
+        adminemail,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="adminid != null">
+        #{adminid,jdbcType=INTEGER},
+      </if>
+      <if test="adminname != null">
+        #{adminname,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="adminemail != null">
+        #{adminemail,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.login.admin.dao.entity.Admininfo">
+    update adminInfo
+    <set>
+      <if test="adminname != null">
+        adminName = #{adminname,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        passWord = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="adminemail != null">
+        adminemail = #{adminemail,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where adminID = #{adminid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.login.admin.dao.entity.Admininfo">
+    update adminInfo
+    set adminName = #{adminname,jdbcType=VARCHAR},
+      passWord = #{password,jdbcType=VARCHAR},
+      adminemail = #{adminemail,jdbcType=VARCHAR}
+    where adminID = #{adminid,jdbcType=INTEGER}
+  </update>
+</mapper>
