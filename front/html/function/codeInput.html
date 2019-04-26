@@ -8,14 +8,12 @@
             line-height: 20px;
             padding: 0
         }
-
         input.btn {
             height: auto;
             font-size: 14px;
             font-weight: bold;
             color: #000
         }
-
         #main {
             color: #666
         }
@@ -41,7 +39,7 @@
         }
 
         table {
-            margin-left: 25%;
+            margin-left: 15%;
         }
 
         textarea {
@@ -114,7 +112,7 @@
         <tr>
             <td width="60%">
                 <div id="ol"><textarea cols="2" rows="10" id="li" disabled></textarea></div>
-                <textarea name="co" cols="60" rows="10" wrap="off" id="c2" onblur="check('2')" onkeyup="keyUp()"
+                <textarea class="codecontent" name="co" cols="60" rows="10" wrap="off" id="c2" onblur="check('2')" onkeyup="keyUp()"
                           onFocus="clearValue('2')" onscroll="G('li').scrollTop = this.scrollTop;"
                           oncontextmenu="return false" class="grey">
                 </textarea>
@@ -214,6 +212,9 @@
     if (!document.all) {
         window.addEventListener("load", autoScroll, false);
     }
+</script>
+<script>
+
 </script>
 </body>
 </html>

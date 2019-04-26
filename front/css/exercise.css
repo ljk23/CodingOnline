@@ -244,17 +244,16 @@ center a {
     padding-left: 20px;
 }
 
-center button {
-    -webkit-appearance: none;
-    -moz-appearance: none;
+#coding_submit,#coding_state {
     width: 70px;
     height: 34px;
+    margin-right: 25%;
     background: deepskyblue;
     cursor: pointer;
     border-radius: 5px;
-    outline: none;
+    float: right;
+    padding-top: 10px;
 }
-
-center button span {
+#coding_submit span,#coding_state  span {
     color: white;
 }

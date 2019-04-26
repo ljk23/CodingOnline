@@ -10,7 +10,7 @@
     <link type="text/css" rel="stylesheet" href="../../css/userInfo.css"/>
     <link type="text/css" rel="stylesheet" href="../../css/header.css"/>
     <link type="text/css" rel="stylesheet" href="../../css/booter.css"/>
-    <title>具体问题</title>
+    <link type="text/css" rel="stylesheet" href="../../css/probemset.css"/>
 </head>
 <body id="body">
 <!--头部-->
@@ -44,16 +44,14 @@
             <br>
             <small>登录名称</small>
             <br>
-            <div style="padding: 10px 10px 10px 0px;"><input type="text" placeholder="请输入账户名和邮箱名" id="username" name=""
-                                                             style="width:200px; height:30px"/></div>
+            <div style="padding: 10px 10px 10px 0px;"><input type="text" placeholder="请输入账户名和邮箱名" id="username" name="" style="width:200px; height:30px"/></div>
             <small>登录密码</small>
             <br>
-            <div style="padding: 10px 10px 10px 0px;"><input type="text" placeholder="请输入密码" id="password" name=""
-                                                             style="width:200px; height:30px"/></div>
+            <div style="padding: 10px 10px 10px 0px;"><input type="text" placeholder="请输入密码" id="password" name="" style="width:200px; height:30px"/></div>
             <!--<div>记住登录</div>-->
         </div>
         <div class="loginside"
-             style="display: -webkit-box; -webkit-box-orient: row; background-color: #EBEBEB; text-align: center;">
+             style="display: -webkit-box; -webkit-box-orient: horizontal; background-color: #EBEBEB; text-align: center;">
             <div style=" margin-bottom: 5px; width: 50px;margin-left: 40%; background-color: #C2C2C2; border-radius:6px 6px 6px 6px; cursor: pointer; color: #838B83;"
                  id="closelogin">
                 <small>关闭</small>
@@ -73,7 +71,7 @@
         </small>&nbsp;<small>></small>&nbsp;
         <small style="color: #5CACEE; cursor: pointer" onclick="window.location.href='exercise.html'">题目中心</small>
         </small>&nbsp;<small>></small>&nbsp;
-        <small class="smallTitle"></small>
+        <small class="smallTitle" onclick="window.location.href='question.html'" style="color: #5CACEE;"></small>
     </div>
 <!--主体-->
 <br>
@@ -84,10 +82,10 @@
     <br>
     <!--ProblemDescription-->
     <!--1---problemSet-->
-    <div id="one_content_tol">
+    <div id="one_content_tol" style="display: none">
         <div style="margin: 20px">
             <center>
-                <h3>1021.[BYYL第一题]</h3><br>
+                <h3><span class="pro_id"></span>.[<span class="pro_name"></span>]</h3><br>
                 <small class="one_green">时间限制:</small>
                 10 Sed&nbsp;&nbsp;<small>内存限制:</small>
                 10MB&nbsp;&nbsp;<br>
@@ -95,7 +93,7 @@
                 1000 Sed&nbsp;&nbsp;<small>解决:</small>
                 500&nbsp;&nbsp;<br>
                 [
-                <a onclick="proCoding()">提交</a> ] [
+                <a onclick="proCoding()">编码</a> ] [
                 <a>状态</a> ] [
                 <a>讨论版</a>] [命题人:
                 <small class="one_green">外部导入</small>
@@ -103,7 +101,7 @@
             </center>
         </div>
         <h4 style="padding-left: 10px">题目描述</h4>
-        <div class="one_content">
+        <div class="one_content" style="width: 60%">
             <br>
             <div class="problemcontent"></div>
         </div>
@@ -137,28 +135,46 @@
     </div>
     <!--2---codingSet-->
     <form method="post">
-        <div id="one_coding" style="display: none">
-            <center>
-                <span>problem:</span>&nbsp;<small>1000</small>
-                <br>
-                <span class="one_green one_code_green">language:&nbsp;<select>
-                    <option>C</option>
-                    <option>C++</option>
-                    <option>JAVA</option>
-                </select></span>&nbsp;&nbsp;
-                <span class="one_green">
-                    验证码：<input type="text"/>
-                </span>&nbsp;&nbsp;
-                [<span onclick="oneBackProblem()" class="one_green" style="cursor: pointer;color: #4F94CD;">
-                    查看题目
-                </span>]
-            </center>
-            <div id="one_input"></div>
-            <br>
-            <center>
-                <button id="coding_submit"><span>提交</span></button>&nbsp;&nbsp;<button><span>状态</span></button>
-            </center>
-            <br>
+        <div id="one_coding" style="display: block; display: -webkit-box;-webkit-box-orient: horizontal;">
+            <!--题目区-->
+            <div class="fenqu domain_1">
+                <div>
+                    <h3>题目：</h3>
+                    <div class="pro_name format"></div>
+                    <h3>描述：</h3>
+                    <div class="problemcontent format"></div>
+                    <h3>样本输入：</h3>
+                    <div class="sampleinput format"></div>
+                    <h3>样本输出：</h3>
+                    <div class="sampleoutput format"></div>
+                </div>
+            </div>
+            <!--编码区-->
+            <div class="fenqu domain_2">
+                <center>
+                    <span>problem:</span>&nbsp;<small>1000</small>
+                    <br>
+                    <span class="one_green one_code_green">language:&nbsp;<select>
+                        <option>C</option>
+                        <option>C++</option>
+                        <option>JAVA</option>
+                    </select></span>&nbsp;&nbsp;
+                    <span class="one_green">
+                        验证码：<input type="text"/>
+                    </span>&nbsp;&nbsp;
+                    [<span onclick="oneBackProblem()" class="one_green" style="cursor: pointer;color: #4F94CD;">
+                        查看题目
+                    </span>]
+                    <div id="one_input"></div>
+                    <br>
+                        <div id="coding_submit"><span>提交</span></div>&nbsp;&nbsp;<div id="coding_state"><span>状态</span></div>
+                    <br>
+                </center>
+            </div>
+            <!--题目集-->
+            <div class="fenqu domain_3">
+                题目集
+            </div>
         </div>
     </form>
 </div>
@@ -204,9 +220,12 @@
                         shade:[0.1, '#fff'],
                         time: 1000 //取消自动关闭
                     },function () {
+                        $(".pro_id").html(data.problemid);
+                        $(".pro_name").html(data.problemname);
                         $(".problemcontent").html(data.problemcontent);
                         $(".sampleinput").html(data.probleminput);
                         $(".sampleoutput").html(data.problemoutput);
+                        $(".smallTitle").html(data.problemclassfy);
                     })
                 }
             })
@@ -275,14 +294,15 @@
 <!--coding submit-->
 <script>
     $("#coding_submit").click(function () {
+        var codeInfo=$(".codecontent").val()
+        alert(codeInfo);
+/*
         $.ajax({
             success: function (data) {
-                alert("上面修改你看到了吗");
-                window.location.href = '../UserMoudle/userInfo.html?userInfo=user_submit';
+               // window.location.href = '../UserMoudle/userInfo.html?userInfo=user_submit';
             }
-        })
+        })*/
     })
 </script>
-
 </body>
 </html>

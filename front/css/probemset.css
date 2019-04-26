@@ -1,0 +1,25 @@
+.one_fenqu{
+    display: -webkit-box; /*这个必须要有*/
+    -webkit-box-orient: horizontal;
+}
+.fenqu{
+    margin: 10px;
+    padding: 10px;
+    font-size: 15px;
+    font-family: Apple LiSung Light;
+}
+.format{
+    margin: 5px;
+}
+.domain_1{
+    width: 20%;
+    background: rgba(0, 0, 50, .02);
+    font-weight: lighter;
+    border-radius: 5px;
+}
+.domain_2{
+    width: 50%;
+}
+.domain_3{
+    width: 20%;
+}
