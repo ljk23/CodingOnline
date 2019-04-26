@@ -1,20 +1,21 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
-    <script src="../../js/header.js"></script>
-    <script src="../../js/common.js"></script>
-    <link type="text/css" rel="stylesheet" href="../../css/body.css"/>
-    <link type="text/css" rel="stylesheet" href="../../css/exercise.css"/>
-    <link type="text/css" rel="stylesheet" href="../../css/header.css"/>
+    <script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"  type="text/javascript"></script>
+    <script src="../../js/header.js"  type="text/javascript"></script>
+    <script src="../../js/common.js"  type="text/javascript"></script>
+    <script src="../../assets/layer/layer.js"></script>
+    <link type="text/css" rel="stylesheet" href="../../css/body.css" type="text/css"/>
+    <link type="text/css" rel="stylesheet" href="../../css/exercise.css" type="text/css"/>
+    <link type="text/css" rel="stylesheet" href="../../css/booter.css" type="text/css"/>
+    <link type="text/css" rel="stylesheet" href="../../css/header.css" type="text/css"/>
     <title>编译程序在线编译系统</title>
 </head>
 <body id="body">
 <!--头部-->
 <div class="ui">
     <div class="ui-left">
-        <a class="item" href="../IndexMoudle/index.html" onmousemove=""><img src="../../images/logo_flat.png"
-                                                                             width="104" height="24"></a>
+        <a class="item" href="../IndexMoudle/index.html" onmousemove=""><img src="../../images/logo_flat.png" width="104" height="24"></a>
         <a class="item" href="exercise.html"><i class="list items icon"></i>题目中心</a>
         <a class="item" href="../function/education.html"><i class="list items icon"></i>在线教学</a>
         <a class="item" href="../ContestWork/contest.html"><i class="list items icon"></i>在线比赛</a>
@@ -50,7 +51,7 @@
             <!--<div>记住登录</div>-->
         </div>
         <div class="loginside"
-             style="display: -webkit-box; -webkit-box-orient: row; background-color: #EBEBEB; text-align: center;">
+             style="display: -webkit-box; -webkit-box-orient: horizontal; background-color: #EBEBEB; text-align: center;">
             <div style=" margin-bottom: 5px; width: 50px;margin-left: 40%; background-color: #C2C2C2; border-radius:6px 6px 6px 6px; cursor: pointer; color: #838B83;"
                  id="closelogin">
                 <small>关闭</small>
@@ -72,7 +73,7 @@
         </small>&nbsp;<small>></small>&nbsp;
         <small style="color: #5CACEE; cursor: pointer" onclick="window.location.href='exercise.html'">题目中心</small>
         </small>&nbsp;<small>></small>&nbsp;
-        <small>词法分析</small>
+        <small class="smallTitle"></small>
     </div>
     <div class="ex_nav ex_catalog">
         <a style="border-bottom: 2px solid black; padding-bottom: 5px"><img src="../../images/catalog.png" width="12px"
@@ -98,17 +99,17 @@
             </div>
             <div class="ex_select_five">
                 <div class="feild">
-                    <small>题目编号或名称</small>
-                    <div class="ex_select_input"><input type="text" id="keyword" placeholder="题目名称支持模糊查找"></div>
+                    <small>名称</small>
+                    <div class="ex_select_input"><input type="text" id="problemname" placeholder="题目名称支持模糊查找"></div>
                 </div>
                 <div class="feild">
                     <small>出题者</small>
-                    <div class="ex_select_input"><input type="text" id="keyword" placeholder="支持模糊查找"></div>
+                    <div class="ex_select_input"><input type="text" id="problemauthor" placeholder="支持模糊查找"></div>
                 </div>
                 <div class="feild">
                     <small>题目难度</small>
                     <div class="ex_select_input">
-                        <select id="keyword">
+                        <select id="problemlevel">
                             <option selected="selected">简单</option>
                             <option>一般</option>
                             <option>困难</option>
@@ -118,7 +119,7 @@
                 </div>
                 <div class="feild">
                     <small>每页数量</small>
-                    <div class="ex_select_input"><select id="keyword">
+                    <div class="ex_select_input" id="onePageNums"><select>
                         <option selected="selected">10</option>
                         <option>20</option>
                         <option>30</option>
@@ -127,19 +128,19 @@
                 </div>
                 <div class="feild">
                     <small>排列方式</small>
-                    <div class="ex_select_input"><select id="keyword">
+                    <div class="ex_select_input" id="orderStyle"><select>
                         <option selected="selected">正序排列</option>
                         <option>倒序排列</option>
                     </select>
                     </div>
                 </div>
             </div>
-            <button class="ex_select_button">
+            <button class="ex_select_button" id="ex_Submit">
                 <span><img src="../../images/ex_select.png" width="12px" height="12px">&nbsp;<small>筛选</small></span>
             </button>
         </div>
     </div>
-    <table class="qu_table">
+    <table class="qu_table" id="pro_table">
         <thead>
         <tr>
             <th>ID</th>
@@ -150,21 +151,13 @@
             <th>我的正确率</th>
         </tr>
         </thead>
-        <tbody>
-        <tr>
-            <td>1000</td>
-            <td><a href="oneQuestion.html" target="_self">Hello World, WeJudge!</a></td>
-            <td><a>饶文碧老师</a></td>
-            <td>四星</td>
-            <td>21.14%(93/440)</td>
-            <td>--</td>
-        </tr>
+        <tbody id="pro_tbody">
         </tbody>
         <tfoot></tfoot>
     </table>
 </div>
 <!--底部-->
-<div id="booter"></div>
+<!--<div id="booter"></div>-->
 <script>
     /**select tab  */
     $(function () {
@@ -264,16 +257,122 @@
     $("table tbody tr a").css("cursor", "pointer");
 </script>
 <script>
+    /** 页面初始化加载  */
     $(window).load(function () {
         /** 得到get的传值  */
-        var problemclassfy = getUserTransferValue();
+        let problemclassfy = getUserTransferValue();
+        $(".smallTitle").html(problemclassfy);
         $.ajax({
             url: "http://localhost:8081/problemAdmin/queryByClassfy",
             type: 'GET',
+            contentType: 'application/json;charset=utf-8',
             data: "problemclassfy=" + problemclassfy,
-            async: false,
             success: function (data) {
-                alert(data);
+                if(data==''){
+                    layer.alert('题目集为空', {
+                        icon: 1,
+                        time: 2000
+                    })
+                }
+                else{
+                    /** 局部刷新  */
+                    /** 删除原有表格的数据 */
+                    var table = document.getElementById("pro_table");
+                    var infos = document.getElementById("pro_tbody");
+                    table.removeChild(infos);
+                    /**此处必须创建tbody，否则无法加入到table中  */
+                    var infos = document.createElement("tbody");
+                    /**  生成新的table数据元素并添加到table中 */
+                    $.each(data, function (i, n) {
+                        var tr = document.createElement("tr");
+                        var td1 = document.createElement("td");
+                        var td2 = document.createElement("td");
+                        var td3 = document.createElement("td");
+                        var td4 = document.createElement("td");
+                        var td5 = document.createElement("td");
+                        var td6 = document.createElement("td");
+
+                        td1.innerHTML = i + 1;
+                        td2.innerHTML = "<a href='oneQuestion.html?problemid="+n.problemname+"'>"+n.problemname+"</a>";
+                        td3.innerHTML = n.problemauthor;
+                        td4.innerHTML = n.problemlevel;
+                        td5.innerHTML = "20";
+                        td6.innerHTML = "0";
+
+                        tr.appendChild(td1);
+                        tr.appendChild(td2);
+                        tr.appendChild(td3);
+                        tr.appendChild(td4);
+                        tr.appendChild(td5);
+                        tr.appendChild(td6);
+                        tr.setAttribute("id", i + 1);
+                        infos.appendChild(tr);
+                        $("table tbody tr a").css("color", " #4183c4");
+                    })
+                    table.appendChild(infos);
+                }
+            }
+        })
+    })
+    /**  条件查询 */
+    $("#ex_Submit").click(function () {
+        let problemclassfy = getUserTransferValue();  /**  得到分类 */
+        var str = {
+            problemname: $("#problemname").val(),
+            problemauthor: $("#problemauthor").val(),
+            problemlevel: $("#problemlevel").val(),
+            problemclassfy: problemclassfy
+        };
+        /**  给tbody添加id属性 */
+        $("#pro_table tbody").attr("id", "pro_tbody");
+        $.ajax({
+            url:  "http://localhost:8081/problemAdmin/query",
+            type: 'POST',
+            contentType: 'application/json;charset=utf-8',
+            data: JSON.stringify(str),
+            success: function (data) {
+                if(data==''){
+                    layer.alert('题目集为空', {
+                        icon: 1,
+                        time: 2000
+                    })
+                }else{
+                    /** 局部刷新  */
+                    /** 删除原有表格的数据 */
+                    var table = document.getElementById("pro_table");
+                    var infos = document.getElementById("pro_tbody");
+                    table.removeChild(infos);
+                    /**此处必须创建tbody，否则无法加入到table中  */
+                    var infos = document.createElement("tbody");
+                    /**  生成新的table数据元素并添加到table中 */
+                    $.each(data, function (i, n) {
+                        var tr = document.createElement("tr");
+                        var td1 = document.createElement("td");
+                        var td2 = document.createElement("td");
+                        var td3 = document.createElement("td");
+                        var td4 = document.createElement("td");
+                        var td5 = document.createElement("td");
+                        var td6 = document.createElement("td");
+
+                        td1.innerHTML = i + 1;
+                        td2.innerHTML = "<a href='oneQuestion.html?problemid="+n.problemname+"'>"+n.problemname+"</a>";
+                        td3.innerHTML = n.problemauthor;
+                        td4.innerHTML = n.problemlevel;
+                        td5.innerHTML = "20";
+                        td6.innerHTML = "0";
+
+                        tr.appendChild(td1);
+                        tr.appendChild(td2);
+                        tr.appendChild(td3);
+                        tr.appendChild(td4);
+                        tr.appendChild(td5);
+                        tr.appendChild(td6);
+                        tr.setAttribute("id", i + 1);
+                        infos.appendChild(tr);
+                        $("table tbody tr a").css("color", " #4183c4");
+                    })
+                    table.appendChild(infos);
+                }
             }
         })
     })

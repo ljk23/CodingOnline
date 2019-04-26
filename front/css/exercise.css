@@ -27,7 +27,7 @@
     border-bottom: 1px solid #D4D4D5;
     height: 42px;
     display: -webkit-box; /*这个必须要有*/
-    -webkit-box-orient: row;
+    -webkit-box-orient: horizontal;
 }
 
 .ex_select_des {
@@ -39,7 +39,7 @@
 
 .ex_select_five {
     display: -webkit-box; /*这个必须要有*/
-    -webkit-box-orient: row;
+    -webkit-box-orient: horizontal;
 }
 
 .feild {
@@ -102,16 +102,16 @@
 .ex_grid {
     display: flex;
     display: -webkit-box; /*这个必须要有*/
-    -webkit-box-orient: row;
+    -webkit-box-orient: horizontal;
 }
 
 .ex_column {
-    -webkit-box-flex: 1;
+    margin: 10px;
     border: 1px solid #D4D4D5;
-    margin: 0 0 10px 10px;
     border-radius: 5px 5px 5px 5px;
     display: -webkit-box; /*这个必须要有*/
     -webkit-box-orient: vertical;
+    width: 23%;
 }
 
 .ex_content {
@@ -160,11 +160,11 @@
     margin: 1em 0;
     border: 1px solid rgba(34, 36, 38, .15);
     border-radius: .28571429rem;
-    text-align: left;
+    text-align: center;
     color: rgba(0, 0, 0, .87);
     display: table;
     box-sizing: inherit;
-    font-size: 10px;
+    font-size: 15px;
     border-collapse: separate;
     border-spacing: 0;
 }
@@ -176,7 +176,7 @@
     background: #F9FAFB;
 }
 
-.qu_table thead th {
+.qu_table thead tr th {
     cursor: auto;
     text-align: inherit;
     color: rgba(0, 0, 0, .87);
@@ -185,15 +185,15 @@
     font-weight: 700;
     border-bottom: 1px solid rgba(34, 36, 38, .1);
 }
-
 .qu_table tbody tr {
-    line-height: 30px;
+    text-align: center;
 }
-
+.qu_table tbody tr td{
+    line-height: 50px;
+}
 .qu_table tbody tr:nth-child(even) {
     background: rgba(0, 0, 50, .02);
 }
-
 .one_page {
     border: 1px solid #D4D4D5;
     border-radius: 5px;

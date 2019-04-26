@@ -53,7 +53,7 @@
                                                                  style="width:200px; height:30px"/></div>
                 <br>
                 <div class="loginside"
-                     style="display: -webkit-box; -webkit-box-orient: row; background-color: #EBEBEB; text-align: center;">
+                     style="display: -webkit-box; -webkit-box-orient: horizontal; background-color: #EBEBEB; text-align: center;">
                     <div style=" margin-bottom: 5px; width: 50px;margin-left: 40%; background-color: #C2C2C2; border-radius:6px 6px 6px 6px; cursor: pointer; color: #838B83;"
                          id="closelogin">
                         <small>关闭</small>
@@ -76,7 +76,7 @@
                                                                  style="width:200px; height:30px"/></div>
                 <br>
                 <div class="loginside"
-                     style="display: -webkit-box; -webkit-box-orient: row; background-color: #EBEBEB; text-align: center;">
+                     style="display: -webkit-box; -webkit-box-orient: horizontal; background-color: #EBEBEB; text-align: center;">
                     <div style=" margin-bottom: 5px; width: 50px;margin-left: 40%; background-color: #C2C2C2; border-radius:6px 6px 6px 6px; cursor: pointer; color: #838B83;"
                          id="closelogin">
                         <small>关闭</small>
@@ -126,16 +126,16 @@
             <div class="ex_select_five">
                 <div class="feild">
                     <small>题目编号或名称</small>
-                    <div class="ex_select_input"><input type="text" id="keyword" placeholder="题目名称支持模糊查找"></div>
+                    <div class="ex_select_input"><input type="text"  placeholder="题目名称支持模糊查找"></div>
                 </div>
                 <div class="feild">
                     <small>出题者</small>
-                    <div class="ex_select_input"><input type="text" id="keyword" placeholder="支持模糊查找"></div>
+                    <div class="ex_select_input"><input type="text"  placeholder="支持模糊查找"></div>
                 </div>
                 <div class="feild">
                     <small>题目难度</small>
                     <div class="ex_select_input">
-                        <select id="keyword">
+                        <select >
                             <option selected="selected">简单</option>
                             <option>一般</option>
                             <option>困难</option>
@@ -145,7 +145,7 @@
                 </div>
                 <div class="feild">
                     <small>每页数量</small>
-                    <div class="ex_select_input"><select id="keyword">
+                    <div class="ex_select_input"><select >
                         <option selected="selected">10</option>
                         <option>20</option>
                         <option>30</option>
@@ -154,7 +154,7 @@
                 </div>
                 <div class="feild">
                     <small>排列方式</small>
-                    <div class="ex_select_input"><select id="keyword">
+                    <div class="ex_select_input"><select >
                         <option selected="selected">正序排列</option>
                         <option>倒序排列</option>
                     </select>
@@ -169,8 +169,8 @@
     <br>
     <section>
         <div class="ex_grid">
-            <div class="ex_column">
-                <div class="ex_content" id="ex_word">
+            <div class="ex_column" id="ex_word">
+                <div class="ex_content" >
                     <div class="ex_header"><a style="cursor: pointer" onclick="window.location.href='question.html'" ;>词法分析</a>
                     </div>
                     <p class="ex_meta"><img src="../../images/ex_user.png" width="12px" height="12px">&nbsp;<small>饶文碧
@@ -188,7 +188,7 @@
                     </div>
                 </div>
             </div>
-            <div class="ex_column">
+            <div class="ex_column" id="ex_synax">
                 <div class="ex_content">
                     <div class="ex_header"><a style="cursor: pointer">语法分析</a></div>
                     <p class="ex_meta"><img src="../../images/ex_user.png" width="12px" height="12px">&nbsp;<small>饶文碧
@@ -206,7 +206,7 @@
                     </div>
                 </div>
             </div>
-            <div class="ex_column">
+            <div class="ex_column" id="ex_mean">
                 <div class="ex_content">
                     <div class="ex_header"><a style="cursor: pointer">中间代码分析</a></div>
                     <p class="ex_meta"><img src="../../images/ex_user.png" width="12px" height="12px">&nbsp;<small>饶文碧
@@ -224,7 +224,27 @@
                     </div>
                 </div>
             </div>
-            <div class="ex_column">
+            <div class="ex_column" id="ex_midcode">
+                <div class="ex_content">
+                    <div class="ex_header"><a style="cursor: pointer">代码优化</a></div>
+                    <p class="ex_meta"><img src="../../images/ex_user.png" width="12px" height="12px">&nbsp;<small>饶文碧
+                    </small>
+                    </p>
+                    <p class="ex_description">适合入门级用户</p>
+                </div>
+                <div class="ex_extra_content">
+                    <div class="ex_test_number">
+                        <div><img src="../../images/ex_test.png" width="12px" height="15px">&nbsp;<small>141</small>
+                        </div>
+                        <div style="margin-left: 60%"><img src="../../images/ex_resource.png" width="15px"
+                                                           height="15px">&nbsp;公开题库
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="ex_grid">
+            <div class="ex_column" id="bettercode">
                 <div class="ex_content">
                     <div class="ex_header"><a style="cursor: pointer">代码优化</a></div>
                     <p class="ex_meta"><img src="../../images/ex_user.png" width="12px" height="12px">&nbsp;<small>饶文碧
@@ -375,18 +395,22 @@
             alert("123");
         });*/
     })
-    /** $("#ex_synax").click(function () {
-        var problemclassfy="词法分析";
+    $("#ex_synax").click(function () {
+        var problemclassfy="语法分析";
         window.location.href="question.html?problemclassfy="+problemclassfy+"";
     })
      $("#ex_mean").click(function () {
-        var problemclassfy="词法分析";
+        var problemclassfy="语义分析";
         window.location.href="question.html?problemclassfy="+problemclassfy+"";
     })
      $("#ex_midcode").click(function () {
-        var problemclassfy="词法分析";
+        var problemclassfy="中间代码生成";
         window.location.href="question.html?problemclassfy="+problemclassfy+"";
-    })*/
+    })
+    $("#ex_bettercode").click(function () {
+        var problemclassfy="代码优化";
+        window.location.href="question.html?problemclassfy="+problemclassfy+"";
+    })
 </script>
 </body>
 <script>

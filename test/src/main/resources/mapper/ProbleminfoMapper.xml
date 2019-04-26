@@ -28,6 +28,9 @@
     <include refid="Base_Column_List" />
     from problemInfo
     <where>
+      <if test="problemname != '' ">
+        and problemName like "%"#{problemname,jdbcType=VARCHAR}"%"
+      </if>
       <if test="problemclassfy!=''  ">
         and problemClassfy = #{problemclassfy,jdbcType=VARCHAR}
       </if>

@@ -27,18 +27,28 @@ public class problemController {
 
     @PostMapping("query")
     public List<Probleminfo> query(@RequestBody Probleminfo probleminfo) {
-        List<Probleminfo> probleminfos = probleminfoMapper.selectByQuery(probleminfo);
-        if (probleminfos.size() > 0) {
-            return probleminfos;
+        System.out.println(probleminfo.getProblemlevel()+" "+probleminfo.getProblemauthor()+" "+probleminfo.getProblemname()+" "+probleminfo.getProblemclassfy());
+        List<Probleminfo> problemInfos = probleminfoMapper.selectByQuery(probleminfo);
+        if (problemInfos.size() > 0) {
+            return problemInfos;
         }
         return null;
     }
 
-    @GetMapping("querybyId")
-    public Probleminfo queryById(@RequestParam("problemid") Integer problemid) {
-        Probleminfo probleminfos = probleminfoMapper.selectByPrimaryKey(problemid);
-        if (probleminfos !=null) {
-            return probleminfos;
+    @GetMapping("queryById")
+    public Probleminfo queryById(@RequestParam("problemId") Integer problemId) {
+        Probleminfo problemInfos = probleminfoMapper.selectByPrimaryKey(problemId);
+        if (problemInfos !=null) {
+            return problemInfos;
+        }
+        return null;
+    }
+
+    @GetMapping("queryByClassfy")
+    public List<Probleminfo> queryByClassfy(@RequestParam("problemclassfy") String problemclassfy) {
+        List<Probleminfo> problemInfos = probleminfoMapper.selectByProblemClassfy(problemclassfy);
+        if (problemInfos !=null) {
+            return problemInfos;
         }
         return null;
     }

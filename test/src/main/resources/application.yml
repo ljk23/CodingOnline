@@ -1,5 +1,7 @@
 server:
  port: 8081
+
+debug: true
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -9,3 +11,5 @@ spring:
 mybatis:
   mapper-locations: classpath:mapper/**.xml
   type-aliases-package: com.example.login
+
+
