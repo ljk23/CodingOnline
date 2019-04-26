@@ -64,7 +64,10 @@
         <div id="end_problem_admin"><br>
             <!--select frame-->
             <div class="end_problem_select">
-                <div id="end_operateframe">题目类别:
+                <div id="end_operateframe">
+                    题目名称：
+                    <input type="text" id="pro_name" placeholder="支持模糊查找"/>
+                    题目类别:
                     <select type="text" id="pro_typeclassfy">
                         <option selected="selected">全部</option>
                         <option>词法分析</option>
@@ -160,42 +163,6 @@
                         <a style="cursor: pointer;" class="end_pro_ope">删除</a>
                     </th>
                 </tr>
-                <tr>
-                    <th>1</th>
-                    <th>1001</th>
-                    <th>词法分析</th>
-                    <th>饶文碧老师</th>
-                    <th>在线</th>
-                    <th>2019-4-1</th>
-                    <th><a style="cursor: pointer;" class="end_pro_ope">查看</a>
-                        <a style="cursor: pointer;" class="end_pro_ope">编辑</a>
-                        <a style="cursor: pointer;" class="end_pro_ope">删除</a>
-                    </th>
-                </tr>
-                <tr>
-                    <th>1</th>
-                    <th>1001</th>
-                    <th>词法分析</th>
-                    <th>饶文碧老师</th>
-                    <th>在线</th>
-                    <th>2019-4-1</th>
-                    <th><a style="cursor: pointer;" class="end_pro_ope">查看</a>
-                        <a style="cursor: pointer;" class="end_pro_ope">编辑</a>
-                        <a style="cursor: pointer;" class="end_pro_ope">删除</a>
-                    </th>
-                </tr>
-                <tr>
-                    <th>1</th>
-                    <th>1001</th>
-                    <th>词法分析</th>
-                    <th>饶文碧老师</th>
-                    <th>在线</th>
-                    <th>2019-4-1</th>
-                    <th><a style="cursor: pointer;" class="end_pro_ope">查看</a>
-                        <a style="cursor: pointer;" class="end_pro_ope">编辑</a>
-                        <a style="cursor: pointer;" class="end_pro_ope">删除</a>
-                    </th>
-                </tr>
                 </tbody>
             </table>
             <!--editor problemset-->
@@ -239,6 +206,8 @@
     $(window).load(function () {
         $('#booter').load('../booter/booter.html');
         $('#footer').css('background-color', 'lightgrey')
+        /**  加载题目 */
+
     })
 </script>
 <script>
@@ -361,7 +330,10 @@
                     else {
                         layer.alert('添加成功', {
                             icon: 1,
-                            time: 2000
+                            time: 2000,
+                        },function () {
+                            $(".end_problem_addframe").hide('slow');
+                            $('.operatebackgroud').css('display', 'none');
                         })
                     }
                 }
@@ -369,25 +341,32 @@
         }
     })
     /**  条件查询 */
+    /**  特殊处理 */
+    var problemclassfy=$("#pro_typeclassfy").val();
+    var  problemlevel=$("#pro_levelclassfy").val()
+    if($("#pro_typeclassfy").val()=="全部")   problemclassfy='';
+    if($("#pro_levelclassfy").val()=="全部")  problemlevel=' ';
     $(".pro_query").click(function () {
-        if ($("#pro_typeclassfy").val() == "全部")
-            var problemclassfy = "";
-        else problemclassfy = $("#pro_typeclassfy").val();
-        if ($("#pro_levelclassfy").val() == "全部")
-            var problemlevel = "";
-        else problemlevel = $("#pro_levelclassfy").val();
-        if ($("#pro_creator").val() == null)
-            var problemauthor = "";
-        else problemauthor = $("#pro_creator").val();
+        var str = {
+            problemname: $("#pro_name").val(),
+            problemauthor: $("#pro_creator").val(),
+            problemlevel: problemlevel,
+            problemclassfy: problemclassfy,
+        };
         /**  给tbody添加id属性 */
         $("#end_pro_table tbody").attr("id", "pro_tbody");
         $.ajax({
             url: "http://localhost:8081/problemAdmin/query",
             type: 'POST',
             contentType: 'application/json;charset=utf-8',
-            data: '{"problemclassfy":"' + problemclassfy + '","problemauthor":"' + problemauthor + '","problemlevel":"' + problemlevel + '"}',
+            data: JSON.stringify(str),
             success: function (data) {
-                if (data.length == 0) alert('没有相关记录');
+                if (data.length == 0) {
+                    layer.alert('题目集为空', {
+                        icon: 5,
+                        time: 2000
+                    })
+                }
                 else {
                     /** 删除原有表格的数据 */
                     var table = document.getElementById("end_pro_table");

@@ -19,7 +19,6 @@ public class UserInfoController {
     @PostMapping("login")    /** Post接受传值的方式是Post */
     public Userinfo login(@RequestBody Userinfo userinfo){
         /**  通过@requestBody可以将请求体中的JSON字符串绑定到相应的bean上  */
-        System.out.print(userinfo.getUsername());
         if(userinfo.getUseremail()!=null){
             /**  email login */
             System.out.print(userinfo.getUseremail());

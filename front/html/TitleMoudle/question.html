@@ -76,14 +76,13 @@
         <small class="smallTitle"></small>
     </div>
     <div class="ex_nav ex_catalog">
-        <a style="border-bottom: 2px solid black; padding-bottom: 5px"><img src="../../images/catalog.png" width="12px"
-                                                                            height="12px">&nbsp;<small>题目集</small>
+        <a style="border-bottom: 2px solid black; padding-bottom: 5px"><img src="../../images/catalog.png" width="12px" height="12px">&nbsp;<small>题目集</small>
         </a>
     </div>
     <br>
     <div class="ex_select">
         <div class="ex_select_cat">
-            <li class="ex_item"><img src="../../images/refresh.png" height="12px" width="12px">
+            <li class="ex_item" id="ex_refresh"><img src="../../images/refresh.png" height="12px" width="12px">
                 <small style="margin-left: 5px">刷新列表</small>
             </li>
             <li class="ex_item" id="ex_key_query"><img src="../../images/select.png" height="12px" width="12px">
@@ -270,7 +269,7 @@
             success: function (data) {
                 if(data==''){
                     layer.alert('题目集为空', {
-                        icon: 1,
+                        icon: 5,
                         time: 2000
                     })
                 }
@@ -293,7 +292,7 @@
                         var td6 = document.createElement("td");
 
                         td1.innerHTML = i + 1;
-                        td2.innerHTML = "<a href='oneQuestion.html?problemid="+n.problemname+"'>"+n.problemname+"</a>";
+                        td2.innerHTML = "<a href='oneQuestion.html?problemid="+n.problemid+"'>"+n.problemname+"</a>";
                         td3.innerHTML = n.problemauthor;
                         td4.innerHTML = n.problemlevel;
                         td5.innerHTML = "20";
@@ -312,6 +311,14 @@
                     table.appendChild(infos);
                 }
             }
+        })
+    })
+    /** 页面刷新 */
+    $("#ex_refresh").click(function () {
+        layer.msg("加载中", {
+            icon:16,
+            shade:[0.1, '#4F94CD'],
+            time: 1000 //取消自动关闭
         })
     })
     /**  条件查询 */
@@ -333,45 +340,51 @@
             success: function (data) {
                 if(data==''){
                     layer.alert('题目集为空', {
-                        icon: 1,
+                        icon: 5,
                         time: 2000
                     })
                 }else{
-                    /** 局部刷新  */
-                    /** 删除原有表格的数据 */
-                    var table = document.getElementById("pro_table");
-                    var infos = document.getElementById("pro_tbody");
-                    table.removeChild(infos);
-                    /**此处必须创建tbody，否则无法加入到table中  */
-                    var infos = document.createElement("tbody");
-                    /**  生成新的table数据元素并添加到table中 */
-                    $.each(data, function (i, n) {
-                        var tr = document.createElement("tr");
-                        var td1 = document.createElement("td");
-                        var td2 = document.createElement("td");
-                        var td3 = document.createElement("td");
-                        var td4 = document.createElement("td");
-                        var td5 = document.createElement("td");
-                        var td6 = document.createElement("td");
+                    layer.msg("加载中", {
+                        icon:16,
+                        shade:[0.1, '#fff'],
+                        time: 1000 //取消自动关闭
+                    },function () {
+                        /** 局部刷新  */
+                        /** 删除原有表格的数据 */
+                        var table = document.getElementById("pro_table");
+                        var infos = document.getElementById("pro_tbody");
+                        table.removeChild(infos);
+                        /**此处必须创建tbody，否则无法加入到table中  */
+                        var infos = document.createElement("tbody");
+                        /**  生成新的table数据元素并添加到table中 */
+                        $.each(data, function (i, n) {
+                            var tr = document.createElement("tr");
+                            var td1 = document.createElement("td");
+                            var td2 = document.createElement("td");
+                            var td3 = document.createElement("td");
+                            var td4 = document.createElement("td");
+                            var td5 = document.createElement("td");
+                            var td6 = document.createElement("td");
 
-                        td1.innerHTML = i + 1;
-                        td2.innerHTML = "<a href='oneQuestion.html?problemid="+n.problemname+"'>"+n.problemname+"</a>";
-                        td3.innerHTML = n.problemauthor;
-                        td4.innerHTML = n.problemlevel;
-                        td5.innerHTML = "20";
-                        td6.innerHTML = "0";
+                            td1.innerHTML = i + 1;
+                            td2.innerHTML = "<a href='oneQuestion.html?problemid="+n.problemid+"'>"+n.problemname+"</a>";
+                            td3.innerHTML = n.problemauthor;
+                            td4.innerHTML = n.problemlevel;
+                            td5.innerHTML = "20";
+                            td6.innerHTML = "0";
 
-                        tr.appendChild(td1);
-                        tr.appendChild(td2);
-                        tr.appendChild(td3);
-                        tr.appendChild(td4);
-                        tr.appendChild(td5);
-                        tr.appendChild(td6);
-                        tr.setAttribute("id", i + 1);
-                        infos.appendChild(tr);
-                        $("table tbody tr a").css("color", " #4183c4");
+                            tr.appendChild(td1);
+                            tr.appendChild(td2);
+                            tr.appendChild(td3);
+                            tr.appendChild(td4);
+                            tr.appendChild(td5);
+                            tr.appendChild(td6);
+                            tr.setAttribute("id", i + 1);
+                            infos.appendChild(tr);
+                            $("table tbody tr a").css("color", " #4183c4");
+                        })
+                        table.appendChild(infos);
                     })
-                    table.appendChild(infos);
                 }
             }
         })

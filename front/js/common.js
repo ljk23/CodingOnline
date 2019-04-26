@@ -9,3 +9,7 @@ function getUserTransferValue() {
         return theRequest[strs[0].split("=")[0]];
     }
 }
+/**  页面加载  */
+function onload(){
+    alert("124");
+}

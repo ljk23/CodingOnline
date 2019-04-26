@@ -3,6 +3,8 @@
     <meta charset="UTF-8">
     <script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
     <script src="../../js/header.js"></script>
+    <script src="../../js/common.js"></script>
+    <script src="../../assets/layer/layer.js"></script>
     <link type="text/css" rel="stylesheet" href="../../css/body.css"/>
     <link type="text/css" rel="stylesheet" href="../../css/exercise.css"/>
     <link type="text/css" rel="stylesheet" href="../../css/userInfo.css"/>
@@ -65,6 +67,14 @@
 </div>
 <!--背景色-->
 <div class="operatebackgroud" style="display: none;"></div>
+    <div class="ex_nav">
+        <img src="../../images/nav_boot.png" width="14" height="13">&nbsp;
+        <small style="color: #5CACEE; cursor: pointer" onclick="window.location.href='index.html'">WeJudge首页</small>
+        </small>&nbsp;<small>></small>&nbsp;
+        <small style="color: #5CACEE; cursor: pointer" onclick="window.location.href='exercise.html'">题目中心</small>
+        </small>&nbsp;<small>></small>&nbsp;
+        <small class="smallTitle"></small>
+    </div>
 <!--主体-->
 <br>
 <div class="ex_page_container one_page">
@@ -95,29 +105,29 @@
         <h4 style="padding-left: 10px">题目描述</h4>
         <div class="one_content">
             <br>
-            <p>Calculate a + b. a and b are integers.</p>
+            <div class="problemcontent"></div>
         </div>
         <br>
         <h4 style="padding-left: 10px">输入</h4>
         <div class="one_content">
             <br>
-            <p>Two integer a,b.</p>
+            <div class="probleminput"></div>
         </div>
         <br>
         <h4 style="padding-left: 10px">输出</h4>
         <div class="one_content">
             <br>
-            <p>Output a+b.</p>
+            <div class="problemoutput"></div>
         </div>
         <br>
         <h4 style="padding-left: 10px">样本输入</h4>
         <div class="one_content">
-            <p class="one_put"><span>1 2</span></p>
+            <div class="one_put sampleinput"></div>
         </div>
         <br>
         <h4 style="padding-left: 10px">样本输出</h4>
         <div class="one_content">
-            <p class="one_put"><span>3</span></p>
+            <div class="one_put sampleoutput"></div>
         </div>
         <br>
         <h4 style="padding-left: 10px">提示</h4>
@@ -178,6 +188,29 @@
     $(function () {
         $('#one_input').load('../function/codeInput.html');
         $('#booter').load('../booter/booter.html');
+        /**  加载题目信息 */
+        $(window).load(function () {
+            /**  加载get的用户id */
+            var  problemId = getUserTransferValue();
+            $.ajax({
+                url: "http://localhost:8081/problemAdmin/queryById",
+                type: 'GET',
+                data: "problemId=" + problemId,
+                async: false,
+                success: function (data) {
+                    var data=eval(data);
+                    layer.msg("加载中", {
+                        icon:16,
+                        shade:[0.1, '#fff'],
+                        time: 1000 //取消自动关闭
+                    },function () {
+                        $(".problemcontent").html(data.problemcontent);
+                        $(".sampleinput").html(data.probleminput);
+                        $(".sampleoutput").html(data.problemoutput);
+                    })
+                }
+            })
+        })
     })
     /** Islogin   */
     $(window).load(function () {
@@ -249,5 +282,6 @@
         })
     })
 </script>
+
 </body>
 </html>

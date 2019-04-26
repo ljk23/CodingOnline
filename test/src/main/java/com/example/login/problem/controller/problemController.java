@@ -27,7 +27,8 @@ public class problemController {
 
     @PostMapping("query")
     public List<Probleminfo> query(@RequestBody Probleminfo probleminfo) {
-        System.out.println(probleminfo.getProblemlevel()+" "+probleminfo.getProblemauthor()+" "+probleminfo.getProblemname()+" "+probleminfo.getProblemclassfy());
+        System.out.println(probleminfo.getProblemname()+" "+probleminfo.getProblemauthor());
+        System.out.println(probleminfo.getProblemclassfy()+" "+probleminfo.getProblemlevel());
         List<Probleminfo> problemInfos = probleminfoMapper.selectByQuery(probleminfo);
         if (problemInfos.size() > 0) {
             return problemInfos;
@@ -37,6 +38,7 @@ public class problemController {
 
     @GetMapping("queryById")
     public Probleminfo queryById(@RequestParam("problemId") Integer problemId) {
+        System.out.println(problemId);
         Probleminfo problemInfos = probleminfoMapper.selectByPrimaryKey(problemId);
         if (problemInfos !=null) {
             return problemInfos;
@@ -62,6 +64,7 @@ public class problemController {
 
     @PostMapping("editor")
     public Boolean editor(@RequestBody Probleminfo probleminfo){
+        System.out.println(probleminfo.getProblemclassfy()+" "+probleminfo.getProblemstate());
         if(probleminfoMapper.updateByPrimaryKeySelective(probleminfo)==1)
             return true;
         return false;
