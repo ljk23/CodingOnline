@@ -277,6 +277,7 @@
     $("#coding_submit").click(function () {
         $.ajax({
             success: function (data) {
+                alert("上面修改你看到了吗");
                 window.location.href = '../UserMoudle/userInfo.html?userInfo=user_submit';
             }
         })
