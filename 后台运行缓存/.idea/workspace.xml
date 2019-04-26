@@ -1,18 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="17722896-9f92-4e6a-89fd-2f07c84681cb" name="Default Changelist" comment="4.26后端开发上传">
-      <change afterPath="$PROJECT_DIR$/../front/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../front/css/exercise.css" beforeDir="false" afterPath="$PROJECT_DIR$/../front/css/exercise.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../front/html/EndAdmin/Endindex.html" beforeDir="false" afterPath="$PROJECT_DIR$/../front/html/EndAdmin/Endindex.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../front/html/EndAdmin/ProblemAdmin/ProblemEditor.html" beforeDir="false" afterPath="$PROJECT_DIR$/../front/html/EndAdmin/ProblemAdmin/ProblemEditor.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../front/html/TitleMoudle/oneQuestion.html" beforeDir="false" afterPath="$PROJECT_DIR$/../front/html/TitleMoudle/oneQuestion.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../front/html/TitleMoudle/question.html" beforeDir="false" afterPath="$PROJECT_DIR$/../front/html/TitleMoudle/question.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../front/js/common.js" beforeDir="false" afterPath="$PROJECT_DIR$/../front/js/common.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/src/main/java/com/example/login/problem/controller/problemController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../test/src/main/java/com/example/login/problem/controller/problemController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/src/main/java/com/example/login/user/controller/UserInfoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../test/src/main/java/com/example/login/user/controller/UserInfoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="17722896-9f92-4e6a-89fd-2f07c84681cb" name="Default Changelist" comment="4.26后端开发上传" />
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/../test/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
