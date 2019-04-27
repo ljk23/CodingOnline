@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="fc16bd97-1c47-4299-9180-37012ac4fd0a" name="Default Changelist" comment="4.26晚！！！">
-      <change afterPath="$PROJECT_DIR$/css/probemset.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/html/test.html" afterDir="false" />
+    <list default="true" id="fc16bd97-1c47-4299-9180-37012ac4fd0a" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../test/src/main/java/com/example/login/algorithm/controller/wordCandle.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../test/src/main/java/com/example/login/submit/controller/wordHandleController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/exercise.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/exercise.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/TitleMoudle/exercise.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/TitleMoudle/exercise.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/probemset.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/probemset.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/html/EndAdmin/Endindex.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/EndAdmin/Endindex.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/html/TitleMoudle/oneQuestion.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/TitleMoudle/oneQuestion.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/function/codeInput.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/function/codeInput.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/src/main/resources/generatorConfig.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../test/src/main/resources/generatorConfig.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../后台运行缓存/.idea/dataSources/1994eb43-eec5-43b3-a96a-86f463c2af2b.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../后台运行缓存/.idea/dataSources/1994eb43-eec5-43b3-a96a-86f463c2af2b.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../后台运行缓存/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../后台运行缓存/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -63,7 +64,7 @@
         <entry file="file://$PROJECT_DIR$/html/function/codeInput.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="204">
-              <caret line="114" column="33" lean-forward="true" selection-start-line="114" selection-start-column="33" selection-end-line="114" selection-end-column="44" />
+              <caret line="114" column="33" selection-start-line="114" selection-start-column="33" selection-end-line="114" selection-end-column="44" />
               <folding>
                 <element signature="n#style#0;n#head#0;n#html#0;n#!!top" />
                 <element signature="n#script#0;n#body#0;n#html#0;n#!!top" />
@@ -72,11 +73,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/html/TitleMoudle/oneQuestion.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="503">
-              <caret line="168" column="24" lean-forward="true" selection-start-line="168" selection-start-column="24" selection-end-line="168" selection-end-column="24" />
+            <state relative-caret-position="329">
+              <caret line="300" column="22" lean-forward="true" selection-start-line="300" selection-start-column="22" selection-end-line="300" selection-end-column="22" />
               <folding>
                 <element signature="n#div#0;n#body#0;n#!!top" />
                 <element signature="n#style#0;n#div#2;n#form#0;n#div#1;n#body#0;n#!!top" expanded="true" />
@@ -87,25 +88,41 @@
                 <element signature="n#style#0;n#div#1;n#div#1;n#div#4;n#body#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#form#0;n#div#4;n#body#0;n#!!top" expanded="true" />
                 <element signature="n#div#0;n#div#0;n#form#0;n#div#4;n#body#0;n#!!top" />
-                <element signature="e#6751#6757#0" expanded="true" />
-                <element signature="e#6757#6763#0" expanded="true" />
                 <element signature="n#div#2;n#div#0;n#form#0;n#div#4;n#body#0;n#!!top" />
                 <element signature="n#script#0;n#body#0;n#!!top" />
-                <element signature="n#script#1;n#body#0;n#!!top" />
-                <element signature="e#7646#8720#0" />
-                <element signature="e#8253#8434#0" />
-                <element signature="e#8922#10010#0" />
                 <element signature="n#script#2;n#body#0;n#!!top" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/html/EndAdmin/Endindex.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="165">
+              <caret line="325" column="12" selection-start-line="325" selection-start-column="12" selection-end-line="327" selection-end-column="62" />
+              <folding>
+                <element signature="n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#2;n#body#0;n#html#0;n#!!top" />
+                <element signature="n#tr#1;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#2;n#body#0;n#html#0;n#!!top" />
+                <element signature="n#div#3;n#body#0;n#html#0;n#!!top" />
+                <element signature="n#script#2;n#html#0;n#!!top" />
+                <element signature="n#script#3;n#html#0;n#!!top" />
+                <element signature="n#style#0;n#ul#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#ul#0;n#ul#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#li#0;n#ul#0;n#ul#0;n#!!top" expanded="true" />
+                <element signature="e#93#99#0" expanded="true" />
+                <element signature="e#99#105#0" expanded="true" />
+                <element signature="e#105#111#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/css/exercise.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="238" column="17" lean-forward="true" selection-start-line="238" selection-start-column="17" selection-end-line="238" selection-end-column="17" />
+            <state relative-caret-position="370">
+              <caret line="243" column="23" lean-forward="true" selection-start-line="243" selection-start-column="23" selection-end-line="243" selection-end-column="23" />
             </state>
           </provider>
         </entry>
@@ -113,8 +130,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/css/probemset.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="41">
-              <caret line="4" column="7" selection-start-line="4" selection-start-column="7" selection-end-line="4" selection-end-column="7" />
+            <state relative-caret-position="383">
+              <caret line="16" column="25" lean-forward="true" selection-start-line="16" selection-start-column="25" selection-end-line="16" selection-end-column="25" />
             </state>
           </provider>
         </entry>
@@ -152,18 +169,17 @@
         <option value="$PROJECT_DIR$/js/common.js" />
         <option value="$PROJECT_DIR$/html/TitleMoudle/question.html" />
         <option value="$PROJECT_DIR$/html/EndAdmin/ProblemAdmin/ProblemEditor.html" />
-        <option value="$PROJECT_DIR$/html/EndAdmin/Endindex.html" />
         <option value="$PROJECT_DIR$/html/TitleMoudle/exercise.html" />
         <option value="$PROJECT_DIR$/html/test.html" />
-        <option value="$PROJECT_DIR$/css/probemset.css" />
         <option value="$PROJECT_DIR$/html/function/codeInput.html" />
-        <option value="$PROJECT_DIR$/html/TitleMoudle/oneQuestion.html" />
         <option value="$PROJECT_DIR$/css/exercise.css" />
+        <option value="$PROJECT_DIR$/html/EndAdmin/Endindex.html" />
+        <option value="$PROJECT_DIR$/css/probemset.css" />
+        <option value="$PROJECT_DIR$/html/TitleMoudle/oneQuestion.html" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="37" />
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="y" value="23" />
     <option name="width" value="1440" />
     <option name="height" value="800" />
@@ -175,6 +191,7 @@
     </navigator>
     <panes>
       <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -191,6 +208,12 @@
               <item name="front" type="b2602c69:ProjectViewProjectNode" />
               <item name="front" type="462c0819:PsiDirectoryNode" />
               <item name="html" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="front" type="b2602c69:ProjectViewProjectNode" />
+              <item name="front" type="462c0819:PsiDirectoryNode" />
+              <item name="html" type="462c0819:PsiDirectoryNode" />
+              <item name="EndAdmin" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="front" type="b2602c69:ProjectViewProjectNode" />
@@ -219,7 +242,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -278,7 +300,8 @@
       <workItem from="1556207881680" duration="497000" />
       <workItem from="1556208863788" duration="452000" />
       <workItem from="1556209424923" duration="18725000" />
-      <workItem from="1556278045420" duration="12627000" />
+      <workItem from="1556278045420" duration="12660000" />
+      <workItem from="1556358315972" duration="1967000" />
     </task>
     <task id="LOCAL-00001" summary="在测试">
       <created>1556198851123</created>
@@ -315,17 +338,23 @@
       <option name="project" value="LOCAL" />
       <updated>1556282846158</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="4.26晚！！！">
+      <created>1556294091903</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1556294091903</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="37981000" />
+    <option name="totallyTimeSpent" value="39981000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="37" y="23" width="1440" height="800" extended-state="0" />
-    <editor active="true" />
+    <frame x="0" y="23" width="1440" height="800" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21173105" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21459228" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -372,7 +401,6 @@
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/html/TitleMoudle/oneQuestion.html</url>
           <line>236</line>
-          <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
@@ -399,30 +427,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-728">
           <caret line="1" column="9" selection-start-line="1" selection-start-column="9" selection-end-line="1" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/html/EndAdmin/Endindex.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="314">
-          <caret line="346" column="60" lean-forward="true" selection-start-line="346" selection-start-column="60" selection-end-line="346" selection-end-column="60" />
-          <folding>
-            <element signature="n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#2;n#body#0;n#html#0;n#!!top" />
-            <element signature="n#tr#1;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#2;n#body#0;n#html#0;n#!!top" />
-            <element signature="n#div#3;n#body#0;n#html#0;n#!!top" />
-            <element signature="e#9176#9383#0" />
-            <element signature="e#9427#9626#0" />
-            <element signature="e#9671#9872#0" />
-            <element signature="e#9914#10109#0" />
-            <element signature="n#script#3;n#html#0;n#!!top" />
-            <element signature="n#style#0;n#ul#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#ul#0;n#ul#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#li#0;n#ul#0;n#ul#0;n#!!top" expanded="true" />
-            <element signature="e#12193#13694#0" />
-            <element signature="e#93#99#0" expanded="true" />
-            <element signature="e#99#105#0" expanded="true" />
-            <element signature="e#105#111#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -528,17 +532,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/css/exercise.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="370">
+          <caret line="243" column="23" lean-forward="true" selection-start-line="243" selection-start-column="23" selection-end-line="243" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/css/probemset.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="41">
-          <caret line="4" column="7" selection-start-line="4" selection-start-column="7" selection-end-line="4" selection-end-column="7" />
+        <state relative-caret-position="383">
+          <caret line="16" column="25" lean-forward="true" selection-start-line="16" selection-start-column="25" selection-end-line="16" selection-end-column="25" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/html/function/codeInput.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
-          <caret line="114" column="33" lean-forward="true" selection-start-line="114" selection-start-column="33" selection-end-line="114" selection-end-column="44" />
+          <caret line="114" column="33" selection-start-line="114" selection-start-column="33" selection-end-line="114" selection-end-column="44" />
           <folding>
             <element signature="n#style#0;n#head#0;n#html#0;n#!!top" />
             <element signature="n#script#0;n#body#0;n#html#0;n#!!top" />
@@ -546,10 +557,30 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/html/EndAdmin/Endindex.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="325" column="12" selection-start-line="325" selection-start-column="12" selection-end-line="327" selection-end-column="62" />
+          <folding>
+            <element signature="n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#2;n#body#0;n#html#0;n#!!top" />
+            <element signature="n#tr#1;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#2;n#body#0;n#html#0;n#!!top" />
+            <element signature="n#div#3;n#body#0;n#html#0;n#!!top" />
+            <element signature="n#script#2;n#html#0;n#!!top" />
+            <element signature="n#script#3;n#html#0;n#!!top" />
+            <element signature="n#style#0;n#ul#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#ul#0;n#ul#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#li#0;n#ul#0;n#ul#0;n#!!top" expanded="true" />
+            <element signature="e#93#99#0" expanded="true" />
+            <element signature="e#99#105#0" expanded="true" />
+            <element signature="e#105#111#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/html/TitleMoudle/oneQuestion.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="503">
-          <caret line="168" column="24" lean-forward="true" selection-start-line="168" selection-start-column="24" selection-end-line="168" selection-end-column="24" />
+        <state relative-caret-position="329">
+          <caret line="300" column="22" lean-forward="true" selection-start-line="300" selection-start-column="22" selection-end-line="300" selection-end-column="22" />
           <folding>
             <element signature="n#div#0;n#body#0;n#!!top" />
             <element signature="n#style#0;n#div#2;n#form#0;n#div#1;n#body#0;n#!!top" expanded="true" />
@@ -560,23 +591,10 @@
             <element signature="n#style#0;n#div#1;n#div#1;n#div#4;n#body#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#form#0;n#div#4;n#body#0;n#!!top" expanded="true" />
             <element signature="n#div#0;n#div#0;n#form#0;n#div#4;n#body#0;n#!!top" />
-            <element signature="e#6751#6757#0" expanded="true" />
-            <element signature="e#6757#6763#0" expanded="true" />
             <element signature="n#div#2;n#div#0;n#form#0;n#div#4;n#body#0;n#!!top" />
             <element signature="n#script#0;n#body#0;n#!!top" />
-            <element signature="n#script#1;n#body#0;n#!!top" />
-            <element signature="e#7646#8720#0" />
-            <element signature="e#8253#8434#0" />
-            <element signature="e#8922#10010#0" />
             <element signature="n#script#2;n#body#0;n#!!top" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/css/exercise.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="238" column="17" lean-forward="true" selection-start-line="238" selection-start-column="17" selection-end-line="238" selection-end-column="17" />
         </state>
       </provider>
     </entry>

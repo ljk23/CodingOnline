@@ -314,7 +314,9 @@
         var problemlevel = $("#problemLevel").val();
         var probleminput = $("#problemInput").val();
         var problemoutput = $("#problemOutput").val();
-        var problemcontent = $("#problemContent").val();
+        var preproblemcontent = $("#problemContent").val();
+        /** 处理输入内容中的空格和换行符  */
+        var problemcontent=preproblemcontent.replace(/\r\n/g, '<br/>').replace(/\n/g, '<br/>').replace(/\s/g, ' ');
         var problemstate = false;
         var uploadtime = CurentTime();
         /** 判断添加信息是否为空  **/
