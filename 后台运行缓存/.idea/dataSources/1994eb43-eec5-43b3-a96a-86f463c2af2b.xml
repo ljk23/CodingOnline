@@ -1235,7 +1235,7 @@
     </column>
     <column id="303" parent="281" name="submitContent">
       <Position>5</Position>
-      <DataType>varchar(5000)|0s</DataType>
+      <DataType>text|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
@@ -1257,68 +1257,80 @@
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="307" parent="281" name="submitUpdateTime">
+    <column id="307" parent="281" name="IsSuccess">
       <Position>9</Position>
+      <DataType>bigint(1)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="308" parent="281" name="errorCause">
+      <Position>10</Position>
+      <DataType>varchar(500)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="309" parent="281" name="submitUpdateTime">
+      <Position>11</Position>
       <DataType>varchar(50)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="308" parent="281" name="PRIMARY">
+    <key id="310" parent="281" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>submitId</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="309" parent="282" name="userId">
+    <column id="311" parent="282" name="userId">
       <Position>1</Position>
       <DataType>int(8)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="310" parent="282" name="userName">
+    <column id="312" parent="282" name="userName">
       <Position>2</Position>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="311" parent="282" name="passWord">
+    <column id="313" parent="282" name="passWord">
       <Position>3</Position>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="312" parent="282" name="userEmail">
+    <column id="314" parent="282" name="userEmail">
       <Position>4</Position>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="313" parent="282" name="userSchool">
+    <column id="315" parent="282" name="userSchool">
       <Position>5</Position>
       <DataType>varchar(30)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="314" parent="282" name="userGender">
+    <column id="316" parent="282" name="userGender">
       <Position>6</Position>
       <DataType>tinyint(1)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="315" parent="282" name="userLevel">
+    <column id="317" parent="282" name="userLevel">
       <Position>7</Position>
       <DataType>int(2)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="316" parent="282" name="userGrader">
+    <column id="318" parent="282" name="userGrader">
       <Position>8</Position>
       <DataType>varchar(5)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="317" parent="282" name="registerTime">
+    <column id="319" parent="282" name="registerTime">
       <Position>9</Position>
       <DataType>varchar(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="318" parent="282" name="PRIMARY">
+    <key id="320" parent="282" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>userId</ColNames>
       <Primary>1</Primary>

@@ -2,13 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fc16bd97-1c47-4299-9180-37012ac4fd0a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../test/src/main/java/com/example/login/algorithm/controller/wordCandle.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../test/src/main/java/com/example/login/submit/controller/wordHandleController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../test/src/main/java/com/example/login/algorithm/service/Impl/SubmitWordHandle.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../test/src/main/java/com/example/login/algorithm/service/SubmitWordMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../test/src/main/java/com/example/login/algorithm/service/codeFiles/tp5adminwordinput.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../后台运行缓存/.idea/uiDesigner.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/probemset.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/probemset.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/EndAdmin/Endindex.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/EndAdmin/Endindex.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/html/TitleMoudle/oneQuestion.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/TitleMoudle/oneQuestion.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/src/main/resources/generatorConfig.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../test/src/main/resources/generatorConfig.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/src/main/java/com/example/login/algorithm/controller/wordCandle.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/src/main/java/com/example/login/submit/controller/wordHandleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../test/src/main/java/com/example/login/submit/controller/wordHandleController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../后台运行缓存/.idea/dataSources/1994eb43-eec5-43b3-a96a-86f463c2af2b.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../后台运行缓存/.idea/dataSources/1994eb43-eec5-43b3-a96a-86f463c2af2b.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../后台运行缓存/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../后台运行缓存/.idea/workspace.xml" afterDir="false" />
     </list>
@@ -76,8 +77,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/html/TitleMoudle/oneQuestion.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="329">
-              <caret line="300" column="22" lean-forward="true" selection-start-line="300" selection-start-column="22" selection-end-line="300" selection-end-column="22" />
+            <state relative-caret-position="-537">
+              <caret line="217" column="38" lean-forward="true" selection-start-line="217" selection-start-column="38" selection-end-line="217" selection-end-column="38" />
               <folding>
                 <element signature="n#div#0;n#body#0;n#!!top" />
                 <element signature="n#style#0;n#div#2;n#form#0;n#div#1;n#body#0;n#!!top" expanded="true" />
@@ -91,6 +92,22 @@
                 <element signature="n#div#2;n#div#0;n#form#0;n#div#4;n#body#0;n#!!top" />
                 <element signature="n#script#0;n#body#0;n#!!top" />
                 <element signature="n#script#2;n#body#0;n#!!top" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/html/TitleMoudle/question.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="397">
+              <caret line="338" column="36" selection-start-line="338" selection-start-column="36" selection-end-line="338" selection-end-column="36" />
+              <folding>
+                <element signature="n#div#0;n#body#0;n#html#0;n#!!top" />
+                <element signature="n#div#1;n#body#0;n#html#0;n#!!top" />
+                <element signature="n#style#0;n#div#2;n#form#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#script#0;n#body#0;n#html#0;n#!!top" />
+                <element signature="n#script#1;n#body#0;n#html#0;n#!!top" />
               </folding>
             </state>
           </provider>
@@ -179,10 +196,10 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds">
     <option name="y" value="23" />
     <option name="width" value="1440" />
-    <option name="height" value="800" />
+    <option name="height" value="810" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -301,7 +318,7 @@
       <workItem from="1556208863788" duration="452000" />
       <workItem from="1556209424923" duration="18725000" />
       <workItem from="1556278045420" duration="12660000" />
-      <workItem from="1556358315972" duration="1967000" />
+      <workItem from="1556358315972" duration="5571000" />
     </task>
     <task id="LOCAL-00001" summary="在测试">
       <created>1556198851123</created>
@@ -349,10 +366,10 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="39981000" />
+    <option name="totallyTimeSpent" value="43585000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1440" height="800" extended-state="6" />
+    <frame x="0" y="23" width="1440" height="810" extended-state="0" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21459228" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -369,7 +386,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" visible="true" weight="0.053672317" />
+      <window_info anchor="bottom" id="Version Control" order="8" visible="true" weight="0.05292479" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Terminal" order="10" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
@@ -434,20 +451,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-42">
           <caret line="46" column="38" lean-forward="true" selection-start-line="46" selection-start-column="38" selection-end-line="46" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/html/TitleMoudle/question.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2509">
-          <caret line="266" column="19" selection-start-line="266" selection-start-column="19" selection-end-line="266" selection-end-column="19" />
-          <folding>
-            <element signature="n#div#0;n#body#0;n#html#0;n#!!top" />
-            <element signature="n#div#1;n#body#0;n#html#0;n#!!top" />
-            <element signature="n#style#0;n#div#2;n#form#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#script#0;n#body#0;n#html#0;n#!!top" />
-            <element signature="n#script#1;n#body#0;n#html#0;n#!!top" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -577,10 +580,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/html/TitleMoudle/question.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="397">
+          <caret line="338" column="36" selection-start-line="338" selection-start-column="36" selection-end-line="338" selection-end-column="36" />
+          <folding>
+            <element signature="n#div#0;n#body#0;n#html#0;n#!!top" />
+            <element signature="n#div#1;n#body#0;n#html#0;n#!!top" />
+            <element signature="n#style#0;n#div#2;n#form#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#script#0;n#body#0;n#html#0;n#!!top" />
+            <element signature="n#script#1;n#body#0;n#html#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/html/TitleMoudle/oneQuestion.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="329">
-          <caret line="300" column="22" lean-forward="true" selection-start-line="300" selection-start-column="22" selection-end-line="300" selection-end-column="22" />
+        <state relative-caret-position="-537">
+          <caret line="217" column="38" lean-forward="true" selection-start-line="217" selection-start-column="38" selection-end-line="217" selection-end-column="38" />
           <folding>
             <element signature="n#div#0;n#body#0;n#!!top" />
             <element signature="n#style#0;n#div#2;n#form#0;n#div#1;n#body#0;n#!!top" expanded="true" />

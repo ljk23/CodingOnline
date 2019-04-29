@@ -294,14 +294,15 @@
 <!--coding submit-->
 <script>
     $("#coding_submit").click(function () {
-        var codeInfo=$(".codecontent").val()
-        alert(codeInfo);
+        alert($(".codecontent").val());
+        var codeInfo={submitcontent: $(".codecontent").val()};
      $.ajax({
-         url:  "http://localhost:8081/algorium/wordsubmit",
+         url:  "http://localhost:8081/submit/wordsubmit",
          type: 'POST',
          contentType: 'application/json;charset=utf-8',
+         data: JSON.stringify(codeInfo),
          success: function (data) {
-              alert(data);
+              alert("123");
            }
         })
     })
