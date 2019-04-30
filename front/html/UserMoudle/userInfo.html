@@ -160,7 +160,7 @@
                         td4.innerHTML="<div class='daanstate' style='background: #5CB85C'>ACCEPT</div>";
                     }
                     else{
-                        td4.innerHTML="<div class='daanstate' style='background: #D9534F;'>COMPILE ERROR</div>";
+                        td4.innerHTML="<div onclick='errorPage("+n.submitid+")' class='daanstate' style='background: #D9534F;cursor: pointer'>COMPILE ERROR</div>";
                     }
                     td5.innerHTML = "5KB";
                     td6.innerHTML = "8s";
@@ -257,6 +257,10 @@
             }
         })
     });
+function errorPage(obj) {
+    var submitid=obj;
+    window.location.href="errorInfo.html?submitid="+submitid+"";
+}
 </script>
 <script>
     $("table tbody tr a").css("text-decoration", "none");

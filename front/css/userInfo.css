@@ -103,3 +103,9 @@
     text-decoration: none;
     color: #2D93CA;
 }
+.error_content{
+    margin: auto;
+    padding-left: 5%;
+    font-weight: lighter;
+    font-size: 15px;
+}

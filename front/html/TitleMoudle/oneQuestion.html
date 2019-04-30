@@ -212,6 +212,7 @@
             /**  加载get的题目id */
             var problemId =GetQueryString("problemid");
             var submitid=GetQueryString("submitid");
+            alert(submitid);
             if(submitid!=null){
                 $.ajax({
                     url: "http://localhost:8081/submit/queryBysubmitId",
@@ -219,8 +220,7 @@
                     data: "submitid=" + submitid,
                     success: function (data) {
                         var Info=eval(data);
-                        alert(data.submitcontent);
-                        $(".codecontent").html(Info.submitcontent);
+                        $(".codecontent").text(Info.submitcontent);
                     }
                 })
             }
@@ -319,31 +319,45 @@
      submituserid=SelectUserIdByUsername(sessionStorage.loginName);
         /** 查找用户的信息 */
         var codeInfo={submituserid:submituserid,submitname:submitname,submitnameclassfy:submitnameclassfy,submitnums:1,submitcontent:$(".codecontent").val(),submitupdatetime:submitupdatetime};
-         $.ajax({
-             url:  "http://localhost:8081/submit/wordsubmit",
-             type: 'POST',
-             contentType: 'application/json;charset=utf-8',
-             data: JSON.stringify(codeInfo),
-             success: function (data) {
-                 submituserid=eval(data)[1];
-                  if(eval(data)[0]==1){
-                      layer.alert('编译成功', {
-                          icon: 1,
-                          time: 2000
-                      }, function () {
-                          window.location.href="../UserMoudle/userInfo.html?userInfo=user_submit&submituserid="+submituserid+"&problemid="+problemid;
-                      });
-                  }
-                  else{
-                      layer.alert('编译失败', {
-                          icon: 5,
-                          time: 2000
-                      }, function () {
-                          window.location.href="../UserMoudle/userInfo.html?userInfo=user_submit&submituserid="+submituserid+"&problemid="+problemid;
-                      });
-                  }
-               }
+        alert(submitnameclassfy);
+        if(submitnameclassfy=="词法分析"){
+            $.ajax({
+                url:  "http://localhost:8081/submit/wordsubmit",
+                type: 'POST',
+                contentType: 'application/json;charset=utf-8',
+                data: JSON.stringify(codeInfo),
+                success: function (data) {
+                    submituserid=eval(data)[1];
+                    if(eval(data)[0]==1){
+                        layer.alert('编译成功', {
+                            icon: 1,
+                            time: 2000
+                        }, function () {
+                            window.location.href="../UserMoudle/userInfo.html?userInfo=user_submit&submituserid="+submituserid+"&problemid="+problemid;
+                        });
+                    }
+                    else{
+                        layer.alert('编译失败', {
+                            icon: 5,
+                            time: 2000
+                        }, function () {
+                            window.location.href="../UserMoudle/userInfo.html?userInfo=user_submit&submituserid="+submituserid+"&problemid="+problemid;
+                        });
+                    }
+                }
             })
+        }
+        if(submitnameclassfy=="语法分析"){
+            $.ajax({
+                url:  "http://localhost:8081/synaxsubmit/synaxsubmit",
+                type: 'POST',
+                contentType: 'application/json;charset=utf-8',
+                data: JSON.stringify(codeInfo),
+                success: function (data) {
+                    alert(data);
+                }
+            })
+        }
     })
 </script>
 </body>
