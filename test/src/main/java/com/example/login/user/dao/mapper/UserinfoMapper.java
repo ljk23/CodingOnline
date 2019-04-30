@@ -25,4 +25,5 @@ public interface UserinfoMapper {
 
     @Select("Select * from UserInfo where userEmail=#{userEmail}")
     List<Userinfo> selectUserByEmail(@Param(("userEmail")) String userEmail);
+
 }

@@ -27,8 +27,6 @@ public class problemController {
 
     @PostMapping("query")
     public List<Probleminfo> query(@RequestBody Probleminfo probleminfo) {
-        System.out.println(probleminfo.getProblemname()+" "+probleminfo.getProblemauthor());
-        System.out.println(probleminfo.getProblemclassfy()+" "+probleminfo.getProblemlevel());
         List<Probleminfo> problemInfos = probleminfoMapper.selectByQuery(probleminfo);
         if (problemInfos.size() > 0) {
             return problemInfos;

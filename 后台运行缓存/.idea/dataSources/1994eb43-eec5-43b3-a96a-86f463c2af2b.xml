@@ -1242,7 +1242,6 @@
     <column id="304" parent="281" name="submitContentUsubmitContentUrl">
       <Position>6</Position>
       <DataType>varchar(100)|0s</DataType>
-      <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="305" parent="281" name="submitNums">
@@ -1254,19 +1253,16 @@
     <column id="306" parent="281" name="submitSuccess">
       <Position>8</Position>
       <DataType>int(5)|0s</DataType>
-      <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="307" parent="281" name="IsSuccess">
       <Position>9</Position>
-      <DataType>bigint(1)|0s</DataType>
-      <NotNull>1</NotNull>
+      <DataType>tinyint(1)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="308" parent="281" name="errorCause">
       <Position>10</Position>
       <DataType>varchar(500)|0s</DataType>
-      <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="309" parent="281" name="submitUpdateTime">

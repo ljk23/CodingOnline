@@ -13,3 +13,26 @@ function getUserTransferValue() {
 function onload(){
     alert("124");
 }
+/** 查找用户id  */
+function  SelectUserIdByUsername(username) {
+    var submituserid;
+    $.ajax({
+        url: "http://localhost:8081/userInfo/queryByUsername",
+        type: 'GET',
+        data: "username=" + username,
+        async: false,
+        success: function (data) {
+            submituserid=eval(data).userid;
+        }
+    })
+    return submituserid;
+}
+/** 得到网址url的参数  */
+function GetQueryString(name) {
+    var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
+    var r = window.location.search.substr(1).match(reg);
+    if (r != null) {
+        return unescape(r[2]);
+    }
+    return null;
+}

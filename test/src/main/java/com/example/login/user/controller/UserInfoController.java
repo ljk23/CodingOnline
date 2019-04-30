@@ -1,5 +1,6 @@
 package com.example.login.user.controller;
 
+import com.example.login.problem.dao.entity.Probleminfo;
 import com.example.login.user.dao.entity.Userinfo;
 import com.example.login.user.dao.mapper.UserinfoMapper;
 import org.apache.ibatis.annotations.Param;
@@ -50,6 +51,16 @@ public class UserInfoController {
         if(userinfo.getUserid()!=null)
             return userinfo.getUserid();
         return 0;
+    }
+
+    /**  queryByUsername */
+    @GetMapping("/queryByUsername")
+    public Userinfo queryByUsername(@Param("username") String username){
+        List<Userinfo> userinfolist = userinfoMapper.selectUserByUsername(username);
+        if (userinfolist !=null) {
+            return userinfolist.get(0);
+        }
+        return null;
     }
 
     @GetMapping("/hello")

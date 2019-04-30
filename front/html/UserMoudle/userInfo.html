@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
     <script src="../../js/header.js"></script>
+    <script src="../../assets/layer/layer.js"></script>
     <link type="text/css" rel="stylesheet" href="../../css/body.css"/>
     <link type="text/css" rel="stylesheet" href="../../css/header.css"/>
     <link type="text/css" rel="stylesheet" href="../../css/booter.css"/>
@@ -49,7 +50,7 @@
                 <button>提交</button>
             </p>
         </form>
-        <table class="qu_table">
+        <table class="qu_table" id="pro_table">
             <thead>
             <tr>
                 <th>提交编号</th>
@@ -59,103 +60,12 @@
                 <th>内存</th>
                 <th>耗时</th>
                 <th>语言</th>
-                <th>代码长度</th>
+                <th>分类</th>
                 <th>提交时间</th>
             </tr>
             </thead>
-            <tbody>
-            <tr>
-                <td>122757</td>
-                <td><a>Tp5admin</a></td>
-                <td><a>1000</a></td>
-                <td>
-                    <div style="background: #5CB85C; width: 100px; height: 34;text-align: center;margin: 5px 0 5px 0">
-                        ACCEPT
-                    </div>
-                </td>
-                <td>13080</td>
-                <td>20</td>
-                <td><a>C</a>/<a>Edit</a></td>
-                <td>768B</td>
-                <td>2019-04-01 22:52:44</td>
-            </tr>
-            <tr>
-                <td>122757</td>
-                <td><a>Tp5admin</a></td>
-                <td><a>1000</a></td>
-                <td>
-                    <div style="background: #5CB85C; width: 100px; height: 34;text-align: center;margin: 5px 0 5px 0">
-                        ACCEPT
-                    </div>
-                </td>
-                <td>13080</td>
-                <td>20</td>
-                <td><a>C</a>/<a>Edit</a></td>
-                <td>768B</td>
-                <td>2019-04-01 22:52:44</td>
-            </tr>
-            <tr>
-                <td>122757</td>
-                <td><a>Tp5admin</a></td>
-                <td><a>1000</a></td>
-                <td>
-                    <div style="background: #5CB85C; width: 100px; height: 34;text-align: center;margin: 5px 0 5px 0">
-                        ACCEPT
-                    </div>
-                </td>
-                <td>13080</td>
-                <td>20</td>
-                <td><a>C</a>/<a>Edit</a></td>
-                <td>768B</td>
-                <td>2019-04-01 22:52:44</td>
-            </tr>
-            <tr>
-                <td>122757</td>
-                <td><a>Tp5admin</a></td>
-                <td><a>1000</a></td>
-                <td>
-                    <div style="background: #F0AD4E; width: 100px; height: 34;text-align: center;margin: 5px 0 5px 0"
-                         onclick="checkError();">Compire Error
-                    </div>
-                </td>
-                <td>13080</td>
-                <td>20</td>
-                <td><a>C</a>/<a>Edit</a></td>
-                <td>768B</td>
-                <td>2019-04-01 22:52:44</td>
-            </tr>
-            <tr>
-                <td>122757</td>
-                <td><a>Tp5admin</a></td>
-                <td><a>1000</a></td>
-                <td>
-                    <div style="background: #5CB85C; width: 100px; height: 34;text-align: center;margin: 5px 0 5px 0">
-                        ACCEPT
-                    </div>
-                </td>
-                <td>13080</td>
-                <td>20</td>
-                <td><a>C</a>/<a>Edit</a></td>
-                <td>768B</td>
-                <td>2019-04-01 22:52:44</td>
-            </tr>
-            <tr>
-                <td>122757</td>
-                <td><a>Tp5admin</a></td>
-                <td><a>1000</a></td>
-                <td>
-                    <div style="background: #D9534F; width: 100px; height: 34;text-align: center;margin: 5px 0 5px 0">
-                        Answer Error
-                    </div>
-                </td>
-                <td>13080</td>
-                <td>20</td>
-                <td><a>C</a>/<a>Edit</a></td>
-                <td>768B</td>
-                <td>2019-04-01 22:52:44</td>
-            </tr>
+            <tbody id="pro_tbody">
             </tbody>
-            <tfoot></tfoot>
         </table>
     </div>
     <!--UserRegisterInfo-->
@@ -190,18 +100,17 @@
 <div id="booter"></div>
 <script>
     /**  getUserTransferValue */
-    function getUserTransferValue() {
-        var url = location.search; //获取url中"?"符后的字串
-        var theRequest = new Object();
-        if (url.indexOf("?") != -1) {
-            var str = url.substr(1);
-            strs = str.split("&");
-            theRequest[strs[0].split("=")[0]] = decodeURI(strs[0].split("=")[1]);
-            return theRequest[strs[0].split("=")[0]];
+    function GetQueryString(name) {
+        var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) {
+            return unescape(r[2]);
         }
+        return null;
     }
-
-    var userInfo = getUserTransferValue();
+    var userInfo=GetQueryString("userInfo");
+    var submituserid=GetQueryString("submituserid");
+    var problemid=GetQueryString("problemid");
 
     if (userInfo == "user_submit") {
         $("#user_submit").css('display', 'block');
@@ -210,6 +119,72 @@
     } else {
         alert("undefined");
     }
+    /**  给tbody添加id属性 */
+    $("#pro_table tbody").attr("id", "pro_tbody");
+    /**  显示出用户的提交信息 */
+    $.ajax({
+        url:  "http://localhost:8081/submit/query",
+        type: 'GET',
+        contentType: 'application/json;charset=utf-8',
+        data: "submituserid="+submituserid,
+        success: function (data) {
+            layer.msg("加载中", {
+                icon:16,
+                shade:[0.1, '#fff'],
+                time: 1000 //取消自动关闭
+            },function () {
+                /** 局部刷新  */
+                /** 删除原有表格的数据 */
+                var table = document.getElementById("pro_table");
+                var infos = document.getElementById("pro_tbody");
+                table.removeChild(infos);
+                /**此处必须创建tbody，否则无法加入到table中  */
+                var infos = document.createElement("tbody");
+                /**  生成新的table数据元素并添加到table中 */
+                $.each(data, function (i, n) {
+                    var tr = document.createElement("tr");
+                    var td1 = document.createElement("td");
+                    var td2 = document.createElement("td");
+                    var td3 = document.createElement("td");
+                    var td4 = document.createElement("td");
+                    var td5 = document.createElement("td");
+                    var td6 = document.createElement("td");
+                    var td7 = document.createElement("td");
+                    var td8 = document.createElement("td");
+                    var td9 = document.createElement("td");
+
+                    td1.innerHTML = i + 1;
+                    td2.innerHTML = sessionStorage.loginName;
+                    td3.innerHTML = n.submitname;
+                    if(n.issuccess==true)  {
+                        td4.innerHTML="<div class='daanstate' style='background: #5CB85C'>ACCEPT</div>";
+                    }
+                    else{
+                        td4.innerHTML="<div class='daanstate' style='background: #D9534F;'>COMPILE ERROR</div>";
+                    }
+                    td5.innerHTML = "5KB";
+                    td6.innerHTML = "8s";
+                    td7.innerHTML = "<a class='editor' href='../TitleMoudle/oneQuestion.html?problemid="+problemid+"&submitid="+n.submitid+"'>C/编辑</a>";
+                    td8.innerHTML = n.submitnameclassfy;
+                    td9.innerHTML = n.submitupdatetime;
+
+                    tr.appendChild(td1);
+                    tr.appendChild(td2);
+                    tr.appendChild(td3);
+                    tr.appendChild(td4);
+                    tr.appendChild(td5);
+                    tr.appendChild(td6);
+                    tr.appendChild(td7);
+                    tr.appendChild(td8);
+                    tr.appendChild(td9);
+                    tr.setAttribute("id", i + 1);
+                    infos.appendChild(tr);
+                })
+                table.appendChild(infos);
+            })
+        }
+    })
+
 </script>
 <script>
     /**select tab  */
@@ -288,12 +263,6 @@
     $("table tbody tr a").css("color", " #4183c4");
     $("table tbody tr td a").css("cursor", "pointer");
     $("table tbody tr td div").css("border-radius", "5px");
-</script>
-<!--check error-->
-<script>
-    function checkError() {
-
-    }
 </script>
 </body>
 </html>

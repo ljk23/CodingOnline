@@ -24,10 +24,10 @@ public class SubmitWordHandle implements SubmitWordMapper {
     }
 
     /** 将文件写入wordinput.txt */
-    public Boolean writeWordIntoFile(String submitcontent) throws IOException {
+    public void writeWordIntoFile(String submitcontent,int userid) throws IOException {
         /**  将submitcontent输入wordinput.txt */
         /** 保存文件地址 */
-        String filename = "tp5admin";
+        String filename=String.valueOf(userid);
         File file = new File("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/algorithm/service/codeFiles/" + filename + "wordinput.txt");
         if (!file.exists()) {
             file.createNewFile();
@@ -54,9 +54,9 @@ public class SubmitWordHandle implements SubmitWordMapper {
         BufferedWriter out1 = new BufferedWriter(writer);
 
         /**  写入错误log */
-        File errorName = new File("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/algorithm/service/codeFiles/" + filename + "wordoutput.txt"); // 相对路径，如果没有则要建立一个新的output.txt文件
+        File errorName = new File("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/algorithm/service/codeFiles/" + filename + "worderror.txt"); // 相对路径，如果没有则要建立一个新的output.txt文件
         errorName.createNewFile(); // 创建新文件,有同名的文件的话直接覆盖
-        FileWriter error = new FileWriter(writeName);
+        FileWriter error = new FileWriter(errorName);
         BufferedWriter errorout = new BufferedWriter(error);
 
         int linenums = 0;
@@ -65,9 +65,7 @@ public class SubmitWordHandle implements SubmitWordMapper {
             linenums++;
             submitWordHandle.analyze(str1, out1, linenums,errorout);
         }
-        return true;
      }
-
     /** 处理注释和空格 */
     public Boolean preHandleWordFile(String fileurl,String filename) throws IOException{
         /**  源文件的预处理 */
@@ -265,11 +263,30 @@ public class SubmitWordHandle implements SubmitWordMapper {
                         }
                     }break;
                     //无识别
-                    default: System.out.println(ch+"\t6"+"\t无识别符");
+                    default: {
                         out.write(ch+"\t6"+"\t无识别符\t"+linenums+"\t"+rownums+"\r\n");
                         errorout.write("第"+linenums+"行第"+rownums+"列"+ch+"未识别的符号\r\n");
                         out.flush();
+                        errorout.flush();
+                    }
                 }
+        }
+    }
+    /** 判断是否有错  */
+    public String judgeIserror(Integer userid) throws IOException{
+        String filename=String.valueOf(userid);
+        String  errorInfo="",errorInfo1;
+        File errorlength = new File("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/algorithm/service/codeFiles/" + filename + "worderror.txt"); // 相对路径，如果没有则要建立一个新的output.txt文件
+        System.out.println(userid+"文件的大小是"+errorlength.length());
+        if(errorlength.length()==0)
+            return null;
+        else{
+            InputStreamReader inputStreamReader = new InputStreamReader(new FileInputStream(errorlength));
+            BufferedReader bf1 = new BufferedReader(inputStreamReader);
+            while ((errorInfo1 = bf1.readLine()) != null){
+                errorInfo+=errorInfo1+"\n";
+            }
+            return errorInfo;
         }
     }
 }

@@ -92,3 +92,14 @@
 .person_tableInfo tbody tr:nth-child(even) {
     background: rgba(0, 0, 50, .02);
 }
+.daanstate{
+    width: 60%;
+    height: 34px;
+    text-align: center;
+    margin: auto;
+    border-radius: 3px;
+}
+.editor{
+    text-decoration: none;
+    color: #2D93CA;
+}

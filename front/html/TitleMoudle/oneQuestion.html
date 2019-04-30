@@ -4,6 +4,7 @@
     <script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
     <script src="../../js/header.js"></script>
     <script src="../../js/common.js"></script>
+    <script src="../../js/endindex.js"></script>
     <script src="../../assets/layer/layer.js"></script>
     <link type="text/css" rel="stylesheet" href="../../css/body.css"/>
     <link type="text/css" rel="stylesheet" href="../../css/exercise.css"/>
@@ -200,14 +201,30 @@
     });
 </script>
 <script>
+    var submitname,submitnameclassfy,submitupdatetime,submituserid;
+
     /** load function  */
     $(function () {
         $('#one_input').load('../function/codeInput.html');
         $('#booter').load('../booter/booter.html');
         /**  加载题目信息 */
         $(window).load(function () {
-            /**  加载get的用户id */
-            var  problemId = getUserTransferValue();
+            /**  加载get的题目id */
+            var problemId =GetQueryString("problemid");
+            var submitid=GetQueryString("submitid");
+            if(submitid!=null){
+                $.ajax({
+                    url: "http://localhost:8081/submit/queryBysubmitId",
+                    type: 'GET',
+                    data: "submitid=" + submitid,
+                    success: function (data) {
+                        var Info=eval(data);
+                        alert(data.submitcontent);
+                        $(".codecontent").html(Info.submitcontent);
+                    }
+                })
+            }
+
             $.ajax({
                 url: "http://localhost:8081/problemAdmin/queryById",
                 type: 'GET',
@@ -215,6 +232,9 @@
                 async: false,
                 success: function (data) {
                     var data=eval(data);
+                    submitname=data.problemname;
+                    submitnameclassfy=data.problemclassfy;
+                    submitupdatetime=CurentTime();
                     layer.msg("加载中", {
                         icon:16,
                         shade:[0.1, '#fff'],
@@ -294,17 +314,36 @@
 <!--coding submit-->
 <script>
     $("#coding_submit").click(function () {
-        alert($(".codecontent").val());
-        var codeInfo={submitcontent: $(".codecontent").val()};
-     $.ajax({
-         url:  "http://localhost:8081/submit/wordsubmit",
-         type: 'POST',
-         contentType: 'application/json;charset=utf-8',
-         data: JSON.stringify(codeInfo),
-         success: function (data) {
-              alert("123");
-           }
-        })
+     /** 查找用户的id */
+     var  problemid = getUserTransferValue();
+     submituserid=SelectUserIdByUsername(sessionStorage.loginName);
+        /** 查找用户的信息 */
+        var codeInfo={submituserid:submituserid,submitname:submitname,submitnameclassfy:submitnameclassfy,submitnums:1,submitcontent:$(".codecontent").val(),submitupdatetime:submitupdatetime};
+         $.ajax({
+             url:  "http://localhost:8081/submit/wordsubmit",
+             type: 'POST',
+             contentType: 'application/json;charset=utf-8',
+             data: JSON.stringify(codeInfo),
+             success: function (data) {
+                 submituserid=eval(data)[1];
+                  if(eval(data)[0]==1){
+                      layer.alert('编译成功', {
+                          icon: 1,
+                          time: 2000
+                      }, function () {
+                          window.location.href="../UserMoudle/userInfo.html?userInfo=user_submit&submituserid="+submituserid+"&problemid="+problemid;
+                      });
+                  }
+                  else{
+                      layer.alert('编译失败', {
+                          icon: 5,
+                          time: 2000
+                      }, function () {
+                          window.location.href="../UserMoudle/userInfo.html?userInfo=user_submit&submituserid="+submituserid+"&problemid="+problemid;
+                      });
+                  }
+               }
+            })
     })
 </script>
 </body>
