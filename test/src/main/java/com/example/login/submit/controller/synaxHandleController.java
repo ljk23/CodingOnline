@@ -23,18 +23,37 @@ public class synaxHandleController {
     private SubmitSynaxMapper submitSynaxMapper;
 
     @PostMapping("synaxsubmit")
-    public List<Integer> wordSubmit(@RequestBody Submitinfo submitinfo) throws IOException {
+    public List<Integer> wordSubmit(@RequestBody Submitinfo submitinfo) throws Exception {
 
         System.out.println(submitinfo.getSubmitcontent());
         /** 将提交信息存入数据库 */
         submitinfoMapper.insertSelective(submitinfo);
         /** 语法分析  */
-        submitSynaxMapper.IsSynax(submitinfo.getSubmitcontent());
+        String resultInfo=submitSynaxMapper.Synax(submitinfo.getSubmitcontent(),submitinfo.getSubmituserid());
         /**  判断是否出错 */
+        String errorcause=submitSynaxMapper.IsError(submitinfo.getSubmituserid());
+        if(errorcause==null){   /**  编译正确 */
+              /**  更新数据表 */
+            submitinfo.setIssuccess(true);
+            submitinfo.setSubmitsuccess(1);
+            submitinfoMapper.updateByPrimaryKeySelective(submitinfo);
+            List<Integer> list=new ArrayList<>();
+            list.add(1);
+            list.add(submitinfo.getSubmituserid());
+            return list;
+        }
+        else{
+            /**  编译错误 */
+            /**  更新数据表 */
+            submitinfo.setErrorcause(errorcause);
+            submitinfo.setIssuccess(false);
+            submitinfo.setSubmitsuccess(0);
+            submitinfoMapper.updateByPrimaryKeySelective(submitinfo);
+            List<Integer> list=new ArrayList<>();
+            list.add(0);
+            list.add(submitinfo.getSubmituserid());
+            return list;
+        }
 
-        List<Integer> list=new ArrayList<>();
-        list.add(0);
-        list.add(1);
-        return list;
     }
 }

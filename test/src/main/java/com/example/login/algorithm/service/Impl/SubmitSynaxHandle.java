@@ -18,11 +18,12 @@ public class SubmitSynaxHandle implements SubmitSynaxMapper {
     @Autowired
     private SubmitSynaxHandle submitSynaxHandle;
 
-    public String IsSynax(String str){
+    public  String Synax(String str,Integer filenameid){
+        String filename=String.valueOf(filenameid);
         String resultInfo=null;
         try{
             a c=new a();
-            resultInfo=c.mainMethod(str);
+            resultInfo=c.mainMethod(str,filename);
         }
         catch (Exception e){
             e.printStackTrace();
@@ -30,20 +31,19 @@ public class SubmitSynaxHandle implements SubmitSynaxMapper {
         return resultInfo;
     }
 
-    class SYS
+    static class SYS
     {
         String fuhao;
         String op1;
         String op2;
         Node p1;
     }
-    class Node
+    static class Node
     {
         String result;
         int  Address_Num;
     }
-
-    class a
+    static class a
     {
         Vector shuruliu=new Vector();
         Vector shuruliubeifen=new Vector();
@@ -54,21 +54,22 @@ public class SubmitSynaxHandle implements SubmitSynaxMapper {
         Vector result=new Vector();
 
         int while_endsign=0;
-        int count=0;
-        int count_sign=0;
+        static int count=0;
+        static int count_sign=0;
         int if_oversign=0;
         int else_beginsign=0;
         int while_beginsign=10;
         int huibianjump[]=new int[50];
         int sign=0;
-        SYS siyuanshi[]=new SYS[40];
+        static SYS siyuanshi[]=new SYS[40];
 
-        public String mainMethod(String sFromFrame) throws Exception {
+        public String mainMethod(String sFromFrame,String filename) throws Exception {
 
+            count=0;
             String returnString = "";
             a b=new a();
             for(int k=0;k<40;k++) {
-                b.siyuanshi[k]=new SYS();
+                siyuanshi[k]=new SYS();
                 siyuanshi[k].p1=new Node();
             }
             String l="";
@@ -170,18 +171,18 @@ public class SubmitSynaxHandle implements SubmitSynaxMapper {
             b.shuruliubeifen.add("$");
             System.out.println("**************************************************************");
             System.out.println("**************************************************************");
-            returnString += "lex begin ... ... ...\n";
+         //  returnString += "lex begin ... ... ...\n";
             b.cifafenxi();
-            returnString += "lex psss !!!!!!\n";
+         //  returnString += "lex psss !!!!!!\n";
             System.out.println("**************************************************************");
             System.out.println("**************************************************************");
-            returnString += "LL1 begin ... ... ...\n";
-            b.LL1();
-            returnString += "LL1 pass !!!!!!\n";
-            returnString += "yuyi begin ... ... ...\n";
+         //   returnString += "LL1 begin ... ... ...\n";
+            b.LL1(filename);
+         //   returnString += "LL1 pass !!!!!!\n";
+         //   returnString += "yuyi begin ... ... ...\n";
             b.siyuanshi();
-            returnString += "yuyi pass !!!!!!\n";
-            returnString += "四元式结果如下：\n";
+         //   returnString += "yuyi pass !!!!!!\n";
+         //   returnString += "四元式结果如下：\n";
             System.out.println("**************************************************************");
             System.out.println("**************************************************************");
             System.out.println("四元式结果如下：");
@@ -283,7 +284,15 @@ public class SubmitSynaxHandle implements SubmitSynaxMapper {
                     ||s_fenxizhan.equals("i");
         }
 
-        public void LL1() {
+        public void LL1(String filename) throws Exception{
+            /**  将错误信息写入文件当中 */
+            File file=new File("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/algorithm/service/codeFiles/"+filename+"synaxerror.txt");
+                file.createNewFile();
+            FileWriter fw = new FileWriter(file.getAbsoluteFile());
+            BufferedWriter bw = new BufferedWriter(fw);
+
+
+
             fenxizhan.add("MAIN_IN");
             fenxizhan.add("$");
             the_baoliuzi.add("if");
@@ -361,7 +370,7 @@ public class SubmitSynaxHandle implements SubmitSynaxMapper {
                         System.out.println();
                         fenxizhan.removeElementAt(0);
                         shuruliu.removeElementAt(0);
-                        javax.swing.JOptionPane.showMessageDialog(null,"第"+(hang)+"行   error!");
+                        System.out.println("第"+(hang)+"行   error!");  bw.write("第"+(hang)+"行   error!\r\n");
                     }
                 }
                 else//非终极符时的处理
@@ -395,7 +404,7 @@ public class SubmitSynaxHandle implements SubmitSynaxMapper {
                             else
                             {
                                 System.out.println("第"+hang+"行   error!");
-                                System.exit(0);
+                                bw.write("第"+(hang)+"行   error!\r\n");
                             }
                             break;
                         }
@@ -412,7 +421,7 @@ public class SubmitSynaxHandle implements SubmitSynaxMapper {
                             else
                             {
                                 System.out.println("第"+hang+"行   error!");
-                                System.exit(0);
+                                bw.write("第"+(hang)+"行   error!\r\n");
                                 fenxizhan.removeElementAt(0);
                             }
                             break;
@@ -430,7 +439,7 @@ public class SubmitSynaxHandle implements SubmitSynaxMapper {
                             }
                             else {
                                 System.out.println("第"+hang+"行   error!");
-                                System.exit(0);
+                                bw.write("第"+(hang)+"行   error!\r\n");
                                 fenxizhan.removeElementAt(0);
                             }
                             break;
@@ -445,7 +454,7 @@ public class SubmitSynaxHandle implements SubmitSynaxMapper {
                             }
                             else {
                                 System.out.println("第"+hang+"行   error!");
-                                System.exit(0);
+                                bw.write("第"+(hang)+"行   error!\r\n");
                                 fenxizhan.removeElementAt(0);
                             }
                             break;
@@ -475,8 +484,9 @@ public class SubmitSynaxHandle implements SubmitSynaxMapper {
                             }
                             else {
                                 System.out.println("第"+hang+"行   error!");
+                                bw.write("第"+(hang)+"行   error!\r\n");
                                 fenxizhan.removeElementAt(0);
-                                System.exit(0);
+                                
                             }
                             break;
                         }
@@ -545,8 +555,9 @@ public class SubmitSynaxHandle implements SubmitSynaxMapper {
                             else
                             {
                                 System.out.println("第"+hang+"行   error!");
+                                bw.write("第"+(hang)+"行   error!\r\n");
                                 fenxizhan.removeElementAt(0);
-                                System.exit(0);
+                                
                             }
                             break;
                         }
@@ -569,8 +580,8 @@ public class SubmitSynaxHandle implements SubmitSynaxMapper {
                             }
                             else {
                                 System.out.println("第"+hang+"行   error!");
+                                bw.write("第"+(hang)+"行   error!\r\n");
                                 fenxizhan.removeElementAt(0);
-                                System.exit(0);
                             }
                             break;
                         }
@@ -605,8 +616,9 @@ public class SubmitSynaxHandle implements SubmitSynaxMapper {
                             }
                             else {
                                 System.out.println("第"+hang+"行   error!");
+                                bw.write("第"+(hang)+"行   error!\r\n");
                                 fenxizhan.removeElementAt(0);
-                                System.exit(0);
+                                
                             }
                             break;
                         }
@@ -634,8 +646,9 @@ public class SubmitSynaxHandle implements SubmitSynaxMapper {
                             }
                             else {
                                 System.out.println("第"+hang+"行   error!");
+                                bw.write("第"+(hang)+"行   error!\r\n");
                                 fenxizhan.removeElementAt(0);
-                                System.exit(0);
+                                
                             }
                             break;
                         }
@@ -686,7 +699,8 @@ public class SubmitSynaxHandle implements SubmitSynaxMapper {
                             else {
                                 fenxizhan.removeElementAt(0);
                                 System.out.println("第"+hang+"行   error!");
-                                System.exit(0);
+                                bw.write("第"+(hang)+"行   error!\r\n");
+                                
                             }
                             break;
                         }
@@ -716,7 +730,7 @@ public class SubmitSynaxHandle implements SubmitSynaxMapper {
                             else {
                                 fenxizhan.removeElementAt(0);
                                 System.out.println("第"+hang+"行   error!");
-                                System.exit(0);
+                                bw.write("第"+(hang)+"行   error!\r\n");
                             }
                             break;
                         }
@@ -733,6 +747,7 @@ public class SubmitSynaxHandle implements SubmitSynaxMapper {
                 }
                 System.out.print("\t");
             }
+              bw.close();
         }
 
         public void cifafenxi(){
@@ -922,5 +937,23 @@ public class SubmitSynaxHandle implements SubmitSynaxMapper {
                     i++;
             }
         }
+    }
+    /** 判断是否出错 */
+    public String IsError(Integer filenameid) throws Exception{
+        String filename=String.valueOf(filenameid);
+        String url="/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/algorithm/service/codeFiles/"+filename+"synaxerror.txt";
+        File errorlength = new File(url);
+        if(errorlength.length()==0)
+            return null;
+        else{
+            String errorInfo="",errorInfo1;
+            InputStreamReader inputStreamReader = new InputStreamReader(new FileInputStream(errorlength));
+            BufferedReader bf1 = new BufferedReader(inputStreamReader);
+            while ((errorInfo1 = bf1.readLine()) != null){
+                errorInfo+=errorInfo1+"\n";
+            }
+            return errorInfo;
+        }
+
     }
 }

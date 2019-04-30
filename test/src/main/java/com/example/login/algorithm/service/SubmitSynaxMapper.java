@@ -9,6 +9,8 @@ import java.io.IOException;
 public interface SubmitSynaxMapper {
 
     @PostConstruct
-    public String IsSynax(String str);
+    public String Synax(String str,Integer filenameid);
 
+    @PostConstruct
+    public String IsError(Integer filenameid) throws Exception;
 }

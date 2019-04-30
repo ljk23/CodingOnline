@@ -72,7 +72,7 @@
         </small>&nbsp;<small>></small>&nbsp;
         <small style="color: #5CACEE; cursor: pointer" onclick="window.location.href='exercise.html'">题目中心</small>
         </small>&nbsp;<small>></small>&nbsp;
-        <small class="smallTitle" onclick="window.location.href='question.html'" style="color: #5CACEE;"></small>
+        <small id="smallTitle"></small>
     </div>
 <!--主体-->
 <br>
@@ -212,7 +212,6 @@
             /**  加载get的题目id */
             var problemId =GetQueryString("problemid");
             var submitid=GetQueryString("submitid");
-            alert(submitid);
             if(submitid!=null){
                 $.ajax({
                     url: "http://localhost:8081/submit/queryBysubmitId",
@@ -245,7 +244,7 @@
                         $(".problemcontent").html(data.problemcontent);
                         $(".sampleinput").html(data.probleminput);
                         $(".sampleoutput").html(data.problemoutput);
-                        $(".smallTitle").html(data.problemclassfy);
+                        document.getElementById("smallTitle").innerHTML="<a style='color: #5CACEE; text-decoration: none' href='question.html?problemclassfy="+data.problemclassfy+" '>"+data.problemclassfy+"</a>";
                     })
                 }
             })
@@ -353,8 +352,24 @@
                 type: 'POST',
                 contentType: 'application/json;charset=utf-8',
                 data: JSON.stringify(codeInfo),
-                success: function (data) {
-                    alert(data);
+                success: function (data)  {
+                    submituserid=eval(data)[1];
+                    if(eval(data)[0]==1){
+                        layer.alert('编译成功', {
+                            icon: 1,
+                            time: 2000
+                        }, function () {
+                            window.location.href="../UserMoudle/userInfo.html?userInfo=user_submit&submituserid="+submituserid+"&problemid="+problemid;
+                        });
+                    }
+                    else{
+                        layer.alert('编译失败', {
+                            icon: 5,
+                            time: 2000
+                        }, function () {
+                            window.location.href="../UserMoudle/userInfo.html?userInfo=user_submit&submituserid="+submituserid+"&problemid="+problemid;
+                        });
+                    }
                 }
             })
         }

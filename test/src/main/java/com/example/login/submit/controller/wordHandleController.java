@@ -37,7 +37,6 @@ public class wordHandleController {
            /**  更新数据库表 */
             submitinfo.setIssuccess(true);
             submitinfo.setSubmitsuccess(1);
-            System.out.println(submitinfo.toString());
             submitinfoMapper.updateByPrimaryKeySelective(submitinfo);
             /**   */
             List<Integer> list=new ArrayList<>();
@@ -50,7 +49,6 @@ public class wordHandleController {
              submitinfo.setErrorcause(errorcause);
              submitinfo.setIssuccess(false);
              submitinfo.setSubmitsuccess(0);
-             System.out.println(submitinfo.getErrorcause()+" "+submitinfo.getSubmitid());
              submitinfoMapper.updateByPrimaryKeySelective(submitinfo);
              List<Integer> list=new ArrayList<>();
              list.add(0);
