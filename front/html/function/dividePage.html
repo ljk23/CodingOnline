@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<style>
+    .pageSize{
+        border: 1px solid grey;
+        width:150px;
+        height: 40px;
+        flex-direction: column;
+        display: -webkit-box; /*这个必须要有*/
+        text-align: center;
+        border-radius: 5px;
+        margin-left: 85%;
+    }
+    .pageSize .item{
+        -webkit-box-flex: 1;
+        padding-top: 8px;
+    }
+    .pageSize .control{
+        margin-top: 8px;
+    }
+    .pageSize .back{
+       background: rgba(0,0,0,0.05);
+    }
+</style>
+<body>
+<div class="pageSize" id="pageSize">
+    <div class="item control" id="prev-arrow"><img src="../../images/prev-arrow.png" width=12 height=10></div>
+    <div class="item back" id=""now-arrow>1</div>
+    <div class="item control"  id="next-arrow"><img src="../../images/next-arrow.png" width=12 height=10></div>
+</div>
+</body>
+</html>

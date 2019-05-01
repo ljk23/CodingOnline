@@ -28,7 +28,7 @@
     margin: 30px 30px 10px 30px;
 }
 
-.ant-row input[type="text"] {
+.ant-row input[type="text"], .ant-row select {
     border-width: 1px;
     outline: none;
     border-radius: 5px;

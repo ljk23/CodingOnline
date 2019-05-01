@@ -4,6 +4,7 @@ import com.example.login.problem.dao.entity.Probleminfo;
 import com.example.login.problem.dao.mapper.ProbleminfoMapper;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -46,6 +47,8 @@ public class problemController {
 
     @GetMapping("queryByClassfy")
     public List<Probleminfo> queryByClassfy(@RequestParam("problemclassfy") String problemclassfy) {
+
+
         List<Probleminfo> problemInfos = probleminfoMapper.selectByProblemClassfy(problemclassfy);
         if (problemInfos !=null) {
             return problemInfos;
