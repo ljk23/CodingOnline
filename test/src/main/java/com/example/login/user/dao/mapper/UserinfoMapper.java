@@ -21,6 +21,9 @@ public interface UserinfoMapper {
 
     int updateByPrimaryKey(Userinfo record);
 
+    @Select("select * from userInfo")
+    List<Userinfo> selectAllUsers();
+
     @Select("Select * from UserInfo where userName=#{username}")
     List<Userinfo> selectUserByUsername(@Param("username") String username);
 

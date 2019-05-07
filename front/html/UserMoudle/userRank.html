@@ -4,18 +4,22 @@
     <meta charset="UTF-8">
     <script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
     <script src="../../js/header.js"></script>
+    <script src="../../assets/layer/layer.js"></script>
     <link type="text/css" rel="stylesheet" href="../../css/body.css"/>
     <link type="text/css" rel="stylesheet" href="../../css/header.css"/>
     <link type="text/css" rel="stylesheet" href="../../css/booter.css"/>
+    <link type="text/css" rel="stylesheet" href="../../css/endindex.css"/>
+    <link type="text/css" rel="stylesheet" href="../../css/userInfo.css"/>
+    <link type="text/css" rel="stylesheet" href="../../css/exercise.css"/>
+    <link type="text/css" rel="stylesheet" href="../../css/login.css"/>
 </head>
 <body>
 <!--头部-->
 <div class="ui">
     <div class="ui-left">
-        <a class="item" href="../IndexMoudle/index.html" onmousemove=""><img src="../../images/logo_flat.png"
-                                                                             width="104" height="24"></a>
+        <a class="item" href="../IndexMoudle/index.html" onmousemove=""><img src="../../images/logo_flat.png" width="104" height="24"></a>
         <a class="item" href="../TitleMoudle/exercise.html"><i class="list items icon"></i>题目中心</a>
-        <a class="item" href="function/education.html"><i class="list items icon"></i>在线教学</a>
+        <a class="item" onclick="warning()"><i class="list items icon"></i>在线教学</a>
         <a class="item" href="../ContestWork/contest.html"><i class="list items icon"></i>在线比赛</a>
         <a class="item" href="../TitleMoudle/submitStatus.html"><i class="list items icon"></i>提交状态</a>
         <a class="item" href="../ContestWork/contest.html"><i class="list items icon"></i>选手排名</a>
@@ -26,6 +30,14 @@
             <img src="../../images/login.png" width="14px" height="12px" style="margin-right: -20px;"></img>
             <i class="sign in icon" id="banScroll"></i>登录</a>
     </div>
+    <script>
+        function warning() {
+            layer.msg("开发中",{
+                icon: 4,
+                time: 2000
+            })
+        }
+    </script>
 </div>
 <!--登录框-->
 <div class="loginclass" id="loginclass" style="display: none">
@@ -61,14 +73,101 @@
 </div>
 <!--背景色-->
 <div class="operatebackgroud" style="display: none;"></div>
+<div class="ex_nav">
+    <img src="../../images/nav_boot.png" width="14" height="13">&nbsp;
+    <small style="color: #5CACEE; cursor: pointer" onclick="window.location.href='index.html'">WeJudge首页</small>&nbsp;<small>
+    >
+</small>&nbsp;<small id="sub_menu"></small>
+</div>
 <div class="wj_page_container">
-    ljk
+    <div class="message_marquee">
+        <marquee scrollAmount="2" direction=right behavior="scroll">暂无比赛通知!!!</marquee>
+    </div>
+    <br>
+    <!--搜索框-->
+    <div class="end_problem_select">
+        <div class="end_operateframe">
+            选手查找：
+            <input type="text" id="pro_name" placeholder="支持模糊查找"/>
+            <img class="pro_query" style="cursor: pointer" src="../../images/end_select.png" width="15"
+                 height="15"/>
+        </div>
+    </div>
+    <!--显示框-->
+    <table class="qu_table" id="pro_table" style="width: 90%;margin-left: 5%;">
+        <thead>
+        <tr>
+            <th>名次</th>
+            <th>用户ID</th>
+            <th>用户名</th>
+            <th>通过</th>
+            <th>提交</th>
+            <th>通过率</th>
+        </tr>
+        </thead>
+        <tbody id="pro_tbody">
+            <th>1</th>
+            <th>1</th>
+            <th>tp5admin</th>
+            <th>5</th>
+            <th>20</th>
+            <th>40%</th>
+        </tbody>
+    </table>
 </div>
 <!--底部-->
 <booter id="booter"></booter>
 <script>
     $(window).load(function () {
         $('#booter').load('../booter/booter.html');
+        /** 加载个人信息  */
+        $("#sub_menu").html("选手排名");
+        /**  给tbody添加id属性 */
+        $("#pro_table tbody").attr("id", "pro_tbody");
+        $.ajax({
+            url:  "http://localhost:8081/getsubmit/queryRank",
+            type: 'GET',
+            contentType: 'application/json;charset=utf-8',
+            success: function (data) {
+                /** 局部刷新  */
+                /** 删除原有表格的数据 */
+                var table = document.getElementById("pro_table");
+                var infos = document.getElementById("pro_tbody");
+                table.removeChild(infos);
+                /**此处必须创建tbody，否则无法加入到table中  */
+                var infos = document.createElement("tbody");
+                /**  生成新的table数据元素并添加到table中 */
+                $.each(data, function (i, n) {
+                    var tr = document.createElement("tr");
+                    var td1 = document.createElement("td");
+                    var td2 = document.createElement("td");
+                    var td3 = document.createElement("td");
+                    var td4 = document.createElement("td");
+                    var td5 = document.createElement("td");
+                    var td6 = document.createElement("td");
+
+                    td1.innerHTML = i+1;
+                    td2.innerHTML = n.submituserid;
+                    td3.innerHTML = n.submitusername;
+                    td3.style="color: #428bca";
+                    td4.innerHTML = n.success;
+                    td4.style="color: #428bca";
+                    td5.innerHTML = n.totals;
+                    td5.style="color: #428bca";
+                    td6.innerHTML=(n.success*100/n.totals).toFixed(2)+"%";
+
+                    tr.appendChild(td1);
+                    tr.appendChild(td2);
+                    tr.appendChild(td3);
+                    tr.appendChild(td4);
+                    tr.appendChild(td5);
+                    tr.appendChild(td6);
+                    tr.setAttribute("id", i + 1);
+                    infos.appendChild(tr);
+                })
+                table.appendChild(infos);
+            }
+        })
     })
 
 </script>

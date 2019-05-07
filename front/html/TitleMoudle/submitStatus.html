@@ -11,6 +11,7 @@
     <link type="text/css" rel="stylesheet" href="../../css/endindex.css"/>
     <link type="text/css" rel="stylesheet" href="../../css/userInfo.css"/>
     <link type="text/css" rel="stylesheet" href="../../css/exercise.css"/>
+    <link type="text/css" rel="stylesheet" href="../../css/login.css"/>
 </head>
 <body>
 <!--头部-->
@@ -18,7 +19,7 @@
     <div class="ui-left">
         <a class="item" href="../IndexMoudle/index.html" onmousemove=""><img src="../../images/logo_flat.png" width="104" height="24"></a>
         <a class="item" href="../TitleMoudle/exercise.html"><i class="list items icon"></i>题目中心</a>
-        <a class="item" href="function/education.html"><i class="list items icon"></i>在线教学</a>
+        <a class="item" onclick="warning()"><i class="list items icon"></i>在线教学</a>
         <a class="item" href="../ContestWork/contest.html"><i class="list items icon"></i>在线比赛</a>
         <a class="item" href="../TitleMoudle/submitStatus.html"><i class="list items icon"></i>提交状态</a>
         <a class="item" href="../ContestWork/contest.html"><i class="list items icon"></i>选手排名</a>
@@ -29,38 +30,14 @@
             <img src="../../images/login.png" width="14px" height="12px" style="margin-right: -20px;"></img>
             <i class="sign in icon" id="banScroll"></i>登录</a>
     </div>
-</div>
-<!--登录框-->
-<div class="loginclass" id="loginclass" style="display: none">
-    <div id="closelogin"><img src="../../images/log_close.png" width="15" height="15"></div>
-    <div class="loginFrame">
-        <!--身份选择-->
-        <div class="log_user">
-            <img src="../../images/xuesheng.png" width="40" height="30"><button id="student">Student</button>
-            <img src="../../images/laoshi.png" width="40" height="30"><button id="teacher">Teacher</button>
-            <img src="../../images/guanliyuan.png" width="40" height="30"><button id="admin">Admin</button>
-        </div>
-        <!--注册登陆-->
-        <div class="log_input" style="display: none;">
-            <div class="log_input_select">
-                <span id="sign_in">sign in</span>
-                <span id="sign_up">sign up</span>
-            </div>
-            <div class="log_input_text" style="display: none;">
-                username<input type="text" id="username"/>
-                password<input type="text" id="password"/>
-                <input type="submit" id="login_user" value="login"/>
-            </div>
-            <div class="log_input_register" style="display: none;">
-                username<input type="text" id="reg_username"/><span
-                    id="info"></span>
-                password<input type="text" id="reg_password"/>
-                repassword<input type="text" id="reg_repassword"/>
-                email<input type="text" id="reg_email"/>
-                <input type="submit" id="register_user" value="register"/>
-            </div>
-        </div>
-    </div>
+    <script>
+        function warning() {
+            layer.msg("开发中",{
+                icon: 4,
+                time: 2000
+            })
+        }
+    </script>
 </div>
 <!--背景色-->
 <div class="operatebackgroud" style="display: none;"></div>
@@ -68,7 +45,7 @@
     <img src="../../images/nav_boot.png" width="14" height="13">&nbsp;
     <small style="color: #5CACEE; cursor: pointer" onclick="window.location.href='index.html'">WeJudge首页</small>&nbsp;<small>
     >
-</small>&nbsp;<small>题目中心</small>
+</small>&nbsp;<small id="sub_menu"></small>
 </div>
 <div class="wj_page_container">
     <div class="message_marquee">
@@ -99,8 +76,7 @@
                     <option>困难</option>
                 </select> &nbsp;
                 出题者：
-                <input type="text" id="pro_creator" placeholder="支持模糊查找"/>
-                &nbsp;
+                <input type="text" id="pro_creator" placeholder="支持模糊查找"/>&nbsp;
                 <img class="pro_query" style="cursor: pointer" src="../../images/end_select.png" width="15"
                      height="15"/>
             </div>
@@ -144,6 +120,7 @@
         /**  给tbody添加id属性 */
         $("#pro_table tbody").attr("id", "pro_tbody");
         /**  显示出用户的提交信息 */
+        $("#sub_menu").html("提交状态");
         $.ajax({
             url:  "http://localhost:8081/submit/queryAll",
             type: 'GET',
