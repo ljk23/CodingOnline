@@ -66,6 +66,15 @@ public class wordHandleController {
         }
         return null;
     }
+
+    @GetMapping("queryAll")
+    public List<Submitinfo> queryAll(){
+        List<Submitinfo> submitinfos=submitinfoMapper.selectAll();
+        if(submitinfos.size()>0)
+            return submitinfos;
+        return null;
+    }
+
     @GetMapping("queryBysubmitId")
     public Submitinfo queryBysubmitId(@Param("submitid") Integer submitid){
         Submitinfo submitinfo=submitinfoMapper.selectByPrimaryKey(submitid);

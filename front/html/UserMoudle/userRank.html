@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="../../js/header.js"></script>
+    <link type="text/css" rel="stylesheet" href="../../css/body.css"/>
+    <link type="text/css" rel="stylesheet" href="../../css/header.css"/>
+    <link type="text/css" rel="stylesheet" href="../../css/booter.css"/>
+</head>
+<body>
+<!--头部-->
+<div class="ui">
+    <div class="ui-left">
+        <a class="item" href="../IndexMoudle/index.html" onmousemove=""><img src="../../images/logo_flat.png"
+                                                                             width="104" height="24"></a>
+        <a class="item" href="../TitleMoudle/exercise.html"><i class="list items icon"></i>题目中心</a>
+        <a class="item" href="function/education.html"><i class="list items icon"></i>在线教学</a>
+        <a class="item" href="../ContestWork/contest.html"><i class="list items icon"></i>在线比赛</a>
+        <a class="item" href="../TitleMoudle/submitStatus.html"><i class="list items icon"></i>提交状态</a>
+        <a class="item" href="../ContestWork/contest.html"><i class="list items icon"></i>选手排名</a>
+        <a class="item" href="../HelpMoudle/help.html" style="border-right: 1px solid gray;"><i class="list items icon"></i>帮助中心</a>
+    </div>
+    <div class="ui-right" id="ui-right">
+        <a class="item" onclick="login()">
+            <img src="../../images/login.png" width="14px" height="12px" style="margin-right: -20px;"></img>
+            <i class="sign in icon" id="banScroll"></i>登录</a>
+    </div>
+</div>
+<!--登录框-->
+<div class="loginclass" id="loginclass" style="display: none">
+    <div id="closelogin"><img src="../../images/log_close.png" width="15" height="15"></div>
+    <div class="loginFrame">
+        <!--身份选择-->
+        <div class="log_user">
+            <img src="../../images/xuesheng.png" width="40" height="30"><button id="student">Student</button>
+            <img src="../../images/laoshi.png" width="40" height="30"><button id="teacher">Teacher</button>
+            <img src="../../images/guanliyuan.png" width="40" height="30"><button id="admin">Admin</button>
+        </div>
+        <!--注册登陆-->
+        <div class="log_input" style="display: none;">
+            <div class="log_input_select">
+                <span id="sign_in">sign in</span>
+                <span id="sign_up">sign up</span>
+            </div>
+            <div class="log_input_text" style="display: none;">
+                username<input type="text" id="username"/>
+                password<input type="text" id="password"/>
+                <input type="submit" id="login_user" value="login"/>
+            </div>
+            <div class="log_input_register" style="display: none;">
+                username<input type="text" id="reg_username"/><span
+                    id="info"></span>
+                password<input type="text" id="reg_password"/>
+                repassword<input type="text" id="reg_repassword"/>
+                email<input type="text" id="reg_email"/>
+                <input type="submit" id="register_user" value="register"/>
+            </div>
+        </div>
+    </div>
+</div>
+<!--背景色-->
+<div class="operatebackgroud" style="display: none;"></div>
+<div class="wj_page_container">
+    ljk
+</div>
+<!--底部-->
+<booter id="booter"></booter>
+<script>
+    $(window).load(function () {
+        $('#booter').load('../booter/booter.html');
+    })
+
+</script>
+</body>
+</html>

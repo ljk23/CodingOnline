@@ -3,10 +3,9 @@ package com.example.login.match.controller;
 import com.example.login.match.dao.entity.Matchinfo;
 import com.example.login.match.dao.mapper.MatchinfoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(value="matchAdmin/")
@@ -16,6 +15,7 @@ public class MatchController {
 
     @PostMapping("insert")
     public Boolean insertInfo(@RequestBody Matchinfo matchinfo){
+        matchinfo.setConteststate(true);
         System.out.println(matchinfo.toString());
         matchinfoMapper.insertSelective(matchinfo);
         if (matchinfo.getContestid()!= null) {
@@ -24,4 +24,20 @@ public class MatchController {
         return false;
     }
 
+    @PostMapping("query")
+    public List<Matchinfo> query(@RequestBody  Matchinfo matchinfo){
+      //  matchinfo.toString();
+        List<Matchinfo> matchinfos=matchinfoMapper.selectByQuery(matchinfo);
+        if(matchinfos.size()>0)
+            return matchinfos;
+        return null;
+    }
+
+    @GetMapping("queryAll")
+    public List<Matchinfo> queryAll(){
+        List<Matchinfo> matchinfos=matchinfoMapper.selectAll();
+        if(matchinfos.size()>0)
+            return matchinfos;
+        return null;
+    }
 }

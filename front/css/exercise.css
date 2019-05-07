@@ -165,7 +165,7 @@
     color: rgba(0, 0, 0, .87);
     display: table;
     box-sizing: inherit;
-    font-size: 15px;
+    font-size: 16px;
     border-collapse: separate;
     border-spacing: 0;
 }
@@ -190,7 +190,8 @@
     text-align: center;
 }
 .qu_table tbody tr td{
-    line-height: 50px;
+    line-height: 40px;
+    font-weight: normal;
 }
 .qu_table tbody tr:nth-child(even) {
     background: rgba(0, 0, 50, .02);

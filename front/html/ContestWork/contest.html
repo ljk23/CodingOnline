@@ -13,7 +13,6 @@
     <link type="text/css" rel="stylesheet" href="../../css/header.css"/>
     <link type="text/css" rel="stylesheet" href="../../css/booter.css"/>
     <link type="text/css" rel="stylesheet" href="../../css/contest.css"/>
-    <title>竞赛</title>
 </head>
 <body>
 <!--头部-->
@@ -76,53 +75,89 @@
         <marquee scrollAmount="2" direction=right behavior="scroll">暂无比赛通知!!!</marquee>
     </div>
     <br>
-    <label class="con_create" id="con_create">创建比赛</label>
-    <table class="qu_table">
+    <div class="ex_select">
+        <div class="ex_select_cat">
+            <li class="ex_item" id="refresh"><img src="../../images/refresh.png" height="12px" width="12px">
+                <small style="margin-left: 5px">刷新列表</small>
+            </li>
+            <li class="ex_item" id="ex_key_query"><img src="../../images/select.png" height="12px" width="12px">
+                <small style="margin-left: 5px">筛选</small>
+            </li>
+        </div>
+        <div id="ex_select_query" style="display: none">
+            <div class="ex_select_des">
+                <div>
+                    <small>分类导航:</small>
+                    <small>根目录</small>
+                </div>
+            </div>
+            <div class="ex_select_five">
+                <div class="feild">
+                    <small>比赛名称</small>
+                    <div class="ex_select_input"><input type="text"  placeholder="题目名称支持模糊查找"></div>
+                </div>
+                <div class="feild">
+                    <small>主办方</small>
+                    <div class="ex_select_input"><input type="text"  placeholder="支持模糊查找"></div>
+                </div>
+                <div class="feild">
+                    <small>比赛状态</small>
+                    <div class="ex_select_input">
+                        <select >
+                            <option selected="selected">在线</option>
+                            <option>过期</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="feild">
+                    <small>每页数量</small>
+                    <div class="ex_select_input"><select >
+                        <option selected="selected">10</option>
+                        <option>20</option>
+                        <option>30</option>
+                    </select>
+                    </div>
+                </div>
+                <div class="feild">
+                    <small>排列方式</small>
+                    <div class="ex_select_input"><select >
+                        <option selected="selected">正序排列</option>
+                        <option>倒序排列</option>
+                    </select>
+                    </div>
+                </div>
+            </div>
+            <button class="ex_select_button">
+                <span><img src="../../images/ex_select.png" width="12px" height="12px">&nbsp;<small>筛选</small></span>
+            </button>
+        </div>
+    </div>
+    <br>
+    <table class="qu_table" id="qu_table">
         <thead>
         <tr>
             <th>编号</th>
             <th>名称</th>
+            <th>主办方</th>
+            <th>比赛开始时间</th>
+            <th>比赛时长</th>
+            <th>参赛形式</th>
             <th>状态</th>
-            <th>是否公开</th>
-            <th>创建者</th>
         </tr>
         </thead>
-        <tbody>
+        <tbody id="qu_tbody">
         <tr>
             <td>1000</td>
-            <td><a href="oneQuestion.html" target="_self">2019年计算机学院ACM新生杯程序设计大赛</a></td>
-            <td>已结束@2019-03-25 23:00:00</td>
-            <td>公开</td>
+            <td><a style="text-decoration: none;">2019年计算机学院ACM新生杯程序设计大赛</a></td>
             <td>武汉理工大学</td>
+            <td>2019-03-25 23:00:00</td>
+            <th>团队</th>
+            <td>在线</td>
+            <td>在线</td>
         </tr>
         </tbody>
         <tfoot></tfoot>
     </table>
-</div>
-<div id="con_create_frame" style="display: none;">
-    <div class="con_create_title">创建比赛</div>
-    <hr style="font-weight: lighter; width: 90%;margin: auto;color: #D4D4D5">
-    <div class="con_create_body">
-        <div class="ant-row">比赛名称 &nbsp;&nbsp;<input type="text" id="contestname"></div>
-        <div class="ant-row">主办方&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="contesthost"></div>
-        <div class="ant-row">参赛形式 &nbsp;&nbsp;
-            <select id="contestform">
-                <option selected="selected">团队</option>
-                <option>个人</option>
-            </select>
-        </div>
-        <div class="ant-row">比赛开始时间 &nbsp;&nbsp;<input type="text" id="conteststartime"></div>
-        <div class="ant-row">比赛结束时间 &nbsp;&nbsp;<input type="text" id="contestendtime"></div>
-        <div class="ant-row">评测语言 &nbsp;&nbsp;
-            <select id="contestlanguage">
-                <option selected="selected">简单</option>
-                <option>团队</option>
-                <option>个人</option>
-            </select>
-        </div>
-    </div>
-    <hr style="font-weight: lighter; width: 90%; margin: auto;margin-top: 150px;color: #D4D4D5; ">
-    <button class="ant-row con_create_sub" id="con_create_sub">创建</button>
 </div>
 <!--底部-->
 <div id="booter"></div>
@@ -150,6 +185,62 @@
     $(function () {
         $('#one_input').load('../function/codeInput.html');
         $('#booter').load('../booter/booter.html');
+
+        /**  给tbody添加id属性 */
+        $("#qu_table tbody").attr("id", "qu_tbody");
+        /**  加载比赛信息 */
+        $.ajax({
+            url: "http://localhost:8081/matchAdmin/queryAll",
+            type: 'GET',
+            contentType: 'application/json;charset=utf-8',
+            success: function (data) {
+                /** 删除原有表格的数据 */
+                var table = document.getElementById("qu_table");
+                var infos = document.getElementById("qu_tbody");
+                table.removeChild(infos);
+                /**此处必须创建tbody，否则无法加入到table中  */
+                infos = document.createElement("tbody");
+                /**  生成新的table数据元素并添加到table中 */
+                $.each(data, function (i, n) {
+                    var tr = document.createElement("tr");
+                    var td = document.createElement("td");
+                    var td1 = document.createElement("td");
+                    var td2 = document.createElement("td");
+                    var td3 = document.createElement("td");
+                    var td4 = document.createElement("td");
+                    var td5 = document.createElement("td");
+                    var td6 = document.createElement("td");
+
+                    td.innerHTML = i + 1;
+                    td1.innerHTML = "<a style='text-decoration: none; cursor: pointer;color: #1890FF' onclick='matchInfo("+n.contestid+")'>"+n.contestname+"</a>";
+                    td2.innerHTML = n.contesthost;
+                    n.conteststarttime=n.conteststarttime.replace(/\T/g," ");
+                    td3.innerHTML=n.conteststarttime;
+                    n.conteststarttime=new Date(n.conteststarttime.replace(/\-/g, "/"));
+                    n.contestendtime=n.contestendtime.replace(/\T/g," ");
+                    n.contestendtime=new Date(n.contestendtime.replace(/\-/g, "/"));
+                    td4.innerHTML = (parseInt(n.contestendtime-n.conteststarttime)/1000/60/60)+"小时";
+                    td5.innerHTML = n.contestform;
+                    if (n.conteststate == false) {
+                        td6.innerHTML ="过期";
+                        td6.style="color:red";
+                    }
+                    else td6.innerHTML = "在线";
+
+                    tr.appendChild(td);
+                    tr.appendChild(td1);
+                    tr.appendChild(td2);
+                    tr.appendChild(td3);
+                    tr.appendChild(td4);
+                    tr.appendChild(td5);
+                    tr.appendChild(td6);
+                    tr.setAttribute("id", i + 1);
+                    //document.getElementById("end_pro_table tbody tr").setAttribute("id",i+1);
+                    infos.appendChild(tr);
+                })
+                table.appendChild(infos);
+            }
+        })
     })
     /** Islogin   */
     $(window).load(function () {
@@ -224,21 +315,31 @@
     })
 </script>
 <script>
-    $("#con_create_sub").click(function () {
-        var contestcreatetime=CurentTime();
-       if(judgeCreateContestInfo($("#contestname").val(),$("#contesthost").val())==true){
-           var data={contestname:$("#contestname").val(),contesthost:$("#contesthost").val(),contestform:$("#contestform").val(),conteststarttime:$("#conteststartime").val(),contestendtime:$("#contestendtime").val(),contestlanguage:$("#contestlanguage").val(),contestcreatetime:contestcreatetime};
-           $.ajax({
-               url: "http://localhost:8081/matchAdmin/insert",
-               type: 'POST',
-               contentType: 'application/json;charset=utf-8',
-               data: JSON.stringify(data),
-               success: function(data){
-                   alert(data);
-               }
-           })
-       }
+    /** query   */
+    var t = true;
+    $("#ex_key_query").click(function () {
+        if (t == true)
+            $("#ex_select_query").show("slow");
+        else
+            $("#ex_select_query").hide("slow");
+        t = !t;
     })
+    /** 刷新页面 */
+    $("#refresh").click(function () {
+        layer.msg("加载中", {
+            icon:16,
+            shade:[0.1, '#4F94CD'],
+            time: 1000 //取消自动关闭
+        })
+    })
+</script>
+<script>
+    function matchInfo(matchid) {
+        layer.alert('比赛还未到时间',{
+            icon: 4,
+            time: 2000
+        })
+    }
 </script>
 </body>
 </html>

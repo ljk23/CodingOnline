@@ -107,7 +107,7 @@
     <br>
     <div class="ex_select">
         <div class="ex_select_cat">
-            <li class="ex_item"><img src="../../images/refresh.png" height="12px" width="12px">
+            <li class="ex_item" id="refresh"><img src="../../images/refresh.png" height="12px" width="12px">
                 <small style="margin-left: 5px">刷新列表</small>
             </li>
             <li class="ex_item" id="ex_key_query"><img src="../../images/select.png" height="12px" width="12px">
@@ -379,6 +379,7 @@
             $("#ex_select_query").hide("slow");
         t = !t;
     })
+
 </script>
 <script>
     $("#ex_word").click(function () {
@@ -408,6 +409,14 @@
     $("#ex_bettercode").click(function () {
         var problemclassfy="代码优化";
         window.location.href="question.html?problemclassfy="+problemclassfy+"";
+    })
+    /** 刷新页面  */
+    $("#refresh").click(function () {
+        layer.msg("加载中", {
+            icon:16,
+            shade:[0.1, '#4F94CD'],
+            time: 1000 //取消自动关闭
+        })
     })
 </script>
 </body>
