@@ -6,6 +6,15 @@
 <!-- 配置Run As Maven build : Goals 参数 : mybatis-generator:generate -Dmybatis.generator.overwrite=true -->
 <!-- 配置 tableName,使用 Run As Maven build 生成 dao model 层 -->
 <generatorConfiguration>
+    <configuration>
+        <!-- 配置分页插件 -->
+        <plugins>
+            <plugin interceptor="com.github.pagehelper.PageHelper">
+                <!-- 设置数据库类型 Oracle,Mysql,MariaDB,SQLite,Hsqldb,PostgreSQL六种数据库-->
+                <property name="dialect" value="mysql"/>
+            </plugin>
+        </plugins>
+    </configuration>
     <!-- 配置文件路径
     <properties url="${mybatis.generator.generatorConfig.properties}"/>-->
 
@@ -24,7 +33,7 @@
         </jdbcConnection>
 
         <!--生成的model 包路径 -->
-        <javaModelGenerator targetPackage="com.example.login.match.dao.entity" targetProject="src/main/java">
+        <javaModelGenerator targetPackage="com.example.login.user.dao.entity" targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>
@@ -35,11 +44,15 @@
         </sqlMapGenerator>
 
         <!-- 生成的Dao接口 的包路径 -->
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.example.login.match.dao.mapper" targetProject="src/main/java">
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.example.login.user.dao.mapper" targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
         <!--对应数据库表名，多个表，请复制指定 -->
+        <table tableName="userInfo" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" selectByExampleQueryId="false">
+            <columnOverride column="Id" property="id" />
+        </table>
         <!--<table tableName="problemInfo" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
                enableSelectByExample="false" selectByExampleQueryId="false">
             <columnOverride column="Id" property="id" />
@@ -48,9 +61,9 @@
                enableSelectByExample="false" selectByExampleQueryId="false">
             <columnOverride column="Id" property="id" />
         </table>-->
-        <table tableName="matchInfo" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+        <!--<table tableName="matchInfo" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
                enableSelectByExample="false" selectByExampleQueryId="false">
             <columnOverride column="Id" property="id" />
-        </table>
+        </table>-->
     </context>
 </generatorConfiguration>

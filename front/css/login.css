@@ -1,0 +1,80 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+.loginFrame {
+    margin: auto;
+    height: 100%;
+    width: 100%;
+}
+.log_user {
+  padding: 15%;
+}
+.log_user button{
+    font-size: 20px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border-radius: 10px;
+    color: white;
+    margin: 5%;
+    width: 250px;
+    line-height: 40px;
+    opacity: 0.8;
+    outline: none;
+    background: none;
+}
+.log_input{
+    padding: 10%;
+    margin-left: 5%;
+}
+.log_input_select{
+    text-align: center;
+    font-size: 25px;
+    color: white;
+}
+.log_input_select span{
+    background: gray;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.log_input_text{
+    padding: 5%;
+    color: white;
+}
+.log_input_text input[type="text"],.log_input_text input[type="password"],.log_input_text input[type="submit"]{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 250px;
+    line-height: 40px;
+    margin: 5%;
+    border-radius: 5px;
+    background: none;
+    outline: none;
+    color: white;
+    font-size: 25px;
+    border: 0.5px solid white;
+}
+.log_input_register{
+    padding: 5%;
+    color: white;
+}
+.log_input_register input[type="text"],.log_input_register input[type="submit"]{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 250px;
+    line-height: 40px;
+    margin: 2%;
+    border-radius: 5px;
+    background: none;
+    outline: none;
+    color: white;
+    font-size: 25px;
+    border: 0.5px solid white;
+}
+#closelogin{
+    position: absolute;
+    left: 95%;
+    top: 0;
+    width: 15px;
+    height: 15px;
+}

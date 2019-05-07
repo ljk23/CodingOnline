@@ -37,11 +37,18 @@ public class problemController {
 
     @GetMapping("queryById")
     public Probleminfo queryById(@RequestParam("problemId") Integer problemId) {
-        System.out.println(problemId);
         Probleminfo problemInfos = probleminfoMapper.selectByPrimaryKey(problemId);
         if (problemInfos !=null) {
             return problemInfos;
         }
+        return null;
+    }
+
+    @GetMapping("queryAll")
+    public List<Probleminfo> queryAll(){
+        List<Probleminfo> probleminfos=probleminfoMapper.selectAll();
+        if(probleminfos.size()>0)
+            return probleminfos;
         return null;
     }
 

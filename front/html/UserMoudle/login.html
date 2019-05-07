@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+    <link type="text/css" rel="stylesheet" href="../../css/login.css"/>
+</head>
+<body>
+<div class="loginFrame">
+    <!--身份选择-->
+    <div class="log_user">
+        <img src="../../images/xuesheng.png" width="40" height="30"><button id="student">Student</button>
+        <img src="../../images/laoshi.png" width="40" height="30"><button id="teacher">Teacher</button>
+        <img src="../../images/guanliyuan.png" width="40" height="30"><button id="admin">Admin</button>
+    </div>
+    <!--注册登陆-->
+    <div class="log_input" style="display: none;">
+        <div class="log_input_select">
+             <span id="sign_in">sign in</span>
+             <span id="sign_up">sign up</span>
+        </div>
+        <div class="log_input_text" style="display: none;">
+            username<input type="text"/>
+            password<input type="password"/>
+                    <input type="submit" value="login"/>
+        </div>
+        <div class="log_input_register" style="display: none;">
+            username<input type="text"/>
+            password<input type="password"/>
+            repassword<input type="password"/>
+            email(QQ,126)<input type="text"/>
+            <input type="submit" value="register"/>
+        </div>
+    </div>
+</div>
+<script>
+    $("#student,#teacher,#admin").click(function () {
+        $(".log_user").hide('slow');
+        $(".log_input").show('slow');
+        $(".log_input_text").show('slow');
+        $("#sign_up").css('opacity','0.2');
+    })
+    $("#sign_up").click(function () {
+        $(".log_input_text").hide('slow');
+        $(".log_input_register").show('slow');
+        $("#sign_up").css('opacity','1');
+        $("#sign_in").css('opacity','0.2');
+    })
+    $("#sign_in").click(function () {
+        $(".log_input_text").show('slow');
+        $(".log_input_register").hide('slow');
+        $("#sign_in").css('opacity','1');
+        $("#sign_up").css('opacity','0.2');
+    })
+</script>
+</body>
+</html>

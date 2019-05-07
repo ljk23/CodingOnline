@@ -94,11 +94,11 @@
     margin-left: 70%;
 }
 
-#end_operateframe {
+.end_operateframe{
     margin-left: 5px;
 }
 
-#end_operateframe input[type="text"], #end_operateframe select {
+.end_operateframe input[type="text"], .end_operateframe select {
     outline: none;
     border-radius: 5px;
     -webkit-appearance: none;

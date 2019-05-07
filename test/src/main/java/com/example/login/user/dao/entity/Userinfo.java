@@ -1,7 +1,5 @@
 package com.example.login.user.dao.entity;
 
-import java.util.Date;
-
 public class Userinfo {
     private Integer userid;
 
@@ -13,14 +11,15 @@ public class Userinfo {
 
     private String userschool;
 
-    private Byte usergender;
+    private Boolean usergender;
 
     private Integer userlevel;
 
-    private Integer usergrader;
+    private String usergrader;
 
-    private Date registertime;
+    private String registertime;
 
+    private String useridentity;
 
     public Integer getUserid() {
         return userid;
@@ -46,6 +45,14 @@ public class Userinfo {
         this.password = password == null ? null : password.trim();
     }
 
+    public String getUseremail() {
+        return useremail;
+    }
+
+    public void setUseremail(String useremail) {
+        this.useremail = useremail == null ? null : useremail.trim();
+    }
+
     public String getUserschool() {
         return userschool;
     }
@@ -54,11 +61,11 @@ public class Userinfo {
         this.userschool = userschool == null ? null : userschool.trim();
     }
 
-    public Byte getUsergender() {
+    public Boolean getUsergender() {
         return usergender;
     }
 
-    public void setUsergender(Byte usergender) {
+    public void setUsergender(Boolean usergender) {
         this.usergender = usergender;
     }
 
@@ -70,27 +77,27 @@ public class Userinfo {
         this.userlevel = userlevel;
     }
 
-    public Integer getUsergrader() {
+    public String getUsergrader() {
         return usergrader;
     }
 
-    public void setUsergrader(Integer usergrader) {
-        this.usergrader = usergrader;
+    public void setUsergrader(String usergrader) {
+        this.usergrader = usergrader == null ? null : usergrader.trim();
     }
 
-    public Date getRegistertime() {
+    public String getRegistertime() {
         return registertime;
     }
 
-    public void setRegistertime(Date registertime) {
-        this.registertime = registertime;
+    public void setRegistertime(String registertime) {
+        this.registertime = registertime == null ? null : registertime.trim();
     }
 
-    public String getUseremail() {
-        return useremail;
+    public String getUseridentity() {
+        return useridentity;
     }
 
-    public void setUseremail(String useremail) {
-        this.useremail = useremail == null ? null : useremail.trim();
+    public void setUseridentity(String useridentity) {
+        this.useridentity = useridentity == null ? null : useridentity.trim();
     }
 }

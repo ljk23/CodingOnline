@@ -20,14 +20,15 @@ public class UserInfoController {
     @PostMapping("login")    /** Post接受传值的方式是Post */
     public Userinfo login(@RequestBody Userinfo userinfo){
         /**  通过@requestBody可以将请求体中的JSON字符串绑定到相应的bean上  */
-        if(userinfo.getUseremail()!=null){
-            /**  email login */
+       /* if(userinfo.getUseremail()!=null){
+            *//**  email login *//*
             System.out.print(userinfo.getUseremail());
             List<Userinfo> userinfoList=userinfoMapper.selectUserByEmail(userinfo.getUseremail());
             if(userinfoList.size()==0 || !userinfoList.get(0).getPassword().equals(userinfo.getPassword()))
                 return  null;
             return userinfoList.get(0);
-        }
+        }*/
+        System.out.println(userinfo.getUsername());
         if(userinfo.getUsername()!=null){
             /**  username login */
             List<Userinfo> userinfoList=userinfoMapper.selectUserByUsername(userinfo.getUsername());

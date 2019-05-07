@@ -71,3 +71,4 @@ function CurentTime() {
     clock += ss;
     return (clock);
 }
+

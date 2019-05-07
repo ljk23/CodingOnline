@@ -64,13 +64,13 @@
 .loginclass {
     display: none;
     position: absolute;
-    width: 20%;
-    height: 60%;
+    width: 400px;
+    height: 600px;
     top: 20%;
     left: 38%;
     display: -webkit-box; /*这个必须要有*/
     -webkit-box-orient: vertical;
-    background-color: white;
+    background: none;
     z-index: 1001;
 }
 

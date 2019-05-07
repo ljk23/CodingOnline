@@ -5,6 +5,7 @@
     <script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
     <script src="../../js/header.js"></script>
     <script src="../../js/common.js"></script>
+    <script src="../../js/endcommon.js"></script>
     <script src="../../js/endindex.js"></script>
     <script src="../../assets/layer/layer.js"></script>
     <link type="text/css" rel="stylesheet" href="../../css/header.css"/>
@@ -18,12 +19,11 @@
 <!--头部-->
 <div class="ui" style="background-color: #438EB9">
     <div class="ui-left">
-        <a class="item" href="../IndexMoudle/index.html" onmousemove=""><img src="../../images/logo_flat.png"
-                                                                             width="104" height="24"></a>
+        <a class="item" href="../IndexMoudle/index.html" onmousemove=""><img src="../../images/logo_flat.png" width="104" height="24"></a>
         <a class="item" style="padding-left: 35%">BYYL后台管理中心</a>
     </div>
     <div class="ui-right" id="ui-right">
-        <a class="item">欢迎您！管理员</a>
+        <a class="item adminusername"></a>
     </div>
 </div>
 <div id="wj_page_container" class="end_body">
@@ -32,10 +32,11 @@
         </div>
         <!--problemset subitem-->
         <div id="end_problemset" style="display: none">
-            <div class="end_subitem">词法分析</div>
-            <div class="end_subitem">语法分析</div>
-            <div class="end_subitem">语义分析</div>
-            <div class="end_subitem">中间代码</div>
+            <div class="end_subitem" id="cifa">词法分析</div>
+            <div class="end_subitem" id="yufa">语法分析</div>
+            <div class="end_subitem" id="yuyi">语义分析</div>
+            <div class="end_subitem" id="zhongjian">中间代码生成</div>
+            <div class="end_subitem" id="youhua">代码优化</div>
         </div>
         <div class="end_item" id="course_admin">课程管理</div>
         <!--course subitem-->
@@ -62,10 +63,10 @@
     </div>
     <div class="end_right">
         <!--题库管理-->
-        <div id="end_problem_admin"><br>
+        <div id="end_problem_admin" style="display: none"><br>
             <!--select frame-->
             <div class="end_problem_select">
-                <div id="end_operateframe">
+                <div class="end_operateframe">
                     题目名称：
                     <input type="text" id="pro_name" placeholder="支持模糊查找"/>
                     题目类别:
@@ -106,8 +107,8 @@
                             <option selected="selected">词法分析</option>
                             <option>语法分析</option>
                             <option>语义分析</option>
-                            <option>中间代码优化</option>
-                            <option>目标代码生成</option>
+                            <option>中间代码生成</option>
+                            <option>代码优化</option>
                         </select><br>
                             题目作者：<input type="text" id="problemAuthor" placeholder="必填"><br>
                             题目难度：<select id="problemLevel">
@@ -169,6 +170,102 @@
             <!--editor problemset-->
             <div pro></div>
         </div>
+        <!--比赛管理-->
+        <div id="end_contest_admin"><br>
+            <!--select frame-->
+            <div class="end_problem_select">
+                <div class="end_operateframe">
+                    比赛名称：
+                    <input type="text" id="pro_contestname" placeholder="支持模糊查找"/>
+                    比赛类别:
+                    <select  id="pro_contestform">
+                        <option selected="selected">全部</option>
+                        <option>个人</option>
+                        <option>团队</option>
+                    </select>&nbsp;
+                    状态:
+                    <select id="pro_conteststate">
+                        <option selected="selected">全部</option>
+                        <option>在线</option>
+                        <option>下线</option>
+                    </select> &nbsp;
+                    主办方：
+                    <input type="text" id="pro_contesthost" placeholder="支持模糊查找"/>
+                    &nbsp;
+                    <img class="contest_query" style="cursor: pointer" src="../../images/end_select.png" width="15"
+                         height="15"/>
+                </div>
+            </div>
+            <!--add problemset-->
+            <!--<div id="end_contest_add">
+                <div class="end_problem_add_btn"><span style="padding-top: 5px">添加试题</span></div>
+                <div class="end_problem_addframe" style="display: none;">
+                    <form action="" method="post">
+                        <div id="end_problem_addclose" style="background-color: #F3F3F3;">
+                            <img style="margin-left: 95%" src="../../images/close.png" width="18" height="18"
+                                 onclick="closeAddframe();">
+                        </div>
+                        <div id="end_problem_addspan">
+                            题目名称：<input type="text" id="problemName" placeholder="必填"><br>
+                            题目分类： <select id="problemClassfy">
+                            <option selected="selected">词法分析</option>
+                            <option>语法分析</option>
+                            <option>语义分析</option>
+                            <option>中间代码生成</option>
+                            <option>代码优化</option>
+                        </select><br>
+                            题目作者：<input type="text" id="problemAuthor" placeholder="必填"><br>
+                            题目难度：<select id="problemLevel">
+                            <option selected="selected">简单</option>
+                            <option>一般</option>
+                            <option>困难</option>
+                        </select><br>
+                            题目输入：<input type="text" id="problemInput" placeholder="可不填写"><br>
+                            题目输出：<input type="text" id="problemOutput" placeholder="可不填写"><br>
+                            <br>
+                            <textarea class="pro_textarea" id="problemContent"
+                                      style="width: 500px; height: 200px; margin-top: 20px;font-size: 20px; border-radius: 5px;"
+                                      placeholder="题目内容"></textarea>
+                            <div class="end_problem_add_sub" id="end_problem_add_sub">提交</div>
+                        </div>
+                    </form>
+                </div>
+            </div>-->
+            <!--manage problemset-->
+            <table class="end_pro_table" id="contest_pro_table">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>比赛名称</th>
+                    <th>主办方</th>
+                    <th>参赛形式</th>
+                    <th>比赛时间</th>
+                    <th>比赛状态</th>
+                    <th>评测语言</th>
+                    <th>创建日期</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody id="contest_tbody">
+                <tr>
+                    <th>1</th>
+                    <th>新生杯ACM比赛</th>
+                    <th>武汉理工大学</th>
+                    <th>团队</th>
+                    <th>2019-4-22---2019-4-23</th>
+                    <th>在线</th>
+                    <th>C++</th>
+                    <th>创建日期</th>
+                    <th><a style="cursor: pointer;" class="end_pro_ope">查看</a>
+                        <a style="cursor: pointer;" class="end_pro_ope">编辑</a>
+                        <a style="cursor: pointer;" class="end_pro_ope">删除</a>
+                    </th>
+                </tr>
+                </tbody>
+            </table>
+            <!--editor problemset-->
+            <div pro></div>
+        </div>
     </div>
 </div>
 <!--底部-->
@@ -207,8 +304,29 @@
     $(window).load(function () {
         $('#booter').load('../booter/booter.html');
         $('#footer').css('background-color', 'lightgrey')
+       /** 获得管理员的名称 */
+       var teachername=GetQueryString("teachername");
+        document.getElementById("ui-right").innerHTML = "<ul onmousemove='admin_login_over()' onmouseout='admin_login_out()' style='margin-right: 5px;cursor: pointer;'>欢迎您！" + teachername + "" +
+            "<ul id='sub_login' style='display: none; cursor: pointer;'><li style='list-style-type: none'><a onclick='exitLogin()'>注销</a>" +
+            "</li></ul></ul>";
         /**  加载题目 */
-
+        $.ajax({
+            url: "http://localhost:8081/problemAdmin/queryAll",
+            type: 'GET',
+            contentType: 'application/json;charset=utf-8',
+            success: function (data) {
+               if(data.length==0){
+                   layer.alert('题目集为空', {
+                       icon: 5,
+                       time: 2000
+                   })
+               }
+               else{
+                   /**  局部更新 */
+                   updateInfo(data);
+               }
+            }
+        })
     })
 </script>
 <script>
@@ -276,17 +394,6 @@
     })
 </script>
 <script>
-    $(function () {
-        $.ajax({
-            success: function (data) {
-                //  document.getElementById("ui-right").css('backgroud',)
-                document.getElementById("ui-right").innerHTML = "<ul onmousemove='admin_login_over()' onmouseout='admin_login_out()' style='margin-right: 5px;cursor: pointer;'>" + sessionStorage.loginadminName + "" +
-                    "<ul id='sub_login' style='display: none; cursor: pointer;'><li style='list-style-type: none'><a onclick='exitLogin()'>注销</a>" +
-                    "</li></ul></ul>";
-            }
-        })
-    })
-
     function admin_login_over() {
         $("#sub_login").css('display', 'block');
     }
@@ -343,13 +450,25 @@
             })
         }
     })
-    /**  条件查询 */
-    $(".pro_query").click(function () {
+    /**  题库条件查询 */
+    $(".pro_query,#cifa,#yufa,#yuyi,#zhongjian,#youhua").click(function () {
+
         /**  特殊处理 */
-        var problemclassfy=$("#typeclassfy").val();
         var  problemlevel=$("#levelclassfy").val();
-        if($("#typeclassfy").val()=="全部")   problemclassfy='';
         if($("#levelclassfy").val()=="全部")  problemlevel='';
+        if($(this).attr("id")==undefined){
+            var problemclassfy=$("#typeclassfy").val();
+            if($("#typeclassfy").val()=="全部")   problemclassfy='';
+
+        }
+        else{
+            problemclassfy=$(this).attr("id");
+            if(problemclassfy=="cifa")  problemclassfy="词法分析";
+            else if(problemclassfy=="yufa")  problemclassfy="语法分析";
+            else if(problemclassfy=="yuyi")  problemclassfy="语义分析";
+            else if(problemclassfy=="zhongjian")  problemclassfy="中间代码生成";
+            else if(problemclassfy=="youhua")  problemclassfy="目标代码生成";
+        }
         var str = {
             problemname: $("#pro_name").val(),
             problemauthor: $("#pro_creator").val(),
@@ -371,49 +490,18 @@
                     })
                 }
                 else {
-                    /** 删除原有表格的数据 */
-                    var table = document.getElementById("end_pro_table");
-                    var infos = document.getElementById("pro_tbody");
-                    table.removeChild(infos);
-                    /**此处必须创建tbody，否则无法加入到table中  */
-                    infos = document.createElement("tbody");
-                    /**  生成新的table数据元素并添加到table中 */
-                    $.each(data, function (i, n) {
-                        var tr = document.createElement("tr");
-                        var td = document.createElement("td");
-                        var td1 = document.createElement("td");
-                        var td2 = document.createElement("td");
-                        var td3 = document.createElement("td");
-                        var td4 = document.createElement("td");
-                        var td5 = document.createElement("td");
-                        var td6 = document.createElement("td");
-
-                        td.innerHTML = i + 1;
-                        td1.innerHTML = n.problemid;
-                        td2.innerHTML = n.problemname;
-                        td3.innerHTML = n.problemauthor;
-                        if (n.problemstate == false) td4.innerHTML = "下线";
-                        else td4.innerHTML = "在线";
-                        td5.innerHTML = n.uploadtime;
-
-                        td6.innerHTML = "<a class='pro_btn pro_btn_editor' onclick='editorPro(" + n.problemid + ")'><img src='../../images/edit.png'></a>&nbsp;&nbsp;&nbsp;" +
-                            "<a class='pro_btn pro_btn_delete' onclick='deletePro(" + n.problemid + "," + (i + 1) + ")'><img src='../../images/delete-2.png'></a>";
-
-                        tr.appendChild(td);
-                        tr.appendChild(td1);
-                        tr.appendChild(td2);
-                        tr.appendChild(td3);
-                        tr.appendChild(td4);
-                        tr.appendChild(td5);
-                        tr.appendChild(td6);
-                        tr.setAttribute("id", i + 1);
-                        //document.getElementById("end_pro_table tbody tr").setAttribute("id",i+1);
-                        infos.appendChild(tr);
-                    })
-                    table.appendChild(infos);
+                    /**  局部更新 */
+                    updateInfo(data);
                 }
             }
         })
+    })
+    /** 比赛信息管理  */
+    $(".contest_query").click(function () {
+        var
+        if ($("#pro_contestform").val() == "全部") probl = '';
+        var problemclassfy = $("#typeclassfy").val();
+            if ($("#typeclassfy").val() == "全部") problemclassfy = '';
     })
 
     /** 编辑信息 */
