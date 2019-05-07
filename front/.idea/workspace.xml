@@ -1,22 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="fc16bd97-1c47-4299-9180-37012ac4fd0a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/html/TitleMoudle/submitStatus.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/html/UserMoudle/userRank.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/contest.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/contest.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/endindex.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/endindex.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/exercise.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/exercise.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/ContestWork/contest.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/ContestWork/contest.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/EndAdmin/Endindex.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/EndAdmin/Endindex.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/IndexMoudle/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/IndexMoudle/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/TitleMoudle/exercise.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/TitleMoudle/exercise.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/UserMoudle/userInfo.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/UserMoudle/userInfo.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/endcommon.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/endcommon.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/src/main/java/com/example/login/match/controller/MatchController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../test/src/main/java/com/example/login/match/controller/MatchController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/src/main/java/com/example/login/submit/controller/wordHandleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../test/src/main/java/com/example/login/submit/controller/wordHandleController.java" afterDir="false" />
-    </list>
+    <list default="true" id="fc16bd97-1c47-4299-9180-37012ac4fd0a" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,8 +56,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/html/TitleMoudle/submitStatus.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="411">
-              <caret line="69" column="5" lean-forward="true" selection-start-line="69" selection-start-column="5" selection-end-line="69" selection-end-column="5" />
+            <state relative-caret-position="339">
+              <caret line="66" column="20" lean-forward="true" selection-start-line="66" selection-start-column="20" selection-end-line="66" selection-end-column="20" />
               <folding>
                 <element signature="n#style#0;n#a#6;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -374,7 +359,7 @@
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
-    <property name="settings.editor.selected.configurable" value="File.Encoding" />
+    <property name="settings.editor.selected.configurable" value="vcs.Git" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -425,7 +410,7 @@
       <workItem from="1556512520813" duration="8802000" />
       <workItem from="1556541755068" duration="39378000" />
       <workItem from="1556704731381" duration="1044000" />
-      <workItem from="1556869076453" duration="47897000" />
+      <workItem from="1556869076453" duration="48190000" />
     </task>
     <task id="LOCAL-00001" summary="在测试">
       <created>1556198851123</created>
@@ -490,15 +475,21 @@
       <option name="project" value="LOCAL" />
       <updated>1557190177663</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="5.7下午！！！">
+      <created>1557221243321</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1557221243321</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="140706000" />
+    <option name="totallyTimeSpent" value="140999000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="15" y="28" width="1422" height="799" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20362319" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -574,7 +565,8 @@
     <MESSAGE value="4.26晚！！！" />
     <MESSAGE value="4.29早！！！" />
     <MESSAGE value="5.6晚！！！" />
-    <option name="LAST_COMMIT_MESSAGE" value="5.6晚！！！" />
+    <MESSAGE value="5.7下午！！！" />
+    <option name="LAST_COMMIT_MESSAGE" value="5.7下午！！！" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -980,8 +972,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/html/TitleMoudle/submitStatus.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="411">
-          <caret line="69" column="5" lean-forward="true" selection-start-line="69" selection-start-column="5" selection-end-line="69" selection-end-column="5" />
+        <state relative-caret-position="339">
+          <caret line="66" column="20" lean-forward="true" selection-start-line="66" selection-start-column="20" selection-end-line="66" selection-end-column="20" />
           <folding>
             <element signature="n#style#0;n#a#6;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
