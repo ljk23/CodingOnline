@@ -25,16 +25,17 @@ public class wordHandleController {
 
     @PostMapping("wordsubmit")
     public List<Integer> wordSubmit(@RequestBody Submitinfo submitinfo) throws IOException {
-
-        System.out.println(submitinfo.getSubmitcontent());
-       /** 将提交信息存入数据库 */
+        /** 将提交信息存入数据库 */
        submitinfoMapper.insertSelective(submitinfo);
         /** 将代码写入文件  */
-        submitWordMapper.writeWordIntoFile(submitinfo.getSubmitcontent(),submitinfo.getSubmituserid());
+        String wordresult=""; /** 接受词法分析结果  */
+        wordresult=submitWordMapper.writeWordIntoFile(submitinfo.getSubmitcontent(),submitinfo.getSubmituserid(),wordresult);
         /**  判断是否出错 */
         String errorcause=submitWordMapper.judgeIserror(submitinfo.getSubmituserid());
+        System.out.println("wordresult="+wordresult);
        if(errorcause==null){
            /**  更新数据库表 */
+            submitinfo.setWordresult(wordresult);
             submitinfo.setIssuccess(true);
             submitinfo.setSubmitsuccess(1);
             submitinfoMapper.updateByPrimaryKeySelective(submitinfo);
@@ -46,6 +47,7 @@ public class wordHandleController {
        }
        else{
            /**  更新数据库表 */
+             submitinfo.setWordresult(wordresult);
              submitinfo.setErrorcause(errorcause);
              submitinfo.setIssuccess(false);
              submitinfo.setSubmitsuccess(0);
@@ -59,7 +61,6 @@ public class wordHandleController {
 
     @GetMapping("query")
     public List<Submitinfo> queryBysubmituserId(@Param("submituserid") Integer submituserid){
-        System.out.println(submituserid);
         List<Submitinfo> submitinfos = submitinfoMapper.selectBysubmituserId(submituserid);
         if (submitinfos.size() > 0) {
             return submitinfos;

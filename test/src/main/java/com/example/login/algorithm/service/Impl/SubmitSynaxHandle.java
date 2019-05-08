@@ -190,19 +190,19 @@ public class SubmitSynaxHandle implements SubmitSynaxMapper {
             System.out.println("测试"+count);
             for(int i=0;i<count;i++) {
                 if((siyuanshi[i].fuhao).equals("j")) {
-                    returnString += i+"\t("+siyuanshi[i].fuhao+","+siyuanshi[i].op1+","+siyuanshi[i].op2+","+siyuanshi[i].p1.Address_Num+")\n";
+                    returnString += i+"\t("+siyuanshi[i].fuhao+","+siyuanshi[i].op1+","+siyuanshi[i].op2+","+siyuanshi[i].p1.Address_Num+");";
                     System.out.println(i+"\t("+siyuanshi[i].fuhao+","+siyuanshi[i].op1+","+siyuanshi[i].op2+","+siyuanshi[i].p1.Address_Num+")");
                 }
                 else if((siyuanshi[i].fuhao).equals(">")) {
-                    returnString += i+"\t("+siyuanshi[i].fuhao+","+siyuanshi[i].op1+","+siyuanshi[i].op2+","+siyuanshi[i].p1.Address_Num+")\n";
+                    returnString += i+"\t("+siyuanshi[i].fuhao+","+siyuanshi[i].op1+","+siyuanshi[i].op2+","+siyuanshi[i].p1.Address_Num+");";
                     System.out.println(i+"\t("+siyuanshi[i].fuhao+","+siyuanshi[i].op1+","+siyuanshi[i].op2+","+siyuanshi[i].p1.Address_Num+")");
                 }
                 else if((siyuanshi[i].fuhao).equals("<")) {
-                    returnString += i+"\t("+siyuanshi[i].fuhao+","+siyuanshi[i].op1+","+siyuanshi[i].op2+","+siyuanshi[i].p1.Address_Num+")\n";
+                    returnString += i+"\t("+siyuanshi[i].fuhao+","+siyuanshi[i].op1+","+siyuanshi[i].op2+","+siyuanshi[i].p1.Address_Num+");";
                     System.out.println(i+"\t("+siyuanshi[i].fuhao+","+siyuanshi[i].op1+","+siyuanshi[i].op2+","+siyuanshi[i].p1.Address_Num+")");
                 }
                 else {
-                    returnString += i+"\t("+siyuanshi[i].fuhao+","+siyuanshi[i].op1+","+siyuanshi[i].op2+","+siyuanshi[i].p1.result+")\n";
+                    returnString += i+"\t("+siyuanshi[i].fuhao+","+siyuanshi[i].op1+","+siyuanshi[i].op2+","+siyuanshi[i].p1.result+");";
                     System.out.println(i+"\t("+siyuanshi[i].fuhao+","+siyuanshi[i].op1+","+siyuanshi[i].op2+","+siyuanshi[i].p1.result+")");
                 }
             }

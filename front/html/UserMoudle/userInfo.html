@@ -20,7 +20,7 @@
         <a class="item" onclick="warning()"><i class="list items icon"></i>在线教学</a>
         <a class="item" href="../ContestWork/contest.html"><i class="list items icon"></i>在线比赛</a>
         <a class="item" href="../TitleMoudle/submitStatus.html"><i class="list items icon"></i>提交状态</a>
-        <a class="item" href="../ContestWork/contest.html"><i class="list items icon"></i>选手排名</a>
+        <a class="item" href="../UserMoudle/userRank.html"><i class="list items icon"></i>选手排名</a>
         <a class="item" href="../HelpMoudle/help.html" style="border-right: 1px solid gray;"><i class="list items icon"></i>帮助中心</a>
     </div>
     <div class="ui-right" id="ui-right">
@@ -63,6 +63,7 @@
                 <th>耗时</th>
                 <th>语言</th>
                 <th>分类</th>
+                <th>操作</th>
                 <th>提交时间</th>
             </tr>
             </thead>
@@ -127,6 +128,7 @@
                     var td7 = document.createElement("td");
                     var td8 = document.createElement("td");
                     var td9 = document.createElement("td");
+                    var td10 = document.createElement("td");
 
                     td1.innerHTML = i + 1;
                     td2.innerHTML = sessionStorage.loginName;
@@ -141,7 +143,9 @@
                     td6.innerHTML = "8s";
                     td7.innerHTML = "<a class='editor' href='../TitleMoudle/oneQuestion.html?problemid="+problemid+"&submitid="+n.submitid+"'>C/编辑</a>";
                     td8.innerHTML = n.submitnameclassfy;
-                    td9.innerHTML = n.submitupdatetime;
+                    td9.innerHTML="<div onclick='integer("+n.submitid+")'>合并子模块</div>";
+                    td9.style="color:#428bca; cursor: pointer;";
+                    td10.innerHTML = n.submitupdatetime;
 
                     tr.appendChild(td1);
                     tr.appendChild(td2);
@@ -152,6 +156,7 @@
                     tr.appendChild(td7);
                     tr.appendChild(td8);
                     tr.appendChild(td9);
+                    tr.appendChild(td10);
                     tr.setAttribute("id", i + 1);
                     infos.appendChild(tr);
                 })
@@ -159,7 +164,10 @@
             })
         }
     })
-
+/**  合并系统 */
+function integer(submitid) {
+    window.location.href="resultInteger.html?submitid="+submitid;
+}
 </script>
 <script>
     /**select tab  */

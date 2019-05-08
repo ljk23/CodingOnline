@@ -11,7 +11,7 @@ import java.io.IOException;
 public interface SubmitWordMapper {
 
     @PostConstruct
-    public void writeWordIntoFile(String submitcontent,int userid) throws IOException;
+    public String writeWordIntoFile(String submitcontent,int userid,String wordresult) throws IOException;
 
     @PostConstruct
     public Boolean preHandleWordFile(String fileurl,String filename) throws IOException;

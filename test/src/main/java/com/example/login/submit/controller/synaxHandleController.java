@@ -3,6 +3,7 @@ package com.example.login.submit.controller;
 import com.example.login.algorithm.service.SubmitSynaxMapper;
 import com.example.login.submit.dao.entity.Submitinfo;
 import com.example.login.submit.dao.mapper.SubmitinfoMapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -25,7 +26,6 @@ public class synaxHandleController {
     @PostMapping("synaxsubmit")
     public List<Integer> wordSubmit(@RequestBody Submitinfo submitinfo) throws Exception {
 
-        System.out.println(submitinfo.getSubmitcontent());
         /** 将提交信息存入数据库 */
         submitinfoMapper.insertSelective(submitinfo);
         /** 语法分析  */
@@ -55,5 +55,22 @@ public class synaxHandleController {
             return list;
         }
 
+    }
+
+    @PostMapping("synaxcall")
+    public Submitinfo synaxcall(@RequestBody Submitinfo submitinfo) throws Exception{
+        System.out.println(submitinfo.getSubmitcontent());
+        /** 语法分析  */
+        String resultInfo=submitSynaxMapper.Synax(submitinfo.getSubmitcontent(),submitinfo.getSubmituserid());
+        /**  判断是否出错 */
+        System.out.println("长度是"+resultInfo.length());
+        if(resultInfo!=null) {   /**  编译正确 */
+            submitinfo.setSynaxresult(resultInfo);
+            submitinfoMapper.updateByPrimaryKeySelective(submitinfo);
+            return submitinfo;
+        }
+        else{
+            return null;
+        }
     }
 }

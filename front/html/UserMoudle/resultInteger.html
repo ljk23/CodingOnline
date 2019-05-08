@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="../../js/header.js"></script>
+    <script src="../../js/common.js"></script>
+    <script src="../../assets/layer/layer.js"></script>
+    <link type="text/css" rel="stylesheet" href="../../css/body.css"/>
+    <link type="text/css" rel="stylesheet" href="../../css/exercise.css"/>
+    <link type="text/css" rel="stylesheet" href="../../css/userInfo.css"/>
+    <link type="text/css" rel="stylesheet" href="../../css/header.css"/>
+    <link type="text/css" rel="stylesheet" href="../../css/booter.css"/>
+    <link type="text/css" rel="stylesheet" href="../../css/login.css"/>
+    <link type="text/css" rel="stylesheet" href="../../css/endindex.css"/>
+</head>
+<body>
+<!--头部-->
+<div class="ui">
+    <div class="ui-left">
+        <a class="item" href="../IndexMoudle/index.html" onmousemove=""><img src="../../images/logo_flat.png" width="104" height="24"></a>
+        <a class="item" href="../TitleMoudle/exercise.html"><i class="list items icon"></i>题目中心</a>
+        <a class="item" onclick="warning()"><i class="list items icon"></i>在线教学</a>
+        <a class="item" href="../ContestWork/contest.html"><i class="list items icon"></i>在线比赛</a>
+        <a class="item" href="../TitleMoudle/submitStatus.html"><i class="list items icon"></i>提交状态</a>
+        <a class="item" href="../UserMoudle/userRank.html"><i class="list items icon"></i>选手排名</a>
+        <a class="item" href="../HelpMoudle/help.html" style="border-right: 1px solid gray;"><i class="list items icon"></i>帮助中心</a>
+    </div>
+    <div class="ui-right" id="ui-right">
+        <a class="item" onclick="login()">
+            <img src="../../images/login.png" width="14px" height="12px" style="margin-right: -20px;"></img>
+            <i class="sign in icon" id="banScroll"></i>登录</a>
+    </div>
+    <script>
+        function warning() {
+            layer.msg("开发中",{
+                icon: 4,
+                time: 2000
+            })
+        }
+    </script>
+</div>
+<!--背景色-->
+<div class="operatebackgroud" style="display: none;"></div>
+<!--主体-->
+<br>
+<div class="ex_page_container one_page">
+    <div class="message_marquee">
+        <marquee scrollAmount="2" direction=right behavior="scroll">暂无比赛通知!!!</marquee>
+    </div>
+    <br>
+    <div class="end_problem_add_btn"  id="word" style="margin-left: 2%;"><span style="padding-top: 8px;cursor: pointer">词法分析结果</span></div>
+    <!--词法结果显示框-->
+    <table class="qu_table" id="pro_table" style="width: 60%;margin-left: 5%;">
+        <thead>
+        <tr>
+            <th>Num</th>
+            <th>value</th>
+            <th>Code</th>
+            <th>Classfy</th>
+            <th>RowNumber</th>
+            <th>ColNumber</th>
+            <th>flag</th>
+        </tr>
+        </thead>
+        <tbody id="pro_tbody">
+            <th>1</th>
+            <th>1</th>
+            <th>tp5admin</th>
+            <th>5</th>
+            <th>20</th>
+            <th>40%</th>
+        </tbody>
+    </table>
+    <br>
+    <div class="end_problem_add_btn" id="synax" style="margin-left: 2%;background-color: lightseagreen;cursor: pointer"><span style="padding-top: 8px">语法分析结果</span></div>
+    <!--词法结果显示框-->
+    <table class="qu_table" id="synax_table" style="width: 60%;margin-left: 5%;">
+        <thead>
+        <tr>
+            <th>Num</th>
+            <th>value</th>
+            <th>Code</th>
+            <th>Classfy</th>
+            <th>RowNumber</th>
+            <th>ColNumber</th>
+            <th>flag</th>
+        </tr>
+        </thead>
+        <tbody id="synax_tbody">
+        <th>1</th>
+        <th>1</th>
+        <th>tp5admin</th>
+        <th>5</th>
+        <th>20</th>
+        <th>40%</th>
+        </tbody>
+    </table>
+    <br>
+    <div class="end_problem_add_btn"  id="central" style="margin-left: 2%;background-color: #428bca;cursor: pointer"><span style="padding-top: 8px">中间代码分析结果</span></div>
+    <!--中间代码结果显示框-->
+    <table class="qu_table" id="central_table" style="width: 60%;margin-left: 5%;">
+        <thead>
+        <tr>
+            <th>Num</th>
+            <th>Operate</th>
+            <th>Arg1</th>
+            <th>Arg2</th>
+            <th>Result</th>
+        </tr>
+        </thead>
+        <tbody id="central_tbody">
+        <th>1</th>
+        <th>1</th>
+        <th>tp5admin</th>
+        <th>5</th>
+        <th>5</th>
+        </tbody>
+    </table>
+</div>
+<!--底部-->
+<div id="booter"></div>
+<script>
+    /**select tab  */
+    $(function () {
+        $("a[class=item]").each(function (index) {
+            $(this).mouseover(function () {
+                $("a[class=item]").css("backgroundColor", "#1B1C1D");
+                $(this).css("backgroundColor", "#515151");
+            }).mouseout(function () {
+                $("a[class=item]").css("backgroundColor", "#1B1C1D");
+            })
+        });
+        /** 禁止滑动 */
+        $("#banScroll").click(function () {
+            $(window).scroll(function () {
+                $(this).scrollTop(0)
+            });
+        });
+    });
+</script>
+<script>
+    var useridentity="";
+    /** load function  */
+    $(function () {
+        $('#one_input').load('../function/codeInput.html');
+        $('#booter').load('../booter/booter.html');
+        /** 加载信息  */
+        var submitid=GetQueryString("submitid");
+        $.ajax({
+            url:  "http://localhost:8081/submit/queryBysubmitId",
+            type: 'GET',
+            contentType: 'application/json;charset=utf-8',
+            data: "submitid="+submitid,
+            success: function (data) {
+            /** 词法分析自动调用  */
+            if(eval(data).submitnameclassfy=="词法分析")
+            {
+                var wordInforesult=eval(data).wordresult.trim().split(",");
+                /** 局部更新信息  */
+                /** 删除原有表格的数据 */
+                var table = document.getElementById("pro_table");
+                var infos = document.getElementById("pro_tbody");
+                table.removeChild(infos);
+                /**此处必须创建tbody，否则无法加入到table中  */
+                var infos = document.createElement("tbody");
+                /**  生成新的table数据元素并添加到table中 */
+                for(let i=0; i<wordInforesult.length-1;i++){
+                    var singleresult=wordInforesult[i].trim().split("\t");
+                    /*
+                    for(let j=0;j<singleresult.length;j++){
+                        console.log(singleresult.length);
+                    }*/
+                    var tr = document.createElement("tr");
+                    var td1 = document.createElement("td");
+                    var td2 = document.createElement("td");
+                    var td3 = document.createElement("td");
+                    var td4 = document.createElement("td");
+                    var td5 = document.createElement("td");
+                    var td6 = document.createElement("td");
+                    var td7 = document.createElement("td");
+
+                    td1.innerHTML = i+1;   //编号
+                    td2.innerHTML = singleresult[0];  //值
+                    td3.innerHTML = singleresult[1];  //类别
+                    td4.innerHTML = singleresult[2];  //代号
+                    td5.innerHTML = singleresult[3];  //行号
+                    td6.innerHTML = singleresult[4];  //列号
+                    if(singleresult[1]==6)      //状态码
+                    {
+                        td7.innerHTML = "false";
+                        tr.style="background-color:red";
+                    }
+                    else td7.innerHTML="true";
+
+                    tr.appendChild(td1);
+                    tr.appendChild(td2);
+                    tr.appendChild(td3);
+                    tr.appendChild(td4);
+                    tr.appendChild(td5);
+                    tr.appendChild(td6);
+                    tr.appendChild(td7);
+                    tr.setAttribute("id", i + 1);
+                    infos.appendChild(tr);
+                }
+                table.appendChild(infos);
+
+                /*******************-*********************************************************************/
+                /** 进中间代码生成 调用语法分析接口**/
+                centralsubmit={submitid:eval(data).submitid,submitcontent: eval(data).submitcontent};
+                $.ajax({
+                    url:  "http://localhost:8081/synaxsubmit/synaxcall",
+                    type: 'POST',
+                    contentType: 'application/json;charset=utf-8',
+                    data: JSON.stringify(centralsubmit),
+                    success: function (data) {
+                        var Inforesult=eval(data).synaxresult.trim().split(";");
+                        /** 局部更新信息  */
+                        /** 删除原有表格的数据 */
+                        var table = document.getElementById("central_table");
+                        var infos = document.getElementById("central_tbody");
+                        table.removeChild(infos);
+                        /**此处必须创建tbody，否则无法加入到table中  */
+                        var infos = document.createElement("tbody");
+                        /**  生成新的table数据元素并添加到table中 */
+
+                        for(var j=0;j<Inforesult.length-1;j++){
+                            var ss = Inforesult[j].match(/\(([^)]*)\)/);
+                            var singleresult=ss[1].trim().split(",");
+
+                                var tr = document.createElement("tr");
+                                var td1 = document.createElement("td");
+                                var td2 = document.createElement("td");
+                                var td3 = document.createElement("td");
+                                var td4 = document.createElement("td");
+                                var td5 = document.createElement("td");
+
+                                td1.innerHTML = j+1;   //编号
+                                td2.innerHTML = singleresult[0];  //值
+                                td3.innerHTML = singleresult[1];  //类别
+                                td4.innerHTML = singleresult[2];  //代号
+                                td5.innerHTML = singleresult[3];  //行号
+
+
+                                tr.appendChild(td1);
+                                tr.appendChild(td2);
+                                tr.appendChild(td3);
+                                tr.appendChild(td4);
+                                tr.appendChild(td5);
+                                tr.setAttribute("id", j + 1);
+                                infos.appendChild(tr);
+                            }
+                            table.appendChild(infos);
+                        }
+                })
+             }
+
+           }
+        })
+    })
+    /** Islogin   */
+    $(window).load(function () {
+        var loginName = sessionStorage.loginName;
+        if (loginName != undefined) {
+            var obj = sessionStorage.loginName;
+            Implement(obj);
+        }
+    })
+
+    /**   关闭结果按钮 */
+    var wordflag=false;
+    $("#word").click(function () {
+        if(wordflag==false){
+            $("#pro_table").hide('normal');
+            wordflag=true;
+        }else{
+            $("#pro_table").show('normal');
+            wordflag=false;
+        }
+    })
+    var centralflag=false;
+    $("#central").click(function () {
+        if(centralflag==false){
+            $("#central_table").hide('normal');
+            centralflag=true;
+        }else{
+            $("#central_table").show('normal');
+            centralflag=false;
+        }
+    })
+</script>
+<script>
+    $("#student,#teacher,#admin").click(function () {
+        useridentity=$(this).attr("id");
+        $(".log_user").hide('slow');
+        $(".log_input").show('slow');
+        $(".log_input_text").show('slow');
+        $("#sign_up").css('opacity','0.2');
+    })
+    $("#sign_up").click(function () {
+        $(".log_input_text").hide('slow');
+        $(".log_input_register").show('slow');
+        $("#sign_up").css('opacity','1');
+        $("#sign_in").css('opacity','0.2');
+    })
+    $("#sign_in").click(function () {
+        $(".log_input_text").show('slow');
+        $(".log_input_register").hide('slow');
+        $("#sign_in").css('opacity','1');
+        $("#sign_up").css('opacity','0.2');
+    })
+</script>
+</body>
+</html>

@@ -24,7 +24,7 @@ public class SubmitWordHandle implements SubmitWordMapper {
     }
 
     /** 将文件写入wordinput.txt */
-    public void writeWordIntoFile(String submitcontent,int userid) throws IOException {
+    public String writeWordIntoFile(String submitcontent,int userid,String wordresult) throws IOException {
         /**  将submitcontent输入wordinput.txt */
         /** 保存文件地址 */
         String filename=String.valueOf(userid);
@@ -63,8 +63,9 @@ public class SubmitWordHandle implements SubmitWordMapper {
         while ((str1 = bf1.readLine()) != null) {
             str1 = str1 + ' ';
             linenums++;
-            submitWordHandle.analyze(str1, out1, linenums,errorout);
+            wordresult=submitWordHandle.analyze(str1, out1, linenums,errorout,wordresult);
         }
+        return wordresult;
      }
     /** 处理注释和空格 */
     public Boolean preHandleWordFile(String fileurl,String filename) throws IOException{
@@ -126,7 +127,7 @@ public class SubmitWordHandle implements SubmitWordMapper {
         return str;
     }
     /** 词法分析的程序  */
-    public  void analyze(String chars,BufferedWriter out,int linenums,BufferedWriter errorout) throws IOException {
+    public  String analyze(String chars,BufferedWriter out,int linenums,BufferedWriter errorout,String wordresult) throws IOException {
         String arr = "";
         for(int i = 0;i<chars.length();i++) {
             int rownums=i+1;
@@ -142,13 +143,15 @@ public class SubmitWordHandle implements SubmitWordMapper {
                 i--;
                 if(isKey(arr)){
                     //关键字
-                    out.write(arr+"\t4"+"\t关键字\t"+linenums+"\t"+rownums+"\r\n");
+                    out.write(arr+"\t4"+"\t关键字\t"+linenums+"\t"+rownums+",");
                     out.flush();
+                    wordresult+=arr+"\t4"+"\t关键字\t"+linenums+"\t"+rownums+",";
                 }
                 else{
                     //标识符
-                    out.write(arr+"\t4"+"\t标识符\t"+linenums+"\t"+rownums+"\r\n");
+                    out.write(arr+"\t4"+"\t标识符\t"+linenums+"\t"+rownums+",");
                     out.flush();
+                    wordresult+=arr+"\t4"+"\t标识符\t"+linenums+"\t"+rownums+",";
                 }
             }
             else if(isDigit(ch)||(ch == '.'))
@@ -160,80 +163,108 @@ public class SubmitWordHandle implements SubmitWordMapper {
                     ch = chars.charAt(++i);
                 }
                 //属于无符号常数
-                out.write(arr+"\t5"+"\t常数\t"+linenums+"\t"+rownums+"\r\n");
+                out.write(arr+"\t5"+"\t常数\t"+linenums+"\t"+rownums+",");
                 out.flush();
+                wordresult+=arr+"\t5"+"\t常数\t"+linenums+"\t"+rownums+",";
             }
             else switch(ch){
                     //运算符
-                    case '+':out.write(ch+"\t2"+"\t运算符\t"+linenums+"\t"+rownums+"\r\n");out.flush();break;
-                    case '-':out.write(ch+"\t2"+"\t运算符\t"+linenums+"\t"+rownums+"\r\n");out.flush();break;
-                    case '*':out.write(ch+"\t2"+"\t运算符\t"+linenums+"\t"+rownums+"\r\n");out.flush();break;
-                    case '/':out.write(ch+"\t2"+"\t运算符\t"+linenums+"\t"+rownums+"\r\n");out.flush();break;
+                    case '+':out.write(ch+"\t2"+"\t运算符\t"+linenums+"\t"+rownums+",");out.flush();
+                         wordresult+=ch+"\t2"+"\t运算符\t"+linenums+"\t"+rownums+","; break;
+                    case '-':out.write(ch+"\t2"+"\t运算符\t"+linenums+"\t"+rownums+",");out.flush();
+                         wordresult+=ch+"\t2"+"\t运算符\t"+linenums+"\t"+rownums+","; break;
+                    case '*':out.write(ch+"\t2"+"\t运算符\t"+linenums+"\t"+rownums+",");out.flush();
+                         wordresult+=ch+"\t2"+"\t运算符\t"+linenums+"\t"+rownums+","; break;
+                    case '/':out.write(ch+"\t2"+"\t运算符\t"+linenums+"\t"+rownums+",");out.flush();
+                         wordresult+=ch+"\t2"+"\t运算符\t"+linenums+"\t"+rownums+","; break;
                     //分界符
-                    case '(':out.write(ch+"\t3"+"\t分界符\t"+linenums+"\t"+rownums+"\r\n");out.flush();break;
-                    case ')':out.write(ch+"\t3"+"\t分界符\t"+linenums+"\t"+rownums+"\r\n");out.flush();break;
-                    case '[':out.write(ch+"\t3"+"\t分界符\t"+linenums+"\t"+rownums+"\r\n");out.flush();break;
-                    case ']':out.write(ch+"\t3"+"\t分界符\t"+linenums+"\t"+rownums+"\r\n");out.flush();break;
-                    case ';':out.write(ch+"\t3"+"\t分界符\t"+linenums+"\t"+rownums+"\r\n");out.flush();break;
-                    case '{':out.write(ch+"\t3"+"\t分界符\t"+linenums+"\t"+rownums+"\r\n");out.flush();break;
-                    case '}':out.write(ch+"\t3"+"\t分界符\t"+linenums+"\t"+rownums+"\r\n");out.flush();break;
+                    case '(':out.write(ch+"\t3"+"\t分界符\t"+linenums+"\t"+rownums+",");out.flush();
+                        wordresult+=ch+"\t3"+"\t分界符\t"+linenums+"\t"+rownums+","; break;
+                    case ')':out.write(ch+"\t3"+"\t分界符\t"+linenums+"\t"+rownums+",");out.flush();
+                          out.write(ch+"\t3"+"\t分界符\t"+linenums+"\t"+rownums+",");out.flush();
+                        wordresult+=ch+"\t3"+"\t分界符\t"+linenums+"\t"+rownums+","; break;
+                    case '[':out.write(ch+"\t3"+"\t分界符\t"+linenums+"\t"+rownums+",");out.flush();
+                          out.write(ch+"\t3"+"\t分界符\t"+linenums+"\t"+rownums+",");out.flush();
+                        wordresult+=ch+"\t3"+"\t分界符\t"+linenums+"\t"+rownums+","; break;
+                    case ']':out.write(ch+"\t3"+"\t分界符\t"+linenums+"\t"+rownums+",");out.flush();
+                          out.write(ch+"\t3"+"\t分界符\t"+linenums+"\t"+rownums+",");out.flush();
+                            wordresult+=ch+"\t3"+"\t分界符\t"+linenums+"\t"+rownums+","; break;
+                    case ';':out.write(ch+"\t3"+"\t分界符\t"+linenums+"\t"+rownums+",");out.flush();
+                         out.write(ch+"\t3"+"\t分界符\t"+linenums+"\t"+rownums+",");out.flush();
+                        wordresult+=ch+"\t3"+"\t分界符\t"+linenums+"\t"+rownums+","; break;
+                    case '{':out.write(ch+"\t3"+"\t分界符\t"+linenums+"\t"+rownums+",");
+                          out.flush();out.write(ch+"\t3"+"\t分界符\t"+linenums+"\t"+rownums+",");out.flush();
+                        wordresult+=ch+"\t3"+"\t分界符\t"+linenums+"\t"+rownums+","; break;
+                    case '}':out.write(ch+"\t3"+"\t分界符\t"+linenums+"\t"+rownums+",");out.flush();
+                           out.write(ch+"\t3"+"\t分界符\t"+linenums+"\t"+rownums+",");out.flush();
+                        wordresult+=ch+"\t3"+"\t分界符\t"+linenums+"\t"+rownums+","; break;
                     /** 运算符   */
                     case '=':{
                         ch = chars.charAt(++i);
                         if(ch == '='){
-                            out.write("=="+"\t2"+"\t运算符\t"+linenums+"\t"+rownums+"\r\n");
+                            out.write("=="+"\t2"+"\t运算符\t"+linenums+"\t"+rownums+",");
                             out.flush();
+                            wordresult+="=="+"\t2"+"\t运算符\t"+linenums+"\t"+rownums+",";
                         }
                         else {
-                            out.write("="+"\t2"+"\t运算符\t"+linenums+"\t"+rownums+"\r\n");
+                            out.write("="+"\t2"+"\t运算符\t"+linenums+"\t"+rownums+",");
                             out.flush();
+                            wordresult+="="+"\t2"+"\t运算符\t"+linenums+"\t"+rownums+",";
                             i--;
                         }
                     }break;
                     case '!':{
                         ch = chars.charAt(++i);
                         if(ch == '='){
-                            out.write("!="+"\t2"+"\t运算符\t"+linenums+"\t"+rownums+"\r\n");
+                            out.write("!="+"\t2"+"\t运算符\t"+linenums+"\t"+rownums+",");
                             out.flush();
+                            wordresult+="!="+"\t2"+"\t运算符\t"+linenums+"\t"+rownums+",";
                         }
                         else {
-                            out.write("!"+"\t2"+"\t运算符\t"+linenums+"\t"+rownums+"\r\n");
+                            out.write("!"+"\t2"+"\t运算符\t"+linenums+"\t"+rownums+",");
                             out.flush();
+                            wordresult+="!"+"\t2"+"\t运算符\t"+linenums+"\t"+rownums+",";
                             i--;
                         }
                     }break;
                     case '&':{
                         ch = chars.charAt(++i);
                         if(ch == '&'){
-                            out.write("&&"+"\t2"+"\t运算符\t"+linenums+"\t"+rownums+"\r\n");
+                            out.write("&&"+"\t2"+"\t运算符\t"+linenums+"\t"+rownums+",");
                             out.flush();
+                            wordresult+="&&"+"\t2"+"\t运算符\t"+linenums+"\t"+rownums+",";
                         }
                         else {
-                            out.write("&"+"\t2"+"\t运算符\t"+linenums+"\t"+rownums+"\r\n");
+                            out.write("&"+"\t2"+"\t运算符\t"+linenums+"\t"+rownums+",");
                             out.flush();
+                            wordresult+="&"+"\t2"+"\t运算符\t"+linenums+"\t"+rownums+",";
                             i--;
                         }
                     }break;
                     case '|':{
                         ch = chars.charAt(++i);
                         if(ch == '|') {
-                            out.write("||"+"\t2"+"\t运算符\t"+linenums+"\t"+rownums+"\r\n");
+                            out.write("||"+"\t2"+"\t运算符\t"+linenums+"\t"+rownums+",");
                             out.flush();
+                            wordresult+="||"+"\t2"+"\t运算符\t"+linenums+"\t"+rownums+",";
                         }
                         else {
-                            out.write("|"+"\t2"+"\t运算符\t"+linenums+"\t"+rownums+"\r\n");
+                            out.write("|"+"\t2"+"\t运算符\t"+linenums+"\t"+rownums+",");
                             out.flush();
+                            wordresult+="||"+"\t2"+"\t运算符\t"+linenums+"\t"+rownums+",";
                             i--;
                         }
                     }break;
                     case ':':{
                         ch = chars.charAt(++i);
                         if(ch == '='){
-                            out.write(":="+"\t2"+"\t运算符\t"+linenums+"\t"+rownums+"\r\n");
+                            out.write(":="+"\t2"+"\t运算符\t"+linenums+"\t"+rownums+",");
+                            wordresult+="||"+"\t2"+"\t运算符\t"+linenums+"\t"+rownums+",";
                             out.flush();
                         }
                         else {
-                            out.write(":"+"\t6"+"\t其他字符\t"+linenums+"\t"+rownums+"\r\n");
+                            out.write(":"+"\t6"+"\t其他字符\t"+linenums+"\t"+rownums+",");
+                            wordresult+=":"+"\t6"+"\t其他字符\t"+linenums+"\t"+rownums+",";
                             out.flush();
                             i--;
                         }
@@ -241,36 +272,42 @@ public class SubmitWordHandle implements SubmitWordMapper {
                     case '>':{
                         ch = chars.charAt(++i);
                         if(ch == '='){
-                            out.write(">="+"\t2"+"\t运算符\t"+linenums+"\t"+rownums+"\r\n");
+                            out.write(">="+"\t2"+"\t运算符\t"+linenums+"\t"+rownums+",");
                             out.flush();
+                            wordresult+="||"+"\t2"+"\t运算符\t"+linenums+"\t"+rownums+",";
                         }
                         else {
-                            out.write(">"+"\t2"+"\t运算符\t"+linenums+"\t"+rownums+"\r\n");
+                            out.write(">"+"\t2"+"\t运算符\t"+linenums+"\t"+rownums+",");
                             out.flush();
+                            wordresult+="||"+"\t2"+"\t运算符\t"+linenums+"\t"+rownums+",";
                             i--;
                         }
                     }break;
                     case '<':{
                         ch = chars.charAt(++i);
                         if(ch == '='){
-                            out.write("<="+"\t2"+"\t运算符\t"+linenums+"\t"+rownums+"\r\n");
+                            out.write("<="+"\t2"+"\t运算符\t"+linenums+"\t"+rownums+",");
                             out.flush();
+                            wordresult+="||"+"\t2"+"\t运算符\t"+linenums+"\t"+rownums+",";
                         }
                         else {
-                            out.write("<"+"\t2"+"\t运算符\t"+linenums+"\t"+rownums+"\r\n");
+                            out.write("<"+"\t2"+"\t运算符\t"+linenums+"\t"+rownums+",");
                             out.flush();
+                            wordresult+="||"+"\t2"+"\t运算符\t"+linenums+"\t"+rownums+",";
                             i--;
                         }
                     }break;
                     //无识别
                     default: {
-                        out.write(ch+"\t6"+"\t无识别符\t"+linenums+"\t"+rownums+"\r\n");
-                        errorout.write("第"+linenums+"行第"+rownums+"列"+ch+"未识别的符号\r\n");
+                        out.write(ch+"\t6"+"\t无识别符\t"+linenums+"\t"+rownums+",");
+                        errorout.write("第"+linenums+"行第"+rownums+"列"+ch+"未识别的符号,");
                         out.flush();
                         errorout.flush();
+                        wordresult+=ch+"\t6"+"\t无识别符\t"+linenums+"\t"+rownums+",";
                     }
                 }
         }
+        return wordresult;   /** 返回结果  */
     }
     /** 判断是否有错  */
     public String judgeIserror(Integer userid) throws IOException{
