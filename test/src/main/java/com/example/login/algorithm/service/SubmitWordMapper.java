@@ -3,6 +3,7 @@ package com.example.login.algorithm.service;
 import com.example.login.submit.dao.entity.Submitinfo;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.PostConstruct;
 import java.io.IOException;
@@ -18,5 +19,21 @@ public interface SubmitWordMapper {
 
     @PostConstruct
     public String  judgeIserror(Integer userid) throws IOException;
+
+    @PostConstruct
+    public String uploadWordCode(MultipartFile file);
+
+    @PostConstruct
+    public void UnZip(String filename,String filepath) throws IOException;
+
+    @PostConstruct
+    public Boolean Compiler(String filepath) throws IOException;
+
+    @PostConstruct
+    public void deleteCode(String filename);
+
+    @PostConstruct
+    public Boolean Answer(Integer problemid,MultipartFile file) throws IOException;
+
 
 }

@@ -180,9 +180,13 @@
             <!--题目集-->
             <div class="fenqu domain_3">
                 题目集
+                <div class="code_upload file_upload"><input type="file" name="file" id="file" value="选择文件"></div>
+                <div class="code_upload"><input type="button" value="上传单文件" onclick="clickUPFile();" /></div>
+                <div class="code_upload"><input type="button" value="上传代码文件夹" onclick="clickZipFile();"></div>
             </div>
         </div>
     </form>
+
 </div>
 <!--底部-->
 <div id="booter"></div>
@@ -379,6 +383,59 @@
             })
         }
     })
+</script>
+<script>
+    /**  单文件方法   */
+    function clickUPFile(){
+        //添加获取文件信息
+        var formdata=new FormData();
+        formdata.append('enctype', 'multipart/form-data');
+        formdata.append('name', 'file');
+        formdata.append('file',$('#file').get(0).files[0]);
+        // formdata.append('recid',str);
+        $.ajax({
+            url: 'http://localhost:8081/getsubmit/wordsubmit',
+            type:'post',
+            contentType:false,
+            data:formdata,
+            processData:false,
+            success:function(info){
+                layer.msg("提交中", {
+                    icon:16,
+                    shade:[0.1, '#4F94CD'],
+                    time: 3000 //取消自动关闭
+                },function () {
+                    if(info==1){
+                        layer.alert('编写通过', {
+                            icon: 1,
+                            time: 2000
+                        }, function () {
+
+                        })
+                    }
+                    else if(info==2){
+                        layer.alert('答案错误', {
+                            icon: 5,
+                            time: 2000
+                        }, function () {
+
+                        })
+                    }else{
+                        layer.alert('编译失败', {
+                            icon: 5,
+                            time: 2000
+                        }, function () {
+
+                        })
+                    }
+                })
+            }
+        });
+    }
+    /**  多文件上传  */
+    function clickZipFile() {
+        
+    }
 </script>
 </body>
 </html>

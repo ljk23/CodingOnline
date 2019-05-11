@@ -25,6 +25,7 @@ public class synaxHandleController {
 
     @PostMapping("synaxsubmit")
     public List<Integer> wordSubmit(@RequestBody Submitinfo submitinfo) throws Exception {
+        String synaxresult="";
 
         /** 将提交信息存入数据库 */
         submitinfoMapper.insertSelective(submitinfo);
@@ -65,7 +66,7 @@ public class synaxHandleController {
         /**  判断是否出错 */
         System.out.println("长度是"+resultInfo.length());
         if(resultInfo!=null) {   /**  编译正确 */
-            submitinfo.setSynaxresult(resultInfo);
+            submitinfo.setCentralresult(resultInfo);
             submitinfoMapper.updateByPrimaryKeySelective(submitinfo);
             return submitinfo;
         }

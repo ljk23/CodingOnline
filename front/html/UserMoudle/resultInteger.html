@@ -214,7 +214,7 @@
                     contentType: 'application/json;charset=utf-8',
                     data: JSON.stringify(centralsubmit),
                     success: function (data) {
-                        var Inforesult=eval(data).synaxresult.trim().split(";");
+                        var Inforesult=eval(data).centralresult.trim().split(";");
                         /** 局部更新信息  */
                         /** 删除原有表格的数据 */
                         var table = document.getElementById("central_table");

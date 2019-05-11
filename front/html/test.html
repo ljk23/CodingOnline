@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
     <title>Title</title>
     <style>
 .d{
@@ -15,11 +16,34 @@
     </style>
 </head>
 <body>
-    <div class="d">
-        <div class="dd">2</div>
-        <div class="dd">2</div>
-        <div class="dd">2</div>
-        <div class="dd">2</div>
-    </div>
+
+<input type="file" name="file"  id="file"/>
+<input type="submit" value="上传文件" onclick="clickUPFile();" />
+
+<script>
+  //上传文件方法
+function clickUPFile(){
+        //添加获取文件信息
+        var formdata=new FormData();
+        formdata.append('enctype', 'multipart/form-data');
+        formdata.append('name', 'file');
+        formdata.append('file',$('#file').get(0).files[0]);
+        // formdata.append('recid',str);
+        $.ajax({
+            url: 'http://localhost:8081/getsubmit/wordsubmit',
+            type:'post',
+            contentType:false,
+            data:formdata,
+            processData:false,
+            success:function(info){
+                console.log(info)
+               // $('.backimg').attr('src',JSON.parse(info).msg);
+            },
+            error:function(err){
+                console.log(err)
+            }
+        });
+}
+</script>
 </body>
 </html>

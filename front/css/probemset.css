@@ -18,8 +18,22 @@
     border-radius: 5px;
 }
 .domain_2{
-    width: 55%;
+    width: 45%;
 }
 .domain_3{
-    width: 15%;
+    width: 25%;
+}
+.domain_3 .code_upload input[type=file], input[type=button]{
+    outline: none;
+    border-radius: 5px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 156px;
+    height: 28px;
+    margin-top: 10%;
+    background-color: lightseagreen;
+    color: white;
+}
+.domain_3 .file_upload input[type=file]{
+
 }

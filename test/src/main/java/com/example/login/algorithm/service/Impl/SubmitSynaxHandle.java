@@ -736,16 +736,33 @@ public class SubmitSynaxHandle implements SubmitSynaxMapper {
                         }
                     }
                 }
+
+                File f = new File("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/algorithm/service/codeFiles/" + filename + "synaxoutput.txt"); // 相对路径，如果没有则要建立一个新的output.txt文件
+                if(!f.exists()){
+                    f.createNewFile();
+                }
+                BufferedWriter bufferedWriter=new BufferedWriter(new FileWriter(f,true));
+
                 System.out.println();
                 System.out.print("分析栈:");
-                for(int i=0;i<fenxizhan.size();i++)
+                bufferedWriter.write("分析栈:");
+                for(int i=0;i<fenxizhan.size();i++){
                     System.out.print(fenxizhan.elementAt(i));
-                System.out.print("\t");
-                System.out.print("输入流为:");
-                for(int j=0;j<shuruliu.size();j++) {
-                    System.out.print(shuruliu.elementAt(j));
+                    bufferedWriter.write((String)fenxizhan.elementAt(i));
                 }
                 System.out.print("\t");
+                System.out.print("输入流为:");
+                bufferedWriter.write(";");
+                bufferedWriter.write("输入流为:");
+                for(int j=0;j<shuruliu.size();j++) {
+                    System.out.print(shuruliu.elementAt(j));
+                    bufferedWriter.write((String)shuruliu.elementAt(j));
+                }
+                System.out.print("\t");
+                bufferedWriter.write(";");
+
+                bufferedWriter.flush();
+                bufferedWriter.close();
             }
               bw.close();
         }
