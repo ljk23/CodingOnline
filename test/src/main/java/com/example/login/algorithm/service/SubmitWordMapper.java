@@ -36,6 +36,9 @@ public interface SubmitWordMapper {
     public Boolean CompilerFiles(String filepath) throws IOException;
 
     @PostConstruct
+    public Boolean CompilerAppFiles(String filepath) throws IOException;
+
+    @PostConstruct
     public void deleteCode(String filename);
 
     @PostConstruct
@@ -43,6 +46,9 @@ public interface SubmitWordMapper {
 
     @PostConstruct
     public Boolean Answer(Integer problemid,String filename) throws IOException;
+
+    @PostConstruct
+    public Boolean AnswerCpp(Integer problemid,String filename) throws IOException;
 
     @PostConstruct
     public String WriteCideIntoFile(String contents,String codingLanguage) throws IOException;

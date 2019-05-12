@@ -345,8 +345,16 @@ public class SubmitWordHandle implements SubmitWordMapper {
         /**  编码是java文件 */
         /**  将submitcontent输入wordinput.txt */
         /** 保存文件地址 */
-            String codingpath="/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/wordcode/main.java";
-            File file = new File("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/wordcode/main.java");
+        File file=null;
+        String codingpath="";
+        if(codingLanguage.equals("java")){
+                codingpath="/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/wordcode/main.java";
+                file = new File("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/wordcode/main.java");
+            }else{
+                codingpath="/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/wordcode/main.cpp";
+                file = new File("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/wordcode/main.cpp");
+            }
+
             if (!file.exists()) {
                 file.createNewFile();
             }
@@ -515,11 +523,24 @@ public class SubmitWordHandle implements SubmitWordMapper {
 
     /**  第一步----编译文件 ----编译cpp件--- */
     public Boolean CompilerCpp(String filepath) throws IOException{
+        /**  输出重定向 */
+        PrintStream correct=new PrintStream(new FileOutputStream("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/testset/isaccept/error.txt"));
+        System.setOut(correct);
         String cmd = "g++ -Wall -g  -o main "+filepath;
-
+        Process process = Runtime.getRuntime().exec(cmd,null,new File("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/wordcode/")); // 执行编译指令
+        if(process!=null){
+            BufferedReader br = new BufferedReader(new InputStreamReader(process.getErrorStream()));//获取执行进程的输入流
+            String runInfo = null;
+            while (null != (runInfo = br.readLine())) {//读取执行结果并写入到output.txt中
+                System.out.println(runInfo);
+                return false;
+            }
+            return true;
+        }
+        return false;
     }
 
-    /** 第一步-----进行编译夹 */
+    /** 第一步-----进行编译java文件夹 */
     public Boolean CompilerFiles(String filepath) throws IOException{
         JavaCompiler compiler = ToolProvider.getSystemJavaCompiler();
         // 建立DiagnosticCollector对象
@@ -553,6 +574,34 @@ public class SubmitWordHandle implements SubmitWordMapper {
         /**  删除编译生成的多余文件  */
 
         return true;
+    }
+
+    /** 第一步-----进行编译c++文件夹 */
+    public Boolean CompilerAppFiles(String filepath) throws IOException{
+        PrintStream correct=new PrintStream(new FileOutputStream("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/testset/isaccept/error.txt"));
+        System.setOut(correct);
+        String cmd="g++ -Wall -g  -o main ";
+        /**  遍历文件夹，编译到main函数中 */
+        File file = new File(filepath);		//获取其file对象
+        File[] fs = file.listFiles();
+        for(File f:fs){
+            String fileName=f.getName();
+            if(fileName.substring(fileName.lastIndexOf(".")+1,fileName.length()).equals("cpp")){
+                cmd+=f.getAbsolutePath()+" ";
+            }
+        }
+        cmd="g++ -Wall -g -o main /Users/tp5admin/Desktop/ljk/greet.cpp /Users/tp5admin/Desktop/ljk/app.cpp";
+        Process proc = Runtime.getRuntime().exec(cmd,null,new File(filepath)); // 执行编译指令
+        if(proc!=null){
+            BufferedReader br = new BufferedReader(new InputStreamReader(proc.getErrorStream()));//获取执行进程的输入流
+            String runInfo = null;
+            while (null != (runInfo = br.readLine())) {//读取执行结果并写入到output.txt中
+                System.out.println(runInfo);
+                return true;
+            }
+            return true;
+        }
+        return false;
     }
 
     /**  删除源代码文件 */
@@ -645,6 +694,27 @@ public class SubmitWordHandle implements SubmitWordMapper {
 
     }
 
+    /** 第二步----黑盒测试  */
+    public Boolean AnswerCpp(Integer problemid,String filename) throws IOException{
+        /**  重新定位到控制台 */
+        PrintStream printStream=System.out;
+        System.setOut(printStream);
+        /**  入口函数为main */
+        String cmd ="/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/wordcode/main";
+        Process process = Runtime.getRuntime().exec(cmd);
+        if (process != null) {
+               /* InputStream is = process.getInputStream(); // 获取编译命令输出
+                InputStream error = process.getErrorStream(); // 获取编译命令错误输出*/
+
+            BufferedReader br = new BufferedReader(new InputStreamReader(process.getInputStream()));//获取执行进程的输入流
+            String runInfo = null;
+            while (null != (runInfo = br.readLine())) {//读取执行结果并写入到output.txt中
+                System.out.println(runInfo);
+            }
+        }
+        return true;
+    }
+
     /**  完成文件夹编译后删除多余文件 */
     public void deleteFiles(String folderPath) throws Exception{
         try {
@@ -701,30 +771,46 @@ public class SubmitWordHandle implements SubmitWordMapper {
     }
 
     /**  判断能否编译成功 */
-    public Integer JudgeResult(String codingFile) throws IOException{
-       /**  获得文件的后缀名  */
-       String fileType=codingFile.substring(codingFile.lastIndexOf(".")+1,codingFile.length());
-       String filename=codingFile.substring(codingFile.lastIndexOf("/")+1,codingFile.length());
-       if(fileType.equals("java")){  /**  java文件 */
-            if(Compiler(codingFile)){
+    public Integer JudgeResult(String codingFile) throws IOException {
+        /**  获得文件的后缀名  */
+        String fileType = codingFile.substring(codingFile.lastIndexOf(".") + 1, codingFile.length());
+        String filename = codingFile.substring(codingFile.lastIndexOf("/") + 1, codingFile.length());
+        if (fileType.equals("java")) {  /**  java文件 */
+            if (Compiler(codingFile)) {
                 System.out.println("编译成功");
                 /** 第二步-----用例测试----  */
                 /** first ---通过 problemId 拿到输入测试集-----  **/
-                if(Answer(1,filename)){
+                if (Answer(1, filename)) {
                     System.out.println("答案正确");
                     return 1;
-                } else{
+                } else {
                     System.out.println("用例测试不通过");
                     return 2;
                 }
-            }
-            else{   /** 编译失败  */
+            } else {   /** 编译失败  */
                 /**  删除编译文件 */
                 delAllFile("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/wordcode");
                 System.out.println("编译错误");
                 return 3;
             }
-       }
-       return 4;
+        } else {
+            if (CompilerCpp(codingFile)) {  /**  cpp文件 */
+                System.out.println("编译成功");
+                /** 第二步-----用例测试----  */
+                /** first ---通过 problemId 拿到输入测试集-----  **/
+                if (AnswerCpp(1, filename)) {
+                    System.out.println("答案正确");
+                    return 1;
+                } else {
+                    System.out.println("用例测试不通过");
+                    return 2;
+                }
+            } else {   /** 编译失败  */
+                /**  删除编译文件 */
+                delAllFile("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/wordcode");
+                System.out.println("编译错误");
+                return 3;
+            }
+        }
     }
 }

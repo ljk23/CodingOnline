@@ -2,18 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fc16bd97-1c47-4299-9180-37012ac4fd0a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../test/src/main/java/com/example/login/code/testset/isaccept/error.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/TitleMoudle/oneQuestion.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/TitleMoudle/oneQuestion.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../test/src/main/java/com/example/login/algorithm/service/Impl/SubmitWordHandle.java" beforeDir="false" afterPath="$PROJECT_DIR$/../test/src/main/java/com/example/login/algorithm/service/Impl/SubmitWordHandle.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../test/src/main/java/com/example/login/algorithm/service/SubmitWordMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/../test/src/main/java/com/example/login/algorithm/service/SubmitWordMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../test/src/main/java/com/example/login/code/testset/buffoutput/cancelTabresult.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../test/src/main/java/com/example/login/code/testset/buffoutput/cancelTabresult.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../test/src/main/java/com/example/login/code/testset/buffoutput/result.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../test/src/main/java/com/example/login/code/testset/buffoutput/result.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/src/main/java/com/example/login/code/testset/isaccept/error.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../test/src/main/java/com/example/login/code/testset/isaccept/error.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../test/src/main/java/com/example/login/code/testset/isaccept/word.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../test/src/main/java/com/example/login/code/testset/isaccept/word.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/src/main/java/com/example/login/code/wordcode/error.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../test/src/main/java/com/example/login/submit/controller/submitController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../test/src/main/java/com/example/login/submit/controller/submitController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../test/src/main/java/com/example/login/submit/controller/wordHandleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../test/src/main/java/com/example/login/submit/controller/wordHandleController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/src/main/java/com/example/login/submit/controller/yasuo.java" beforeDir="false" afterPath="$PROJECT_DIR$/../test/src/main/java/com/example/login/submit/controller/yasuo.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -43,8 +40,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/html/TitleMoudle/oneQuestion.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
-              <caret line="332" column="56" selection-start-line="332" selection-start-column="56" selection-end-line="332" selection-end-column="56" />
+            <state relative-caret-position="72">
+              <caret line="329" column="33" selection-start-line="329" selection-start-column="33" selection-end-line="329" selection-end-column="33" />
               <folding>
                 <element signature="n#style#0;n#a#6;n#div#0;n#div#0;n#body#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#2;n#form#0;n#div#1;n#body#0;n#!!top" expanded="true" />
@@ -160,8 +157,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="1">
-    <option name="x" value="2095" />
-    <option name="y" value="344" />
+    <option name="x" value="122" />
+    <option name="y" value="113" />
     <option name="width" value="1265" />
     <option name="height" value="659" />
   </component>
@@ -333,7 +330,7 @@
       <workItem from="1556541755068" duration="39378000" />
       <workItem from="1556704731381" duration="1044000" />
       <workItem from="1556869076453" duration="70548000" />
-      <workItem from="1557392388967" duration="17982000" />
+      <workItem from="1557392388967" duration="19666000" />
     </task>
     <task id="LOCAL-00001" summary="在测试">
       <created>1556198851123</created>
@@ -423,10 +420,10 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="181339000" />
+    <option name="totallyTimeSpent" value="183023000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="2095" y="344" width="1265" height="659" extended-state="1" />
+    <frame x="122" y="113" width="1265" height="659" extended-state="1" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20768602" />
@@ -924,8 +921,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/html/TitleMoudle/oneQuestion.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="332" column="56" selection-start-line="332" selection-start-column="56" selection-end-line="332" selection-end-column="56" />
+        <state relative-caret-position="72">
+          <caret line="329" column="33" selection-start-line="329" selection-start-column="33" selection-end-line="329" selection-end-column="33" />
           <folding>
             <element signature="n#style#0;n#a#6;n#div#0;n#div#0;n#body#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#2;n#form#0;n#div#1;n#body#0;n#!!top" expanded="true" />

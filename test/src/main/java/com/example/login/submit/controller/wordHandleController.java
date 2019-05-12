@@ -29,15 +29,20 @@ public class wordHandleController {
         /** 将提交信息存入数据库 */
        submitinfoMapper.insertSelective(submitinfo);
 
-        /** 将代码写入----------receive.java-----------文件  */
-       submitWordMapper.WriteCideIntoFile(submitinfo.getSubmitcontent(),"java");
+
+        /** 将代码写入----------main.java//main.cpp-----------文件  */
+       submitWordMapper.WriteCideIntoFile(submitinfo.getSubmitcontent(),submitinfo.getCodinglanguage());
 
        /**  重新定位到控制台 */
         PrintStream printStream=System.out;
         System.setOut(printStream);
        /**   判断是否有错误 */
-       int result=submitWordMapper.JudgeResult("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/wordcode/main.java");
-       switch (result){
+        int result=0;
+       if(submitinfo.getCodinglanguage().equals("java"))
+            result=submitWordMapper.JudgeResult("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/wordcode/main.java");
+       else
+            result=submitWordMapper.JudgeResult("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/wordcode/main.cpp");
+        switch (result){
            case 1: System.out.println("编译成功"); break;
            case 2: System.out.println("用例错误"); break;
            case 3: System.out.println("编译错误"); break;
