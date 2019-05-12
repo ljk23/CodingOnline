@@ -1,22 +1,24 @@
 package com.example.login.algorithm.service.Impl;
 
 import com.example.login.algorithm.service.SubmitWordMapper;
-import org.apache.tools.zip.ZipEntry;
-import org.apache.tools.zip.ZipFile;
+import com.sun.tools.javac.resources.compiler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.PostConstruct;
-import javax.tools.JavaCompiler;
-import javax.tools.ToolProvider;
+import javax.tools.*;
 import java.io.*;
+import java.nio.charset.Charset;
+import java.util.Arrays;
 import java.util.Enumeration;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.zip.CRC32;
 import java.util.zip.CheckedInputStream;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipFile;
 
 import static java.lang.Character.isDigit;
 import static java.lang.Character.isLetter;
@@ -337,6 +339,25 @@ public class SubmitWordHandle implements SubmitWordMapper {
         }
     }
 
+
+    /**  将代码写入文件当中 */
+    public String WriteCideIntoFile(String contents,String codingLanguage) throws IOException{
+        /**  编码是java文件 */
+        /**  将submitcontent输入wordinput.txt */
+        /** 保存文件地址 */
+            String codingpath="/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/wordcode/main.java";
+            File file = new File("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/wordcode/main.java");
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+            FileOutputStream fop = new FileOutputStream(file);
+            byte[] contentInBytes = contents.getBytes();
+            fop.write(contentInBytes);
+            fop.flush();
+            fop.close();
+        return codingpath;
+    }
+
     /**  去掉代码中的空格 */
     public static void CancelTab(String filename) throws IOException {
         String str = "";
@@ -429,54 +450,56 @@ public class SubmitWordHandle implements SubmitWordMapper {
     }
 
     /**  如果是文件夹进行编译 */
-    public void UnZip(String zipPath,String outPath) throws IOException{
-        ZipFile zipFile = new ZipFile(zipPath,"GBK");//压缩文件的实列,并设置编码
-        //获取压缩文中的所以项
-        for(Enumeration<ZipEntry> enumeration = zipFile.getEntries(); enumeration.hasMoreElements();)
-        {
-            ZipEntry zipEntry = enumeration.nextElement();//获取元素
-            //排除空文件夹
-            if(!zipEntry.getName().endsWith(File.separator))
-            {
-                System.out.println("正在解压文件:"+zipEntry.getName());//打印输出信息
-                //创建解压目录
-                File f = new File(outPath+zipEntry.getName().substring(0, zipEntry.getName().lastIndexOf(File.separator)));
-                //判断是否存在解压目录
-                if(!f.exists())
-                {
-                    f.mkdirs();//创建解压目录
-                }
-                OutputStream os = new FileOutputStream(outPath+zipEntry.getName());//创建解压后的文件
-                BufferedOutputStream bos = new BufferedOutputStream(os);//带缓的写出流
-                InputStream is = zipFile.getInputStream(zipEntry);//读取元素
-                BufferedInputStream bis = new BufferedInputStream(is);//读取流的缓存流
-                CheckedInputStream cos = new CheckedInputStream(bis, new CRC32());//检查读取流，采用CRC32算法，保证文件的一致性
-                byte [] b = new byte[1024];//字节数组，每次读取1024个字节
-                //循环读取压缩文件的值
-                while(cos.read(b)!=-1)
-                {
-                    bos.write(b);//写入到新文件
-                }
-                cos.close();
-                bis.close();
-                is.close();
-                bos.close();
-                os.close();
-            }
-            else
-            {
-                //如果为空文件夹，则创建该文件夹
-                new File(outPath+zipEntry.getName()).mkdirs();
-            }
+    public Boolean UnZip(String zipPath, String descDir) throws IOException{
+        File zipFile = new File(zipPath);
+        boolean flag = false;
+        File pathFile = new File(descDir);
+        if(!pathFile.exists()){
+            pathFile.mkdirs();
         }
-        System.out.println("解压完成");
-        zipFile.close();
+        java.util.zip.ZipFile zip = null;
+        try {
+            zip = new ZipFile(zipFile, Charset.forName("gbk"));//防止中文目录，乱码
+            for(Enumeration entries = zip.entries(); entries.hasMoreElements();){
+                java.util.zip.ZipEntry entry = (ZipEntry)entries.nextElement();
+                String zipEntryName = entry.getName();
+                InputStream in = zip.getInputStream(entry);
+                //指定解压后的文件夹+当前zip文件的名称
+                String outPath = (descDir+zipEntryName).replace("/", File.separator);
+                //判断路径是否存在,不存在则创建文件路径
+                File file = new File(outPath.substring(0, outPath.lastIndexOf(File.separator)));
+                if(!file.exists()){
+                    file.mkdirs();
+                }
+                //判断文件全路径是否为文件夹,如果是上面已经上传,不需要解压
+                if(new File(outPath).isDirectory()){
+                    continue;
+                }
+                //保存文件路径信息（可利用md5.zip名称的唯一性，来判断是否已经解压）
+                System.err.println("当前zip解压之后的路径为：" + outPath);
+                OutputStream out = new FileOutputStream(outPath);
+                byte[] buf1 = new byte[2048];
+                int len;
+                while((len=in.read(buf1))>0){
+                    out.write(buf1,0,len);
+                }
+                in.close();
+                out.close();
+            }
+            flag = true;
+            //必须关闭，要不然这个zip文件一直被占用着，要删删不掉，改名也不可以，移动也不行，整多了，系统还崩了。
+            zip.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return flag;
     }
 
-    /** 第一步-----进行编译 */
+
+    /**  第一步----编译文件 ----编译java文件--- */
     public Boolean Compiler(String filepath) throws IOException{
         /**  输出重定向 */
-        System.setErr(new PrintStream("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/wordcode/error.txt"));
+        System.setErr(new PrintStream("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/testset/isaccept/error.txt"));
         PrintStream err = System.err;
         JavaCompiler compiler = ToolProvider.getSystemJavaCompiler();
         int results = compiler.run(null, null, null, filepath);
@@ -486,9 +509,50 @@ public class SubmitWordHandle implements SubmitWordMapper {
             return true;
         }
         else{
-          //  deleteCode(filepath);
-            return false;
+           return false;
         }
+    }
+
+    /**  第一步----编译文件 ----编译cpp件--- */
+    public Boolean CompilerCpp(String filepath) throws IOException{
+        String cmd = "g++ -Wall -g  -o main "+filepath;
+
+    }
+
+    /** 第一步-----进行编译夹 */
+    public Boolean CompilerFiles(String filepath) throws IOException{
+        JavaCompiler compiler = ToolProvider.getSystemJavaCompiler();
+        // 建立DiagnosticCollector对象
+        DiagnosticCollector<JavaFileObject> diagnostics = new DiagnosticCollector<JavaFileObject>();
+        StandardJavaFileManager fileManager = compiler.getStandardFileManager(diagnostics, null, null);
+
+       // filepath="/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/wordcode/"+filepath;
+        File file = new File(filepath);		//获取其file对象
+        File[] fs = file.listFiles();
+        for(File f:fs){
+            String fileName=f.getAbsolutePath();
+            if(fileName.substring(fileName.lastIndexOf(".")+1,fileName.length()).equals("java")){
+                System.out.println(f);
+                try{
+                    Iterable<String> options = Arrays.asList("-sourcepath", "/Users/tp5admin/Desktop/sometime");
+
+                    Iterable<? extends JavaFileObject> compilationUnits = fileManager
+                            .getJavaFileObjectsFromStrings(Arrays.asList(f.getAbsolutePath()));
+                    JavaCompiler.CompilationTask task = compiler.getTask(null, fileManager, diagnostics, options, null, compilationUnits);
+                    // 编译源程序
+                    boolean success = task.call();
+                    fileManager.close();
+                    System.out.println((success)?"编译成功":"编译失败");
+                }
+                catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+            else  continue;
+        }
+        /**  删除编译生成的多余文件  */
+
+        return true;
     }
 
     /**  删除源代码文件 */
@@ -501,12 +565,19 @@ public class SubmitWordHandle implements SubmitWordMapper {
     }
 
     /** 第二步----黑盒测试  */
-    public Boolean Answer(Integer problemid,MultipartFile file) throws IOException{
+    public Boolean Answer(Integer problemid,String filename) throws IOException{
         /**  执行java的.class文件 */
-        System.out.println(file.getOriginalFilename());
-
-        String cls=file.getOriginalFilename().substring(0,file.getOriginalFilename().length()-5);
-        String cmd="java -cp /Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/wordcode/"+" "+cls;
+        System.out.println(filename);
+        String fileName=filename;
+        String foreName=fileName.substring(0,fileName.lastIndexOf("."));   /**  获得文件的名称 */
+        String cls="main";   /**   主函数入口 */
+        /**  判断文件的格式 */
+        String cmd="";
+        if(fileName.substring(fileName.lastIndexOf(".")+1,fileName.length()).equals("zip")){
+            cmd="java -cp /Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/wordcode/"+foreName+"/"+" "+cls;
+        }else{
+            cmd="java -cp /Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/wordcode/"+" "+cls;
+        }
         Runtime run = Runtime.getRuntime();//获取与当前平台进行交互的实例
         Process process = run.exec(cmd);//当前平台执行对应命令
         /**  输入流文件 */
@@ -519,7 +590,7 @@ public class SubmitWordHandle implements SubmitWordMapper {
 
                 /** 从文件中读取输入 */
                 FileInputStream fis = null;
-                try {
+                try{
                     fis = new FileInputStream("/Users/tp5admin/compiler/src/lll.txt");
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
@@ -560,8 +631,100 @@ public class SubmitWordHandle implements SubmitWordMapper {
         System.setOut(isaccept);
         /**  将结果和正确答案的txt文件比较----并返回结果---- */
         if(isSameFile("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/testset/buffoutput/cancelTabresult.txt","/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/testset/outputset/canceltab1.txt"))
+        {
+            /**  删除编译文件 */
+            delAllFile("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/wordcode");
             return true;
+        }
         else
+        {
+            /**  删除编译文件 */
+            delAllFile("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/wordcode");
             return false;
+        }
+
+    }
+
+    /**  完成文件夹编译后删除多余文件 */
+    public void deleteFiles(String folderPath) throws Exception{
+        try {
+            delAllFile(folderPath); //删除完里面所有内容
+            String filePath = folderPath;
+            filePath = filePath.toString();
+            java.io.File myFilePath = new java.io.File(filePath);
+            myFilePath.delete(); //删除空文件夹
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /** 删除所有文件  */
+    public  boolean delAllFile(String path) {
+        boolean flag = false;
+        File file = new File(path);
+        if (!file.exists()) {
+            return flag;
+        }
+        if (!file.isDirectory()) {
+            return flag;
+        }
+        String[] tempList = file.list();
+        File temp = null;
+        for (int i = 0; i < tempList.length; i++) {
+            if (path.endsWith(File.separator)) {
+                temp = new File(path + tempList[i]);
+            } else {
+                temp = new File(path + File.separator + tempList[i]);
+            }
+            if (temp.isFile()) {
+                temp.delete();
+            }
+            if (temp.isDirectory()) {
+                delAllFile(path + "/" + tempList[i]);//先删除文件夹里面的文件
+                delFolder(path + "/" + tempList[i]);//再删除空文件夹
+                flag = true;
+            }
+        }
+        return flag;
+    }
+
+    /** 删除文件夹*/
+    public static void delFolder(String folderPath) {
+        try {
+            String filePath = folderPath;
+            filePath = filePath.toString();
+            java.io.File myFilePath = new java.io.File(filePath);
+            myFilePath.delete(); //删除空文件夹
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**  判断能否编译成功 */
+    public Integer JudgeResult(String codingFile) throws IOException{
+       /**  获得文件的后缀名  */
+       String fileType=codingFile.substring(codingFile.lastIndexOf(".")+1,codingFile.length());
+       String filename=codingFile.substring(codingFile.lastIndexOf("/")+1,codingFile.length());
+       if(fileType.equals("java")){  /**  java文件 */
+            if(Compiler(codingFile)){
+                System.out.println("编译成功");
+                /** 第二步-----用例测试----  */
+                /** first ---通过 problemId 拿到输入测试集-----  **/
+                if(Answer(1,filename)){
+                    System.out.println("答案正确");
+                    return 1;
+                } else{
+                    System.out.println("用例测试不通过");
+                    return 2;
+                }
+            }
+            else{   /** 编译失败  */
+                /**  删除编译文件 */
+                delAllFile("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/wordcode");
+                System.out.println("编译错误");
+                return 3;
+            }
+       }
+       return 4;
     }
 }

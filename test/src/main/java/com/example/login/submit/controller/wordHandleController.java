@@ -12,6 +12,7 @@ import org.springframework.beans.factory.parsing.Problem;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,26 +28,40 @@ public class wordHandleController {
     public List<Integer> wordSubmit(@RequestBody Submitinfo submitinfo) throws IOException {
         /** 将提交信息存入数据库 */
        submitinfoMapper.insertSelective(submitinfo);
-        /** 将代码写入文件  */
-        String wordresult=""; /** 接受词法分析结果  */
+
+        /** 将代码写入----------receive.java-----------文件  */
+       submitWordMapper.WriteCideIntoFile(submitinfo.getSubmitcontent(),"java");
+
+       /**  重新定位到控制台 */
+        PrintStream printStream=System.out;
+        System.setOut(printStream);
+       /**   判断是否有错误 */
+       int result=submitWordMapper.JudgeResult("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/wordcode/main.java");
+       switch (result){
+           case 1: System.out.println("编译成功"); break;
+           case 2: System.out.println("用例错误"); break;
+           case 3: System.out.println("编译错误"); break;
+       }
+
+        /*String wordresult=""; *//** 接受词法分析结果  *//*
         wordresult=submitWordMapper.writeWordIntoFile(submitinfo.getSubmitcontent(),submitinfo.getSubmituserid(),wordresult);
-        /**  判断是否出错 */
+        *//**  判断是否出错 *//*
         String errorcause=submitWordMapper.judgeIserror(submitinfo.getSubmituserid());
         System.out.println("wordresult="+wordresult);
        if(errorcause==null){
-           /**  更新数据库表 */
+           *//**  更新数据库表 *//*
             submitinfo.setWordresult(wordresult);
             submitinfo.setIssuccess(true);
             submitinfo.setSubmitsuccess(1);
             submitinfoMapper.updateByPrimaryKeySelective(submitinfo);
-            /**   */
+            *//**   *//*
             List<Integer> list=new ArrayList<>();
             list.add(1);
-            list.add(submitinfo.getSubmituserid());
-           return list;
+            list.add(submitinfo.getSubmituserid());*/
+       /*    return list;
        }
        else{
-           /**  更新数据库表 */
+           *//**  更新数据库表 *//*
              submitinfo.setWordresult(wordresult);
              submitinfo.setErrorcause(errorcause);
              submitinfo.setIssuccess(false);
@@ -54,9 +69,9 @@ public class wordHandleController {
              submitinfoMapper.updateByPrimaryKeySelective(submitinfo);
              List<Integer> list=new ArrayList<>();
              list.add(0);
-             list.add(submitinfo.getSubmituserid());
-            return list;
-       }
+             list.add(submitinfo.getSubmituserid());*/
+            return null;
+      // }
     }
 
     @GetMapping("query")

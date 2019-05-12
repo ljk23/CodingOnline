@@ -50,12 +50,19 @@ public class submitController {
 
         /**  判断上传的是单个文件还是文件夹 */
         String fileName=file.getOriginalFilename();
+        /**  获得文件的名称 */
+        String filePreName=fileName.substring(0,fileName.lastIndexOf("."));
+        /**  获得文件的后缀名 */
         String fileTyle=fileName.substring(fileName.lastIndexOf(".")+1,fileName.length());
+
         System.out.println(fileTyle);
 
         /**  上传到指定目录下,并返回路径 */
         String filepath=submitWordHandle.uploadWordCode(file);
         System.out.println(file.getOriginalFilename());
+
+        /**  判断是否编译运行 */
+
 
         /**  单文件处理 */
         if(fileTyle.equals("java"))
@@ -65,7 +72,7 @@ public class submitController {
                 System.out.println("编译成功");
                 /** 第二步-----用例测试----  */
                 /** first ---通过 problemId 拿到输入测试集-----  **/
-                if(submitWordHandle.Answer(1,file)){
+                if(submitWordHandle.Answer(1,fileName)){
                     System.out.println("答案正确");
                     return 1;
                 } else{
@@ -81,10 +88,44 @@ public class submitController {
             /**  第一步---------解压缩----------   */
             String zipPath="/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/wordcode/"+file.getOriginalFilename();
             String outPath="/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/wordcode/";
+            /** 解压缩文件  */
             submitWordHandle.UnZip(zipPath,outPath);
-            return 1;
+            String compilepath="/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/wordcode/"+filePreName;
+            if(submitWordHandle.CompilerFiles(compilepath)){
+                System.out.println("编译成功");
+                /**  进行运行 */
+                /** 第二步-----用例测试----  */
+                /** first ---通过 problemId 拿到输入测试集-----  **/
+                if(submitWordHandle.Answer(1,file.getOriginalFilename())){
+                    System.out.println("答案正确");
+                    return 1;
+                } else {
+                    System.out.println("用例测试不通过");
+                    return 2;
+                }
+            }
+            else{
+                /**  删除编译文件 */
+                submitWordHandle.delAllFile("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/wordcode");
+                System.out.println("编译错误");
+                /**  编译错误  */
+                return 3;
+            }
+        }/**  如果上传的是cpp文件 */
+        else if(fileTyle.equals("cpp")){
+            /**  第一步-----进行编译-----   */
+            if(submitWordHandle.CompilerCpp(filepath)) {
+                System.out.println("编译成功");
+                return 1;
+            }
+            else{
+                    System.out.println("编译失败");
+                    return 3;
+                }
         }
+        /**   上传文件格式不对 */
         else{
+            submitWordHandle.delAllFile("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/wordcode");
             return 4;
         }
         /**  创建线程池,将提交的任务加入队列 */

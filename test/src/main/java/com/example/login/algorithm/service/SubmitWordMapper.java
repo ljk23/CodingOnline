@@ -24,16 +24,30 @@ public interface SubmitWordMapper {
     public String uploadWordCode(MultipartFile file);
 
     @PostConstruct
-    public void UnZip(String filename,String filepath) throws IOException;
+    public Boolean UnZip(String filename,String filepath) throws IOException;
 
     @PostConstruct
     public Boolean Compiler(String filepath) throws IOException;
 
     @PostConstruct
+    public Boolean CompilerCpp(String filepath) throws IOException;
+
+    @PostConstruct
+    public Boolean CompilerFiles(String filepath) throws IOException;
+
+    @PostConstruct
     public void deleteCode(String filename);
 
     @PostConstruct
-    public Boolean Answer(Integer problemid,MultipartFile file) throws IOException;
+    public void deleteFiles(String filename) throws Exception;
 
+    @PostConstruct
+    public Boolean Answer(Integer problemid,String filename) throws IOException;
+
+    @PostConstruct
+    public String WriteCideIntoFile(String contents,String codingLanguage) throws IOException;
+
+    @PostConstruct
+    public Integer JudgeResult(String codingFile) throws IOException;
 
 }

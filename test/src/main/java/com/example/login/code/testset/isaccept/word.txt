@@ -1,5 +1,6 @@
-两个文件完全相同
-答案正确
-txt
-上传成功
-test 3.txt
+用例测试不通过
+用例错误
+[2m2019-05-11 22:52:09.103[0;39m [32mDEBUG[0;39m [35m82123[0;39m [2m---[0;39m [2m[      Thread-22][0;39m [36mConfigServletWebServerApplicationContext[0;39m [2m:[0;39m Closing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@60bd1b10, started on Sat May 11 22:48:09 CST 2019
+[2m2019-05-11 22:52:09.158[0;39m [32m INFO[0;39m [35m82123[0;39m [2m---[0;39m [2m[      Thread-22][0;39m [36mo.s.s.concurrent.ThreadPoolTaskExecutor [0;39m [2m:[0;39m Shutting down ExecutorService 'applicationTaskExecutor'
+[2m2019-05-11 22:52:09.161[0;39m [32m INFO[0;39m [35m82123[0;39m [2m---[0;39m [2m[      Thread-22][0;39m [36mcom.zaxxer.hikari.HikariDataSource      [0;39m [2m:[0;39m HikariPool-1 - Shutdown initiated...
+[2m2019-05-11 22:52:09.192[0;39m [32m INFO[0;39m [35m82123[0;39m [2m---[0;39m [2m[      Thread-22][0;39m [36mcom.zaxxer.hikari.HikariDataSource      [0;39m [2m:[0;39m HikariPool-1 - Shutdown completed.

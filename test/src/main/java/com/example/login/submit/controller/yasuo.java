@@ -1,4 +1,3 @@
-/*
 package com.example.login.submit.controller;
 
 import org.apache.tools.zip.ZipEntry;
@@ -15,20 +14,18 @@ import java.util.zip.CheckedInputStream;
 //import java.util.zip.ZipEntry;
 //import java.util.zip.ZipFile;
 
-*/
 /**
  * 作者:Code菜鸟
  * 博客:http://blog.csdn.net/qq969422014/article/category/2944339
- * **//*
-
+ * **/
 public class yasuo
 {
-    static String zipPath = "/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/wordcode/sometime.zip";//需要解压的压缩文件
-    static String outPath = "/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/wordcode/";//解压完成后保存路径,记得"\\"结尾哈
+    static String zipPath = "/Users/tp5admin/Desktop/sometime.zip";//需要解压的压缩文件
+    static String outPath = "/Users/tp5admin/Desktop/ljk/";//解压完成后保存路径,记得"\\"结尾哈
 
     public static void main(String args[]) throws Exception
     {
-        ZipFile zipFile = new ZipFile(zipPath,"GBK");//压缩文件的实列,并设置编码
+        ZipFile zipFile = new ZipFile(zipPath,"utf-8");//压缩文件的实列,并设置编码
         //获取压缩文中的所以项
         for(Enumeration<ZipEntry> enumeration = zipFile.getEntries();enumeration.hasMoreElements();)
         {
@@ -72,4 +69,3 @@ public class yasuo
     }
 }
 
-*/
