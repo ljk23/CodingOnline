@@ -121,7 +121,7 @@ public class submitController {
             else{   /**  Cpp文件夹 */
                 if(submitWordHandle.CompilerAppFiles(compilepath)) {
                     System.out.println("编译成功");
-                    if(submitWordHandle.AnswerCpp(1,fileName)){
+                    if(submitWordHandle.AnswerCpp(1,filePreName+"/")){
                         System.out.println("答案正确");
                         /**  删除编译文件 */
                         submitWordHandle.delAllFile("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/wordcode");
@@ -145,6 +145,7 @@ public class submitController {
                 System.out.println("编译成功");
                 PrintStream printStream=System.out;
                 System.setOut(printStream);
+                fileName="";
                 if(submitWordHandle.AnswerCpp(1,fileName)){
                     System.out.println("答案正确");
                     /**  删除编译文件 */

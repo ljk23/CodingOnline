@@ -700,7 +700,7 @@ public class SubmitWordHandle implements SubmitWordMapper {
         PrintStream printStream=System.out;
         System.setOut(printStream);
         /**  入口函数为main */
-        String cmd ="/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/wordcode/main";
+        String cmd ="/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/wordcode/"+filename+"main";
         Process process = Runtime.getRuntime().exec(cmd);
         if (process != null) {
                /* InputStream is = process.getInputStream(); // 获取编译命令输出

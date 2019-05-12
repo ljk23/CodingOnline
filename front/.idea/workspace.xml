@@ -2,15 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fc16bd97-1c47-4299-9180-37012ac4fd0a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../test/src/main/java/com/example/login/algorithm/service/Impl/SubmitWordHandle.java" beforeDir="false" afterPath="$PROJECT_DIR$/../test/src/main/java/com/example/login/algorithm/service/Impl/SubmitWordHandle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/src/main/java/com/example/login/algorithm/service/SubmitWordMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/../test/src/main/java/com/example/login/algorithm/service/SubmitWordMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/src/main/java/com/example/login/code/testset/buffoutput/cancelTabresult.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../test/src/main/java/com/example/login/code/testset/buffoutput/cancelTabresult.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/src/main/java/com/example/login/code/testset/buffoutput/result.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../test/src/main/java/com/example/login/code/testset/buffoutput/result.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../test/src/main/java/com/example/login/code/testset/isaccept/error.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../test/src/main/java/com/example/login/code/testset/isaccept/error.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../test/src/main/java/com/example/login/code/testset/isaccept/word.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../test/src/main/java/com/example/login/code/testset/isaccept/word.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../test/src/main/java/com/example/login/submit/controller/submitController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../test/src/main/java/com/example/login/submit/controller/submitController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/src/main/java/com/example/login/submit/controller/wordHandleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../test/src/main/java/com/example/login/submit/controller/wordHandleController.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -424,7 +419,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="122" y="113" width="1265" height="659" extended-state="1" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20768602" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
