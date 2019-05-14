@@ -56,8 +56,7 @@
             <div style="padding: 10px 10px 10px 0px;"><input type="text" placeholder="请输入密码" id="password" name="" style="width:200px; height:30px"/></div>
             <!--<div>记住登录</div>-->
         </div>
-        <div class="loginside"
-             style="display: -webkit-box; -webkit-box-orient: horizontal; background-color: #EBEBEB; text-align: center;">
+        <div class="loginside" style="display: -webkit-box; -webkit-box-orient: horizontal; background-color: #EBEBEB; text-align: center;">
             <div style=" margin-bottom: 5px; width: 50px;margin-left: 40%; background-color: #C2C2C2; border-radius:6px 6px 6px 6px; cursor: pointer; color: #838B83;"
                  id="closelogin">
                 <small>关闭</small>
@@ -160,11 +159,13 @@
                 <center>
                     <span>problem:</span>&nbsp;<small>1000</small>
                     <br>
-                    <span class="one_green one_code_green">language:&nbsp;<select>
-                        <option>C</option>
-                        <option>C++</option>
-                        <option>JAVA</option>
-                    </select></span>&nbsp;&nbsp;
+                    <span class="one_green one_code_green">language:&nbsp;
+                        <select id="codinglanguage">
+                            <option selected="selected">c</option>
+                            <option>cpp</option>
+                            <option>java</option>
+                        </select>
+                    </span>&nbsp;&nbsp;
                     <span class="one_green">
                         验证码：<input type="text"/>
                     </span>&nbsp;&nbsp;
@@ -180,10 +181,16 @@
             <!--题目集-->
             <div class="fenqu domain_3">
                 题目集
-                <div class="code_upload file_upload"><input type="file" name="file" id="file" value="选择文件"></div>
-                <div class="code_upload"><input type="button" value="上传单文件" onclick="clickUPFile();" /></div>
-                <div class="code_upload"><input type="button" value="上传代码文件夹" onclick="clickZipFile();"></div>
+                <div style="margin-top: 300px">
+                    <div class="code_upload file_upload"><input type="file" name="file" id="file" value="选择文件"></div>
+                    <div class="code_upload"><input type="button" value="上传单文件" onclick="clickUPFile();" /></div>
+                    <div class="code_upload"><input type="button" value="上传代码文件夹" onclick="clickZipFile();"></div>
+                </div>
             </div>
+            <!--错误输出框-->
+            <textarea class="error_input" id="error_input">
+                ljk
+            </textarea>
         </div>
     </form>
 
@@ -322,13 +329,28 @@
 <!--coding submit-->
 <script>
     $("#coding_submit").click(function () {
+      //  alert($("#codinglanguage").val());
+        var codinglanguage=$("#codinglanguage").val();
+        alert(codinglanguage);
      /** 查找用户的id */
      var  problemid = getUserTransferValue();
      submituserid=SelectUserIdByUsername(sessionStorage.loginName);
         /** 查找用户的信息 */
-        var codeInfo={submituserid:submituserid,submitname:submitname,submitnameclassfy:submitnameclassfy,submitnums:1,submitcontent:$(".codecontent").val(),submitupdatetime:submitupdatetime};
+        var codeInfo={submituserid:submituserid,submitname:submitname,submitnameclassfy:submitnameclassfy,submitnums:1,submitcontent:$(".codecontent").val(),submitupdatetime:submitupdatetime,codinglanguage:codinglanguage};
         alert(submitnameclassfy);
-        if(submitnameclassfy=="词法分析"){
+        if(submitnameclassfy=="算法1000道"){
+             $.ajax({
+                 url:  "http://localhost:8081/submit/wordsubmit",
+                 type: 'POST',
+                 contentType: 'application/json;charset=utf-8',
+                 data: JSON.stringify(codeInfo),
+                 success: function (data) {
+                     alert(data);
+                     //alert(evil(data)[1]);
+                 }
+             })
+        }
+        else if(submitnameclassfy=="语法分析"){
             $.ajax({
                 url:  "http://localhost:8081/submit/wordsubmit",
                 type: 'POST',
@@ -355,7 +377,7 @@
                 }
             })
         }
-        if(submitnameclassfy=="语法分析"){
+        else if(submitnameclassfy=="语法分析"){
             $.ajax({
                 url:  "http://localhost:8081/synaxsubmit/synaxsubmit",
                 type: 'POST',

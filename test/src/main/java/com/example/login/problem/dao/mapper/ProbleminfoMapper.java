@@ -20,6 +20,9 @@ public interface ProbleminfoMapper {
     @Select("Select * from problemInfo where problemClassfy=#{problemclassfy}")
     List<Probleminfo> selectByProblemClassfy(@Param("problemclassfy") String problemclassfy);
 
+    @Select("Select * from problemInfo where problemName=#{problemname}")
+    Probleminfo selectByProblemName(@Param("problemname")String problemname);
+
     @Select("Select * from problemInfo")
     List<Probleminfo> selectAll();
 

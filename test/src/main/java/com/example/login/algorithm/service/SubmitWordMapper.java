@@ -45,15 +45,15 @@ public interface SubmitWordMapper {
     public void deleteFiles(String filename) throws Exception;
 
     @PostConstruct
-    public Boolean Answer(Integer problemid,String filename) throws IOException;
+    public Integer Answer(Integer problemid,String filename,Submitinfo submitinfo) throws IOException;
 
     @PostConstruct
-    public Boolean AnswerCpp(Integer problemid,String filename) throws IOException;
+    public Integer AnswerCpp(Integer problemid,String filename,Submitinfo submitinfo) throws IOException;
 
     @PostConstruct
     public String WriteCideIntoFile(String contents,String codingLanguage) throws IOException;
 
     @PostConstruct
-    public Integer JudgeResult(String codingFile) throws IOException;
+    public Integer JudgeResult(String codingFile,Submitinfo submitinfo) throws IOException;
 
 }

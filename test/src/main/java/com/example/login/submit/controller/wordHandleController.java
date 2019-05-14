@@ -1,5 +1,6 @@
 package com.example.login.submit.controller;
 
+import com.example.login.algorithm.service.CommonMapper;
 import com.example.login.problem.dao.entity.Probleminfo;
 import com.example.login.submit.dao.entity.Submitinfo;
 import com.example.login.algorithm.service.SubmitWordMapper;
@@ -23,13 +24,15 @@ public class wordHandleController {
     private SubmitinfoMapper submitinfoMapper;
     @Autowired
     private SubmitWordMapper submitWordMapper;
+    @Autowired
+    private CommonMapper commonMapper;
 
     @PostMapping("wordsubmit")
-    public List<Integer> wordSubmit(@RequestBody Submitinfo submitinfo) throws IOException {
+    public List<String> wordSubmit(@RequestBody Submitinfo submitinfo) throws IOException {
         /** 将提交信息存入数据库 */
        submitinfoMapper.insertSelective(submitinfo);
 
-
+       System.out.println(submitinfo.getCodinglanguage());
         /** 将代码写入----------main.java//main.cpp-----------文件  */
        submitWordMapper.WriteCideIntoFile(submitinfo.getSubmitcontent(),submitinfo.getCodinglanguage());
 
@@ -37,16 +40,62 @@ public class wordHandleController {
         PrintStream printStream=System.out;
         System.setOut(printStream);
        /**   判断是否有错误 */
+       /**  判断题目的分类 */
         int result=0;
-       if(submitinfo.getCodinglanguage().equals("java"))
-            result=submitWordMapper.JudgeResult("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/wordcode/main.java");
-       else
-            result=submitWordMapper.JudgeResult("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/wordcode/main.cpp");
-        switch (result){
-           case 1: System.out.println("编译成功"); break;
-           case 2: System.out.println("用例错误"); break;
-           case 3: System.out.println("编译错误"); break;
-       }
+
+           if(submitinfo.getCodinglanguage().equals("java"))
+               result=submitWordMapper.JudgeResult("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/wordcode/main.java",submitinfo);
+           else
+               result=submitWordMapper.JudgeResult("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/wordcode/main.cpp",submitinfo);
+
+           switch (result){
+               case 1: System.out.println("编译成功"); break;
+               case 2: System.out.println("用例错误"); break;
+               case 3: System.out.println("编译错误"); break;
+               case 4: System.out.println("超时"); break;
+               case 5: System.out.println("超过内存"); break;
+           }
+          List<String> list=new ArrayList<>();
+           /**  更新数据库  */
+           if(result==1){   /**  成功通过 */
+               submitinfo.setIssuccess(true);
+               submitinfo.setSubmitsuccess(1);
+               submitinfoMapper.updateByPrimaryKeySelective(submitinfo);
+               list.add(String.valueOf(result));
+           }else if(result==2){
+               /** 用例不通过  */
+               submitinfo.setIssuccess(false);
+               submitinfo.setSubmitsuccess(0);
+               submitinfoMapper.updateByPrimaryKeySelective(submitinfo);
+               list.add(String.valueOf(result));
+               list.add("用例不通过");
+           }else if(result==3){
+               submitinfo.setIssuccess(false);
+               submitinfo.setSubmitsuccess(0);
+               submitinfoMapper.updateByPrimaryKeySelective(submitinfo);
+               list.add(String.valueOf(result));
+               /**   得到错误信息 */
+               String value="";
+               value=commonMapper.readFile("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/testset/isaccept/error.txt",value);
+               list.add(value);
+           }
+           else if(result==4){
+               /** 用例不通过  */
+               submitinfo.setIssuccess(false);
+               submitinfo.setSubmitsuccess(0);
+               submitinfoMapper.updateByPrimaryKeySelective(submitinfo);
+               list.add(String.valueOf(result));
+               list.add("超时");
+           }else if(result==5){
+               /** 用例不通过  */
+               submitinfo.setIssuccess(false);
+               submitinfo.setSubmitsuccess(0);
+               submitinfoMapper.updateByPrimaryKeySelective(submitinfo);
+               list.add(String.valueOf(result));
+               list.add("超过内存");
+           }
+           /**  返回结果 */
+           return list;
 
         /*String wordresult=""; *//** 接受词法分析结果  *//*
         wordresult=submitWordMapper.writeWordIntoFile(submitinfo.getSubmitcontent(),submitinfo.getSubmituserid(),wordresult);
@@ -75,7 +124,7 @@ public class wordHandleController {
              List<Integer> list=new ArrayList<>();
              list.add(0);
              list.add(submitinfo.getSubmituserid());*/
-            return null;
+
       // }
     }
 

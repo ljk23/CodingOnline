@@ -174,6 +174,24 @@
     <br>
     <section>
         <div class="ex_grid">
+            <div class="ex_column" id="ex_suanfa">
+                <div class="ex_content">
+                    <div class="ex_header"><a style="cursor: pointer">算法1000道</a></div>
+                    <p class="ex_meta"><img src="../../images/ex_user.png" width="12px" height="12px">&nbsp;<small>饶文碧
+                    </small>
+                    </p>
+                    <p class="ex_description">适合入门级用户</p>
+                </div>
+                <div class="ex_extra_content">
+                    <div class="ex_test_number">
+                        <div><img src="../../images/ex_test.png" width="12px" height="15px">&nbsp;<small>141</small>
+                        </div>
+                        <div style="margin-left: 60%"><img src="../../images/ex_resource.png" width="15px"
+                                                           height="15px">&nbsp;公开题库
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="ex_column" id="ex_word">
                 <div class="ex_content" >
                     <div class="ex_header"><a style="cursor: pointer" onclick="window.location.href='question.html'" ;>词法分析</a>
@@ -229,6 +247,8 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="ex_grid">
             <div class="ex_column" id="ex_midcode">
                 <div class="ex_content">
                     <div class="ex_header"><a style="cursor: pointer">代码优化</a></div>
@@ -247,8 +267,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="ex_grid">
             <div class="ex_column" id="bettercode">
                 <div class="ex_content">
                     <div class="ex_header"><a style="cursor: pointer">代码优化</a></div>
@@ -389,6 +407,10 @@
 
 </script>
 <script>
+    $("#ex_suanfa").click(function () {
+        var problemclassfy="算法1000道";
+        window.location.href="question.html?problemclassfy="+problemclassfy+"";
+    })
     $("#ex_word").click(function () {
         var problemclassfy = "词法分析";
         window.location.href = "question.html?problemclassfy=" + problemclassfy + "";

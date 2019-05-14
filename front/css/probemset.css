@@ -16,9 +16,10 @@
     background: rgba(0, 0, 50, .02);
     font-weight: lighter;
     border-radius: 5px;
+    height: 900px;
 }
 .domain_2{
-    width: 45%;
+    width: 55%;
 }
 .domain_3{
     width: 25%;
@@ -36,4 +37,12 @@
 }
 .domain_3 .file_upload input[type=file]{
 
+}
+.error_input{
+    border: 1px solid #D4D4D5;
+    position: absolute;
+    left: 25%;
+    top: 850px;
+    width: 70%;
+    height: 200px;
 }
