@@ -39,8 +39,15 @@
     border: 1px solid #ddd;
     cursor: pointer;
 }
+.end_problem_add_ll{
+    width: 200px;
+    flex-direction: column;
+    display: -webkit-box; /*这个必须要有*/
+}
 
 .end_problem_add_btn {
+    margin-left: 10px;
+    -webkit-box-flex: 1;
     width: 115px;
     height: 36px;
     background: #FFB752;

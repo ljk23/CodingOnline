@@ -27,6 +27,8 @@ public class wordHandleController {
     @Autowired
     private CommonMapper commonMapper;
 
+
+
     @PostMapping("wordsubmit")
     public List<String> wordSubmit(@RequestBody Submitinfo submitinfo) throws IOException {
         /** 将提交信息存入数据库 */
@@ -66,23 +68,26 @@ public class wordHandleController {
                /** 用例不通过  */
                submitinfo.setIssuccess(false);
                submitinfo.setSubmitsuccess(0);
+               submitinfo.setErrorcause("用例不通过");
                submitinfoMapper.updateByPrimaryKeySelective(submitinfo);
                list.add(String.valueOf(result));
                list.add("用例不通过");
            }else if(result==3){
-               submitinfo.setIssuccess(false);
-               submitinfo.setSubmitsuccess(0);
-               submitinfoMapper.updateByPrimaryKeySelective(submitinfo);
-               list.add(String.valueOf(result));
                /**   得到错误信息 */
                String value="";
                value=commonMapper.readFile("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/testset/isaccept/error.txt",value);
+               submitinfo.setIssuccess(false);
+               submitinfo.setSubmitsuccess(0);
+               submitinfo.setErrorcause(value);
+               submitinfoMapper.updateByPrimaryKeySelective(submitinfo);
+               list.add(String.valueOf(result));
                list.add(value);
            }
            else if(result==4){
                /** 用例不通过  */
                submitinfo.setIssuccess(false);
                submitinfo.setSubmitsuccess(0);
+               submitinfo.setErrorcause("超时");
                submitinfoMapper.updateByPrimaryKeySelective(submitinfo);
                list.add(String.valueOf(result));
                list.add("超时");
@@ -90,6 +95,7 @@ public class wordHandleController {
                /** 用例不通过  */
                submitinfo.setIssuccess(false);
                submitinfo.setSubmitsuccess(0);
+               submitinfo.setErrorcause("超过内存");
                submitinfoMapper.updateByPrimaryKeySelective(submitinfo);
                list.add(String.valueOf(result));
                list.add("超过内存");

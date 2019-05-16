@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="../../js/header.js"></script>
+    <script src="../../js/common.js"></script>
+    <script src="../../assets/layer/layer.js"></script>
+    <link type="text/css" rel="stylesheet" href="../../css/body.css"/>
+    <link type="text/css" rel="stylesheet" href="../../css/exercise.css"/>
+    <link type="text/css" rel="stylesheet" href="../../css/userInfo.css"/>
+    <link type="text/css" rel="stylesheet" href="../../css/header.css"/>
+    <link type="text/css" rel="stylesheet" href="../../css/booter.css"/>
+    <link type="text/css" rel="stylesheet" href="../../css/probemset.css"/>
+    <link type="text/css" rel="stylesheet" href="../../css/login.css"/>
+    <link type="text/css" rel="stylesheet" href="../../css/contest.css"/>
+</head>
+<body>
+<!--头部-->
+<div class="ui">
+    <div class="ui-left">
+        <a class="item" href="../IndexMoudle/index.html" onmousemove=""><img src="../../images/logo_flat.png" width="104" height="24"></a>
+        <a class="item" href="../TitleMoudle/exercise.html"><i class="list items icon"></i>题目中心</a>
+        <a class="item" onclick="warning()"><i class="list items icon"></i>在线教学</a>
+        <a class="item" href="../ContestWork/contest.html"><i class="list items icon"></i>在线比赛</a>
+        <a class="item" href="../TitleMoudle/submitStatus.html"><i class="list items icon"></i>提交状态</a>
+        <a class="item" href="../UserMoudle/userRank.html"><i class="list items icon"></i>选手排名</a>
+        <a class="item" href="../HelpMoudle/help.html" style="border-right: 1px solid gray;"><i class="list items icon"></i>帮助中心</a>
+    </div>
+    <div class="ui-right" id="ui-right">
+        <a class="item" onclick="login()">
+            <img src="../../images/login.png" width="14px" height="12px" style="margin-right: -20px;"></img>
+            <i class="sign in icon" id="banScroll"></i>登录</a>
+    </div>
+    <script>
+        function warning() {
+            layer.msg("开发中",{
+                icon: 4,
+                time: 2000
+            })
+        }
+    </script>
+</div>
+<!--登录框-->
+<div class="loginclass" id="loginclass" style="display: none">
+    <div id="closelogin"><img src="../../images/log_close.png" width="15" height="15"></div>
+    <div class="loginFrame">
+        <!--身份选择-->
+        <div class="log_user">
+            <img src="../../images/xuesheng.png" width="40" height="30"><button id="student">Student</button>
+            <img src="../../images/laoshi.png" width="40" height="30"><button id="teacher">Teacher</button>
+            <img src="../../images/guanliyuan.png" width="40" height="30"><button id="admin">Admin</button>
+        </div>
+        <!--注册登陆-->
+        <div class="log_input" style="display: none;">
+            <div class="log_input_select">
+                <span id="sign_in">sign in</span>
+                <span id="sign_up">sign up</span>
+            </div>
+            <div class="log_input_text" style="display: none;">
+                username<input type="text" id="username"/>
+                password<input type="text" id="password"/>
+                <input type="submit" id="login_user" value="login"/>
+            </div>
+            <div class="log_input_register" style="display: none;">
+                username<input type="text" id="reg_username"/><span
+                    id="info"></span>
+                password<input type="text" id="reg_password"/>
+                repassword<input type="text" id="reg_repassword"/>
+                email<input type="text" id="reg_email"/>
+                <input type="submit" id="register_user" value="register"/>
+            </div>
+        </div>
+    </div>
+</div>
+<!--背景色-->
+<div class="operatebackgroud" style="display: none;"></div>
+<!--主体-->
+<br>
+<div class="ex_page_container one_page">
+    <div class="message_marquee">
+        <marquee scrollAmount="2" direction=right behavior="scroll">暂无比赛通知!!!</marquee>
+    </div>
+    <br>
+    <div id="one_coding" style="display: block; display: -webkit-box;-webkit-box-orient: horizontal;">
+        <div class="fenqu domain_1">
+            <div>
+                <h3>题目：</h3>
+                <div class="pro_name format"></div>
+                <h3>描述：</h3>
+                <div class="problemcontent format"></div>
+                <h3>样本输入：</h3>
+                <div class="sampleinput format"></div>
+                <h3>样本输出：</h3>
+                <div class="sampleoutput format"></div>
+            </div>
+        </div>
+        <div class="fenqu domain_2">
+            <div id="one_input">
+            </div>
+            <!--错误输出框-->
+            <br>
+            <span id="coding_submit" style="color: white; text-align: center">提交</span>
+            <textarea class="error_input" style="top: 800px" id="error_input">
+            </textarea>
+        </div>
+        <div class="fenqu domain_3" style="height: 500px" id="domain_3" style="border-left: 1px solid #B2B2B2">
+            <div class="setsdomain">题目区</div>
+        </div>
+    </div>
+</div>
+<!--底部-->
+<div id="booter"></div>
+<script>
+    /**select tab  */
+    $(function () {
+        $("a[class=item]").each(function (index) {
+            $(this).mouseover(function () {
+                $("a[class=item]").css("backgroundColor", "#1B1C1D");
+                $(this).css("backgroundColor", "#515151");
+            }).mouseout(function () {
+                $("a[class=item]").css("backgroundColor", "#1B1C1D");
+            })
+        });
+        /** 禁止滑动 */
+        $("#banScroll").click(function () {
+            $(window).scroll(function () {
+                $(this).scrollTop(0)
+            });
+        });
+        /**  加载比赛信息 */
+        var contestid=GetQueryString("contestid");
+        $.ajax({
+            url: "http://localhost:8081/matchcontents/queryByContestId",
+            type: 'GET',
+            data: "contestid=" + contestid,
+            async: false,
+            success: function (data) {
+                $.each(data, function (i, n) {
+                    var div=document.createElement("div");
+                    div.setAttribute('id',n.problemid);
+                    div.setAttribute('class','setdomain');
+                    div.innerHTML="<a onclick='select_pro("+n.problemid+")'>"+n.problemid+"</a>";
+                    document.getElementById('domain_3').appendChild(div);
+                })
+                var problemid=eval(data)[0].problemid;
+                $.ajax({
+                    url: "http://localhost:8081/problemAdmin/queryById",
+                    type: 'GET',
+                    data: "problemId=" + problemid,
+                    async: false,
+                    success: function (data) {
+                        layer.load("加载中", {
+                            time: 1000 //取消自动关闭
+                        })
+                            var data=eval(data);
+                            $(".pro_name").html(data.problemname);
+                            $(".problemcontent").html(data.problemcontent);
+                            $(".sampleinput").html(data.probleminput);
+                            $(".sampleoutput").html(data.problemoutput);
+                            $("#"+problemid).css('background','orange');
+                    }   
+                })
+            }
+        })
+    });
+    function select_pro(problemid) {
+        $.ajax({
+            url: "http://localhost:8081/problemAdmin/queryById",
+            type: 'GET',
+            data: "problemId=" + problemid,
+            async: false,
+            success: function (data) {
+                layer.load("加载中", {
+                    time: 1000 //取消自动关闭
+                })
+                var data=eval(data);
+                $(".pro_name").html(data.problemname);
+                $(".problemcontent").html(data.problemcontent);
+                $(".sampleinput").html(data.probleminput);
+                $(".sampleoutput").html(data.problemoutput);
+                $(".setdomain").css('background','#7f9db9');
+                $("#"+problemid).css('background','orange');
+            }
+        })
+    }
+</script>
+<script>
+    var useridentity="";
+    /** load function  */
+    $(function () {
+        $('#one_input').load('../function/codeInput.html');
+        $('#one_input').load('../function/codeInput.html');
+        $('#booter').load('../booter/booter.html');
+    })
+    /** Islogin   */
+    $(window).load(function () {
+        var loginName = sessionStorage.loginName;
+        if (loginName != undefined) {
+            var obj = sessionStorage.loginName;
+            Implement(obj);
+        }
+    })
+    /**  close login */
+    $('#closelogin').click(function () {
+        $('#loginclass').css('display', 'none');
+        $('.operatebackgroud').css('display', 'none');
+        $(window).unbind('scroll');
+    })
+    /**  login  */
+    $("#login_user").click(function () {
+        var username = $("#username").val();
+        var password = $("#password").val();
+        alert(username);
+        $.ajax({
+            url: "http://localhost:8081/userInfo/login",
+            type: 'POST',
+            contentType: 'application/json;charset=utf-8',
+            data: '{"username":"' + username + '","password":"' + password + '"}',
+            success: function (data) {
+                if ($.isEmptyObject(data)){
+                    layer.alert('登陆失败', {
+                        icon: 5,
+                        time: 2000
+                    });
+                }
+                else {
+                    layer.alert('登陆成功', {
+                        icon: 1,
+                        time: 2000
+                    },function () {
+                        /** 退出登录框  */
+                        $('#loginclass').css('display', 'none');
+                        $('.operatebackgroud').css('display', 'none');
+                        $(window).unbind('scroll');
+                        /** 更改用户名  */
+                        var obj = eval(data);
+                        /** session保存信息 */
+                        var loginName = obj.username;
+                        sessionStorage.loginName = loginName;
+                        /**  将变量存储到sessionStorage中，并且value为loginName */
+                        Implement(loginName);
+                    });
+                }
+            }
+        })
+    });
+    /**  register */
+    /** 用户名判断 */
+</script>
+<script>
+    $("#student,#teacher,#admin").click(function () {
+        useridentity=$(this).attr("id");
+        $(".log_user").hide('slow');
+        $(".log_input").show('slow');
+        $(".log_input_text").show('slow');
+        $("#sign_up").css('opacity','0.2');
+    })
+    $("#sign_up").click(function () {
+        $(".log_input_text").hide('slow');
+        $(".log_input_register").show('slow');
+        $("#sign_up").css('opacity','1');
+        $("#sign_in").css('opacity','0.2');
+    })
+    $("#sign_in").click(function () {
+        $(".log_input_text").show('slow');
+        $(".log_input_register").hide('slow');
+        $("#sign_in").css('opacity','1');
+        $("#sign_up").css('opacity','0.2');
+    })
+</script>
+</body>
+</html>

@@ -27,8 +27,8 @@
         <option>一般</option>
         <option>困难</option>
     </select><br>
-        题目输入：<input type="text" id="problemInput" placeholder="可不填写">
-        题目输出：<input type="text" id="problemOutput" placeholder="可不填写"><br>
+        题目输入：<textarea type="text" id="problemInput" placeholder="可不填写"></textarea>
+        题目输出：<textarea type="text" id="problemOutput" placeholder="可不填写"></textarea><br>
         <br>
         <textarea class="pro_textarea" id="problemContent"
                   style="width: 500px; height: 200px; margin-top: 20px;font-size: 20px; border-radius: 5px;"
@@ -49,7 +49,8 @@
                 $("#problemName").val(data.problemname);
                 $("#problemClassfy").val(data.problemclassfy);
                 $("#problemAuthor").val(data.problemauthor);
-                $("#problemInput").val(data.problemoutput);
+                $("#problemInput").val(data.probleminput);
+                $("#problemOutput").val(data.problemoutput);
                 $("#problemContent").val(data.problemcontent);
             }
         })

@@ -133,15 +133,15 @@
                     td1.innerHTML = i + 1;
                     td2.innerHTML = sessionStorage.loginName;
                     td3.innerHTML = n.submitname;
-                    if(n.issuccess==true)  {
+                    if(n.submitsuccess==1)  {
                         td4.innerHTML="<div class='daanstate' style='background: #5CB85C'>ACCEPT</div>";
                     }
                     else{
                         td4.innerHTML="<div onclick='errorPage("+n.submitid+")' class='daanstate' style='background: #D9534F;cursor: pointer'>COMPILE</div>";
                     }
-                    td5.innerHTML = "5KB";
-                    td6.innerHTML = "8s";
-                    td7.innerHTML = "<a class='editor' href='../TitleMoudle/oneQuestion.html?problemid="+problemid+"&submitid="+n.submitid+"'>C/编辑</a>";
+                    td5.innerHTML = n.wordresult+"ms";
+                    td6.innerHTML = n.synaxresult+"kb";
+                    td7.innerHTML = "<a class='editor' href='../TitleMoudle/oneQuestion.html?problemid="+problemid+"&submitid="+n.submitid+"'>"+n.codinglanguage+"/编辑</a>";
                     td8.innerHTML = n.submitnameclassfy;
                     td9.innerHTML="<div onclick='integer("+n.submitid+")'>合并子模块</div>";
                     td9.style="color:#428bca; cursor: pointer;";

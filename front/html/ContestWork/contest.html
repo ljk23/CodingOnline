@@ -6,6 +6,7 @@
     <script src="../../js/header.js"></script>
     <script src="../../js/common.js"></script>
     <script src="../../js/match.js"></script>
+    <script src="../../js/endcommon.js"></script>
     <script src="../../assets/layer/layer.js"></script>
     <link type="text/css" rel="stylesheet" href="../../css/body.css"/>
     <link type="text/css" rel="stylesheet" href="../../css/exercise.css"/>
@@ -196,55 +197,12 @@
         $("#qu_table tbody").attr("id", "qu_tbody");
         /**  加载比赛信息 */
         $.ajax({
-            url: "http://localhost:8081/matchAdmin/queryAll",
+            url: "http://localhost:8081/matchAdmin/queryAllOnline",
             type: 'GET',
             contentType: 'application/json;charset=utf-8',
             success: function (data) {
-                /** 删除原有表格的数据 */
-                var table = document.getElementById("qu_table");
-                var infos = document.getElementById("qu_tbody");
-                table.removeChild(infos);
-                /**此处必须创建tbody，否则无法加入到table中  */
-                infos = document.createElement("tbody");
-                /**  生成新的table数据元素并添加到table中 */
-                $.each(data, function (i, n) {
-                    var tr = document.createElement("tr");
-                    var td = document.createElement("td");
-                    var td1 = document.createElement("td");
-                    var td2 = document.createElement("td");
-                    var td3 = document.createElement("td");
-                    var td4 = document.createElement("td");
-                    var td5 = document.createElement("td");
-                    var td6 = document.createElement("td");
-
-                    td.innerHTML = i + 1;
-                    td1.innerHTML = "<a style='text-decoration: none; cursor: pointer;color: #1890FF' onclick='matchInfo("+n.contestid+")'>"+n.contestname+"</a>";
-                    td2.innerHTML = n.contesthost;
-                    n.conteststarttime=n.conteststarttime.replace(/\T/g," ");
-                    td3.innerHTML=n.conteststarttime;
-                    n.conteststarttime=new Date(n.conteststarttime.replace(/\-/g, "/"));
-                    n.contestendtime=n.contestendtime.replace(/\T/g," ");
-                    n.contestendtime=new Date(n.contestendtime.replace(/\-/g, "/"));
-                    td4.innerHTML = (parseInt(n.contestendtime-n.conteststarttime)/1000/60/60)+"小时";
-                    td5.innerHTML = n.contestform;
-                    if (n.conteststate == false) {
-                        td6.innerHTML ="过期";
-                        td6.style="color:red";
-                    }
-                    else td6.innerHTML = "在线";
-
-                    tr.appendChild(td);
-                    tr.appendChild(td1);
-                    tr.appendChild(td2);
-                    tr.appendChild(td3);
-                    tr.appendChild(td4);
-                    tr.appendChild(td5);
-                    tr.appendChild(td6);
-                    tr.setAttribute("id", i + 1);
-                    //document.getElementById("end_pro_table tbody tr").setAttribute("id",i+1);
-                    infos.appendChild(tr);
-                })
-                table.appendChild(infos);
+               /**  更新比赛信息 */
+               updatefronttMatchInfo(data)
             }
         })
     })
@@ -269,33 +227,6 @@
         $(window).unbind('scroll');
     })
     /**  login  */
-    $("#login").click(function () {
-        var username = $("#username").val();
-        var password = $("#password").val();
-        $.ajax({
-            url: "http://localhost:8081/userInfo/login",
-            type: 'POST',
-            contentType: 'application/json;charset=utf-8',
-            data: '{"username":"' + username + '","password":"' + password + '"}',
-            success: function (data) {
-                if ($.isEmptyObject(data)) alert("用户名不存在或者密码错误");
-                else {
-                    /** 退出登录框  */
-                    $('#loginclass').css('display', 'none');
-                    $('.operatebackgroud').css('display', 'none');
-                    $(window).unbind('scroll');
-                    /** 更改用户名  */
-                    alert("登陆成功");
-                    var obj = eval(data);
-                    /** session保存信息 */
-                    var loginName = obj.username;
-                    sessionStorage.loginName = loginName;
-                    /**  将变量存储到sessionStorage中，并且value为loginName */
-                    Implement(loginName);
-                }
-            }
-        })
-    });
 </script>
 <script>
     function proCoding() {
@@ -329,9 +260,16 @@
 </script>
 <script>
     function matchInfo(matchid) {
-        layer.alert('比赛还未到时间',{
+        /*layer.alert('比赛还未到时间',{
             icon: 4,
             time: 2000
+        })*/
+        layer.msg("加载题目中", {
+            icon:16,
+            shade:[0.1, '#4F94CD'],
+            time: 2000 //取消自动关闭
+        },function () {
+            window.location.href="contestInfo.html?contestid="+matchid;
         })
     }
 </script>

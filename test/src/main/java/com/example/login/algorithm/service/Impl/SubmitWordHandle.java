@@ -654,15 +654,9 @@ public class SubmitWordHandle implements SubmitWordMapper {
         // 获取开始时内存使用量
         long startMem = runmemory.totalMemory() - runmemory.freeMemory();
         // System.out.println("memory> total:" + runmemory.totalMemory() + " free:" + runmemory.freeMemory() + " used:" + startMem);
-
+        Process process=null;
 
         Runtime run = Runtime.getRuntime();//获取与当前平台进行交互的实例
-        Process process = run.exec(cmd);//当前平台执行对应命令
-
-
-        /** 从控制台输入 */
-        OutputStream out = process.getOutputStream();
-        PrintWriter writer = new PrintWriter(out);
         //    Scanner scanner = new Scanner(System.in);
 
         /**  重定向输出到lll文件中 */
@@ -676,6 +670,7 @@ public class SubmitWordHandle implements SubmitWordMapper {
 
 
         /** 从文件中读取输入 */
+
         FileInputStream fis = null;
         try {  /**  有改动 */
             fis = new FileInputStream("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/testset/inputset/input.txt");
@@ -686,18 +681,24 @@ public class SubmitWordHandle implements SubmitWordMapper {
         Scanner scanner = new Scanner(System.in);
 
         String str = null;
+        PrintStream result = new PrintStream(new FileOutputStream("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/testset/buffoutput/result.txt"));
+        System.setOut(result);
         while (scanner.hasNextLine()) {
+            process = run.exec(cmd);//当前平台执行对应命令
+            /** 从控制台输入 */
+            OutputStream out = process.getOutputStream();
+            PrintWriter writer = new PrintWriter(out);
             writer.println(scanner.nextLine());
             writer.flush();
+            /**  输出执行结果 */
+            BufferedReader br = new BufferedReader(new InputStreamReader(process.getInputStream()));//获取执行进程的输入流
+            String runInfo = null;
+                 while (null != (runInfo = br.readLine())) {//读取执行结果并写入到reslut.txt中
+                     System.out.println(runInfo);
+        //    commonHandle.reWriteFile("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/testset/buffoutput/result.txt", runInfo);
+                 }
         }
 
-
-        /**  输出执行结果 */
-        BufferedReader br = new BufferedReader(new InputStreamReader(process.getInputStream()));//获取执行进程的输入流
-        String runInfo = null;
-        while (null != (runInfo = br.readLine())) {//读取执行结果并写入到reslut.txt中
-            commonHandle.reWriteFile("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/testset/buffoutput/result.txt", runInfo);
-        }
 
         /**  判断有无超时间 */
         if (System.currentTimeMillis() - starttime > timeout) {

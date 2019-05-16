@@ -189,7 +189,7 @@
             </div>
             <!--错误输出框-->
             <textarea class="error_input" id="error_input">
-                ljk
+
             </textarea>
         </div>
     </form>
@@ -345,8 +345,8 @@
                  contentType: 'application/json;charset=utf-8',
                  data: JSON.stringify(codeInfo),
                  success: function (data) {
-                     alert(data);
-                     //alert(evil(data)[1]);
+                     console.log(data);
+                     window.location.href="../UserMoudle/userInfo.html?userInfo=user_submit&submituserid="+submituserid+"&problemid="+problemid;
                  }
              })
         }
@@ -409,17 +409,106 @@
 <script>
     /**  单文件方法   */
     function clickUPFile(){
-        //添加获取文件信息
+        /** 查找用户的id */
+        var  problemid = getUserTransferValue();
+        submituserid=SelectUserIdByUsername(sessionStorage.loginName);
+        var codinglanguage=$("#codinglanguage").val();
+        var codeInfo={submituserid:submituserid,submitname:submitname,submitnameclassfy:submitnameclassfy,submitnums:1,submitcontent:"file",submitupdatetime:submitupdatetime,codinglanguage:codinglanguage};
+        /**  先提交记录信息 */
+        $.ajax({
+            url:  "http://localhost:8081/getsubmit/infosubmit",
+            type: 'POST',
+            contentType: 'application/json;charset=utf-8',
+            data: JSON.stringify(codeInfo),
+            success: function (data) {
+               alert("第一步上传成功");
+               /**  提交信息上传成功 */
+               /**  上传文件 */
+                   /** 添加获取文件信息   */
+               var formdata=new FormData();
+                formdata.append('enctype', 'multipart/form-data');
+                formdata.append('name', 'file');
+                formdata.append('file',$('#file').get(0).files[0]);
+                $.ajax({
+                    url: 'http://localhost:8081/getsubmit/wordsubmit',
+                    type:'post',
+                    contentType:false,
+                    data: formdata,
+                    processData:false,
+                    success:function(data){
+                        alert("123");
+                        var info=eval(data)[0];
+                        alert(info);
+                        layer.msg("提交中", {
+                            icon:16,
+                            shade:[0.1, '#4F94CD'],
+                            time: 3000 //取消自动关闭
+                        },function () {
+                            if(info==1){
+                                layer.alert('编写通过', {
+                                    icon: 1,
+                                    time: 2000
+                                }, function () {
+                                    window.location.href="../UserMoudle/userInfo.html?userInfo=user_submit&submituserid="+submituserid+"&problemid="+problemid;
+                                })
+                            }
+                            else if(info==2){
+                                layer.alert('用例不通过', {
+                                    icon: 5,
+                                    time: 2000
+                                }, function () {
+                                  $("#error_input").val(eval(data)[1]);
+                                })
+                            }
+                            else if(info==3){
+                                layer.alert('编译错误', {
+                                    icon: 5,
+                                    time: 2000
+                                }, function () {
+                                    $("#error_input").val(eval(data)[1]);
+                                })
+                            }
+                            else if(info==4){
+                                layer.alert('超时', {
+                                    icon: 5,
+                                    time: 2000
+                                }, function () {
+                                    $("#error_input").val(eval(data)[1]);
+                                })
+                            }
+                            else if(info==5){
+                                layer.alert('占用内存太大', {
+                                    icon: 5,
+                                    time: 2000
+                                }, function () {
+                                    $("#error_input").val(eval(data)[1]);
+                                })
+                            }else{
+                                layer.alert('文件格式错误', {
+                                    icon: 5,
+                                    time: 2000
+                                }, function () {
+                                    $("#error_input").val(eval(data)[1]);
+                                })
+                            }
+                        })
+                    }
+                });
+            }
+        })
+
+     /*   //添加获取文件信息
         var formdata=new FormData();
         formdata.append('enctype', 'multipart/form-data');
         formdata.append('name', 'file');
         formdata.append('file',$('#file').get(0).files[0]);
+        alert(formdata);
         // formdata.append('recid',str);
         $.ajax({
             url: 'http://localhost:8081/getsubmit/wordsubmit',
             type:'post',
             contentType:false,
-            data:formdata,
+            data:{file:formdata,submituserid:submituserid,submitname:submitname,submitnameclassfy:submitnameclassfy,submitnums:1,submitcontent:$(".codecontent").val(),submitupdatetime:submitupdatetime,codinglanguage:codinglanguage},
             processData:false,
             success:function(info){
                 layer.msg("提交中", {
@@ -460,7 +549,7 @@
                     }
                 })
             }
-        });
+        });*/
     }
     /**  多文件上传  */
     function clickZipFile() {

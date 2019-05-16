@@ -2,6 +2,7 @@ package com.example.login.match.controller;
 
 import com.example.login.match.dao.entity.Matchinfo;
 import com.example.login.match.dao.mapper.MatchinfoMapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -39,5 +40,21 @@ public class MatchController {
         if(matchinfos.size()>0)
             return matchinfos;
         return null;
+    }
+
+    @GetMapping("queryAllOnline")
+    public List<Matchinfo> queryAllOnline(){
+        List<Matchinfo> matchinfos=matchinfoMapper.queryAllOnline();
+        if(matchinfos.size()>0)
+            return matchinfos;
+        return null;
+    }
+
+    @GetMapping("delete")
+    public Boolean deleteMatch(@Param("contestid") Integer contestid){
+        if(matchinfoMapper.deleteByPrimaryKey(contestid)==1){
+            return true;
+        }
+        else return false;
     }
 }

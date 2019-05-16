@@ -14,7 +14,7 @@
     height: 100%;
     overflow: auto;
     background-color: white;
-    width: 40%;
+    width: 30%;
     left: 70%;
     z-index: 1001;
 }
@@ -55,4 +55,22 @@
     background: #1890FF;
     color: white;
     margin-left: 70%;
+}
+.setsdomain{
+    width: 200px;
+    height: 40px;
+    text-align: center;
+    color: white;
+    background: #2D93CA;
+    font-size: 20px;
+}
+.setdomain{
+    width: 200px;
+    height: 40px;
+    text-align: center;
+    color: white;
+    background: #7f9db9;
+    font-size: 20px;
+    border: 0.5px solid #B2B2B2;
+    cursor: pointer;
 }

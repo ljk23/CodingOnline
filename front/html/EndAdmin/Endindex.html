@@ -65,7 +65,7 @@
     </div>
     <div class="end_right">
         <!--题库管理-->
-        <div id="end_problem_admin" style="display: none"><br>
+        <div id="end_problem_admin"><br>
             <!--select frame-->
             <div class="end_problem_select">
                 <div class="end_operateframe">
@@ -139,6 +139,7 @@
                     <th>题目</th>
                     <th>出题者</th>
                     <th>题目状态</th>
+                    <th>是否载入用例</th>
                     <th>创建日期</th>
                     <th>操作</th>
                 </tr>
@@ -174,7 +175,7 @@
             <div pro></div>
         </div>
         <!--比赛管理-->
-        <div id="end_contest_admin" ><br>
+        <div id="end_contest_admin"  style="display: none"><br>
             <!--select frame-->
             <div class="end_problem_select">
                 <div class="end_operateframe">
@@ -200,12 +201,16 @@
                 </div>
             </div>
             <!--add problemset-->
-            <div class="end_problem_add" id="end_contest_add">
-                <div class="end_problem_add_btn"><span style="padding-top: 5px">添加比赛</span></div>
+            <div class="end_problem_add">
+                <div class="end_problem_add_ll">
+                    <div class="end_problem_add_btn" id="end_contest_add"><span style="padding-top: 5px">添加比赛</span></div>
+                    <div class="end_problem_add_btn" id="refresh_match"><span style="padding-top: 5px">刷新页面</span></div>
+                </div>
             </div>
-            <!--add contest-->
+            <!--add contest-->&nbsp;
             <div id="con_create_frame" style="display: none;">
-                <div class="con_create_title">创建比赛</div>
+                <div class="con_create_title">创建比赛
+                   <span class="match_close" style="margin-left: 290px"> <img src="../../images/match_close.png" width="20" height="20"></span></div>
                 <hr style="font-weight: lighter; width: 90%;margin: auto;color: #D4D4D5">
                 <div class="con_create_body">
                     <div class="ant-row">比赛名称 &nbsp;&nbsp;<input type="text" id="contestname"></div>
@@ -221,13 +226,12 @@
                     <div class="ant-row">评测语言 &nbsp;&nbsp;
                         <select id="contestlanguage">
                             <option selected="selected">C</option>
-                            <option>C++</option>
+                            <option>Cpp</option>
                             <option>Java</option>
-                            <option>Python</option>
                         </select>
                     </div>
                 </div>
-                <hr style="font-weight: lighter; width: 90%; margin: auto;margin-top: 150px;color: #D4D4D5; ">
+                <hr style="font-weight: lighter; width: 90%; margin: auto;margin-top: 100px;color: #D4D4D5; ">
                 <button class="ant-row con_create_sub" id="con_create_sub">创建</button>
             </div>
             <!--manage contest-->
@@ -239,6 +243,7 @@
                     <th>主办方</th>
                     <th>参赛形式</th>
                     <th>比赛时间</th>
+                    <th>是否载入题目</th>
                     <th>比赛状态</th>
                     <th>评测语言</th>
                     <th>创建日期</th>
@@ -362,6 +367,19 @@
         }
         $("#end_problem_admin").css('display','none');
         $("#end_contest_admin").css('display','block');
+      //  $("#end_pro_table tbody").attr("id", "contest_tbody");
+        /** 加载比赛信息  */
+        $(function () {
+           $.ajax({
+               url: "http://localhost:8081/matchAdmin/queryAll",
+               type: 'GET',
+               contentType: 'application/json;charset=utf-8',
+               success: function (data) {
+                   /**  局部更新 */
+                   updateMatchInfo(data);
+               }
+           })
+        })
     });
     $("#user_admin").click(function () {
         if (flag == true) {
@@ -533,6 +551,16 @@
             })
         });
     }
+    /**  载入用例 */
+    function loadtests(problemid){
+        layer.open({
+            type: 2,
+            area: ['1000px', '100%'],
+            content: ['ProblemAdmin/problemSetsLoad.html?problemid=' + problemid]  //这里content是一个URL，如果你不想让iframe出现滚动条，你还可以content: ['http://sentsin.com', 'no']
+        }, function () {
+            alert("123");
+        });
+    }
     /** -----------------------------------------------------------------------------*/
     /** 比赛信息管理  */
 
@@ -591,6 +619,64 @@
             })
         }
     })
-
+    $(".match_close").click(function () {
+        $("#con_create_frame").hide('slow');
+    })
+    /**  比赛信息删除 */
+    function deleteCon(obj) {
+        layer.confirm('确认要删除吗？', function (index) {
+            $.ajax({
+                url: "http://localhost:8081/matchAdmin/delete",
+                type: 'GET',
+                data: "contestid=" + obj,
+                async: false,
+                success: function (data) {
+                    if (data == true) {
+                        layer.alert('删除成功', {
+                            icon: 1,
+                            time: 2000
+                        }, function () {
+                            $("#" + numid).remove();
+                        });
+                    } else {
+                        alert("删除失败");
+                    }
+                }
+            })
+        });
+    }
+    /**  更新比赛题目 */
+    function editorCon(obj){
+        alert(obj);
+    }
+    /**  载入题目 */
+    function LoadSets(contestid){
+        layer.open({
+            type: 2,
+            area: ['1000px', '100%'],
+            content: ['ProblemAdmin/ContestSetsLoad.html?contestid=' + contestid]  //这里content是一个URL，如果你不想让iframe出现滚动条，你还可以content: ['http://sentsin.com', 'no']
+        }, function () {
+            alert("123");
+        });
+    }
+    /**  刷新页面 */
+    $("#refresh_match").click(function () {
+        layer.msg("加载中", {
+            icon:16,
+            shade:[0.1, '#4F94CD'],
+            time: 1000 //取消自动关闭
+        },function () {
+            $("#contest_pro_table tbody").attr("id", "contest_tbody");
+            $.ajax({
+                url: "http://localhost:8081/matchAdmin/queryAll",
+                type: 'GET',
+                contentType: 'application/json;charset=utf-8',
+                success: function (data) {
+                    /**  局部更新 */
+                    updateMatchInfo(data);
+                }
+            })
+        })
+    })
 </script>
 </html>
