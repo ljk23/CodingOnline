@@ -69,7 +69,7 @@
         .operate{
             margin-left: 60%;
         }
-        .operate img{
+        .operate img,.cut{
             width: 20px;
             height: 20px;
             background-color: #2D93CA;
@@ -81,10 +81,16 @@
 <div class="add_pro">添加测试用例</div>
 
 <div id="prosets" class="prosets testsets">
-    <a class="operate"><img onclick="cuttests()" src="../../../images/cut.png"> <img onclick="addtests()" src="../../../images/add.png"></a><br>
-    <span>测试输入</span><input class="testset" type="text"/>    <span>测试输出</span><input class="testset"type="text" /> <br>
-    <span>测试输入</span><input class="testset" type="text"/>    <span>测试输出</span><input type="text" class="testset"/> <br>
-    <span>测试输入</span><input class="testset" type="text"/>    <span>测试输出</span><input type="text" class="testset"/>
+    <a class="operate"> <img onclick="addtests()" src="../../../images/add.png"></a><br>
+   <div class="subcon">
+       <span>测试输入</span><input class="testset" type="text"  />    <span>测试输出</span><input class="testset"type="text" /><img class="cut" src="../../../images/cut.png">
+   </div>  <br>
+    <div class="subcon">
+        <span>测试输入</span><input class="testset" type="text"  />    <span>测试输出</span><input class="testset"type="text" /><img  class="cut"  src="../../../images/cut.png">
+    </div>  <br>
+    <div class="subcon">
+        <span>测试输入</span><input class="testset" type="text"  />    <span>测试输出</span><input class="testset"type="text" /><img class="cut"  src="../../../images/cut.png">
+    </div>
 </div>
 <input type="button" id="dosubmit" value="提交">
 <script>
@@ -119,25 +125,37 @@
         })*/
     })
     /**  减少用例 */
-    function cuttests(){
-
-    }
+    $(".cut").click(function () {
+        alert("2323");
+            $(this).parent('div').remove(); //remove text box
+    })
     /**  添加用例 */
+    var id=3;
     function addtests(){
+        id++;
+        var div=document.createElement("div");
+        div.setAttribute('id','subcon'+id);
+        document.getElementById('prosets').appendChild(div);
         var br=document.createElement('br');
-        document.getElementById('prosets').appendChild(br);
+        document.getElementById('subcon'+id).appendChild(br);
         var span=document.createElement('span');
-        span.innerHTML="测试输入"
-        document.getElementById('prosets').appendChild(span);
+        span.innerHTML="测试输入";
+        document.getElementById('subcon'+id).appendChild(span);
         var input=document.createElement("input");
         input.setAttribute('class','testset');
-        document.getElementById('prosets').appendChild(input);
+        input.type="text";
+        document.getElementById('subcon'+id).appendChild(input);
         var span=document.createElement('span');
         span.innerHTML="测试输出"
-        document.getElementById('prosets').appendChild(span);
+        document.getElementById('subcon'+id).appendChild(span);
         var input=document.createElement("input");
         input.setAttribute('class','testset');
-        document.getElementById('prosets').appendChild(input);
+        input.type="text";
+        document.getElementById('subcon'+id).appendChild(input);
+        var img=document.createElement("img")
+        img.setAttribute('class','cut');
+        img.src="../../../images/cut.png";
+        document.getElementById('subcon'+id).appendChild(img);
     }
     $('#dosubmit').click(function() {
         /**  获得比赛的id */

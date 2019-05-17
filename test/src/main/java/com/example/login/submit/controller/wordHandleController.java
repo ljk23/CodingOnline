@@ -67,7 +67,7 @@ public class wordHandleController {
            }else if(result==2){
                /** 用例不通过  */
                submitinfo.setIssuccess(false);
-               submitinfo.setSubmitsuccess(0);
+               submitinfo.setSubmitsuccess(2);
                submitinfo.setErrorcause("用例不通过");
                submitinfoMapper.updateByPrimaryKeySelective(submitinfo);
                list.add(String.valueOf(result));
@@ -86,7 +86,7 @@ public class wordHandleController {
            else if(result==4){
                /** 用例不通过  */
                submitinfo.setIssuccess(false);
-               submitinfo.setSubmitsuccess(0);
+               submitinfo.setSubmitsuccess(4);
                submitinfo.setErrorcause("超时");
                submitinfoMapper.updateByPrimaryKeySelective(submitinfo);
                list.add(String.valueOf(result));
@@ -94,7 +94,7 @@ public class wordHandleController {
            }else if(result==5){
                /** 用例不通过  */
                submitinfo.setIssuccess(false);
-               submitinfo.setSubmitsuccess(0);
+               submitinfo.setSubmitsuccess(5);
                submitinfo.setErrorcause("超过内存");
                submitinfoMapper.updateByPrimaryKeySelective(submitinfo);
                list.add(String.valueOf(result));

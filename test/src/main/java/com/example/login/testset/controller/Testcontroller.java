@@ -28,11 +28,11 @@ public class Testcontroller {
         String[]  sets= request.getParameterValues("checkID");
        //
         Testinfo testInfo=new Testinfo();
-        for(int i=0;i+1<sets.length;i++){
+        for(int i=0;i<sets.length;i++){
             testInfo.setProblemid(problemid);
             testInfo.setAddtime(addtime);
             testInfo.setTestinput(sets[i]);
-            testInfo.setTestoutput(sets[i+1]);
+            testInfo.setTestoutput(sets[++i]);
             testinfoMapper.insertSelective(testInfo);
         }
         Probleminfo probleminfo=new Probleminfo();

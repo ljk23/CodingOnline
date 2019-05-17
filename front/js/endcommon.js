@@ -72,15 +72,23 @@ function updateSubmitInfo(data){
         td1.innerHTML = n.submitid;
         td2.innerHTML = n.submituserid;
         td3.innerHTML = n.submitname;
-        if(n.issuccess==true)  {
-            td4.innerHTML="<div class='daanstate' style='background: #5CB85C;'>ACCEPT</div>";
+        if(n.submitsuccess==0)  {
+            td4.innerHTML="<div onclick='errorPage("+n.submitid+")' class='daanstate' style='background: #D9534F;cursor: pointer'>Compile Error</div>";
+        }
+        else if(n.submitsuccess==1){
+            td4.innerHTML="<div class='daanstate' style='background: #5CB85C'>ACCEPT</div>";
+        }else if(n.submitsuccess==2){
+            td4.innerHTML="<div onclick='errorPage("+n.submitid+")' class='daanstate' style='background: orange;cursor: pointer'>Answer Error</div>";
+        }
+        else if(n.submitsuccess==4){
+            td4.innerHTML="<div onclick='errorPage("+n.submitid+")' class='daanstate' style='background: yellow ;cursor: pointer'>TimeOut</div>";
         }
         else{
-            td4.innerHTML="<div onclick='errorPage("+n.submitid+")' class='daanstate' style='background: #D9534F;cursor: pointer;width: 150px'>Compile Error</div>";
+            td4.innerHTML="<div onclick='errorPage("+n.submitid+")' class='daanstate' style='background: aquamarine;cursor: pointer'>MemoryOut</div>";
         }
-        td5.innerHTML = "5KB";
-        td6.innerHTML = "8s";
-        td7.innerHTML = "C";
+        td5.innerHTML = n.wordresult+"ms";
+        td6.innerHTML = n.synaxresult+"kb";
+        td7.innerHTML = n.codinglanguage;
         td8.innerHTML = n.submitnameclassfy;
         td9.innerHTML = n.submitupdatetime;
         td10.innerHTML="127.0.0.1";

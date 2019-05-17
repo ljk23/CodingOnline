@@ -88,27 +88,27 @@ public class submitController {
         List list=new ArrayList();   /** 保存最后返回的结果值  */
         String value="";
         /**  单文件处理 */
-        if(CodingLanguage.equals("java")) {
-                /**  第一步-----进行编译-----   */
+        /*if(CodingLanguage.equals("java")) {
+                *//**  第一步-----进行编译-----   *//*
             if(submitWordHandle.Compiler(filepath)){
                 System.out.println("编译成功");
-                /** 第二步-----用例测试----  */
-                /** first ---通过 problemId 拿到输入测试集-----  **/
+                *//** 第二步-----用例测试----  *//*
+                *//** first ---通过 problemId 拿到输入测试集-----  **//*
                 int result=submitWordHandle.Answer(1, fileName,submitinfo);
-                /**  删除编译文件 */
+                *//**  删除编译文件 *//*
                 submitWordHandle.delAllFile("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/wordcode");
-                /**  更新数据库  */
+                *//**  更新数据库  *//*
                 list=commonMapper.getResult(submitinfo,result,list,value);
             }else{
-                /**   得到错误信息 */
+                *//**   得到错误信息 *//*
                 value=commonMapper.readFile("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/testset/isaccept/error.txt",value);
                 list=commonMapper.getResult(submitinfo,3,list,value);
             }
-            /**   返回结果  */
+            *//**   返回结果  *//*
             return list;
-        }
+        }*/
         /**  多文件处理 */
-        else if(CodingLanguage.equals("zip")){
+        if(fileTyle.equals("zip")){
             /**  第一步---------解压缩----------   */
             String zipPath="/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/wordcode/"+file.getOriginalFilename();
             String outPath="/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/wordcode/";
@@ -161,28 +161,28 @@ public class submitController {
             }
         }
         /**  如果上传的是cpp或者c文件 */
-        else if(CodingLanguage.equals("cpp") || CodingLanguage.equals("c")) {
-            /**  第一步-----进行编译-----   */
+       /* else if(CodingLanguage.equals("cpp") || CodingLanguage.equals("c")) {
+            *//**  第一步-----进行编译-----   *//*
             if(submitWordHandle.CompilerCpp(filepath)) {
                 System.out.println("编译成功");
                 PrintStream printStream=System.out;
                 System.setOut(printStream);
                 fileName="";
                 int result=submitWordHandle.AnswerCpp(1,fileName,submitinfo);
-                /**  删除编译文件 */
+                *//**  删除编译文件 *//*
                 submitWordHandle.delAllFile("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/wordcode");
-                /**  更新数据库  */
+                *//**  更新数据库  *//*
                 list=commonMapper.getResult(submitinfo,result,list,value);
             }
             else{
                     System.out.println("编译失败");
-                /**  删除编译文件 */
-                /**  编译错误  */
+                *//**  删除编译文件 *//*
+                *//**  编译错误  *//*
                 value=commonMapper.readFile("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/testset/isaccept/error.txt",value);
                 list=commonMapper.getResult(submitinfo,3,list,value);
             }
             return list;
-        }
+        }*/
         /**   上传文件格式不对 */
         else{
             submitWordHandle.delAllFile("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/wordcode");

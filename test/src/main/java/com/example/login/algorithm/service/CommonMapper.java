@@ -20,4 +20,6 @@ public interface CommonMapper {
     @PostMapping
     public List<String> getResult(Submitinfo submitinfo,Integer result,List<String> list,String value);
 
+    @PostMapping
+    public void clearFile(String filepath);
 }

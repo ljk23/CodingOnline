@@ -3,47 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="../assets/laydate/laydate.js"></script>
+    <script src="../assets/layer/layer.js"></script>
     <title>Title</title>
-    <style>
-.d{
-    display: -webkit-box; /*这个必须要有*/
-    -webkit-box-orient: horizontal;
-}
-.dd{
-    -webkit-box-flex: 1;
-}
-
-    </style>
 </head>
 <body>
-
-<input type="file" name="file"  id="file"/>
-<input type="submit" value="上传文件" onclick="clickUPFile();" />
-
+<span id="testView"></span>
+<div id="timenow"></div>
 <script>
-  //上传文件方法
-function clickUPFile(){
-        //添加获取文件信息
-        var formdata=new FormData();
-        formdata.append('enctype', 'multipart/form-data');
-        formdata.append('name', 'file');
-        formdata.append('file',$('#file').get(0).files[0]);
-        // formdata.append('recid',str);
-        $.ajax({
-            url: 'http://localhost:8081/getsubmit/wordsubmit',
-            type:'post',
-            contentType:false,
-            data:formdata,
-            processData:false,
-            success:function(info){
-                console.log(info)
-               // $('.backimg').attr('src',JSON.parse(info).msg);
-            },
-            error:function(err){
-                console.log(err)
-            }
-        });
-}
+    laydate.render({
+        elem: '#timenow'
+        ,position: 'static'
+        ,change: function(value, date){ //监听日期被切换
+            lay('#testView').html(value);
+        }
+    });
 </script>
 </body>
 </html>

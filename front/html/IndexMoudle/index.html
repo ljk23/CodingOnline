@@ -4,6 +4,7 @@
     <script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
     <script src="../../js/header.js"></script>
     <script src="../../js/common.js"></script>
+    <script src="../../assets/laydate/laydate.js"></script>
     <script src="../../assets/layer/layer.js"></script>
     <link type="text/css" rel="stylesheet" href="../../css/body.css"/>
     <link type="text/css" rel="stylesheet" href="../../css/header.css"/>
@@ -72,8 +73,8 @@
             <div class="log_input_register" style="display: none;">
                 username<input type="text" id="reg_username"/><span
                     id="info"></span>
-                password<input type="text" id="reg_password"/>
-                repassword<input type="text" id="reg_repassword"/>
+                password<input type="password" id="reg_password"/>
+                repassword<input type="password" id="reg_repassword"/>
                 email<input type="text" id="reg_email"/>
                 <input type="submit" id="register_user" value="register"/>
             </div>
@@ -85,6 +86,18 @@
 <!--主体-->
 <div class="wj_page_container">
     <div id="main_background">
+        <!--时刻表-->
+        <span id="testView"></span>
+        <div id="timenow" style="margin-left: 78%;z-index: 1001"></div>
+        <script>
+            laydate.render({
+                elem: '#timenow'
+                ,position: 'static'
+                ,change: function(value, date){ //监听日期被切换
+                    lay('#testView').html(value);
+                }
+            });
+        </script>
         <div class="logo_panel">
             <br>
             <img src="" style="max-height: 80px; height: 80px;">

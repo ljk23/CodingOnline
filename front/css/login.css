@@ -58,7 +58,7 @@
     padding: 5%;
     color: white;
 }
-.log_input_register input[type="text"],.log_input_register input[type="submit"]{
+.log_input_register input[type="text"],.log_input_register input[type="submit"],.log_input_register input[type="password"]{
     -webkit-appearance: none;
     -moz-appearance: none;
     width: 250px;

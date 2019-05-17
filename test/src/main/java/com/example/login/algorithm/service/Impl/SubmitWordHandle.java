@@ -5,6 +5,8 @@ import com.example.login.problem.dao.entity.Probleminfo;
 import com.example.login.problem.dao.mapper.ProbleminfoMapper;
 import com.example.login.submit.dao.entity.Submitinfo;
 import com.example.login.submit.dao.mapper.SubmitinfoMapper;
+import com.example.login.testset.dao.entity.Testinfo;
+import com.example.login.testset.dao.mapper.TestinfoMapper;
 import com.sun.tools.javac.resources.compiler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -14,10 +16,7 @@ import javax.annotation.PostConstruct;
 import javax.tools.*;
 import java.io.*;
 import java.nio.charset.Charset;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.Enumeration;
-import java.util.Scanner;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.zip.CRC32;
@@ -39,6 +38,8 @@ public class SubmitWordHandle implements SubmitWordMapper {
     private CommonHandle commonHandle;
     @Autowired
     private  SubmitinfoMapper submitinfoMapper;
+    @Autowired
+    private TestinfoMapper testinfoMapper;
 
     private static Boolean flag;
     private char ch;
@@ -350,7 +351,6 @@ public class SubmitWordHandle implements SubmitWordMapper {
         }
     }
 
-
     /**  将代码写入文件当中 */
     public String WriteCideIntoFile(String contents,String codingLanguage) throws IOException{
         /**  编码是java文件 */
@@ -515,7 +515,6 @@ public class SubmitWordHandle implements SubmitWordMapper {
         return flag;
     }
 
-
     /**  第一步----编译文件 ----编译java文件--- */
     public Boolean Compiler(String filepath) throws IOException{
         /**  输出重定向 */
@@ -538,7 +537,7 @@ public class SubmitWordHandle implements SubmitWordMapper {
         /**  输出重定向 */
         PrintStream correct=new PrintStream(new FileOutputStream("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/testset/isaccept/error.txt"));
         System.setOut(correct);
-        String cmd = "g++ -Wall -g  -o main "+filepath;
+        String cmd = "g++ -w -g  -o main "+filepath;
         Process process = Runtime.getRuntime().exec(cmd,null,new File("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/wordcode/")); // 执行编译指令
         if(process!=null){
             BufferedReader br = new BufferedReader(new InputStreamReader(process.getErrorStream()));//获取执行进程的输入流
@@ -567,7 +566,7 @@ public class SubmitWordHandle implements SubmitWordMapper {
             if(fileName.substring(fileName.lastIndexOf(".")+1,fileName.length()).equals("java")){
                 System.out.println(f);
                 try{
-                    Iterable<String> options = Arrays.asList("-sourcepath", "/Users/tp5admin/Desktop/sometime");
+                    Iterable<String> options = Arrays.asList("-sourcepath", "/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/wordcode/sometime");
 
                     Iterable<? extends JavaFileObject> compilationUnits = fileManager
                             .getJavaFileObjectsFromStrings(Arrays.asList(f.getAbsolutePath()));
@@ -592,7 +591,7 @@ public class SubmitWordHandle implements SubmitWordMapper {
     public Boolean CompilerAppFiles(String filepath) throws IOException{
         PrintStream correct=new PrintStream(new FileOutputStream("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/testset/isaccept/error.txt"));
         System.setOut(correct);
-        String cmd="g++ -Wall -g  -o main ";
+        String cmd="g++ -w -g  -o main ";
         /**  遍历文件夹，编译到main函数中 */
         File file = new File(filepath);		//获取其file对象
         File[] fs = file.listFiles();
@@ -602,7 +601,7 @@ public class SubmitWordHandle implements SubmitWordMapper {
                 cmd+=f.getAbsolutePath()+" ";
             }
         }
-        cmd="g++ -Wall -g -o main /Users/tp5admin/Desktop/ljk/greet.cpp /Users/tp5admin/Desktop/ljk/app.cpp";
+      //  cmd="g++ -Wall -g -o main /Users/tp5admin/Desktop/ljk/greet.cpp /Users/tp5admin/Desktop/ljk/app.cpp";
         Process proc = Runtime.getRuntime().exec(cmd,null,new File(filepath)); // 执行编译指令
         if(proc!=null){
             BufferedReader br = new BufferedReader(new InputStreamReader(proc.getErrorStream()));//获取执行进程的输入流
@@ -628,8 +627,6 @@ public class SubmitWordHandle implements SubmitWordMapper {
     /** 第二步----黑盒测试  */
     public Integer Answer(Integer problemid,String filename,Submitinfo submitinfo) throws IOException {
 
-        /**  获得输入输出测试用例写入到input文件中  */
-        Probleminfo probleminfo = probleminfoMapper.selectByProblemName(submitinfo.getSubmitname());
         /**  执行java的.class文件 */
         System.out.println(filename);
         String fileName = filename;
@@ -642,7 +639,22 @@ public class SubmitWordHandle implements SubmitWordMapper {
         } else {
             cmd = "java -cp /Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/wordcode/" + " " + cls;
         }
+        /**  得到结果 */
+        int result=judge(submitinfo,cmd);
+        return result;
+    }
 
+    /** 第二步----黑盒测试  */
+    public Integer AnswerCpp(Integer problemid,String filename,Submitinfo submitinfo) throws IOException{
+
+        /**  入口函数为main */
+        String cmd ="/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/wordcode/"+filename+"main";
+        int result=judge(submitinfo,cmd);
+        return result;
+    }
+
+    /**  用例测试 */
+    public Integer judge(Submitinfo submitinfo,String cmd) throws IOException{
         /**  编译时间-------------------------------------- */
         final long timeout = 10000; // 限制的执行时间（毫秒）
         final long starttime = System.currentTimeMillis();
@@ -650,55 +662,56 @@ public class SubmitWordHandle implements SubmitWordMapper {
         /**  编译时消耗的内存-------------------------------- */
         Runtime runmemory = Runtime.getRuntime();
         runmemory.gc();
-        //  System.out.println("time: " + (new Date()));
-        // 获取开始时内存使用量
+        /** 获取开始时内存使用量  */
         long startMem = runmemory.totalMemory() - runmemory.freeMemory();
-        // System.out.println("memory> total:" + runmemory.totalMemory() + " free:" + runmemory.freeMemory() + " used:" + startMem);
         Process process=null;
-
         Runtime run = Runtime.getRuntime();//获取与当前平台进行交互的实例
-        //    Scanner scanner = new Scanner(System.in);
 
-        /**  重定向输出到lll文件中 */
-        try {
-            PrintStream input = new PrintStream(new FileOutputStream("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/testset/inputset/input.txt"));
-            System.setOut(input);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        System.out.println(probleminfo.getProbleminput());
+        /**  获得输入输出测试用例写入到input文件中  */
+        Probleminfo probleminfo = probleminfoMapper.selectByProblemName(submitinfo.getSubmitname());
+        /**  获得用例测试集 */
+        List<Testinfo> testinfos=testinfoMapper.selectByProblemId(probleminfo.getProblemid());
 
+        for(Testinfo testinfo:testinfos){
+            /**  重定向输出到lll文件中 */
+            try {
+                PrintStream input = new PrintStream(new FileOutputStream("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/testset/inputset/input.txt"));
+                System.setOut(input);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            System.out.println(testinfo.getTestinput());   /**  得到输入*/
 
-        /** 从文件中读取输入 */
+            /** 从文件中读取输入 */
+            FileInputStream fis = null;
+            try {  /**  有改动 */
+                fis = new FileInputStream("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/testset/inputset/input.txt");
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+            System.setIn(fis);
+            Scanner scanner = new Scanner(System.in);
 
-        FileInputStream fis = null;
-        try {  /**  有改动 */
-            fis = new FileInputStream("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/testset/inputset/input.txt");
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        System.setIn(fis);
-        Scanner scanner = new Scanner(System.in);
-
-        String str = null;
-        PrintStream result = new PrintStream(new FileOutputStream("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/testset/buffoutput/result.txt"));
-        System.setOut(result);
-        while (scanner.hasNextLine()) {
             process = run.exec(cmd);//当前平台执行对应命令
             /** 从控制台输入 */
             OutputStream out = process.getOutputStream();
             PrintWriter writer = new PrintWriter(out);
-            writer.println(scanner.nextLine());
-            writer.flush();
+
+            while (scanner.hasNextLine()) {
+                writer.println(scanner.nextLine());
+                writer.flush();
+            }
             /**  输出执行结果 */
+            /**  重定向输出 */
+            PrintStream result = new PrintStream(new FileOutputStream("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/testset/buffoutput/result.txt",true));
+            System.setOut(result);
             BufferedReader br = new BufferedReader(new InputStreamReader(process.getInputStream()));//获取执行进程的输入流
             String runInfo = null;
-                 while (null != (runInfo = br.readLine())) {//读取执行结果并写入到reslut.txt中
-                     System.out.println(runInfo);
-        //    commonHandle.reWriteFile("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/testset/buffoutput/result.txt", runInfo);
-                 }
+            while (null != (runInfo = br.readLine())) {//读取执行结果并写入到reslut.txt中
+                System.out.println(runInfo);
+                //commonHandle.reWriteFile("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/testset/buffoutput/result.txt", runInfo);
+            }
         }
-
 
         /**  判断有无超时间 */
         if (System.currentTimeMillis() - starttime > timeout) {
@@ -707,7 +720,8 @@ public class SubmitWordHandle implements SubmitWordMapper {
             submitinfo.setWordresult("超时");
             submitinfoMapper.updateByPrimaryKeySelective(submitinfo);
             return 4;
-        } else {
+        }
+        else {
             String time = String.valueOf((System.currentTimeMillis() - starttime));
             submitinfo.setWordresult(time);
             submitinfoMapper.updateByPrimaryKeySelective(submitinfo);
@@ -721,7 +735,8 @@ public class SubmitWordHandle implements SubmitWordMapper {
             submitinfoMapper.updateByPrimaryKeySelective(submitinfo);
             return 5;
 
-        } else {
+        }
+        else {
             long endMem = run.totalMemory() - run.freeMemory();
             submitinfo.setSynaxresult(String.valueOf((endMem - startMem) / 1024));
             submitinfoMapper.updateByPrimaryKeySelective(submitinfo);
@@ -733,7 +748,9 @@ public class SubmitWordHandle implements SubmitWordMapper {
         CancelTab("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/testset/buffoutput/result.txt");
 
         /**  重定向输出去掉空格和换行的运行结果文件----二方面----- */
-        commonHandle.reWriteFile("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/testset/outputset/output.txt", probleminfo.getProblemoutput());
+        for(Testinfo testinfo:testinfos)
+            commonHandle.reWriteFile("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/testset/outputset/output.txt", testinfo.getTestoutput());
+
         PrintStream afterout = new PrintStream(new FileOutputStream("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/testset/outputset/cancelTaboutput.txt"));
         System.setOut(afterout);
         CancelTab("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/testset/outputset/output.txt");
@@ -745,133 +762,15 @@ public class SubmitWordHandle implements SubmitWordMapper {
         if (isSameFile("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/testset/buffoutput/cancelTabresult.txt", "/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/testset/outputset/cancelTaboutput.txt")) {
             /**  删除编译文件 */
             delAllFile("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/wordcode");
-            return 1;
-        } else {
-            /**  删除编译文件 */
-            delAllFile("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/wordcode");
-            return 2;
-        }
-    }
-
-    /** 第二步----黑盒测试  */
-    public Integer AnswerCpp(Integer problemid,String filename,Submitinfo submitinfo) throws IOException{
-        /**  获得输入输出测试用例写入到input文件中  */
-        Probleminfo probleminfo=probleminfoMapper.selectByProblemName(submitinfo.getSubmitname());
-
-
-     /*   *  重新定位到控制台
-        PrintStream printStream=System.out;
-        System.setOut(printStream);*/
-        /**  入口函数为main */
-        String cmd ="/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/wordcode/"+filename+"main";
-        Process process = Runtime.getRuntime().exec(cmd);
-
-        /**  编译时间-------------------------------------- */
-        final long timeout = 10000; // 限制的执行时间（毫秒）
-        final long starttime = System.currentTimeMillis();
-        final long memoryout = 100000;  //限制内存
-        /**  编译时消耗的内存-------------------------------- */
-        Runtime runmemory = Runtime.getRuntime();
-        runmemory.gc();
-        //  System.out.println("time: " + (new Date()));
-        // 获取开始时内存使用量
-        long startMem = runmemory.totalMemory() - runmemory.freeMemory();
-        // System.out.println("memory> total:" + runmemory.totalMemory() + " free:" + runmemory.freeMemory() + " used:" + startMem);
-
-        /**  输入流文件 */
-
-                /** 从控制台输入 */
-                OutputStream out = process.getOutputStream();
-                PrintWriter writer = new PrintWriter(out);
-                //    Scanner scanner = new Scanner(System.in);
-
-                /**  重定向输出到lll文件中 */
-                try{
-                    PrintStream input=new PrintStream(new FileOutputStream("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/testset/inputset/input.txt"));
-                    System.setOut(input);
-                }catch (IOException e){
-                    e.printStackTrace();
-                }
-                System.out.println(probleminfo.getProbleminput());
-
-
-                /** 从文件中读取输入 */
-                FileInputStream fis = null;
-                try{  /**  有改动 */
-                    fis = new FileInputStream("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/testset/inputset/input.txt");
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                }
-                System.setIn(fis);
-                Scanner scanner = new Scanner(System.in);
-
-                String str = null;
-                while (scanner.hasNextLine()) {
-                    writer.println(scanner.nextLine());
-                    writer.flush();
-                }
-
-
-        /**  输出执行结果 */
-        BufferedReader br = new BufferedReader(new InputStreamReader(process.getInputStream()));//获取执行进程的输入流
-        String runInfo = null;
-        while (null != (runInfo = br.readLine())) {//读取执行结果并写入到reslut.txt中
-            commonHandle.reWriteFile("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/testset/buffoutput/result.txt",runInfo);
-        }
-
-        /**  判断有无超时间 */
-        if (System.currentTimeMillis() - starttime > timeout) {
-            // 超时
-            process.destroy();
-            submitinfo.setWordresult("超时");
-            submitinfoMapper.updateByPrimaryKeySelective(submitinfo);
-            return 4;
-        } else {
-            String time = String.valueOf((System.currentTimeMillis() - starttime));
-            submitinfo.setWordresult(time);
-            submitinfoMapper.updateByPrimaryKeySelective(submitinfo);
-        }
-
-        /**  判断有无超内存 */
-        long ll = (runmemory.totalMemory() - runmemory.freeMemory()) / 1024;
-        if (ll > memoryout) {
-            process.destroy();
-            submitinfo.setSynaxresult("超内存");
-            submitinfoMapper.updateByPrimaryKeySelective(submitinfo);
-            return 5;
-
-        } else {
-            long endMem = runmemory.totalMemory() - runmemory.freeMemory();
-            submitinfo.setSynaxresult(String.valueOf((endMem - startMem) / 1024));
-            submitinfoMapper.updateByPrimaryKeySelective(submitinfo);
-        }
-
-
-        /**  重定向输出去掉空格和换行的运行结果文件----一方面----- */
-        PrintStream after=new PrintStream(new FileOutputStream("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/testset/buffoutput/cancelTabresult.txt"));
-        System.setOut(after);
-        CancelTab("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/testset/buffoutput/result.txt");
-
-        /**  重定向输出去掉空格和换行的运行结果文件----二方面----- */
-        commonHandle.reWriteFile("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/testset/outputset/output.txt",probleminfo.getProblemoutput());
-        PrintStream afterout=new PrintStream(new FileOutputStream("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/testset/outputset/cancelTaboutput.txt"));
-        System.setOut(afterout);
-        CancelTab("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/testset/outputset/output.txt");
-
-        /**  重定向输出最终的结果----保存到word.txt中----- */
-        PrintStream isaccept=new PrintStream(new FileOutputStream("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/testset/isaccept/word.txt"));
-        System.setOut(isaccept);
-        /**  将结果和正确答案的txt文件比较----并返回结果---- */
-        if(isSameFile("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/testset/buffoutput/cancelTabresult.txt","/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/testset/outputset/cancelTaboutput.txt"))
-        {
-            /**  删除编译文件 */
-            delAllFile("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/wordcode");
+            commonHandle.clearFile("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/testset/buffoutput/result.txt");
+            commonHandle.clearFile("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/testset/outputset/output.txt");
             return 1;
         }
-        else
-        {
+        else {
             /**  删除编译文件 */
             delAllFile("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/wordcode");
+            commonHandle.clearFile("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/testset/buffoutput/result.txt");
+            commonHandle.clearFile("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/testset/outputset/output.txt");
             return 2;
         }
     }

@@ -43,7 +43,7 @@ public class CommonHandle implements CommonMapper {
     public void reWriteFile(String filepath,String value){
         /**  重定向输出到lll文件中 */
         try{
-            PrintStream input=new PrintStream(new FileOutputStream(filepath));
+            PrintStream input=new PrintStream(new FileOutputStream(filepath,true));
             System.setOut(input);
         }catch (IOException e){
             e.printStackTrace();
@@ -60,7 +60,7 @@ public class CommonHandle implements CommonMapper {
         }else if(result==2){
             /** 用例不通过  */
             submitinfo.setIssuccess(false);
-            submitinfo.setSubmitsuccess(0);
+            submitinfo.setSubmitsuccess(2);
             submitinfo.setErrorcause("用例不通过");
             submitinfoMapper.updateByPrimaryKeySelective(submitinfo);
             list.add(String.valueOf(result));
@@ -76,7 +76,7 @@ public class CommonHandle implements CommonMapper {
         }else if(result==4){
             /** 超时  */
             submitinfo.setIssuccess(false);
-            submitinfo.setSubmitsuccess(0);
+            submitinfo.setSubmitsuccess(4);
             submitinfo.setErrorcause("超时");
             submitinfoMapper.updateByPrimaryKeySelective(submitinfo);
             list.add(String.valueOf(result));
@@ -84,7 +84,7 @@ public class CommonHandle implements CommonMapper {
         }else if(result==5){
             /** 超过内存  */
             submitinfo.setIssuccess(false);
-            submitinfo.setSubmitsuccess(0);
+            submitinfo.setSubmitsuccess(5);
             submitinfo.setErrorcause("超过内存");
             submitinfoMapper.updateByPrimaryKeySelective(submitinfo);
             list.add(String.valueOf(result));
@@ -100,5 +100,20 @@ public class CommonHandle implements CommonMapper {
             list.add("格式错误");
         }
         return list;
+    }
+
+    public void clearFile(String filepath){
+        File file =new File(filepath);
+        try {
+            if(!file.exists()) {
+                file.createNewFile();
+            }
+            FileWriter fileWriter =new FileWriter(file);
+            fileWriter.write("");
+            fileWriter.flush();
+            fileWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

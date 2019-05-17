@@ -93,11 +93,12 @@
     background: rgba(0, 0, 50, .02);
 }
 .daanstate{
-    width: 60%;
+    width: 150px;
     height: 34px;
-    text-align: center;
-    margin: auto;
     border-radius: 3px;
+    color: black;
+    text-align: center;
+    margin-left: 30%;
 }
 .editor{
     text-decoration: none;

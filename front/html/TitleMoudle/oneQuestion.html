@@ -286,34 +286,6 @@
         $('.operatebackgroud').css('display', 'none');
         $(window).unbind('scroll');
     })
-    /**  login  */
-    $("#login").click(function () {
-        var username = $("#username").val();
-        var password = $("#password").val();
-        $.ajax({
-            url: "http://localhost:8081/userInfo/login",
-            type: 'POST',
-            contentType: 'application/json;charset=utf-8',
-            data: '{"username":"' + username + '","password":"' + password + '"}',
-            success: function (data) {
-                if ($.isEmptyObject(data)) alert("用户名不存在或者密码错误");
-                else {
-                    /** 退出登录框  */
-                    $('#loginclass').css('display', 'none');
-                    $('.operatebackgroud').css('display', 'none');
-                    $(window).unbind('scroll');
-                    /** 更改用户名  */
-                    alert("登陆成功");
-                    var obj = eval(data);
-                    /** session保存信息 */
-                    var loginName = obj.username;
-                    sessionStorage.loginName = loginName;
-                    /**  将变量存储到sessionStorage中，并且value为loginName */
-                    Implement(loginName);
-                }
-            }
-        })
-    });
 </script>
 <script>
     function proCoding() {
@@ -329,16 +301,15 @@
 <!--coding submit-->
 <script>
     $("#coding_submit").click(function () {
-      //  alert($("#codinglanguage").val());
-        var codinglanguage=$("#codinglanguage").val();
-        alert(codinglanguage);
+        layer.load("排队提交中", {
+            time: 3000 //取消自动关闭
+        })
+     var codinglanguage=$("#codinglanguage").val();
      /** 查找用户的id */
      var  problemid = getUserTransferValue();
      submituserid=SelectUserIdByUsername(sessionStorage.loginName);
         /** 查找用户的信息 */
         var codeInfo={submituserid:submituserid,submitname:submitname,submitnameclassfy:submitnameclassfy,submitnums:1,submitcontent:$(".codecontent").val(),submitupdatetime:submitupdatetime,codinglanguage:codinglanguage};
-        alert(submitnameclassfy);
-        if(submitnameclassfy=="算法1000道"){
              $.ajax({
                  url:  "http://localhost:8081/submit/wordsubmit",
                  type: 'POST',
@@ -349,66 +320,14 @@
                      window.location.href="../UserMoudle/userInfo.html?userInfo=user_submit&submituserid="+submituserid+"&problemid="+problemid;
                  }
              })
-        }
-        else if(submitnameclassfy=="语法分析"){
-            $.ajax({
-                url:  "http://localhost:8081/submit/wordsubmit",
-                type: 'POST',
-                contentType: 'application/json;charset=utf-8',
-                data: JSON.stringify(codeInfo),
-                success: function (data) {
-                    submituserid=eval(data)[1];
-                    if(eval(data)[0]==1){
-                        layer.alert('编译成功', {
-                            icon: 1,
-                            time: 2000
-                        }, function () {
-                            window.location.href="../UserMoudle/userInfo.html?userInfo=user_submit&submituserid="+submituserid+"&problemid="+problemid;
-                        });
-                    }
-                    else{
-                        layer.alert('编译失败', {
-                            icon: 5,
-                            time: 2000
-                        }, function () {
-                            window.location.href="../UserMoudle/userInfo.html?userInfo=user_submit&submituserid="+submituserid+"&problemid="+problemid;
-                        });
-                    }
-                }
-            })
-        }
-        else if(submitnameclassfy=="语法分析"){
-            $.ajax({
-                url:  "http://localhost:8081/synaxsubmit/synaxsubmit",
-                type: 'POST',
-                contentType: 'application/json;charset=utf-8',
-                data: JSON.stringify(codeInfo),
-                success: function (data)  {
-                    submituserid=eval(data)[1];
-                    if(eval(data)[0]==1){
-                        layer.alert('编译成功', {
-                            icon: 1,
-                            time: 2000
-                        }, function () {
-                            window.location.href="../UserMoudle/userInfo.html?userInfo=user_submit&submituserid="+submituserid+"&problemid="+problemid;
-                        });
-                    }
-                    else{
-                        layer.alert('编译失败', {
-                            icon: 5,
-                            time: 2000
-                        }, function () {
-                            window.location.href="../UserMoudle/userInfo.html?userInfo=user_submit&submituserid="+submituserid+"&problemid="+problemid;
-                        });
-                    }
-                }
-            })
-        }
     })
 </script>
 <script>
-    /**  单文件方法   */
+      /**  多文件上传  */
     function clickUPFile(){
+        layer.load("排队提交中", {
+            time: 3000 //取消自动关闭
+        })
         /** 查找用户的id */
         var  problemid = getUserTransferValue();
         submituserid=SelectUserIdByUsername(sessionStorage.loginName);
@@ -421,7 +340,6 @@
             contentType: 'application/json;charset=utf-8',
             data: JSON.stringify(codeInfo),
             success: function (data) {
-               alert("第一步上传成功");
                /**  提交信息上传成功 */
                /**  上传文件 */
                    /** 添加获取文件信息   */
@@ -436,9 +354,7 @@
                     data: formdata,
                     processData:false,
                     success:function(data){
-                        alert("123");
                         var info=eval(data)[0];
-                        alert(info);
                         layer.msg("提交中", {
                             icon:16,
                             shade:[0.1, '#4F94CD'],
@@ -496,65 +412,8 @@
                 });
             }
         })
-
-     /*   //添加获取文件信息
-        var formdata=new FormData();
-        formdata.append('enctype', 'multipart/form-data');
-        formdata.append('name', 'file');
-        formdata.append('file',$('#file').get(0).files[0]);
-        alert(formdata);
-        // formdata.append('recid',str);
-        $.ajax({
-            url: 'http://localhost:8081/getsubmit/wordsubmit',
-            type:'post',
-            contentType:false,
-            data:{file:formdata,submituserid:submituserid,submitname:submitname,submitnameclassfy:submitnameclassfy,submitnums:1,submitcontent:$(".codecontent").val(),submitupdatetime:submitupdatetime,codinglanguage:codinglanguage},
-            processData:false,
-            success:function(info){
-                layer.msg("提交中", {
-                    icon:16,
-                    shade:[0.1, '#4F94CD'],
-                    time: 3000 //取消自动关闭
-                },function () {
-                    if(info==1){
-                        layer.alert('编写通过', {
-                            icon: 1,
-                            time: 2000
-                        }, function () {
-
-                        })
-                    }
-                    else if(info==2){
-                        layer.alert('答案错误', {
-                            icon: 5,
-                            time: 2000
-                        }, function () {
-
-                        })
-                    }
-                    else if(info==4){
-                        layer.alert('文件格式传入错误', {
-                            icon: 5,
-                            time: 2000
-                        }, function () {
-
-                        })
-                    }else{
-                        layer.alert('编译失败', {
-                            icon: 5,
-                            time: 2000
-                        }, function () {
-
-                        })
-                    }
-                })
-            }
-        });*/
     }
-    /**  多文件上传  */
-    function clickZipFile() {
-        
-    }
+
 </script>
 </body>
 </html>
