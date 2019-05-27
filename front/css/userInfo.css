@@ -37,7 +37,7 @@
     margin-left: 4%;
 }
 
-.user_from-group span input[type="text"], input[type="password"] {
+.user_from-group span input[type="text"],.user_from-group  input[type="password"] {
     position: absolute;
     left: 45%;
     -webkit-appearance: none;

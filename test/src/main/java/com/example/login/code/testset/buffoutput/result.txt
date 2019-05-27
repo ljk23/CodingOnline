@@ -1,0 +1,6 @@
+61 card(s)
+3 card(s)
+[2m2019-05-26 00:34:42.740[0;39m [32mDEBUG[0;39m [35m60480[0;39m [2m---[0;39m [2m[      Thread-23][0;39m [36mConfigServletWebServerApplicationContext[0;39m [2m:[0;39m Closing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@5e43d04b, started on Sun May 26 00:33:28 CST 2019
+[2m2019-05-26 00:34:42.815[0;39m [32m INFO[0;39m [35m60480[0;39m [2m---[0;39m [2m[      Thread-23][0;39m [36mo.s.s.concurrent.ThreadPoolTaskExecutor [0;39m [2m:[0;39m Shutting down ExecutorService 'applicationTaskExecutor'
+[2m2019-05-26 00:34:42.820[0;39m [32m INFO[0;39m [35m60480[0;39m [2m---[0;39m [2m[      Thread-23][0;39m [36mcom.zaxxer.hikari.HikariDataSource      [0;39m [2m:[0;39m HikariPool-1 - Shutdown initiated...
+[2m2019-05-26 00:34:42.879[0;39m [32m INFO[0;39m [35m60480[0;39m [2m---[0;39m [2m[      Thread-23][0;39m [36mcom.zaxxer.hikari.HikariDataSource      [0;39m [2m:[0;39m HikariPool-1 - Shutdown completed.

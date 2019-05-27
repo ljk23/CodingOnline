@@ -6,6 +6,7 @@
     <script src="../../js/header.js"></script>
     <script src="../../js/common.js"></script>
     <script src="../../assets/layer/layer.js"></script>
+    <script src="../../assets/layui/layui.js" charset="utf-8"></script>
     <link type="text/css" rel="stylesheet" href="../../css/body.css"/>
     <link type="text/css" rel="stylesheet" href="../../css/exercise.css"/>
     <link type="text/css" rel="stylesheet" href="../../css/userInfo.css"/>
@@ -14,14 +15,15 @@
     <link type="text/css" rel="stylesheet" href="../../css/probemset.css"/>
     <link type="text/css" rel="stylesheet" href="../../css/login.css"/>
     <link type="text/css" rel="stylesheet" href="../../css/contest.css"/>
+    <link rel="stylesheet" href="../../assets/layui/css/layui.css"  media="all">
 </head>
 <body>
 <!--头部-->
 <div class="ui">
     <div class="ui-left">
         <a class="item" href="../IndexMoudle/index.html" onmousemove=""><img src="../../images/logo_flat.png" width="104" height="24"></a>
-        <a class="item" href="../TitleMoudle/exercise.html"><i class="list items icon"></i>题目中心</a>
-        <a class="item" onclick="warning()"><i class="list items icon"></i>在线教学</a>
+         <a class="item" href="../TitleMoudle/exercise.html"><i class="list items icon"></i>题目中心</a>
+        <a class="item" href="../OnlineTeaching/teachingIndex.html"><i class="list items icon"></i>在线教学</a>
         <a class="item" href="../ContestWork/contest.html"><i class="list items icon"></i>在线比赛</a>
         <a class="item" href="../TitleMoudle/submitStatus.html"><i class="list items icon"></i>提交状态</a>
         <a class="item" href="../UserMoudle/userRank.html"><i class="list items icon"></i>选手排名</a>
@@ -78,8 +80,16 @@
 <!--主体-->
 <br>
 <div class="ex_page_container one_page">
+    请选择要结束的时间：
+    <div class="layui-inline">
+        <input type="text" class="layui-input" id="test1" value="" disabled="disabled">
+    </div>
     <div class="message_marquee">
-        <marquee scrollAmount="2" direction=right behavior="scroll">暂无比赛通知!!!</marquee>
+        <!--倒计时-->
+        <blockquote class="layui-elem-quote" style="margin-top: 10px;">
+            <div id="test2"></div>
+        </blockquote>
+
     </div>
     <br>
     <div id="one_coding" style="display: block; display: -webkit-box;-webkit-box-orient: horizontal;">
@@ -268,6 +278,77 @@
         $("#sign_in").css('opacity','1');
         $("#sign_up").css('opacity','0.2');
     })
+</script>
+<!--倒计时-->
+<script>
+    layui.use(['util', 'laydate', 'layer'], function(){
+        var util = layui.util
+            ,laydate = layui.laydate
+            ,layer = layui.layer;
+        //固定块
+        util.fixbar({
+             bar1: true
+            ,bar2: true
+            ,css: {right: 50, bottom: 100}
+            ,bgcolor: '#393D49'
+            ,click: function(type){
+                if(type === 'bar1'){
+                    layer.msg('icon是可以随便换的')
+                } else if(type === 'bar2') {
+                    layer.msg('两个bar都可以设定是否开启')
+                }
+            }
+        });
+
+        /**  获取比赛结束的时间 */
+        /**  加载比赛信息 */
+        var year=null;
+        var month=null;
+        var day=null;
+        var hour=null;
+        var minute=null;
+        var second=null;
+        var contestid=GetQueryString("contestid");
+        $.ajax({
+            url: "http://localhost:8081/matchAdmin/queryById",
+            type: 'GET',
+            data: "contestid=" + contestid,
+            async: false,
+            success: function (data) {
+                endtime=eval(data).contestendtime.replace(/\T/g," ")+":00";
+                $("#test1").val(endtime+":00");
+                var dd=endtime.split(" ")[0].split("-");
+                year=dd[0];
+                month=dd[1].charAt(1);
+                day=dd[2];
+                var ss=endtime.split(" ")[1].split(":");
+                hour=ss[0]||0;
+                minute=ss[1]||0;
+                second=ss[2]||0;
+            }
+        })
+        //倒计时
+        var thisTimer, setCountdown = function(y, M, d, H, m, s){
+            var endTime = new Date(y, M||0, d||1, H||0, m||0, s||0) //结束日期
+                ,serverTime = new Date(); //假设为当前服务器时间，这里采用的是本地时间，实际使用一般是取服务端的
+
+            clearTimeout(thisTimer);
+            util.countdown(endTime, serverTime, function(date, serverTime, timer){
+                var str =date[1] + '时' +  date[2] + '分' + date[3] + '秒';
+                lay('#test2').html(str);
+                thisTimer = timer;
+            });
+        };
+        setCountdown(year,month,day,hour,minute,second);
+
+        laydate.render({
+            elem: '#test1'
+            ,type: 'datetime'
+            ,done: function(value, date){
+                setCountdown(date.year, date.month - 1, date.day, date.hours, date.minutes, date.seconds);
+            }
+        });
+    });
 </script>
 </body>
 </html>

@@ -1,0 +1,5 @@
+两个文件完全相同
+编译成功
+Matchinfo{contestid=null, contestname='武汉理工大学新生杯', contesthost='武汉理工大学', conteststarttime='2019-05-24T10:00', contestendtime='2019-05-24T00:00', contestform='个人', contestcontent='null', contestlanguage='C', contestcreatetime='2019-05-20 11:20:21', conteststate=true}
+Matchinfo{contestid=null, contestname='武汉理工大学蓝桥杯', contesthost='武汉ACM协会', conteststarttime='2019-06-10T10:00', contestendtime='2019-06-10T00:00', contestform='团队', contestcontent='null', contestlanguage='Cpp', contestcreatetime='2019-05-20 11:21:11', conteststate=true}
+[2m2019-05-20 12:50:27.519[0;39m [32mDEBUG[0;39m [35m97430[0;39m [2m---[0;39m [2m[      Thread-26][0;39m [36mConfigServletWebServerApplicationContext[0;39m [2m:[0;39m Closing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@4eaba41a, started on Mon May 20 10:38:04 CST 2019

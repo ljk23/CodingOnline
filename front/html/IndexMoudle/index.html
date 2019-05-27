@@ -6,11 +6,12 @@
     <script src="../../js/common.js"></script>
     <script src="../../assets/laydate/laydate.js"></script>
     <script src="../../assets/layer/layer.js"></script>
+    <script src="../../assets/layui/layui.js" charset="utf-8"></script>
     <link type="text/css" rel="stylesheet" href="../../css/body.css"/>
     <link type="text/css" rel="stylesheet" href="../../css/header.css"/>
     <link type="text/css" rel="stylesheet" href="../../css/login.css"/>
     <link type="text/css" rel="stylesheet" href="../../css/booter.css"/>
-    <script src="../../js/header.js"></script>
+    <link rel="stylesheet" href="../../assets/layui/css/layui.css"  media="all">
     <title>www.byyl.com</title>
     <script>
         /** isLogin  */
@@ -29,7 +30,7 @@
     <div class="ui-left">
         <a class="item" href="../IndexMoudle/index.html" onmousemove=""><img src="../../images/logo_flat.png" width="104" height="24"></a>
         <a class="item" href="../TitleMoudle/exercise.html"><i class="list items icon"></i>题目中心</a>
-        <a class="item" onclick="warning()"><i class="list items icon"></i>在线教学</a>
+        <a class="item" href="../OnlineTeaching/teachingIndex.html"><i class="list items icon"></i>在线教学</a>
         <a class="item" href="../ContestWork/contest.html"><i class="list items icon"></i>在线比赛</a>
         <a class="item" href="../TitleMoudle/submitStatus.html"><i class="list items icon"></i>提交状态</a>
         <a class="item" href="../UserMoudle/userRank.html"><i class="list items icon"></i>选手排名</a>
@@ -165,6 +166,26 @@
                 $(this).scrollTop(0)
             });
         });
+        layui.use(['util', 'laydate', 'layer'], function() {
+            var util = layui.util
+                , laydate = layui.laydate
+                , layer = layui.layer;
+            //固定块
+            util.fixbar({
+                bar1: true
+                , bar2: true
+                , css: {right: 50, bottom: 100}
+                , bgcolor: '#393D49'
+                , click: function (type) {
+                    if (type === 'bar1') {
+                        layer.msg('icon是可以随便换的')
+                    } else if (type === 'bar2') {
+                        layer.msg('两个bar都可以设定是否开启')
+                    }
+                }
+            });
+        })
+
     });
 </script>
 <!--operate login style-->
@@ -218,17 +239,17 @@
             data: '{"username":"' + username + '","password":"' + password + '"}',
             success: function (data) {
                 if ($.isEmptyObject(data)){
-                    layer.alert('登陆失败', {
+                    layer.alert('用户名或者密码错误', {
                         icon: 5,
                         time: 2000,
-                        offset: ['400px', '45%'],
+                        offset: ['200px', '45%'],
                 });
                 }
                 else {
                     layer.alert('登陆成功', {
                         icon: 1,
                         time: 2000,
-                        offset: ['400px', '45%'],
+                        offset: ['200px', '45%'],
                     },function () {
                         /** 退出登录框  */
                         $('#loginclass').css('display', 'none');

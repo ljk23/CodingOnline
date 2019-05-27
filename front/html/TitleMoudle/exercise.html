@@ -15,8 +15,8 @@
 <div class="ui">
     <div class="ui-left">
         <a class="item" href="../IndexMoudle/index.html" onmousemove=""><img src="../../images/logo_flat.png" width="104" height="24"></a>
-        <a class="item" href="../TitleMoudle/exercise.html"><i class="list items icon"></i>题目中心</a>
-        <a class="item" onclick="warning()"><i class="list items icon"></i>在线教学</a>
+         <a class="item" href="../TitleMoudle/exercise.html"><i class="list items icon"></i>题目中心</a>
+        <a class="item" href="../OnlineTeaching/teachingIndex.html"><i class="list items icon"></i>在线教学</a>
         <a class="item" href="../ContestWork/contest.html"><i class="list items icon"></i>在线比赛</a>
         <a class="item" href="../TitleMoudle/submitStatus.html"><i class="list items icon"></i>提交状态</a>
         <a class="item" href="../UserMoudle/userRank.html"><i class="list items icon"></i>选手排名</a>
@@ -38,65 +38,6 @@
     </script>
 </div>
 <!--登录框-->
-<div class="loginclass" id="loginclass" style="display: none">
-    <form id="#" method="post">
-        <div class="loginside"><h3>登录WeJudge</h3></div>
-        <hr style="color: gray"/>
-        <div class="loginbody">
-            <div>WeJudge账户</div>
-            <hr width="80%"/>
-            <br>
-            <label id="login_username">用户名登陆</label><label id="login_elecemail">邮箱登陆</label>
-            <!--username login-->
-            <div id="login_user_frame">
-                <br>
-                <small>登录名称</small>
-                <div style="padding: 10px 10px 10px 0px;"><input type="text" placeholder="请输入用户名" id="username" name=""
-                                                                 style="width:200px; height:30px"/></div>
-                <small>登录密码</small>
-                <br>
-                <div style="padding: 10px 10px 10px 0px;"><input type="text" placeholder="请输入密码" id="password" name=""
-                                                                 style="width:200px; height:30px"/></div>
-                <br>
-                <div class="loginside"
-                     style="display: -webkit-box; -webkit-box-orient: horizontal; background-color: #EBEBEB; text-align: center;">
-                    <div style=" margin-bottom: 5px; width: 50px;margin-left: 40%; background-color: #C2C2C2; border-radius:6px 6px 6px 6px; cursor: pointer; color: #838B83;"
-                         id="closelogin">
-                        <small>关闭</small>
-                    </div>&nbsp;&nbsp;&nbsp;&nbsp;
-                    <div style=" margin-bottom: 5px; width: 50px; background-color: #1C86EE; border-radius:6px 6px 6px 6px; cursor: pointer;color: white;"
-                         id="login_user">
-                        <small>登录</small>
-                    </div>
-                </div>
-            </div>
-            <!--email login-->
-            <div id="login_email_frame" style="display: none">
-                <br>
-                <small>登录名称</small>
-                <div style="padding: 10px 10px 10px 0px;"><input type="text" placeholder="请输入邮箱" id="useremail" name=""
-                                                                 style="width:200px; height:30px"/></div>
-                <small>登录密码</small>
-                <br>
-                <div style="padding: 10px 10px 10px 0px;"><input type="text" placeholder="请输入密码" id="password" name=""
-                                                                 style="width:200px; height:30px"/></div>
-                <br>
-                <div class="loginside"
-                     style="display: -webkit-box; -webkit-box-orient: horizontal; background-color: #EBEBEB; text-align: center;">
-                    <div style=" margin-bottom: 5px; width: 50px;margin-left: 40%; background-color: #C2C2C2; border-radius:6px 6px 6px 6px; cursor: pointer; color: #838B83;"
-                         id="closelogin">
-                        <small>关闭</small>
-                    </div>&nbsp;&nbsp;&nbsp;&nbsp;
-                    <div style=" margin-bottom: 5px; width: 50px; background-color: #1C86EE; border-radius:6px 6px 6px 6px; cursor: pointer;color: white;"
-                         id="login_email">
-                        <small>登录</small>
-                    </div>
-                </div>
-            </div>
-            <!--<div>记住登录</div>-->
-        </div>
-    </form>
-</div>
 <!--背景色-->
 <div class="operatebackgroud" style="display: none;"></div>
 <!--主体-->
@@ -231,7 +172,7 @@
             </div>
             <div class="ex_column" id="ex_mean">
                 <div class="ex_content">
-                    <div class="ex_header"><a style="cursor: pointer">中间代码分析</a></div>
+                    <div class="ex_header"><a style="cursor: pointer">语义分析</a></div>
                     <p class="ex_meta"><img src="../../images/ex_user.png" width="12px" height="12px">&nbsp;<small>饶文碧
                     </small>
                     </p>
@@ -266,9 +207,26 @@
                     </div>
                 </div>
             </div>
-            <div class="ex_column" id="bettercode">
+            <div class="ex_column" id="ex_bettercode">
                 <div class="ex_content">
-                    <div class="ex_header"><a style="cursor: pointer">代码优化</a></div>
+                    <div class="ex_header"><a style="cursor: pointer">中间代码优化</a></div>
+                    <p class="ex_meta"><img src="../../images/ex_user.png" width="12px" height="12px">&nbsp;<small>饶文碧
+                    </small>
+                    </p>
+                    <p class="ex_description">适合入门级用户</p>
+                </div>
+                <div class="ex_extra_content">
+                    <div class="ex_test_number">
+                        <div><img src="../../images/ex_test.png" width="12px" height="15px">&nbsp;<small>141</small>
+                        </div>
+                        <div style="margin-left: 60%"><img src="../../images/ex_resource.png" width="15px" height="15px">&nbsp;公开题库
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ex_column" id="integercode">
+                <div class="ex_content">
+                    <div class="ex_header"><a style="cursor: pointer">合并编译</a></div>
                     <p class="ex_meta"><img src="../../images/ex_user.png" width="12px" height="12px">&nbsp;<small>饶文碧
                     </small>
                     </p>
@@ -435,6 +393,10 @@
     $("#ex_bettercode").click(function () {
         var problemclassfy="代码优化";
         window.location.href="question.html?problemclassfy="+problemclassfy+"";
+    })
+    $("#integercode").click(function () {
+        var problemclassfy="代码优化";
+        window.location.href="integerCode.html";
     })
     /** 刷新页面  */
     $("#refresh").click(function () {

@@ -1,6 +1,7 @@
 package com.example.login.submit.controller;
 
 import com.example.login.algorithm.service.CommonMapper;
+import com.example.login.constant.Constant;
 import com.example.login.problem.dao.entity.Probleminfo;
 import com.example.login.submit.dao.entity.Submitinfo;
 import com.example.login.algorithm.service.SubmitWordMapper;
@@ -12,10 +13,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.parsing.Problem;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.example.login.constant.Constant.CLASS_PATH;
 
 @RestController
 @RequestMapping(value="/submit")
@@ -31,10 +35,11 @@ public class wordHandleController {
 
     @PostMapping("wordsubmit")
     public List<String> wordSubmit(@RequestBody Submitinfo submitinfo) throws IOException {
+
         /** 将提交信息存入数据库 */
        submitinfoMapper.insertSelective(submitinfo);
 
-       System.out.println(submitinfo.getCodinglanguage());
+
         /** 将代码写入----------main.java//main.cpp-----------文件  */
        submitWordMapper.WriteCideIntoFile(submitinfo.getSubmitcontent(),submitinfo.getCodinglanguage());
 
@@ -46,10 +51,11 @@ public class wordHandleController {
         int result=0;
 
            if(submitinfo.getCodinglanguage().equals("java"))
-               result=submitWordMapper.JudgeResult("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/wordcode/main.java",submitinfo);
+               result=submitWordMapper.JudgeResult(CLASS_PATH +"code/wordcode/main.java",submitinfo);
            else
-               result=submitWordMapper.JudgeResult("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/wordcode/main.cpp",submitinfo);
+               result=submitWordMapper.JudgeResult(CLASS_PATH+"code/wordcode/main.cpp",submitinfo);
 
+                System.out.println(result);
            switch (result){
                case 1: System.out.println("编译成功"); break;
                case 2: System.out.println("用例错误"); break;
@@ -75,7 +81,7 @@ public class wordHandleController {
            }else if(result==3){
                /**   得到错误信息 */
                String value="";
-               value=commonMapper.readFile("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/testset/isaccept/error.txt",value);
+               value=commonMapper.readFile(CLASS_PATH+"code/testset/isaccept/error.txt",value);
                submitinfo.setIssuccess(false);
                submitinfo.setSubmitsuccess(0);
                submitinfo.setErrorcause(value);

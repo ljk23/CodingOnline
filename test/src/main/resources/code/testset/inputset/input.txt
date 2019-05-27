@@ -1,0 +1,1 @@
+int main(){ char inFile[40]; FILE *file; analyse(fspin); return 0; }

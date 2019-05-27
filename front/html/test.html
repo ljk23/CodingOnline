@@ -3,21 +3,266 @@
 <head>
     <meta charset="UTF-8">
     <script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
-    <script src="../assets/laydate/laydate.js"></script>
-    <script src="../assets/layer/layer.js"></script>
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>箭头直线</title>
+    <style type="text/css">
+        .wrap{
+            position:relative;
+            height:100vh;
+            user-select:none;
+        }
+        .ex_row{
+            flex-direction: column;
+            display: -webkit-box; /*这个必须要有*/
+        }
+        .item{
+            background-color: lightblue;
+            border:1px solid white;
+            height:50px;
+            line-height: 50px;
+            width:80px;
+            margin-left: 15%;
+            text-align: center;
+        }
+        .lineWrap{
+            position: absolute;
+            left:0;
+            top:0;
+            overflow:visible;
+        }
+    </style>
 </head>
 <body>
-<span id="testView"></span>
-<div id="timenow"></div>
-<script>
-    laydate.render({
-        elem: '#timenow'
-        ,position: 'static'
-        ,change: function(value, date){ //监听日期被切换
-            lay('#testView').html(value);
+<div class="wrap">
+    <svg>
+        <defs>
+            <marker id="arrow" markerUnits="strokeWidth" markerWidth="12" markerHeight="12" viewBox="0 0 12 12" refX="6" refY="6" orient="auto">
+                <path xmlns="http://www.w3.org/2000/svg" d="M2,2 L10,6 L2,10 L6,6 L2,2" style="fill: #000000;" />
+            </marker>
+        </defs>
+        <!-- <path d="M20,70 T80,100 T160,80 T200,90" fill="white" stroke="red" stroke-width="2" marker-start="url(#arrow)" marker-mid="url(#arrow)"
+            marker-end="url(#arrow)" /> -->
+    </svg>
+    <svg class="lineWrap">
+        <line id="line1" xmlns="http://www.w3.org/2000/svg" x1="0" y1="0" x2="200" y2="50" stroke="gray" stroke-width="2" marker-end="url(#arrow)"
+              stroke-dasharray="10,10"></line>
+    </svg>
+    <svg class="lineWrap">
+        <line id="line2" xmlns="http://www.w3.org/2000/svg" x1="0" y1="0" x2="200" y2="50" stroke="gray" stroke-width="2" marker-end="url(#arrow)"
+              stroke-dasharray="10,10"></line>
+    </svg>
+    <svg class="lineWrap">
+        <line id="line3" xmlns="http://www.w3.org/2000/svg" x1="0" y1="0" x2="200" y2="50" stroke="gray" stroke-width="2" marker-end="url(#arrow)"
+              stroke-dasharray="10,10"></line>
+    </svg>
+    <svg class="lineWrap">
+        <line id="line4" xmlns="http://www.w3.org/2000/svg" x1="0" y1="0" x2="200" y2="50" stroke="gray" stroke-width="2" marker-end="url(#arrow)"
+              stroke-dasharray="10,10"></line>
+    </svg>
+    <svg class="lineWrap">
+        <line id="line5" xmlns="http://www.w3.org/2000/svg" x1="0" y1="0" x2="200" y2="50" stroke="gray" stroke-width="2" marker-end="url(#arrow)"
+              stroke-dasharray="10,10"></line>
+    </svg>
+    <svg class="lineWrap">
+        <line id="line6" xmlns="http://www.w3.org/2000/svg" x1="0" y1="0" x2="200" y2="50" stroke="gray" stroke-width="2" marker-end="url(#arrow)"
+              stroke-dasharray="10,10"></line>
+    </svg>
+    <svg class="lineWrap">
+        <line id="line7" xmlns="http://www.w3.org/2000/svg" x1="0" y1="0" x2="200" y2="50" stroke="gray" stroke-width="2" marker-end="url(#arrow)"
+              stroke-dasharray="10,10"></line>
+    </svg>
+    <svg class="lineWrap">
+        <line id="line8" xmlns="http://www.w3.org/2000/svg" x1="0" y1="0" x2="200" y2="50" stroke="gray" stroke-width="2" marker-end="url(#arrow)"
+              stroke-dasharray="10,10"></line>
+    </svg>
+    <svg class="lineWrap">
+        <line id="line9" xmlns="http://www.w3.org/2000/svg" x1="0" y1="0" x2="200" y2="50" stroke="gray" stroke-width="2" marker-end="url(#arrow)"
+              stroke-dasharray="10,10"></line>
+    </svg>
+    <svg class="lineWrap">
+        <line id="line10" xmlns="http://www.w3.org/2000/svg" x1="0" y1="0" x2="200" y2="50" stroke="gray" stroke-width="2" marker-end="url(#arrow)"
+              stroke-dasharray="10,10"></line>
+    </svg>
+    <svg class="lineWrap">
+        <line id="line11" xmlns="http://www.w3.org/2000/svg" x1="0" y1="0" x2="200" y2="50" stroke="gray" stroke-width="2" marker-end="url(#arrow)"
+              stroke-dasharray="10,10"></line>
+    </svg>
+    <svg class="lineWrap">
+        <line id="line12" xmlns="http://www.w3.org/2000/svg" x1="0" y1="0" x2="200" y2="50" stroke="gray" stroke-width="2" marker-end="url(#arrow)"
+              stroke-dasharray="10,10"></line>
+    </svg>
+    <svg class="lineWrap">
+        <line id="line13" xmlns="http://www.w3.org/2000/svg" x1="0" y1="0" x2="200" y2="50" stroke="gray" stroke-width="2" marker-end="url(#arrow)"
+              stroke-dasharray="10,10"></line>
+    </svg>
+    <svg class="lineWrap">
+        <line id="line14" xmlns="http://www.w3.org/2000/svg" x1="0" y1="0" x2="200" y2="50" stroke="gray" stroke-width="2" marker-end="url(#arrow)"
+              stroke-dasharray="10,10"></line>
+    </svg>
+
+    <div class="ex_row">
+        <div class="item item1">词法分析</div>
+        <div class="item item2">语法分析</div>
+        <div class="item item3">语义分析</div>
+    </div>
+    <br>
+    <div class="ex_row" style="margin-left: 12%">
+        <div class="item item4">NFA</div>
+        <div class="item item5">DFA</div>
+        <div class="item item6">最小DFA</div>
+    </div>
+    <br><br><br>
+    <div class="ex_row" style="margin-left: 5%">
+        <div class="item item7">文法输入</div>
+        <div class="item item8">LR产生式</div>
+        <div class="item item9" style="margin-left: 25%">符号表</div>
+    </div>
+    <br>
+    <div class="item item10" style="margin-left: 40%">LL产生式</div>
+    <br><br>
+    <div class="item item11" style="margin-left: 40%">LL分析表</div>
+    <br><br>
+    <div class="ex_row" style="margin-left: 5%">
+        <div class="item item12">Follow集</div>
+        <div class="item item13" style="margin-left: 30%">SLR分析表</div>
+    </div><br><br>
+    <div class="ex_row" style="margin-left: 32%">
+        <div class="item item14">lr0自动机</div>
+        <div class="item item15">lr0分析表</div>
+        <div class="item item16">分析树</div>
+    </div><br><br>
+    <div class="ex_row" style="margin-left: -4%">
+        <div class="item item17">first集</div>
+        <div class="item item18">lalr自动机</div>
+        <div class="item item19">lalrf分析表</div>
+    </div><br><br>
+    <div class="ex_row" style="margin-left: 10%">
+        <div class="item item20">lr1自动机</div>
+        <div class="item item21" style="margin-left: 30%">lalr分析表</div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(function(){
+        var div1="item1";
+        var div2="item2";
+        var div3="item3";
+        var div4="item4";
+        var div5="item5";
+        var div6="item6";
+        var div7="item7";
+        var div8="item8";
+        var div9="item9";
+        var div10="item10";
+        var div11="item11";
+        var div12="item12";
+        var div13="item13";
+        var div14="item14";
+        function getPos(pos1, pos2){
+            //分四种情况
+            var x1,y1,x2,y2;
+            if(pos2.top<pos1.top){
+                //结束点位于左上角
+                x1 = pos1.left + pos1.width/2;
+                y1 = pos1.top;
+                y2 = pos2.top + pos2.height
+                if(pos2.left<pos1.left){
+                    x2 = pos2.left + pos2.width/2
+                }else{//右上角
+                    x2 = pos2.left + pos2.width / 2
+                }
+            }else{
+                x1 = pos1.left + pos1.width / 2;
+                y1 = pos1.top + pos1.height;
+                x2 = pos2.left + pos2.width/2
+                y2 = pos2.top
+            }
+            return {
+                start :{x:x1,y:y1},
+                end : {x:x2,y:y2}
+            }
         }
-    });
+        function drag(obj,callback) {
+            var dragEles = obj;
+            dragEles.each(function(index, dragEleDom){
+                var _move = false;//移动标记
+                var _x, _y;//鼠标离控件左上角的相对位置
+                var dragEle = $(dragEleDom)
+                dragEle.click(function () {
+                    //alert("click");//点击（松开后触发）
+                }).mousedown(function (e) {
+                    _move = true;
+                    _x = e.pageX - parseInt(dragEle.css("left"));
+                    _y = e.pageY - parseInt(dragEle.css("top"));
+                    // dragEle.fadeTo(20, 0.9);//点击后开始拖动并透明显示
+                });
+                $(document).mousemove(function (e) {
+                    if (_move) {
+                        var x = e.pageX - _x;//移动时根据鼠标位置计算控件左上角的绝对位置
+                        var y = e.pageY - _y;
+                        dragEle.css({ top: y, left: x });//控件新位置
+                        if(callback){callback()}
+                    }
+                }).mouseup(function () {
+                    _move = false;
+                    dragEle.fadeTo("fast", 1);//松开鼠标后停止移动并恢复成不透明
+                });
+            })
+
+        }
+        //获取元素左上角相对于某一元素的的位置
+        function getElCoordinate(dom) {
+            var t = dom.offsetTop;
+            var l = dom.offsetLeft;
+            var w = dom.offsetWidth;
+            var h = dom.offsetHeight;
+            dom = dom.offsetParent;
+            while (!$(dom).hasClass('wrap')) {
+                t += dom.offsetTop;
+                l += dom.offsetLeft;
+                dom = dom.offsetParent;
+            }; return {
+                top: t,
+                left: l,
+                width:w,
+                height:h
+            };
+        }
+        function move(div1,div2){
+            var pos1 = getElCoordinate($('.'+div1)[0])
+            var pos2 = getElCoordinate($('.'+div2)[0])
+            var start = getPos(pos1, pos2).start
+            var end = getPos(pos1, pos2).end
+
+            var list=[];
+            list.push(start,end);
+            return list;
+        }
+
+        var list=move(div1,div2);
+        $('#line1').attr({ x1: list[0].x, y1: list[0].y, x2: list[1].x, y2: list[1].y })
+        var list=move(div2,div3);
+        $('#line2').attr({ x1: list[0].x, y1: list[0].y, x2: list[1].x, y2: list[1].y })
+        var list=move(div4,div5);
+        $('#line3').attr({ x1: list[0].x, y1: list[0].y, x2: list[1].x, y2: list[1].y })
+        var list=move(div5,div6);
+        $('#line4').attr({ x1: list[0].x, y1: list[0].y, x2: list[1].x, y2: list[1].y })
+        var list=move(div7,div4);
+        $('#line5').attr({ x1: list[0].x, y1: list[0].y, x2: list[1].x, y2: list[1].y })
+        var list=move(div7,div8);
+        $('#line6').attr({ x1: list[0].x, y1: list[0].y, x2: list[1].x, y2: list[1].y })
+        var list=move(div8,div9);
+        $('#line7').attr({ x1: list[0].x, y1: list[0].y, x2: list[1].x, y2: list[1].y })
+        var list=move(div7,div10);
+        $('#line8').attr({ x1: list[0].x, y1: list[0].y, x2: list[1].x, y2: list[1].y })
+        var list=move(div10,div9);
+        $('#line9').attr({ x1: list[0].x, y1: list[0].y, x2: list[1].x, y2: list[1].y })
+        var list=move(div12,div11);
+        $('#line10').attr({ x1: list[0].x, y1: list[0].y, x2: list[1].x, y2: list[1].y })
+        var list=move(div11,div13);
+        $('#line11').attr({ x1: list[0].x, y1: list[0].y, x2: list[1].x, y2: list[1].y })
+     //   drag($('.item'))
+    })
 </script>
 </body>
 </html>

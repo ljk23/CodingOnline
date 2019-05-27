@@ -18,8 +18,8 @@
 <div class="ui">
     <div class="ui-left">
         <a class="item" href="../IndexMoudle/index.html" onmousemove=""><img src="../../images/logo_flat.png" width="104" height="24"></a>
-        <a class="item" href="../TitleMoudle/exercise.html"><i class="list items icon"></i>题目中心</a>
-        <a class="item" onclick="warning()"><i class="list items icon"></i>在线教学</a>
+         <a class="item" href="../TitleMoudle/exercise.html"><i class="list items icon"></i>题目中心</a>
+        <a class="item" href="../OnlineTeaching/teachingIndex.html"><i class="list items icon"></i>在线教学</a>
         <a class="item" href="../ContestWork/contest.html"><i class="list items icon"></i>在线比赛</a>
         <a class="item" href="../TitleMoudle/submitStatus.html"><i class="list items icon"></i>提交状态</a>
         <a class="item" href="../UserMoudle/userRank.html"><i class="list items icon"></i>选手排名</a>
@@ -81,26 +81,36 @@
     </div>
     <br>
     <div id="one_content_tol">
-        <h4 style="padding-left: 10px">Q:程序怎样取得输入、进行输出?</h4>
+        <h4 style="padding-left: 10px">Q:系统现在支持那些语言评测环境?</h4>
         <div class="one_content">
             <br>
-            <p>A:#include
-                <stdio.h>
-                    int main(){
-                    int a,b;
-                    while(scanf("%d %d",&a, &b) != EOF)
-                    printf("%d\n",a+b);
-                    return 0;
-                    }
+            <p>目前支持三种 C  C++ Java
             </p>
         </div>
         <br>
-        <h4 style="padding-left: 10px">Q:这个在线裁判系统使用什么样的编译器和编译选项?</h4>
+        <h4 style="padding-left: 10px">Q:系统支持哪几种提交代码方式</h4>
         <div class="one_content">
             <br>
-            <p>A:系统运行于Debian/Ubuntu Linux. 使用GNU GCC/G++ 作为C/C++编译器, Free Pascal 作为pascal 编译器 ，用 openjdk-7 编译 Java.</p>
+            <p>目前系统支持: 文本框提交和文件打包提交</p>
         </div>
         <br>
+        <h4 style="padding-left: 10px">Q:文件打包的格式有哪几种</h4>
+        <div class="one_content">
+            <br>
+            <p>现在仅支持.zip格式的</p>
+        </div>
+        <br>
+        <h4 style="padding-left: 10px">Q:文本框提交的入口函数有什么要求</h4>
+        <div class="one_content">
+            <br>
+            <p>java的类要写成main函数的类，C++要写成int main(){}格式的</p>
+        </div>
+        <br>
+        <h4 style="padding-left: 10px">Q:在线教学模块什么时候开放？</h4>
+        <div class="one_content">
+            <br>
+            <p>等到和学校教务处对接好了学生信息之后接入</p>
+        </div>
     </div>
 </div>
 <!--底部-->

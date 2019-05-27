@@ -1,6 +1,7 @@
 package com.example.login.algorithm.service.Impl;
 
 import com.example.login.algorithm.service.SubmitWordMapper;
+import com.example.login.constant.Constant;
 import com.example.login.problem.dao.entity.Probleminfo;
 import com.example.login.problem.dao.mapper.ProbleminfoMapper;
 import com.example.login.submit.dao.entity.Submitinfo;
@@ -24,6 +25,7 @@ import java.util.zip.CheckedInputStream;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
+import static com.example.login.constant.Constant.CLASS_PATH;
 import static java.lang.Character.isDigit;
 import static java.lang.Character.isLetter;
 import static sun.util.locale.UnicodeLocaleExtension.isKey;
@@ -52,7 +54,7 @@ public class SubmitWordHandle implements SubmitWordMapper {
         /**  将submitcontent输入wordinput.txt */
         /** 保存文件地址 */
         String filename=String.valueOf(userid);
-        File file = new File("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/algorithm/service/codeFiles/" + filename + "wordinput.txt");
+        File file = new File(CLASS_PATH+"algorithm/service/codeFiles/" + filename + "wordinput.txt");
         if (!file.exists()) {
             file.createNewFile();
         }
@@ -62,23 +64,23 @@ public class SubmitWordHandle implements SubmitWordMapper {
         fop.flush();
         fop.close();
         /** 预处理  */
-        String fileurl = "/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/algorithm/service/codeFiles/" + filename + "wordinput.txt";
+        String fileurl = CLASS_PATH+"algorithm/service/codeFiles/" + filename + "wordinput.txt";
         submitWordHandle.preHandleWordFile(fileurl, filename);
 
         /** 词法分析 */
-        File file1 = new File("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/algorithm/service/codeFiles/" + filename + "wordnoninput.txt");//定义一个file对象，用来初始化FileReader
+        File file1 = new File(CLASS_PATH+"algorithm/service/codeFiles/" + filename + "wordnoninput.txt");//定义一个file对象，用来初始化FileReader
         InputStreamReader inputStreamReader1 = new InputStreamReader(new FileInputStream(file1));
         BufferedReader bf1 = new BufferedReader(inputStreamReader1);
         String str1;
 
         /** 按照行写入 */
-        File writeName = new File("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/algorithm/service/codeFiles/" + filename + "wordoutput.txt"); // 相对路径，如果没有则要建立一个新的output.txt文件
+        File writeName = new File(CLASS_PATH+"algorithm/service/codeFiles/" + filename + "wordoutput.txt"); // 相对路径，如果没有则要建立一个新的output.txt文件
         writeName.createNewFile(); // 创建新文件,有同名的文件的话直接覆盖
         FileWriter writer = new FileWriter(writeName);
         BufferedWriter out1 = new BufferedWriter(writer);
 
         /**  写入错误log */
-        File errorName = new File("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/algorithm/service/codeFiles/" + filename + "worderror.txt"); // 相对路径，如果没有则要建立一个新的output.txt文件
+        File errorName = new File(CLASS_PATH+"algorithm/service/codeFiles/" + filename + "worderror.txt"); // 相对路径，如果没有则要建立一个新的output.txt文件
         errorName.createNewFile(); // 创建新文件,有同名的文件的话直接覆盖
         FileWriter error = new FileWriter(errorName);
         BufferedWriter errorout = new BufferedWriter(error);
@@ -99,7 +101,7 @@ public class SubmitWordHandle implements SubmitWordMapper {
         BufferedReader bf=new BufferedReader(inputStreamReader);
         //按照行读取字符串
         /** 按照行写入 */
-        OutputStreamWriter os=new OutputStreamWriter(new FileOutputStream(new File("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/algorithm/service/codeFiles/"+filename+"wordnoninput.txt")));
+        OutputStreamWriter os=new OutputStreamWriter(new FileOutputStream(new File(CLASS_PATH+"algorithm/service/codeFiles/"+filename+"wordnoninput.txt")));
         BufferedWriter bw=new BufferedWriter(os);
         PrintWriter out=new PrintWriter(bw);
         String str;
@@ -337,7 +339,7 @@ public class SubmitWordHandle implements SubmitWordMapper {
     public String judgeIserror(Integer userid) throws IOException{
         String filename=String.valueOf(userid);
         String  errorInfo="",errorInfo1;
-        File errorlength = new File("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/algorithm/service/codeFiles/" + filename + "worderror.txt"); // 相对路径，如果没有则要建立一个新的output.txt文件
+        File errorlength = new File(CLASS_PATH+"algorithm/service/codeFiles/" + filename + "worderror.txt"); // 相对路径，如果没有则要建立一个新的output.txt文件
         System.out.println(userid+"文件的大小是"+errorlength.length());
         if(errorlength.length()==0)
             return null;
@@ -360,11 +362,13 @@ public class SubmitWordHandle implements SubmitWordMapper {
         String codingpath="";
         if(codingLanguage.equals("java"))
         {
-                codingpath="/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/wordcode/main.java";
-                file = new File("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/wordcode/main.java");
+                codingpath= CLASS_PATH+"code/wordcode/main.java";
+            System.out.println(codingpath);
+                file = new File(CLASS_PATH+"code/wordcode/main.java");
         }else{
-                codingpath="/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/wordcode/main.cpp";
-                file = new File("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/wordcode/main.cpp");
+                codingpath=CLASS_PATH+"code/wordcode/main.cpp";
+                file = new File(CLASS_PATH+"code/wordcode/main.cpp");
+            System.out.println(codingpath);
         }
 
             if (!file.exists()) {
@@ -457,7 +461,7 @@ public class SubmitWordHandle implements SubmitWordMapper {
         }
 
         String fileName = file.getOriginalFilename();
-        String filePath ="/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/wordcode/";
+        String filePath =CLASS_PATH+"code/wordcode/";
         File dest=new File(filePath+fileName);
         try{
             file.transferTo(dest);
@@ -518,7 +522,7 @@ public class SubmitWordHandle implements SubmitWordMapper {
     /**  第一步----编译文件 ----编译java文件--- */
     public Boolean Compiler(String filepath) throws IOException{
         /**  输出重定向 */
-        System.setErr(new PrintStream("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/testset/isaccept/error.txt"));
+        System.setErr(new PrintStream(CLASS_PATH+"code/testset/isaccept/error.txt"));
         PrintStream err = System.err;
         JavaCompiler compiler = ToolProvider.getSystemJavaCompiler();
         int results = compiler.run(null, null, null, filepath);
@@ -535,10 +539,10 @@ public class SubmitWordHandle implements SubmitWordMapper {
     /**  第一步----编译文件 ----编译cpp件--- */
     public Boolean CompilerCpp(String filepath) throws IOException{
         /**  输出重定向 */
-        PrintStream correct=new PrintStream(new FileOutputStream("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/testset/isaccept/error.txt"));
+        PrintStream correct=new PrintStream(new FileOutputStream(CLASS_PATH+"code/testset/isaccept/error.txt"));
         System.setOut(correct);
         String cmd = "g++ -w -g  -o main "+filepath;
-        Process process = Runtime.getRuntime().exec(cmd,null,new File("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/wordcode/")); // 执行编译指令
+        Process process = Runtime.getRuntime().exec(cmd,null,new File(CLASS_PATH+"code/wordcode/")); // 执行编译指令
         if(process!=null){
             BufferedReader br = new BufferedReader(new InputStreamReader(process.getErrorStream()));//获取执行进程的输入流
             String runInfo = null;
@@ -558,7 +562,7 @@ public class SubmitWordHandle implements SubmitWordMapper {
         DiagnosticCollector<JavaFileObject> diagnostics = new DiagnosticCollector<JavaFileObject>();
         StandardJavaFileManager fileManager = compiler.getStandardFileManager(diagnostics, null, null);
 
-       // filepath="/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/wordcode/"+filepath;
+       // filepath=CLASS_PATH+"code/wordcode/"+filepath;
         File file = new File(filepath);		//获取其file对象
         File[] fs = file.listFiles();
         for(File f:fs){
@@ -566,7 +570,7 @@ public class SubmitWordHandle implements SubmitWordMapper {
             if(fileName.substring(fileName.lastIndexOf(".")+1,fileName.length()).equals("java")){
                 System.out.println(f);
                 try{
-                    Iterable<String> options = Arrays.asList("-sourcepath", "/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/wordcode/sometime");
+                    Iterable<String> options = Arrays.asList("-sourcepath", CLASS_PATH+"code/wordcode/sometime");
 
                     Iterable<? extends JavaFileObject> compilationUnits = fileManager
                             .getJavaFileObjectsFromStrings(Arrays.asList(f.getAbsolutePath()));
@@ -589,7 +593,7 @@ public class SubmitWordHandle implements SubmitWordMapper {
 
     /** 第一步-----进行编译c++文件夹 */
     public Boolean CompilerAppFiles(String filepath) throws IOException{
-        PrintStream correct=new PrintStream(new FileOutputStream("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/testset/isaccept/error.txt"));
+        PrintStream correct=new PrintStream(new FileOutputStream(CLASS_PATH+"code/testset/isaccept/error.txt"));
         System.setOut(correct);
         String cmd="g++ -w -g  -o main ";
         /**  遍历文件夹，编译到main函数中 */
@@ -648,7 +652,7 @@ public class SubmitWordHandle implements SubmitWordMapper {
     public Integer AnswerCpp(Integer problemid,String filename,Submitinfo submitinfo) throws IOException{
 
         /**  入口函数为main */
-        String cmd ="/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/wordcode/"+filename+"main";
+        String cmd =CLASS_PATH+"code/wordcode/"+filename+"main";
         int result=judge(submitinfo,cmd);
         return result;
     }
@@ -668,14 +672,20 @@ public class SubmitWordHandle implements SubmitWordMapper {
         Runtime run = Runtime.getRuntime();//获取与当前平台进行交互的实例
 
         /**  获得输入输出测试用例写入到input文件中  */
-        Probleminfo probleminfo = probleminfoMapper.selectByProblemName(submitinfo.getSubmitname());
+        Probleminfo probleminfo=null;
+        try{
+            probleminfo = probleminfoMapper.selectByProblemName(submitinfo.getSubmitname());
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
         /**  获得用例测试集 */
         List<Testinfo> testinfos=testinfoMapper.selectByProblemId(probleminfo.getProblemid());
 
         for(Testinfo testinfo:testinfos){
             /**  重定向输出到lll文件中 */
             try {
-                PrintStream input = new PrintStream(new FileOutputStream("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/testset/inputset/input.txt"));
+                PrintStream input = new PrintStream(new FileOutputStream(CLASS_PATH+"code/testset/inputset/input.txt"));
                 System.setOut(input);
             } catch (IOException e) {
                 e.printStackTrace();
@@ -685,7 +695,7 @@ public class SubmitWordHandle implements SubmitWordMapper {
             /** 从文件中读取输入 */
             FileInputStream fis = null;
             try {  /**  有改动 */
-                fis = new FileInputStream("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/testset/inputset/input.txt");
+                fis = new FileInputStream(CLASS_PATH+"code/testset/inputset/input.txt");
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
@@ -703,13 +713,13 @@ public class SubmitWordHandle implements SubmitWordMapper {
             }
             /**  输出执行结果 */
             /**  重定向输出 */
-            PrintStream result = new PrintStream(new FileOutputStream("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/testset/buffoutput/result.txt",true));
+            PrintStream result = new PrintStream(new FileOutputStream(CLASS_PATH+"code/testset/buffoutput/result.txt",true));
             System.setOut(result);
             BufferedReader br = new BufferedReader(new InputStreamReader(process.getInputStream()));//获取执行进程的输入流
             String runInfo = null;
             while (null != (runInfo = br.readLine())) {//读取执行结果并写入到reslut.txt中
                 System.out.println(runInfo);
-                //commonHandle.reWriteFile("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/testset/buffoutput/result.txt", runInfo);
+                //commonHandle.reWriteFile(CLASS_PATH+"code/testset/buffoutput/result.txt", runInfo);
             }
         }
 
@@ -743,34 +753,34 @@ public class SubmitWordHandle implements SubmitWordMapper {
         }
 
         /**  重定向输出去掉空格和换行的运行结果文件----一方面----- */
-        PrintStream after = new PrintStream(new FileOutputStream("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/testset/buffoutput/cancelTabresult.txt"));
+        PrintStream after = new PrintStream(new FileOutputStream(CLASS_PATH+"code/testset/buffoutput/cancelTabresult.txt"));
         System.setOut(after);
-        CancelTab("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/testset/buffoutput/result.txt");
+        CancelTab(CLASS_PATH+"code/testset/buffoutput/result.txt");
 
         /**  重定向输出去掉空格和换行的运行结果文件----二方面----- */
         for(Testinfo testinfo:testinfos)
-            commonHandle.reWriteFile("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/testset/outputset/output.txt", testinfo.getTestoutput());
+            commonHandle.reWriteFile(CLASS_PATH+"code/testset/outputset/output.txt", testinfo.getTestoutput());
 
-        PrintStream afterout = new PrintStream(new FileOutputStream("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/testset/outputset/cancelTaboutput.txt"));
+        PrintStream afterout = new PrintStream(new FileOutputStream(CLASS_PATH+"code/testset/outputset/cancelTaboutput.txt"));
         System.setOut(afterout);
-        CancelTab("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/testset/outputset/output.txt");
+        CancelTab(CLASS_PATH+"code/testset/outputset/output.txt");
 
         /**  重定向输出最终的结果----保存到word.txt中----- */
-        PrintStream isaccept = new PrintStream(new FileOutputStream("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/testset/isaccept/word.txt"));
+        PrintStream isaccept = new PrintStream(new FileOutputStream(CLASS_PATH+"code/testset/isaccept/word.txt"));
         System.setOut(isaccept);
         /**  将结果和正确答案的txt文件比较----并返回结果---- */
-        if (isSameFile("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/testset/buffoutput/cancelTabresult.txt", "/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/testset/outputset/cancelTaboutput.txt")) {
+        if (isSameFile(CLASS_PATH+"code/testset/buffoutput/cancelTabresult.txt", CLASS_PATH+"code/testset/outputset/cancelTaboutput.txt")) {
             /**  删除编译文件 */
-            delAllFile("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/wordcode");
-            commonHandle.clearFile("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/testset/buffoutput/result.txt");
-            commonHandle.clearFile("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/testset/outputset/output.txt");
+            delAllFile(CLASS_PATH+"code/wordcode");
+            commonHandle.clearFile(CLASS_PATH+"code/testset/buffoutput/result.txt");
+            commonHandle.clearFile(CLASS_PATH+"code/testset/outputset/output.txt");
             return 1;
         }
         else {
             /**  删除编译文件 */
-            delAllFile("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/wordcode");
-            commonHandle.clearFile("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/testset/buffoutput/result.txt");
-            commonHandle.clearFile("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/testset/outputset/output.txt");
+            delAllFile(CLASS_PATH+"code/wordcode");
+            commonHandle.clearFile(CLASS_PATH+"code/testset/buffoutput/result.txt");
+            commonHandle.clearFile(CLASS_PATH+"code/testset/outputset/output.txt");
             return 2;
         }
     }
@@ -843,14 +853,14 @@ public class SubmitWordHandle implements SubmitWordMapper {
                 int result=Answer(1, filename,submitinfo);
                 System.out.println("答案是"+result);
                 /**  删除编译文件 */
-                delAllFile("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/wordcode");
+                delAllFile(CLASS_PATH+"code/wordcode");
                 if(result==1) return 1;
                 else if(result==2)  return 2;
                 else if(result==4)  return 4;
                 else return 5;
             } else {   /** 编译失败  */
                 /**  删除编译文件 */
-                delAllFile("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/wordcode");
+                delAllFile(CLASS_PATH+"code/wordcode");
                 System.out.println("编译错误");
                 return 3;
             }
@@ -863,14 +873,14 @@ public class SubmitWordHandle implements SubmitWordMapper {
                 filename="";
                 int result=AnswerCpp(1, filename,submitinfo);
                 /**  删除编译文件 */
-                delAllFile("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/wordcode");
+                delAllFile(CLASS_PATH+"code/wordcode");
                 if(result==1) return 1;
                 else if(result==2)  return 2;
                 else if(result==4)  return 4;
                 else return 5;
             } else {   /** 编译失败  */
                 /**  删除编译文件 */
-                delAllFile("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/wordcode");
+                delAllFile(CLASS_PATH+"code/wordcode");
                 System.out.println("编译错误");
                 return 3;
             }

@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="../../js/header.js"></script>
+    <script src="../../js/common.js"></script>
+    <script src="../../assets/layer/layer.js"></script>
+    <link type="text/css" rel="stylesheet" href="../../css/body.css"/>
+    <link type="text/css" rel="stylesheet" href="../../css/exercise.css"/>
+    <link type="text/css" rel="stylesheet" href="../../css/userInfo.css"/>
+    <link type="text/css" rel="stylesheet" href="../../css/header.css"/>
+    <link type="text/css" rel="stylesheet" href="../../css/booter.css"/>
+    <link type="text/css" rel="stylesheet" href="../../css/login.css"/>
+    <link type="text/css" rel="stylesheet" href="../../css/teacher.css"/>
+</head>
+<body>
+<!--头部-->
+<div class="ui">
+    <div class="ui-left">
+        <a class="item" href="../IndexMoudle/index.html" onmousemove=""><img src="../../images/logo_flat.png" width="104" height="24"></a>
+           <a class="item" href="../TitleMoudle/exercise.html"><i class="list items icon"></i>题目中心</a>
+        <a class="item" href="../OnlineTeaching/teachingIndex.html"><i class="list items icon"></i>在线教学</a>
+        <a class="item" href="../ContestWork/contest.html"><i class="list items icon"></i>在线比赛</a>
+        <a class="item" href="../TitleMoudle/submitStatus.html"><i class="list items icon"></i>提交状态</a>
+        <a class="item" href="../UserMoudle/userRank.html"><i class="list items icon"></i>选手排名</a>
+        <a class="item" href="../HelpMoudle/help.html" style="border-right: 1px solid gray;"><i class="list items icon"></i>帮助中心</a>
+    </div>
+    <div class="ui-right" id="ui-right">
+        <a class="item" onclick="login()">
+            <img src="../../images/login.png" width="14px" height="12px" style="margin-right: -20px;"></img>
+            <i class="sign in icon" id="banScroll"></i>登录</a>
+    </div>
+    <script>
+        function warning() {
+            layer.msg("开发中",{
+                icon: 4,
+                time: 2000
+            })
+        }
+    </script>
+</div>
+<!--登录框-->
+<div class="loginclass" id="loginclass" style="display: none">
+    <div id="closelogin"><img src="../../images/log_close.png" width="15" height="15"></div>
+    <div class="loginFrame">
+        <!--身份选择-->
+        <div class="log_user">
+            <img src="../../images/xuesheng.png" width="40" height="30"><button id="student">Student</button>
+            <img src="../../images/laoshi.png" width="40" height="30"><button id="teacher">Teacher</button>
+            <img src="../../images/guanliyuan.png" width="40" height="30"><button id="admin">Admin</button>
+        </div>
+        <!--注册登陆-->
+        <div class="log_input" style="display: none;">
+            <div class="log_input_select">
+                <span id="sign_in">sign in</span>
+                <span id="sign_up">sign up</span>
+            </div>
+            <div class="log_input_text" style="display: none;">
+                username<input type="text" id="username"/>
+                password<input type="text" id="password"/>
+                <input type="submit" id="login_user" value="login"/>
+            </div>
+            <div class="log_input_register" style="display: none;">
+                username<input type="text" id="reg_username"/><span
+                    id="info"></span>
+                password<input type="password" id="reg_password"/>
+                repassword<input type="password" id="reg_repassword"/>
+                email<input type="text" id="reg_email"/>
+                <input type="submit" id="register_user" value="register"/>
+            </div>
+        </div>
+    </div>
+</div>
+<!--背景色-->
+<div class="operatebackgroud" style="display: none;"></div>
+<!--主体-->
+
+<div class="ex_page_container one_page lab" style="height: 1000px">
+    <div class="wrap lab1">
+        <svg>
+            <defs>
+                <marker id="arrow" markerUnits="strokeWidth" markerWidth="12" markerHeight="12" viewBox="0 0 12 12" refX="6" refY="6" orient="auto">
+                    <path xmlns="http://www.w3.org/2000/svg" d="M2,2 L10,6 L2,10 L6,6 L2,2" style="fill: #000000;" />
+                </marker>
+            </defs>
+            <!-- <path d="M20,70 T80,100 T160,80 T200,90" fill="white" stroke="red" stroke-width="2" marker-start="url(#arrow)" marker-mid="url(#arrow)"
+                marker-end="url(#arrow)" /> -->
+        </svg>
+        <svg class="lineWrap">
+            <line id="line1" xmlns="http://www.w3.org/2000/svg" x1="0" y1="0" x2="200" y2="50" stroke="gray" stroke-width="2" marker-end="url(#arrow)"
+                  stroke-dasharray="10,10"></line>
+        </svg>
+        <svg class="lineWrap">
+            <line id="line2" xmlns="http://www.w3.org/2000/svg" x1="0" y1="0" x2="200" y2="50" stroke="gray" stroke-width="2" marker-end="url(#arrow)"
+                  stroke-dasharray="10,10"></line>
+        </svg>
+        <svg class="lineWrap">
+            <line id="line3" xmlns="http://www.w3.org/2000/svg" x1="0" y1="0" x2="200" y2="50" stroke="gray" stroke-width="2" marker-end="url(#arrow)"
+                  stroke-dasharray="10,10"></line>
+        </svg>
+        <svg class="lineWrap">
+            <line id="line4" xmlns="http://www.w3.org/2000/svg" x1="0" y1="0" x2="200" y2="50" stroke="gray" stroke-width="2" marker-end="url(#arrow)"
+                  stroke-dasharray="10,10"></line>
+        </svg>
+        <svg class="lineWrap">
+            <line id="line5" xmlns="http://www.w3.org/2000/svg" x1="0" y1="0" x2="200" y2="50" stroke="gray" stroke-width="2" marker-end="url(#arrow)"
+                  stroke-dasharray="10,10"></line>
+        </svg>
+        <svg class="lineWrap">
+            <line id="line6" xmlns="http://www.w3.org/2000/svg" x1="0" y1="0" x2="200" y2="50" stroke="gray" stroke-width="2" marker-end="url(#arrow)"
+                  stroke-dasharray="10,10"></line>
+        </svg>
+        <svg class="lineWrap">
+            <line id="line7" xmlns="http://www.w3.org/2000/svg" x1="0" y1="0" x2="200" y2="50" stroke="gray" stroke-width="2" marker-end="url(#arrow)"
+                  stroke-dasharray="10,10"></line>
+        </svg>
+        <svg class="lineWrap">
+            <line id="line8" xmlns="http://www.w3.org/2000/svg" x1="0" y1="0" x2="200" y2="50" stroke="gray" stroke-width="2" marker-end="url(#arrow)"
+                  stroke-dasharray="10,10"></line>
+        </svg>
+        <svg class="lineWrap">
+            <line id="line9" xmlns="http://www.w3.org/2000/svg" x1="0" y1="0" x2="200" y2="50" stroke="gray" stroke-width="2" marker-end="url(#arrow)"
+                  stroke-dasharray="10,10"></line>
+        </svg>
+        <svg class="lineWrap">
+            <line id="line10" xmlns="http://www.w3.org/2000/svg" x1="0" y1="0" x2="200" y2="50" stroke="gray" stroke-width="2" marker-end="url(#arrow)"
+                  stroke-dasharray="10,10"></line>
+        </svg>
+        <svg class="lineWrap">
+            <line id="line11" xmlns="http://www.w3.org/2000/svg" x1="0" y1="0" x2="200" y2="50" stroke="gray" stroke-width="2" marker-end="url(#arrow)"
+                  stroke-dasharray="10,10"></line>
+        </svg>
+        <!--<svg class="lineWrap">
+            <line id="line12" xmlns="http://www.w3.org/2000/svg" x1="0" y1="0" x2="200" y2="50" stroke="gray" stroke-width="2" marker-end="url(#arrow)"
+                  stroke-dasharray="10,10"></line>
+        </svg>
+        <svg class="lineWrap">
+            <line id="line13" xmlns="http://www.w3.org/2000/svg" x1="0" y1="0" x2="200" y2="50" stroke="gray" stroke-width="2" marker-end="url(#arrow)"
+                  stroke-dasharray="10,10"></line>
+        </svg>
+        <svg class="lineWrap">
+            <line id="line14" xmlns="http://www.w3.org/2000/svg" x1="0" y1="0" x2="200" y2="50" stroke="gray" stroke-width="2" marker-end="url(#arrow)"
+                  stroke-dasharray="10,10"></line>
+        </svg>-->
+        <div class="ex_row">
+            <div class="item item1" id="cifa">词法分析</div>
+            <div class="item item2" id="yufa">语法分析</div>
+            <div class="item item3" id="yuyi">语义分析</div>
+        </div>
+        <br>
+        <div class="ex_row" style="margin-left: 12%">
+            <div class="item item4">NFA</div>
+            <div class="item item5">DFA</div>
+            <div class="item item6">最小DFA</div>
+        </div>
+        <br><br><br>
+        <div class="ex_row" style="margin-left: 5%">
+            <div class="item item7">文法输入</div>
+            <div class="item item8">LR产生式</div>
+            <div class="item item9" style="margin-left: 25%">符号表</div>
+        </div>
+        <br>
+        <div class="item item10" style="margin-left: 40%">LL产生式</div>
+        <br><br>
+        <div class="item item11" style="margin-left: 40%">LL分析表</div>
+        <br><br>
+        <div class="ex_row" style="margin-left: 5%">
+            <div class="item item12">Follow集</div>
+            <div class="item item13" style="margin-left: 30%">SLR分析表</div>
+        </div><br><br>
+        <div class="ex_row" style="margin-left: 32%">
+            <div class="item item14">lr0自动机</div>
+            <div class="item item15">lr0分析表</div>
+            <div class="item item16">分析树</div>
+        </div><br><br>
+        <div class="ex_row" style="margin-left: -4%">
+            <div class="item item17">first集</div>
+            <div class="item item18">lalr自动机</div>
+            <div class="item item19">lalrf分析表</div>
+        </div><br><br>
+        <div class="ex_row" style="margin-left: 10%">
+            <div class="item item20">lr1自动机</div>
+            <div class="item item21" style="margin-left: 30%;">lalr分析表</div>
+        </div>
+    </div>
+    <div class="lab2">
+        <div class="tijiao">提交</div>
+    </div>
+</div>
+<!--代码导入框-->
+<div id="importcode" class="importcode">
+    <h3>代码导入</h3>
+    <div id="one_input"></div>
+    <div style="margin-left: 60%;cursor: pointer"><span onclick="cancelimoportcode()">取消</span>&nbsp;&nbsp;&nbsp;
+        <span>提交</span>
+    </div>
+</div>
+<br>
+</div>
+<!--底部-->
+<div id="booter"></div>
+<script>
+    /**select tab  */
+    $(function () {
+        $("a[class=item]").each(function (index) {
+            $(this).mouseover(function () {
+                $("a[class=item]").css("backgroundColor", "#1B1C1D");
+                $(this).css("backgroundColor", "#515151");
+            }).mouseout(function () {
+                $("a[class=item]").css("backgroundColor", "#1B1C1D");
+            })
+        });
+        /** 禁止滑动 */
+        $("#banScroll").click(function () {
+            $(window).scroll(function () {
+                $(this).scrollTop(0)
+            });
+        });
+    });
+</script>
+<script>
+    var useridentity="";
+    /** load function  */
+    $(function () {
+        $('#one_input').load('../function/codeInput.html');
+        $('#booter').load('../booter/booter.html');
+    })
+    /** Islogin   */
+    $(window).load(function () {
+        var loginName = sessionStorage.loginName;
+        if (loginName != undefined) {
+            var obj = sessionStorage.loginName;
+            Implement(obj);
+        }
+    })
+    /**  close login */
+    $('#closelogin').click(function () {
+        $('#loginclass').css('display', 'none');
+        $('.operatebackgroud').css('display', 'none');
+        $(window).unbind('scroll');
+    })
+    /**  login  */
+    $("#login_user").click(function () {
+        var username = $("#username").val();
+        var password = $("#password").val();
+        $.ajax({
+            url: "http://localhost:8081/userInfo/login",
+            type: 'POST',
+            contentType: 'application/json;charset=utf-8',
+            data: '{"username":"' + username + '","password":"' + password + '"}',
+            success: function (data) {
+                if ($.isEmptyObject(data)){
+                    layer.alert('登陆失败', {
+                        icon: 5,
+                        time: 2000
+                    });
+                }
+                else {
+                    layer.alert('登陆成功', {
+                        icon: 1,
+                        time: 2000
+                    },function () {
+                        /** 退出登录框  */
+                        $('#loginclass').css('display', 'none');
+                        $('.operatebackgroud').css('display', 'none');
+                        $(window).unbind('scroll');
+                        /** 更改用户名  */
+                        var obj = eval(data);
+                        /** session保存信息 */
+                        var loginName = obj.username;
+                        sessionStorage.loginName = loginName;
+                        /**  将变量存储到sessionStorage中，并且value为loginName */
+                        Implement(loginName);
+                    });
+                }
+            }
+        })
+    });
+    /**  register */
+    /** 用户名判断 */
+    $("#reg_username").mouseleave(function () {
+        var username = $("#reg_username").val();
+        $.ajax({
+            url: 'http://localhost:8081/userInfo/judgeIsUserExist',
+            type: 'GET',
+            data: 'username=' + username,
+            success: function (data) {
+                if (data) {
+                    $("#reg_username").css({"border": "1px solid red"});
+                    $("#info").html("用户名已存在");
+                    $("#info").css({"color": "red"});
+                } else {
+                    $("#reg_username").css({"border": "1px solid black"});
+                    $("#info").html("");
+                }
+            }
+        })
+    })
+    $("#register_user").click(function () {
+        var registertime=CurentTime();
+        alert(registertime);
+        var flag = true;
+        //    flag = checkUserName($("#reg_username").val(),$("#reg_password").val(),$("#reg_email").val(),registertime,useridentity);
+        var data={username:$("#reg_username").val(),password: $("#reg_password").val(),useremail:$("#reg_email").val(),registertime:registertime,useridentity:useridentity};
+        if (flag == true) {
+            $.ajax({
+                url: 'http://localhost:8081/userInfo/register',
+                type: 'post',
+                contentType: 'application/json; charset=utf-8',
+                data: JSON.stringify(data),
+                success: function (data) {
+                    layer.alert('注册成功', {
+                        icon: 1,
+                        time: 2000
+                    },function () {
+                        /**  关闭注册框 */
+                        $(window).unbind('scroll');
+                        $(".log_input_text").show('slow');
+                        $(".log_input_register").hide('slow');
+                        $("#sign_in").css('opacity', '1');
+                        $("#sign_up").css('opacity', '0.2');
+                    })
+                }
+            })
+        }
+    });
+</script>
+<script>
+    $("#student,#teacher,#admin").click(function () {
+        useridentity=$(this).attr("id");
+        $(".log_user").hide('slow');
+        $(".log_input").show('slow');
+        $(".log_input_text").show('slow');
+        $("#sign_up").css('opacity','0.2');
+    })
+    $("#sign_up").click(function () {
+        $(".log_input_text").hide('slow');
+        $(".log_input_register").show('slow');
+        $("#sign_up").css('opacity','1');
+        $("#sign_in").css('opacity','0.2');
+    })
+    $("#sign_in").click(function () {
+        $(".log_input_text").show('slow');
+        $(".log_input_register").hide('slow');
+        $("#sign_in").css('opacity','1');
+        $("#sign_up").css('opacity','0.2');
+    })
+</script>
+<!--两点之间连线-->
+<script>
+    $(function(){
+        var div1="item1";
+        var div2="item2";
+        var div3="item3";
+        var div4="item4";
+        var div5="item5";
+        var div6="item6";
+        var div7="item7";
+        var div8="item8";
+        var div9="item9";
+        var div10="item10";
+        var div11="item11";
+        var div12="item12";
+        var div13="item13";
+        var div14="item14";
+        function getPos(pos1, pos2){
+            //分四种情况
+            var x1,y1,x2,y2;
+            if(pos2.top<pos1.top){
+                //结束点位于左上角
+                x1 = pos1.left + pos1.width/2;
+                y1 = pos1.top;
+                y2 = pos2.top + pos2.height
+                if(pos2.left<pos1.left){
+                    x2 = pos2.left + pos2.width/2
+                }else{//右上角
+                    x2 = pos2.left + pos2.width / 2
+                }
+            }else{
+                x1 = pos1.left + pos1.width / 2;
+                y1 = pos1.top + pos1.height;
+                x2 = pos2.left + pos2.width/2
+                y2 = pos2.top
+            }
+            return {
+                start :{x:x1,y:y1},
+                end : {x:x2,y:y2}
+            }
+        }
+        function drag(obj,callback) {
+            var dragEles = obj;
+            dragEles.each(function(index, dragEleDom){
+                var _move = false;//移动标记
+                var _x, _y;//鼠标离控件左上角的相对位置
+                var dragEle = $(dragEleDom)
+                dragEle.click(function () {
+                    //alert("click");//点击（松开后触发）
+                }).mousedown(function (e) {
+                    _move = true;
+                    _x = e.pageX - parseInt(dragEle.css("left"));
+                    _y = e.pageY - parseInt(dragEle.css("top"));
+                    // dragEle.fadeTo(20, 0.9);//点击后开始拖动并透明显示
+                });
+                $(document).mousemove(function (e) {
+                    if (_move) {
+                        var x = e.pageX - _x;//移动时根据鼠标位置计算控件左上角的绝对位置
+                        var y = e.pageY - _y;
+                        dragEle.css({ top: y, left: x });//控件新位置
+                        if(callback){callback()}
+                    }
+                }).mouseup(function () {
+                    _move = false;
+                    dragEle.fadeTo("fast", 1);//松开鼠标后停止移动并恢复成不透明
+                });
+            })
+
+        }
+        //获取元素左上角相对于某一元素的的位置
+        function getElCoordinate(dom) {
+            var t = dom.offsetTop;
+            var l = dom.offsetLeft;
+            var w = dom.offsetWidth;
+            var h = dom.offsetHeight;
+            dom = dom.offsetParent;
+            while (!$(dom).hasClass('wrap')) {
+                t += dom.offsetTop;
+                l += dom.offsetLeft;
+                dom = dom.offsetParent;
+            }; return {
+                top: t,
+                left: l,
+                width:w,
+                height:h
+            };
+        }
+        function move(div1,div2){
+            var pos1 = getElCoordinate($('.'+div1)[0])
+            var pos2 = getElCoordinate($('.'+div2)[0])
+            var start = getPos(pos1, pos2).start
+            var end = getPos(pos1, pos2).end
+
+            var list=[];
+            list.push(start,end);
+            return list;
+        }
+
+        var list=move(div1,div2);
+        $('#line1').attr({ x1: list[0].x, y1: list[0].y, x2: list[1].x, y2: list[1].y })
+        var list=move(div2,div3);
+        $('#line2').attr({ x1: list[0].x, y1: list[0].y, x2: list[1].x, y2: list[1].y })
+        var list=move(div4,div5);
+        $('#line3').attr({ x1: list[0].x, y1: list[0].y, x2: list[1].x, y2: list[1].y })
+        var list=move(div5,div6);
+        $('#line4').attr({ x1: list[0].x, y1: list[0].y, x2: list[1].x, y2: list[1].y })
+        var list=move(div7,div4);
+        $('#line5').attr({ x1: list[0].x, y1: list[0].y, x2: list[1].x, y2: list[1].y })
+        var list=move(div7,div8);
+        $('#line6').attr({ x1: list[0].x, y1: list[0].y, x2: list[1].x, y2: list[1].y })
+        var list=move(div8,div9);
+        $('#line7').attr({ x1: list[0].x, y1: list[0].y, x2: list[1].x, y2: list[1].y })
+        var list=move(div7,div10);
+        $('#line8').attr({ x1: list[0].x, y1: list[0].y, x2: list[1].x, y2: list[1].y })
+        var list=move(div10,div9);
+        $('#line9').attr({ x1: list[0].x, y1: list[0].y, x2: list[1].x, y2: list[1].y })
+        var list=move(div12,div11);
+        $('#line10').attr({ x1: list[0].x, y1: list[0].y, x2: list[1].x, y2: list[1].y })
+        var list=move(div11,div13);
+        $('#line11').attr({ x1: list[0].x, y1: list[0].y, x2: list[1].x, y2: list[1].y })
+        //   drag($('.item'))
+    })
+</script>
+<!--显示有无导入代码-->
+<script>
+    $(".ex_row .item,.wrap .item").mouseover(function () {
+        var color=$(this).css("background-color");
+        if(color=="rgb(173, 216, 230)"){
+            layer.msg("未导入代码",{
+                icon: 4,
+                time: 1000
+            })
+        }
+        else{
+            layer.msg("已导入代码",{
+                icon: 4,
+                time: 1000
+            })
+        }
+    })
+    /**  点击进行导入代码 */
+    $(".ex_row .item,.wrap .item").click(function () {
+     //    alert($(this).attr("id"));
+        $('.operatebackgroud').toggle();
+        $("#importcode").toggle();
+    })
+    /**  取消导入代码框 **/
+    function cancelimoportcode(){
+        $('.operatebackgroud').css('display','none');
+        $("#importcode").css('display','none');
+    }
+    $(function () {
+        $('#one_input').load('../function/codeInput.html');
+    })
+    /**  导入代码 */
+
+</script>
+</body>
+</html>
+
+

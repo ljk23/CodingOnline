@@ -1,12 +1,9 @@
 package com.example.login.submit.controller;
 
 import com.example.login.algorithm.service.CommonMapper;
-import com.example.login.algorithm.service.Impl.CommonHandle;
 import com.example.login.algorithm.service.Impl.SubmitWordHandle;
 import com.example.login.submit.dao.entity.Submitinfo;
-import com.example.login.submit.dao.entity.Submitmeg;
 import com.example.login.submit.dao.mapper.SubmitinfoMapper;
-import com.example.login.user.dao.entity.User;
 import com.example.login.user.dao.entity.Userinfo;
 import com.example.login.user.dao.mapper.UserinfoMapper;
 import org.apache.ibatis.annotations.Param;
@@ -14,19 +11,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.annotation.PostConstruct;
-import javax.servlet.http.HttpServletRequest;
-import java.io.File;
 import java.io.IOException;
-import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
+
+import static com.example.login.constant.Constant.CLASS_PATH;
 
 @RestController
 @RequestMapping(value = "/getsubmit")
 public class submitController {
 
+    
+    
     @Autowired
     private SubmitinfoMapper submitinfoMapper;
     @Autowired
@@ -81,7 +77,7 @@ public class submitController {
 
         /**  上传到指定目录下,并返回路径 */
         String filepath=submitWordHandle.uploadWordCode(file);
-        System.out.println(file.getOriginalFilename());
+        System.out.println(filepath);
 
         /**  判断是否编译运行 */
 
@@ -96,12 +92,12 @@ public class submitController {
                 *//** first ---通过 problemId 拿到输入测试集-----  **//*
                 int result=submitWordHandle.Answer(1, fileName,submitinfo);
                 *//**  删除编译文件 *//*
-                submitWordHandle.delAllFile("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/wordcode");
+                submitWordHandle.delAllFile(CLASS_PATH+"code/wordcode");
                 *//**  更新数据库  *//*
                 list=commonMapper.getResult(submitinfo,result,list,value);
             }else{
                 *//**   得到错误信息 *//*
-                value=commonMapper.readFile("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/testset/isaccept/error.txt",value);
+                value=commonMapper.readFile(CLASS_PATH+"code/testset/isaccept/error.txt",value);
                 list=commonMapper.getResult(submitinfo,3,list,value);
             }
             *//**   返回结果  *//*
@@ -110,11 +106,11 @@ public class submitController {
         /**  多文件处理 */
         if(fileTyle.equals("zip")){
             /**  第一步---------解压缩----------   */
-            String zipPath="/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/wordcode/"+file.getOriginalFilename();
-            String outPath="/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/wordcode/";
+            String zipPath= CLASS_PATH+"code/wordcode/"+file.getOriginalFilename();
+            String outPath=CLASS_PATH+"code/wordcode/";
             /** 解压缩文件  */
             submitWordHandle.UnZip(zipPath,outPath);
-            String compilepath="/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/wordcode/"+filePreName;
+            String compilepath=CLASS_PATH+"code/wordcode/"+filePreName;
             /** java文件编译 */
             if(CodingLanguage.equals("java")){    /**    */
                 if(submitWordHandle.CompilerFiles(compilepath)){
@@ -125,16 +121,16 @@ public class submitController {
                     /**  重新定位到控制台 */
                     int result=submitWordHandle.Answer(1,file.getOriginalFilename(),submitinfo);
                     /**  删除编译文件 */
-                    submitWordHandle.delAllFile("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/wordcode");
+                    submitWordHandle.delAllFile(CLASS_PATH+"code/wordcode");
                     /**  更新数据库  */
                     list=commonMapper.getResult(submitinfo,result,list,value);
                 }
                 else{
                     /**  删除编译文件 */
-                    submitWordHandle.delAllFile("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/wordcode");
+                    submitWordHandle.delAllFile(CLASS_PATH+"code/wordcode");
                     System.out.println("编译错误");
                     /**  编译错误  */
-                    value=commonMapper.readFile("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/testset/isaccept/error.txt",value);
+                    value=commonMapper.readFile(CLASS_PATH+"code/testset/isaccept/error.txt",value);
                     list=commonMapper.getResult(submitinfo,3,list,value);
                 }
                 /**   返回结果  */
@@ -146,15 +142,15 @@ public class submitController {
                     System.out.println("编译成功");
                     int result=submitWordHandle.AnswerCpp(1,filePreName+"/",submitinfo);
                     /**  删除编译文件 */
-                    submitWordHandle.delAllFile("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/wordcode");
+                    submitWordHandle.delAllFile(CLASS_PATH+"code/wordcode");
                     /**  更新数据库  */
                     list=commonMapper.getResult(submitinfo,result,list,value);
                 }else{
                     /**  删除编译文件 */
-                    submitWordHandle.delAllFile("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/wordcode");
+                    submitWordHandle.delAllFile(CLASS_PATH+"code/wordcode");
                     System.out.println("编译错误");
                     /**  编译错误  */
-                    value=commonMapper.readFile("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/testset/isaccept/error.txt",value);
+                    value=commonMapper.readFile(CLASS_PATH+"code/testset/isaccept/error.txt",value);
                     list=commonMapper.getResult(submitinfo,3,list,value);
                 }
                 return list;
@@ -170,7 +166,7 @@ public class submitController {
                 fileName="";
                 int result=submitWordHandle.AnswerCpp(1,fileName,submitinfo);
                 *//**  删除编译文件 *//*
-                submitWordHandle.delAllFile("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/wordcode");
+                submitWordHandle.delAllFile(CLASS_PATH+"code/wordcode");
                 *//**  更新数据库  *//*
                 list=commonMapper.getResult(submitinfo,result,list,value);
             }
@@ -178,14 +174,14 @@ public class submitController {
                     System.out.println("编译失败");
                 *//**  删除编译文件 *//*
                 *//**  编译错误  *//*
-                value=commonMapper.readFile("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/testset/isaccept/error.txt",value);
+                value=commonMapper.readFile(CLASS_PATH+"code/testset/isaccept/error.txt",value);
                 list=commonMapper.getResult(submitinfo,3,list,value);
             }
             return list;
         }*/
         /**   上传文件格式不对 */
         else{
-            submitWordHandle.delAllFile("/Users/tp5admin/Desktop/CodingOnline/test/src/main/java/com/example/login/code/wordcode");
+            submitWordHandle.delAllFile(CLASS_PATH+"code/wordcode");
             /**  更新数据库  */
             list=commonMapper.getResult(submitinfo,6,list,value);
             return list;

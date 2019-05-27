@@ -183,9 +183,17 @@ function updatefronttMatchInfo(data) {
         var td4 = document.createElement("td");
         var td5 = document.createElement("td");
         var td6 = document.createElement("td");
-
+        /**  获取比赛当前的状态 */
+        var starttime=n.conteststarttime.replace(/\T/g," ");
+        var isOnline=judgeIsTimeOut(starttime);
         td.innerHTML = i + 1;
+        if(isOnline==1)
         td1.innerHTML = "<a style='text-decoration: none; cursor: pointer;color: #1890FF' onclick='matchInfo("+n.contestid+")'>"+n.contestname+"</a>";
+        else if(isOnline==0)
+        td1.innerHTML = "<a style='text-decoration: none; cursor: pointer;color: #1890FF'>"+n.contestname+"</a>";
+        else
+        td1.innerHTML = "<a style='text-decoration: none; cursor: pointer;color: #1890FF' onclick='warningInfo()'>"+n.contestname+"</a>";
+
         td2.innerHTML = n.contesthost;
         n.conteststarttime=n.conteststarttime.replace(/\T/g," ");
         td3.innerHTML=n.conteststarttime;
@@ -194,7 +202,8 @@ function updatefronttMatchInfo(data) {
         n.contestendtime=new Date(n.contestendtime.replace(/\-/g, "/"));
         td4.innerHTML = (parseInt(n.contestendtime-n.conteststarttime)/1000/60/60)+"小时";
         td5.innerHTML = n.contestform;
-        if (n.conteststate == false) {
+
+        if (isOnline == false) {
             td6.innerHTML ="过期";
             td6.style="color:red";
         }
@@ -212,4 +221,28 @@ function updatefronttMatchInfo(data) {
         infos.appendChild(tr);
     })
     table.appendChild(infos);
+}
+
+/**   判断比赛是否超时 */
+function judgeIsTimeOut(starttime){
+    var nowtime=CurentTime();  /** 当前时间 */
+    starttime=starttime+":00";
+    /**  判断开考时间 **/
+    starttime=new Date(starttime.replace(/\-/g, "/"));
+    nowtime=new Date(nowtime.replace(/\-/g, "/"));
+    distanceTime=parseInt(starttime-nowtime)/1000/60;
+    if(distanceTime<(-15))
+        return 0;
+    else if((-15)<distanceTime && distanceTime<0)
+        return 1;
+    else
+        return 2;
+}
+
+/** 告诫比赛未开始 */
+function warningInfo() {
+    layer.alert('比赛还未到时间',{
+        icon: 4,
+        time: 2000
+    })
 }
